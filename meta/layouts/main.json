@@ -1,0 +1,123 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "class": "justify-content-start align-items-center",
+          "components": [
+            {
+              "attributes": [],
+              "class": "col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10",
+              "components": [
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "path": "dashboard",
+                        "type": "navigate"
+                      }
+                    ]
+                  },
+                  "name": "image0",
+                  "path": "/assets/images/Logo01.png",
+                  "style": {
+                    "float": "left",
+                    "height": "30px",
+                    "paddingLeft": "13px"
+                  },
+                  "type": "image"
+                },
+                {
+                  "name": "label2",
+                  "style": {
+                    "color": "#575757",
+                    "float": "none",
+                    "fontSize": "12px",
+                    "paddingLeft": "10px",
+                    "paddingRight": "10px",
+                    "paddingTop": "8px"
+                  },
+                  "text": "|",
+                  "type": "label"
+                },
+                {
+                  "name": "label5",
+                  "style": {
+                    "color": "#A71330",
+                    "float": "none",
+                    "fontSize": "14px",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Inventur",
+                  "type": "label"
+                }
+              ],
+              "name": "col2",
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "marginLeft": "",
+                "marginRight": "",
+                "marginTop": "",
+                "paddingLeft": "",
+                "paddingRight": ""
+              },
+              "type": "col"
+            },
+            {
+              "class": "text-lg-right           justify-content-end d-flex col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2",
+              "components": [
+                {
+                  "icon": "widgets",
+                  "name": "linkDashboard",
+                  "path": "dashboard",
+                  "style": {
+                    "color": "#969696",
+                    "fontSize": "24px",
+                    "marginRight": "20px"
+                  },
+                  "text": "",
+                  "type": "link"
+                }
+              ],
+              "name": "rightCol",
+              "style": {
+                "float": "right",
+                "textAlign": "right"
+              },
+              "type": "col"
+            }
+          ],
+          "name": "headerRow",
+          "style": {
+            "height": "56px"
+          },
+          "type": "row"
+        }
+      ],
+      "name": "header0",
+      "style": {
+        "marginLeft": "0px"
+      },
+      "type": "header"
+    },
+    {
+      "components": [
+        {
+          "name": "main",
+          "style": {
+            "width": "1823px"
+          },
+          "type": "content-container"
+        }
+      ],
+      "name": "body0",
+      "style": {
+        "marginLeft": "0px",
+        "paddingBottom": "10px",
+        "paddingTop": "10px"
+      },
+      "type": "body"
+    }
+  ],
+  "name": "Main"
+}
