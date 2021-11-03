@@ -70,7 +70,7 @@
                     "textAlign": "center",
                     "width": "100%"
                   },
-                  "text": "${security.user.name}",
+                  "text": "",
                   "type": "label"
                 }
               ],
@@ -90,17 +90,6 @@
                   },
                   "text": "",
                   "type": "link"
-                },
-                {
-                  "type": "profilemenu",
-                  "name": "profilemenu0",
-                  "visible": "${security.isAuthenticated()}",
-                  "template": [
-                    {
-                      "email": "${security.user.name}",
-                      "type": "gravatar"
-                    }
-                  ]
                 }
               ],
               "name": "rightCol",

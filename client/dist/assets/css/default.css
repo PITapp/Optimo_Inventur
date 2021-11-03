@@ -12,7 +12,7 @@
   --white: #ffffff;
   --gray: #6c757d;
   --gray-dark: #343a40;
-  --primary: #A71330;
+  --primary: #a71330;
   --secondary: #479cc8;
   --success: #5dbf74;
   --info: #68d5c8;
@@ -1765,7 +1765,7 @@ a.badge:hover, a.badge:focus {
 
 .badge-primary {
   color: #ffffff;
-  background-color: #A71330;
+  background-color: #a71330;
 }
 
 a.badge-primary:hover, a.badge-primary:focus {
@@ -2057,7 +2057,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .bg-primary {
-  background-color: #A71330 !important;
+  background-color: #a71330 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -2185,7 +2185,7 @@ button.bg-dark:focus {
 }
 
 .border-primary {
-  border-color: #A71330 !important;
+  border-color: #a71330 !important;
 }
 
 .border-secondary {
@@ -5214,7 +5214,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #A71330 !important;
+  color: #a71330 !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -6999,7 +6999,7 @@ p-button[type] {
 }
 
 .ui-button.btn-primary, .btn-primary.ui-paginator-element {
-  background-color: #A71330;
+  background-color: #a71330;
 }
 
 .ui-button.btn-light, .btn-light.ui-paginator-element {
@@ -10528,7 +10528,7 @@ p-treetabletoggler {
 }
 
 .ui-dialog-footer .ui-button:first-child, .ui-dialog-footer .ui-paginator-element:first-child {
-  background-color: #A71330;
+  background-color: #a71330;
   width: 80px;
 }
 
@@ -10896,7 +10896,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 .ui-progressbar-value {
   border-radius: 4px;
   position: absolute;
-  background-color: #479cc8;
+  background-color: #6A9AC6;
   height: 100%;
   width: 100%;
 }
@@ -10923,7 +10923,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
   top: 0;
   left: 0;
   bottom: 0;
-  background-color: #479cc8;
+  background-color: #6A9AC6;
   will-change: left, right;
   animation: 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite ui-progressbar-indeterminate-anim;
 }
@@ -10934,7 +10934,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
   top: 0;
   left: 0;
   bottom: 0;
-  background-color: #479cc8;
+  background-color: #6A9AC6;
   will-change: left, right;
   animation: 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite ui-progressbar-indeterminate-anim-short;
   animation-delay: 1.15s;

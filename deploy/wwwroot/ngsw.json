@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1635687304811,
+  "timestamp": 1635976262727,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -18,7 +18,9 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
+        "/assets/css/blue-grey.css",
         "/assets/css/default.css",
+        "/assets/css/humanistic.css",
         "/assets/css/material-dark.css",
         "/assets/css/material.css",
         "/assets/fonts/MaterialIcons-Regular.woff",
@@ -69,7 +71,9 @@
     }
   ],
   "hashTable": {
-    "/assets/css/default.css": "1bb8a726abb93eb993ed61489450c18c63153de5",
+    "/assets/css/blue-grey.css": "8b39fa46bea35bd4d12e7a1650cb6247c184469e",
+    "/assets/css/default.css": "376dbe272d42bf8849f0a3f52e29a04ab436bb19",
+    "/assets/css/humanistic.css": "f895e12953993d9fa93447af65589412381e667f",
     "/assets/css/material-dark.css": "0e5bb73a5a1ff0246bf44477eb883d1a65da8c5f",
     "/assets/css/material.css": "e773111a11a8f86de001044b1e3dfd78c3b7baf1",
     "/assets/fonts/MaterialIcons-Regular.woff": "c77f37fb5b7d4188ffc6a40a9fac119bbb4783e0",
@@ -90,10 +94,10 @@
     "/assets/fonts/roboto-v15-latin-300.woff": "27c056b9c70dcfd55c43e954a898eb5bf706f730",
     "/assets/fonts/roboto-v15-latin-700.woff": "24f9df68c500f7bbd1cb1c632de59936aa85b2e0",
     "/assets/fonts/roboto-v15-latin-regular.woff": "940b859e4f02bd3e7cf7b6ce245c197b5470302a",
-    "/assets/icon-128x128.png": "3a578ea109ba1e69db2f5f21b2d35c1a831eb4c8",
-    "/assets/icon-152x152.png": "31e1be7831f2b94fa1a0c05728217a5662a60cf6",
-    "/assets/icon-256x256.png": "e3e4787162def12835e8badf99e5019b862c7342",
-    "/assets/icon-512x512.png": "edd76ebdccf7025f72400346038e1d3184283387",
+    "/assets/icon-128x128.png": "321182d9e0646a51fd40121fafdeb23d3fe80b3a",
+    "/assets/icon-152x152.png": "4a1aa527ffe8b720be7804e429cdc355cc3d73af",
+    "/assets/icon-256x256.png": "61bcab148db8ba6af2219df56d717d1f4e9ba4c7",
+    "/assets/icon-512x512.png": "cd53b852efcf2da1626ebc174ff94f42fe50fa55",
     "/assets/images/IconDashboard.png": "448472ca199c1ed41088472a835ed81fe0316a6b",
     "/assets/images/IconWidget.png": "fac7f8c27b5c8821a01e5c89b1ef561b19a93d48",
     "/assets/images/KeinBildPerson.png": "99a382ffdd4ed46d95376a2a37eacf5da922febe",
@@ -103,8 +107,8 @@
     "/assets/images/LogoOhneSchriftzug2.png": "14f843355c4d27a205ba82c68ced35f3a225d4cf",
     "/assets/images/LogoOhneSchriftzug3.png": "a7a2ab8e6cd457d06d7f30c54300a50b6da24fab",
     "/assets/images/LogoOhneSchriftzug4.png": "832146a33ec16722f16da44be85be75a4640fdd5",
-    "/favicon.ico": "c9256558411ee51af0e208578f309024e01193fa",
-    "/index.html": "bbc4075380a9f98bd1fcce67e890abcdc89caa6a"
+    "/favicon.ico": "e9a35d8fbc2e266e2fd1fd31647508acb7aec6c2",
+    "/index.html": "9c85b9ec63e0455c1535943e0824dacf403e75cf"
   },
   "navigationUrls": [
     {

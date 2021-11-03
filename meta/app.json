@@ -18,13 +18,17 @@
   "layouts": [
     "Details",
     "Login",
+    "MainTemp",
     "Main"
   ],
   "logo": "",
   "name": "Optimo Inventur",
   "namespaces": [],
   "navigation": [
-    "Dashboard"
+    "Dashboard",
+    "Copy of Dashboard",
+    "Copy of Dashboard 1",
+    "Test"
   ],
   "pages": [
     "Dashboard",
@@ -39,27 +43,11 @@
     "Impressum",
     "Datenschutz",
     "Versionen",
-    "Login",
-    "Profile",
-    "Unauthorized"
+    "Copy of Dashboard",
+    "Copy of Dashboard 1",
+    "Test"
   ],
   "port": 8000,
-  "security": {
-    "autoGeneratePages": false,
-    "dataSource": "dbOptimo",
-    "duration": 20000,
-    "emailConfirmation": false,
-    "layout": "Details",
-    "loginLayout": "Login",
-    "loginPage": "Login",
-    "provider": "default",
-    "sessionRefresh": false,
-    "smtpFrom": "",
-    "smtpPassword": "",
-    "smtpSSL": false,
-    "smtpServer": "",
-    "smtpUser": ""
-  },
   "serverLang": "cs",
   "serverPort": 5000,
   "serverProject": true,
@@ -219,13 +207,13 @@
     "$picklist-list-background-color": "#ffffff",
     "$picklist-list-border": "1px solid #dadfe2",
     "$picklist-list-border-radius": "4px",
-    "$primary": "#A71330",
+    "$primary": "#a71330",
     "$profile-menu-background-color": "#ffffff",
     "$profile-menu-border": "1px solid #eaeef0",
     "$profile-menu-toggle-button-color": "#479cc8",
     "$progressbar-background-color": "#e6ecef",
     "$progressbar-border-radius": "4px",
-    "$progressbar-value-background-color": "#479cc8",
+    "$progressbar-value-background-color": "#6A9AC6",
     "$radio-active-background-color": "#3f8cb3",
     "$radio-border-radius": "50%",
     "$radio-checked-background-color": "#3f8cb3",

@@ -1,0 +1,71 @@
+{
+  "access": [],
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Test",
+          "type": "heading"
+        },
+        {
+          "components": [
+            {
+              "allowPaging": false,
+              "count": "${rstLagerorteCount}",
+              "data": "${rstLagerorte}",
+              "defaultRowText": "Template for index",
+              "emptyText": "No records found.",
+              "events": {
+                "loadData": [
+                  {
+                    "name": "dbOptimo.getInventurBases",
+                    "then": [
+                      {
+                        "name": "rstLagerorte",
+                        "type": "set",
+                        "value": "${result.value}"
+                      },
+                      {
+                        "name": "rstLagerorteCount",
+                        "type": "set",
+                        "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "name": "datalistLagerorte",
+              "template": [
+                {
+                  "name": "textbox0",
+                  "type": "textbox",
+                  "value": "${data.Lagerort}"
+                }
+              ],
+              "type": "datalist",
+              "wrapItems": false
+            }
+          ],
+          "name": "panel0",
+          "text": "Lagerorte",
+          "type": "panel"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "code": "this.datalistLagerorte.load();",
+        "type": "execute"
+      }
+    ]
+  },
+  "layout": "Details",
+  "name": "Test"
+}

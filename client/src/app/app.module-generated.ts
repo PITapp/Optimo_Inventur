@@ -13,23 +13,19 @@ import { HeaderModule } from '@radzen/angular/dist/header';
 import { ButtonModule } from '@radzen/angular/dist/button';
 import { LabelModule } from '@radzen/angular/dist/label';
 import { LinkModule } from '@radzen/angular/dist/link';
-import { ProfileMenuModule } from '@radzen/angular/dist/profilemenu';
-import { GravatarModule } from '@radzen/angular/dist/gravatar';
 import { CardModule } from '@radzen/angular/dist/card';
 import { ImageModule } from '@radzen/angular/dist/image';
-import { ContentModule } from '@radzen/angular/dist/content';
 import { HeadingModule } from '@radzen/angular/dist/heading';
 import { ProgressBarModule } from '@radzen/angular/dist/progressbar';
+import { ContentModule } from '@radzen/angular/dist/content';
 import { SparklineModule } from '@radzen/angular/dist/sparkline';
-import { IconModule } from '@radzen/angular/dist/icon';
 import { TextBoxModule } from '@radzen/angular/dist/textbox';
+import { IconModule } from '@radzen/angular/dist/icon';
 import { DataListModule } from '@radzen/angular/dist/datalist';
 import { TextAreaModule } from '@radzen/angular/dist/textarea';
 import { TabsModule } from '@radzen/angular/dist/tabs';
 import { HtmlModule } from '@radzen/angular/dist/html';
-import { LoginModule } from '@radzen/angular/dist/login';
-import { FormModule } from '@radzen/angular/dist/form';
-import { PasswordModule } from '@radzen/angular/dist/password';
+import { PanelModule } from '@radzen/angular/dist/panel';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
 import { DialogModule } from '@radzen/angular/dist/dialog';
@@ -51,17 +47,15 @@ import { EinstellungenComponent } from './einstellungen/einstellungen.component'
 import { ImpressumComponent } from './impressum/impressum.component';
 import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 import { VersionenComponent } from './versionen/versionen.component';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { CopyOfDashboardComponent } from './copy-of-dashboard/copy-of-dashboard.component';
+import { CopyOfDashboard1Component } from './copy-of-dashboard-1/copy-of-dashboard-1.component';
+import { TestComponent } from './test/test.component';
 import { DetailsLayoutComponent } from './details-layout/details-layout.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
+import { MainTempLayoutComponent } from './main-temp-layout/main-temp-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 import { DbOptimoService } from './db-optimo.service';
-import { SecurityService, UserService } from './security.service';
-import { SecurityInterceptor } from './security.interceptor';
-import { AuthGuard } from './auth.guard';
 
 export const PageDeclarations = [
   DashboardComponent,
@@ -76,14 +70,15 @@ export const PageDeclarations = [
   ImpressumComponent,
   DatenschutzComponent,
   VersionenComponent,
-  LoginComponent,
-  ProfileComponent,
-  UnauthorizedComponent,
+  CopyOfDashboardComponent,
+  CopyOfDashboard1Component,
+  TestComponent,
 ];
 
 export const LayoutDeclarations = [
   DetailsLayoutComponent,
   LoginLayoutComponent,
+  MainTempLayoutComponent,
   MainLayoutComponent,
 ];
 
@@ -100,14 +95,6 @@ export const AppProviders = [
     multi: true
   },
   DbOptimoService,
-  UserService,
-  SecurityService,
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: SecurityInterceptor,
-    multi: true
-  },
-  AuthGuard,
   ConfigService,
   {
     provide: APP_INITIALIZER,
@@ -128,23 +115,19 @@ export const AppImports = [
   ButtonModule,
   LabelModule,
   LinkModule,
-  ProfileMenuModule,
-  GravatarModule,
   CardModule,
   ImageModule,
-  ContentModule,
   HeadingModule,
   ProgressBarModule,
+  ContentModule,
   SparklineModule,
-  IconModule,
   TextBoxModule,
+  IconModule,
   DataListModule,
   TextAreaModule,
   TabsModule,
   HtmlModule,
-  LoginModule,
-  FormModule,
-  PasswordModule,
+  PanelModule,
   SharedModule,
   NotificationModule,
   DialogModule,

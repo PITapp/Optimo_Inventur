@@ -1,7 +1,5 @@
 {
-  "access": [
-    "Authenticated"
-  ],
+  "access": [],
   "components": [
     {
       "components": [
@@ -22,6 +20,7 @@
                       "type": "heading"
                     },
                     {
+                      "mode": "determinate",
                       "name": "progressbar0",
                       "showValue": false,
                       "style": {
@@ -116,7 +115,7 @@
                         "marginLeft": "0px",
                         "marginTop": "10px"
                       },
-                      "text": "Info",
+                      "text": "Info Test",
                       "type": "heading"
                     },
                     {
@@ -157,6 +156,578 @@
           "visible": true
         },
         {
+          "attributes": [
+            {
+              "name": "(focusin)",
+              "value": "onFocusInHideKeyboard()"
+            },
+            {
+              "name": "id",
+              "value": "Textfeld01"
+            }
+          ],
+          "name": "textbox0",
+          "style": {
+            "fontSize": "30px",
+            "height": "70px",
+            "width": "100%"
+          },
+          "type": "textbox",
+          "value": ""
+        },
+        {
+          "attributes": [
+            {
+              "name": "(keydown)",
+              "value": "onKeyPressSetInput($event)"
+            }
+          ],
+          "name": "textbox3",
+          "placeholder": "",
+          "readOnly": true,
+          "style": {
+            "fontSize": "30px",
+            "height": "70px",
+            "width": "100%"
+          },
+          "type": "textbox",
+          "value": ""
+        },
+        {
+          "attributes": [
+            {
+              "name": "id",
+              "value": "NaechstesFeld"
+            }
+          ],
+          "name": "Feld123",
+          "readOnly": true,
+          "style": {
+            "width": "100%"
+          },
+          "type": "textbox",
+          "value": ""
+        },
+        {
+          "disabled": true,
+          "name": "textbox2",
+          "readOnly": false,
+          "style": {
+            "width": "100%"
+          },
+          "type": "textbox",
+          "value": ""
+        },
+        {
+          "events": {
+            "click": [
+              {
+                "path": "test",
+                "type": "navigate"
+              }
+            ]
+          },
+          "name": "button2",
+          "text": "Test",
+          "type": "button"
+        },
+        {
+          "components": [
+            {
+              "class": "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "components": [
+                {
+                  "attributes": [
+                    {
+                      "name": "(click)",
+                      "value": "onClickStartBenutzer()"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 justify-content-start d-flex align-items-center",
+                          "components": [
+                            {
+                              "icon": "person",
+                              "name": "icon1",
+                              "style": {
+                                "color": "#A71330",
+                                "fontSize": "36px"
+                              },
+                              "type": "icon"
+                            }
+                          ],
+                          "name": "col7",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 justify-content-end d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label0",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontSize": "24px",
+                                "fontWeight": "bold"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col6",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row6",
+                      "style": {
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 justify-content-start d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label1",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontWeight": "normal"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col11",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 justify-content-end d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label2",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontWeight": "normal"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col13",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row8",
+                      "style": {
+                        "marginTop": "-7px",
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    }
+                  ],
+                  "name": "card2",
+                  "style": {
+                    "backgroundColor": "#ffffff",
+                    "borderBottom": "3px solid #a71330",
+                    "display": "block",
+                    "height": "70px",
+                    "paddingTop": "0"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col2",
+              "style": {},
+              "type": "col"
+            }
+          ],
+          "name": "row2",
+          "style": {
+            "paddingBottom": "10px",
+            "paddingLeft": ""
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "components": [
+                {
+                  "attributes": [
+                    {
+                      "name": "(click)",
+                      "value": "onClickStartBenutzer()"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 justify-content-start d-flex align-items-center",
+                          "components": [
+                            {
+                              "icon": "person",
+                              "name": "icon7",
+                              "style": {
+                                "color": "#A71330",
+                                "fontSize": "36px"
+                              },
+                              "type": "icon"
+                            }
+                          ],
+                          "name": "col26",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 justify-content-end d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label9",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontSize": "24px",
+                                "fontWeight": "bold"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col27",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row18",
+                      "style": {
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 justify-content-start d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label10",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontWeight": "normal"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col28",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 justify-content-end d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label11",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontWeight": "normal"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col29",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row19",
+                      "style": {
+                        "marginTop": "-7px",
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    }
+                  ],
+                  "name": "card9",
+                  "style": {
+                    "backgroundColor": "#ffffff",
+                    "borderBottom": "3px solid #a71330",
+                    "display": "block",
+                    "height": "70px",
+                    "paddingTop": "0"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col25",
+              "style": {},
+              "type": "col"
+            }
+          ],
+          "name": "row17",
+          "style": {
+            "paddingBottom": "10px",
+            "paddingLeft": ""
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "components": [
+                {
+                  "attributes": [
+                    {
+                      "name": "(click)",
+                      "value": "onClickStartBenutzer()"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 justify-content-start d-flex align-items-center",
+                          "components": [
+                            {
+                              "icon": "person",
+                              "name": "icon6",
+                              "style": {
+                                "color": "#A71330",
+                                "fontSize": "36px"
+                              },
+                              "type": "icon"
+                            }
+                          ],
+                          "name": "col21",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 justify-content-end d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label6",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontSize": "24px",
+                                "fontWeight": "bold"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col22",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row15",
+                      "style": {
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 justify-content-start d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label7",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontWeight": "normal"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col23",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 justify-content-end d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label8",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontWeight": "normal"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col24",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row16",
+                      "style": {
+                        "marginTop": "-7px",
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    }
+                  ],
+                  "name": "card7",
+                  "style": {
+                    "backgroundColor": "#ffffff",
+                    "borderBottom": "3px solid #a71330",
+                    "display": "block",
+                    "height": "70px",
+                    "paddingTop": "0"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col20",
+              "style": {},
+              "type": "col"
+            }
+          ],
+          "name": "row14",
+          "style": {
+            "paddingBottom": "10px",
+            "paddingLeft": ""
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "components": [
+                {
+                  "attributes": [
+                    {
+                      "name": "(click)",
+                      "value": "onClickStartBenutzer()"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 justify-content-start d-flex align-items-center",
+                          "components": [
+                            {
+                              "icon": "person",
+                              "name": "icon4",
+                              "style": {
+                                "color": "#A71330",
+                                "fontSize": "36px"
+                              },
+                              "type": "icon"
+                            }
+                          ],
+                          "name": "col16",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 justify-content-end d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label3",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontSize": "24px",
+                                "fontWeight": "bold"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col17",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row12",
+                      "style": {
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 justify-content-start d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label4",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontWeight": "normal"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col18",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 justify-content-end d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label5",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontWeight": "normal"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col19",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row13",
+                      "style": {
+                        "marginTop": "-7px",
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    }
+                  ],
+                  "name": "card4",
+                  "style": {
+                    "backgroundColor": "#ffffff",
+                    "borderBottom": "3px solid #a71330",
+                    "display": "block",
+                    "height": "70px",
+                    "paddingTop": "0"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col14",
+              "style": {},
+              "type": "col"
+            }
+          ],
+          "name": "row11",
+          "style": {
+            "paddingBottom": "10px",
+            "paddingLeft": ""
+          },
+          "type": "row"
+        },
+        {
           "components": [
             {
               "class": "col-lg-6    col-6 col-sm-6 col-md-6 col-xl-6",
@@ -171,7 +742,7 @@
                           "components": [
                             {
                               "icon": "person",
-                              "name": "icon1",
+                              "name": "icon0",
                               "style": {
                                 "color": "#A71330",
                                 "fontSize": "36px"
@@ -179,11 +750,11 @@
                               "type": "icon"
                             }
                           ],
-                          "name": "col7",
+                          "name": "col4",
                           "type": "col"
                         }
                       ],
-                      "name": "row6",
+                      "name": "row5",
                       "style": {
                         "paddingBottom": "0px",
                         "paddingTop": "0px"
@@ -203,7 +774,7 @@
                           }
                         ]
                       },
-                      "name": "button2",
+                      "name": "button0",
                       "size": "sm",
                       "style": {
                         "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -220,7 +791,7 @@
                       "type": "button"
                     },
                     {
-                      "name": "heading4",
+                      "name": "heading1",
                       "size": "H4",
                       "style": {
                         "color": "#5d717b",
@@ -234,7 +805,7 @@
                       "type": "heading"
                     }
                   ],
-                  "name": "card2",
+                  "name": "card1",
                   "style": {
                     "backgroundColor": "#ffffff",
                     "borderBottom": "3px solid #a71330",
@@ -247,7 +818,7 @@
                   "visible": true
                 }
               ],
-              "name": "col2",
+              "name": "col3",
               "style": {
                 "paddingRight": "5px"
               },
@@ -265,7 +836,7 @@
                           "components": [
                             {
                               "icon": "assignment",
-                              "name": "icon4",
+                              "name": "icon2",
                               "style": {
                                 "color": "#A71330",
                                 "fontSize": "36px"
@@ -273,11 +844,11 @@
                               "type": "icon"
                             }
                           ],
-                          "name": "col11",
+                          "name": "col10",
                           "type": "col"
                         }
                       ],
-                      "name": "row8",
+                      "name": "row10",
                       "style": {
                         "paddingBottom": "0px",
                         "paddingTop": "0px"
@@ -297,7 +868,7 @@
                           }
                         ]
                       },
-                      "name": "button4",
+                      "name": "button1",
                       "size": "sm",
                       "style": {
                         "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -314,7 +885,7 @@
                       "type": "button"
                     },
                     {
-                      "name": "heading6",
+                      "name": "heading2",
                       "size": "H4",
                       "style": {
                         "color": "#5d717b",
@@ -328,7 +899,7 @@
                       "type": "heading"
                     }
                   ],
-                  "name": "card4",
+                  "name": "card6",
                   "style": {
                     "backgroundColor": "#ffffff",
                     "borderBottom": "3px solid #a71330",
@@ -341,14 +912,14 @@
                   "visible": true
                 }
               ],
-              "name": "col6",
+              "name": "col5",
               "style": {
                 "paddingLeft": "5px"
               },
               "type": "col"
             }
           ],
-          "name": "row2",
+          "name": "row3",
           "style": {
             "paddingBottom": "10px",
             "paddingLeft": ""
@@ -607,6 +1178,21 @@
         "name": "customers",
         "type": "set",
         "value": "[134, 193, 156, 123, 192, 155, 132, 163, 143, 182, 192, 233, 129, 183, 233, 150, 113, 233, 323, 354, 433, 425, 365, 322, 280, 321, 393, 436,530,553,576]"
+      },
+      {
+        "name": "onClickStartBenutzer",
+        "type": "set",
+        "value": "() => {\n    console.log(\"onClick...\")\n}"
+      },
+      {
+        "name": "onFocusInHideKeyboard",
+        "type": "set",
+        "value": "() => {\n    console.log(\"bin in focus\");\n\n    var element = document.getElementById(\"Textfeld01\");\n\n    console.log(element.id, '  ', element.tagName);\n\nelement.setAttribute('readonly', 'readonly'); // Force keyboard to hide on input field.\n    element.setAttribute('disabled', 'true'); // Force keyboard to hide on textarea field.\n    setTimeout(function() {\n        element.blur();  //actually close the keyboard\n        // Remove readonly attribute after keyboard is hidden.\n        element.removeAttribute('readonly');\n        element.removeAttribute('disabled');\n    }, 100);\n}"
+      },
+      {
+        "name": "onKeyPressSetInput",
+        "type": "set",
+        "value": "(event) => {\n    console.log(\"taste gedrückt\");\n\n    console.log(event);\n    \n    if(this.textbox3.value === undefined) {\n        this.textbox3.value = \"\";\n    }\n\n\n      switch (event.key) {\n        case \"F12\":\n          // F12 Taste - nix tun\n          break;\n      \n        case \"Enter\":\n        case \"Unidentified\":\n          console.log(\"--------- Enter ---------\");\n          this.notificationService.notify({ severity: \"info\", summary: ``, detail: `Bin fertig` });\n          document.getElementById(\"Feld123\").focus()\n          break;\n\n        case \"Backspace\":\n          if(this.textbox3.value.length >= 1) {\n            this.textbox3.value = this.textbox3.value.substr(0,this.textbox3.value.length - 1);\n          }\n          break;\n\n        default:\n          this.textbox3.value = this.textbox3.value + event.key;\n          break;\n      }\n}"
       }
     ]
   },

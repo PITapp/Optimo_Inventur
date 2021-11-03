@@ -1,7 +1,5 @@
 {
-  "access": [
-    "Authenticated"
-  ],
+  "access": [],
   "components": [
     {
       "components": [
@@ -101,6 +99,6 @@
   "events": {
     "load": []
   },
-  "layout": "Main",
+  "layout": "MainTemp",
   "name": "Impressum"
 }

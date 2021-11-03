@@ -13,21 +13,29 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { HeaderComponent } from '@radzen/angular/dist/header';
 import { ImageComponent } from '@radzen/angular/dist/image';
 import { LabelComponent } from '@radzen/angular/dist/label';
-import { LinkComponent } from '@radzen/angular/dist/link';
+import { CardComponent } from '@radzen/angular/dist/card';
+import { HeadingComponent } from '@radzen/angular/dist/heading';
+import { ProgressBarComponent } from '@radzen/angular/dist/progressbar';
 import { BodyComponent } from '@radzen/angular/dist/body';
 import { ContentContainerComponent } from '@radzen/angular/dist/content-container';
 
 import { ConfigService } from '../config.service';
 
-import { SecurityService } from '../security.service';
 
 export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('header0') header0: HeaderComponent;
   @ViewChild('image0') image0: ImageComponent;
-  @ViewChild('label2') label2: LabelComponent;
   @ViewChild('label5') label5: LabelComponent;
-  @ViewChild('linkDashboard') linkDashboard: LinkComponent;
+  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('card2') card2: CardComponent;
+  @ViewChild('heading4') heading4: HeadingComponent;
+  @ViewChild('heading5') heading5: HeadingComponent;
+  @ViewChild('progressbar2') progressbar2: ProgressBarComponent;
+  @ViewChild('card1') card1: CardComponent;
+  @ViewChild('heading2') heading2: HeadingComponent;
+  @ViewChild('heading3') heading3: HeadingComponent;
+  @ViewChild('progressbar1') progressbar1: ProgressBarComponent;
   @ViewChild('body0') body0: BodyComponent;
   @ViewChild('main') main: ContentContainerComponent;
 
@@ -52,8 +60,6 @@ export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
   _location: Location;
 
   _subscription: Subscription;
-
-  security: SecurityService;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -80,7 +86,6 @@ export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.httpClient = this.injector.get(HttpClient);
 
-    this.security = this.injector.get(SecurityService);
   }
 
   ngAfterViewInit() {

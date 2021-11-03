@@ -16,12 +16,9 @@ import { HeaderComponent } from '@radzen/angular/dist/header';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 import { LabelComponent } from '@radzen/angular/dist/label';
 import { LinkComponent } from '@radzen/angular/dist/link';
-import { ProfileMenuComponent } from '@radzen/angular/dist/profilemenu';
-import { GravatarComponent } from '@radzen/angular/dist/gravatar';
 
 import { ConfigService } from '../config.service';
 
-import { SecurityService } from '../security.service';
 
 export class DetailsLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
@@ -31,7 +28,6 @@ export class DetailsLayoutGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('buttonBack') buttonBack: ButtonComponent;
   @ViewChild('labelTitel') labelTitel: LabelComponent;
   @ViewChild('linkDashboard') linkDashboard: LinkComponent;
-  @ViewChild('profilemenu0') profilemenu0: ProfileMenuComponent;
 
   router: Router;
 
@@ -54,8 +50,6 @@ export class DetailsLayoutGenerated implements AfterViewInit, OnInit, OnDestroy 
   _location: Location;
 
   _subscription: Subscription;
-
-  security: SecurityService;
   suchenText: any;
   parameters: any;
 
@@ -83,7 +77,6 @@ export class DetailsLayoutGenerated implements AfterViewInit, OnInit, OnDestroy 
 
     this.httpClient = this.injector.get(HttpClient);
 
-    this.security = this.injector.get(SecurityService);
   }
 
   ngAfterViewInit() {
@@ -114,12 +107,6 @@ export class DetailsLayoutGenerated implements AfterViewInit, OnInit, OnDestroy 
       this.dialogRef.close();
     } else {
       this._location.back();
-    }
-  }
-
-  profilemenu0Click(event: any) {
-    if (event.text == 'Logout') {
-      this.security.logout()
     }
   }
 }

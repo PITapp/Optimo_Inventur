@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace OptimoInventur.Models.DbOptimo
+{
+  [Table("InventurBasis")]
+  public partial class InventurBasis
+  {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int InventurID
+    {
+      get;
+      set;
+    }
+
+
+    public ICollection<InventurArtikel> InventurArtikels { get; set; }
+    public string AuftragCode
+    {
+      get;
+      set;
+    }
+    public int ErfassungNr
+    {
+      get;
+      set;
+    }
+    public string Lagerort
+    {
+      get;
+      set;
+    }
+    public string Beschreibung
+    {
+      get;
+      set;
+    }
+    public string Status
+    {
+      get;
+      set;
+    }
+    public string Verantwortlich
+    {
+      get;
+      set;
+    }
+    public string Notiz
+    {
+      get;
+      set;
+    }
+  }
+}

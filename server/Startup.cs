@@ -10,8 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Builder;
@@ -20,8 +18,6 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Hosting;
 
 using OptimoInventur.Data;
-using OptimoInventur.Models;
-using OptimoInventur.Authentication;
 
 namespace OptimoInventur
 {
@@ -76,38 +72,6 @@ namespace OptimoInventur
       services.AddOData();
       services.AddODataQueryFilter();
       services.AddHttpContextAccessor();
-      var tokenValidationParameters = new TokenValidationParameters
-      {
-          ValidateIssuerSigningKey = true,
-          IssuerSigningKey = TokenProviderOptions.Key,
-          ValidateIssuer = true,
-          ValidIssuer = TokenProviderOptions.Issuer,
-          ValidateAudience = true,
-          ValidAudience = TokenProviderOptions.Audience,
-          ValidateLifetime = true,
-          ClockSkew = TimeSpan.Zero
-      };
-
-      services.AddAuthentication(options =>
-      {
-          options.DefaultScheme = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme;
-      }).AddJwtBearer(options =>
-      {
-          options.Audience = TokenProviderOptions.Audience;
-          options.ClaimsIssuer = TokenProviderOptions.Issuer;
-          options.TokenValidationParameters = tokenValidationParameters;
-          options.SaveToken = true;
-      });
-      services.AddDbContext<ApplicationIdentityDbContext>(options =>
-      {
-         options.UseMySql(Configuration.GetConnectionString("dbOptimoConnection"));
-      });
-
-      services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationIdentityDbContext>();
-
-      services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationPrincipalFactory>();
-
 
       services.AddDbContext<OptimoInventur.Data.DbOptimoContext>(options =>
       {
@@ -166,6 +130,9 @@ namespace OptimoInventur
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.BaseKontakte>("BaseKontaktes");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.Benutzer>("Benutzers");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InfotexteHtml>("InfotexteHtmls");
+          oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurArtikel>("InventurArtikels");
+          oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurBasis>("InventurBases");
+          oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurErfassung>("InventurErfassungs");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.Notizen>("Notizens");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.Protokoll>("Protokolls");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwBase>("VwBases");
@@ -179,16 +146,10 @@ namespace OptimoInventur
 
           this.OnConfigureOData(oDataBuilder);
 
-          oDataBuilder.EntitySet<ApplicationUser>("ApplicationUsers");
-          var usersType = oDataBuilder.StructuralTypes.First(x => x.ClrType == typeof(ApplicationUser));
-          usersType.AddCollectionProperty(typeof(ApplicationUser).GetProperty("RoleNames"));
-          oDataBuilder.EntitySet<IdentityRole>("ApplicationRoles");
-
           var model = oDataBuilder.GetEdmModel();
 
           builder.MapODataServiceRoute("odata/dbOptimo", "odata/dbOptimo", model);
 
-          builder.MapODataServiceRoute("auth", "auth", model);
       });
 
       if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RADZEN")) && env.IsDevelopment())

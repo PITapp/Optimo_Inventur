@@ -18,7 +18,6 @@ import { TextAreaComponent } from '@radzen/angular/dist/textarea';
 
 import { ConfigService } from '../config.service';
 
-import { SecurityService } from '../security.service';
 
 export class BaseDetailsGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
@@ -50,8 +49,6 @@ export class BaseDetailsGenerated implements AfterViewInit, OnInit, OnDestroy {
   _location: Location;
 
   _subscription: Subscription;
-
-  security: SecurityService;
   paramBaseID: any;
   parameters: any;
 
@@ -79,7 +76,6 @@ export class BaseDetailsGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.httpClient = this.injector.get(HttpClient);
 
-    this.security = this.injector.get(SecurityService);
   }
 
   ngAfterViewInit() {

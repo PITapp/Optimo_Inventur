@@ -9,26 +9,12 @@
       </rz-button>
     </div>
     <div class="justify-content-center      col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-      <rz-label #labelTitel [style]="{'color': '#f5f5f5', 'fontSize': '20px', 'textAlign': 'center', 'width': '100%'}" [text]="security?.user?.name" ID="headerDetailsTitel">
+      <rz-label #labelTitel [style]="{'color': '#f5f5f5', 'fontSize': '20px', 'textAlign': 'center', 'width': '100%'}" ID="headerDetailsTitel">
       </rz-label>
     </div>
     <div class="text-lg-right           col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" [ngStyle]="{'textAlign': 'right'}">
       <rz-link #linkDashboard icon="widgets" [style]="{'color': '#5d717b', 'fontSize': '24px', 'marginRight': '20px'}">
       </rz-link>
-      <rz-profilemenu #profilemenu0 *ngIf="security?.isAuthenticated()" (click)="profilemenu0Click($event)">
-        <rz-profilemenu-item path="profile" icon="settings" text="Profile" *ngIf="security?.isInRole(['Authenticated'])">
-        </rz-profilemenu-item>
-        <rz-profilemenu-item path="application-users" icon="person" text="Users">
-        </rz-profilemenu-item>
-        <rz-profilemenu-item path="application-roles" icon="security" text="Roles">
-        </rz-profilemenu-item>
-        <rz-profilemenu-item text="Logout" icon="power_settings_new">
-        </rz-profilemenu-item>
-        <ng-template let-data profilemenuTemplate>
-          <rz-gravatar #gravatar1 [email]="security?.user?.name">
-          </rz-gravatar>
-        </ng-template>
-      </rz-profilemenu>
     </div>
   </div>
 </rz-header>

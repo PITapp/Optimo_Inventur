@@ -16,13 +16,14 @@ import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { ProgressBarComponent } from '@radzen/angular/dist/progressbar';
 import { SparklineComponent } from '@radzen/angular/dist/sparkline';
 import { ImageComponent } from '@radzen/angular/dist/image';
-import { IconComponent } from '@radzen/angular/dist/icon';
+import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { ButtonComponent } from '@radzen/angular/dist/button';
+import { IconComponent } from '@radzen/angular/dist/icon';
+import { LabelComponent } from '@radzen/angular/dist/label';
 import { LinkComponent } from '@radzen/angular/dist/link';
 
 import { ConfigService } from '../config.service';
 
-import { SecurityService } from '../security.service';
 
 export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
@@ -36,14 +37,39 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('sparkline0') sparkline0: SparklineComponent;
   @ViewChild('heading24') heading24: HeadingComponent;
   @ViewChild('image0') image0: ImageComponent;
+  @ViewChild('textbox0') textbox0: TextBoxComponent;
+  @ViewChild('textbox3') textbox3: TextBoxComponent;
+  @ViewChild('feld123') feld123: TextBoxComponent;
+  @ViewChild('textbox2') textbox2: TextBoxComponent;
+  @ViewChild('button2') button2: ButtonComponent;
   @ViewChild('card2') card2: CardComponent;
   @ViewChild('icon1') icon1: IconComponent;
-  @ViewChild('button2') button2: ButtonComponent;
-  @ViewChild('heading4') heading4: HeadingComponent;
+  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('label1') label1: LabelComponent;
+  @ViewChild('label2') label2: LabelComponent;
+  @ViewChild('card9') card9: CardComponent;
+  @ViewChild('icon7') icon7: IconComponent;
+  @ViewChild('label9') label9: LabelComponent;
+  @ViewChild('label10') label10: LabelComponent;
+  @ViewChild('label11') label11: LabelComponent;
+  @ViewChild('card7') card7: CardComponent;
+  @ViewChild('icon6') icon6: IconComponent;
+  @ViewChild('label6') label6: LabelComponent;
+  @ViewChild('label7') label7: LabelComponent;
+  @ViewChild('label8') label8: LabelComponent;
   @ViewChild('card4') card4: CardComponent;
   @ViewChild('icon4') icon4: IconComponent;
-  @ViewChild('button4') button4: ButtonComponent;
-  @ViewChild('heading6') heading6: HeadingComponent;
+  @ViewChild('label3') label3: LabelComponent;
+  @ViewChild('label4') label4: LabelComponent;
+  @ViewChild('label5') label5: LabelComponent;
+  @ViewChild('card1') card1: CardComponent;
+  @ViewChild('icon0') icon0: IconComponent;
+  @ViewChild('button0') button0: ButtonComponent;
+  @ViewChild('heading1') heading1: HeadingComponent;
+  @ViewChild('card6') card6: CardComponent;
+  @ViewChild('icon2') icon2: IconComponent;
+  @ViewChild('button1') button1: ButtonComponent;
+  @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('card3') card3: CardComponent;
   @ViewChild('icon3') icon3: IconComponent;
   @ViewChild('button3') button3: ButtonComponent;
@@ -77,10 +103,11 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   _location: Location;
 
   _subscription: Subscription;
-
-  security: SecurityService;
   dateHeute: any;
   customers: any;
+  onClickStartBenutzer: any;
+  onFocusInHideKeyboard: any;
+  onKeyPressSetInput: any;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -107,7 +134,6 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.httpClient = this.injector.get(HttpClient);
 
-    this.security = this.injector.get(SecurityService);
   }
 
   ngAfterViewInit() {
@@ -133,9 +159,71 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.dateHeute = new Date();
 
     this.customers = [134, 193, 156, 123, 192, 155, 132, 163, 143, 182, 192, 233, 129, 183, 233, 150, 113, 233, 323, 354, 433, 425, 365, 322, 280, 321, 393, 436,530,553,576];
+
+    this.onClickStartBenutzer = () => {
+    console.log("onClick...")
+};
+
+    this.onFocusInHideKeyboard = () => {
+    console.log("bin in focus");
+
+    var element = document.getElementById("Textfeld01");
+
+    console.log(element.id, '  ', element.tagName);
+
+element.setAttribute('readonly', 'readonly'); // Force keyboard to hide on input field.
+    element.setAttribute('disabled', 'true'); // Force keyboard to hide on textarea field.
+    setTimeout(function() {
+        element.blur();  //actually close the keyboard
+        // Remove readonly attribute after keyboard is hidden.
+        element.removeAttribute('readonly');
+        element.removeAttribute('disabled');
+    }, 100);
+};
+
+    this.onKeyPressSetInput = (event) => {
+    console.log("taste gedrückt");
+
+    console.log(event);
+    
+    if(this.textbox3.value === undefined) {
+        this.textbox3.value = "";
+    }
+
+
+      switch (event.key) {
+        case "F12":
+          // F12 Taste - nix tun
+          break;
+      
+        case "Enter":
+        case "Unidentified":
+          console.log("--------- Enter ---------");
+          this.notificationService.notify({ severity: "info", summary: ``, detail: `Bin fertig` });
+          document.getElementById("Feld123").focus()
+          break;
+
+        case "Backspace":
+          if(this.textbox3.value.length >= 1) {
+            this.textbox3.value = this.textbox3.value.substr(0,this.textbox3.value.length - 1);
+          }
+          break;
+
+        default:
+          this.textbox3.value = this.textbox3.value + event.key;
+          break;
+      }
+};
   }
 
   button2Click(event: any) {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+    this.router.navigate(['test']);
+  }
+
+  button0Click(event: any) {
     if (this.dialogRef) {
       this.dialogRef.close();
     }
@@ -144,7 +232,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
     window.scroll(0,0);
   }
 
-  button4Click(event: any) {
+  button1Click(event: any) {
     if (this.dialogRef) {
       this.dialogRef.close();
     }

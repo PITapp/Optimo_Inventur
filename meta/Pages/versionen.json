@@ -1,7 +1,5 @@
 {
-  "access": [
-    "Authenticated"
-  ],
+  "access": [],
   "components": [
     {
       "components": [
@@ -104,6 +102,6 @@
       }
     ]
   },
-  "layout": "Main",
+  "layout": "MainTemp",
   "name": "Versionen"
 }

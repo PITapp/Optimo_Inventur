@@ -1,0 +1,98 @@
+<rz-content #content1 container="main">
+  <rz-card #card0 [style]="{'backgroundColor': '#ffffff', 'borderRadius': '', 'display': 'block', 'height': '175px', 'marginBottom': '10px', 'paddingLeft': '15px'}">
+    <div [ngStyle]="{}" class="row">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" [ngStyle]="{}">
+        <rz-heading #heading0 size="H5" [style]="{'display': 'inline'}" text="1111">
+        </rz-heading>
+        <rz-progressbar #progressbar0 [showValue]="false" [style]="{'height': '8px', 'marginBottom': '10px', 'marginTop': '10px'}" value="75">
+        </rz-progressbar>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" [ngStyle]="{'paddingLeft': '23px'}">
+        <rz-heading #heading19 size="H5" [style]="{'display': 'inline'}" text="22222">
+        </rz-heading>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <rz-heading #heading20 size="H5" [style]="{'display': 'inline'}" text="Aktivitäten">
+        </rz-heading>
+        <rz-heading #heading21 size="H4" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#5dbf74', 'display': 'block', 'float': 'right', 'fontWeight': 'normal', 'marginBottom': '0px', 'textAlign': 'right'}" text="139">
+        </rz-heading>
+        <rz-sparkline #sparkline0 color="#5dbf74" [data]="customers" [style]="{'display': 'inline-block', 'marginTop': '10px', 'width': '100%'}">
+        </rz-sparkline>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" [ngStyle]="{'paddingLeft': '23px'}">
+        <rz-heading #heading24 size="H5" [style]="{'display': 'inline', 'marginLeft': '0px', 'marginTop': '10px'}" text="Info Test">
+        </rz-heading>
+        <rz-image #image0 path="assets/images/KeinBildPerson.png" [style]="{'borderRadius': '50%', 'float': 'right', 'height': '54px', 'textAlign': 'left', 'verticalAlign': 'top', 'width': '54px'}">
+        </rz-image>
+      </div>
+    </div>
+  </rz-card>
+  <div [ngStyle]="{'paddingBottom': '10px', 'paddingLeft': ''}" class="row">
+    <div class="col-lg-6    col-6 col-sm-6 col-md-6 col-xl-6" [ngStyle]="{'paddingRight': '5px'}">
+      <rz-card #card2 [style]="{'backgroundColor': '#ffffff', 'borderBottom': '3px solid #a71330', 'display': 'block', 'height': '120px', 'paddingLeft': '15px', 'paddingRight': '20px'}">
+        <div [ngStyle]="{'paddingBottom': '0px', 'paddingTop': '0px'}" class="row">
+          <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+            <rz-icon #icon1 icon="person" [style]="{'color': '#A71330', 'fontSize': '36px'}">
+            </rz-icon>
+          </div>
+        </div>
+        <rz-button #button2 size="sm" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#5d717b', 'fontSize': '18px', 'fontWeight': '600', 'paddingLeft': '3px', 'position': 'static', 'textAlign': 'left', 'width': '100%'}" text="Benutzer" (click)="button2Click($event)">
+        </rz-button>
+        <rz-heading #heading4 size="H4" [style]="{'color': '#5d717b', 'display': 'block', 'fontSize': '12px', 'fontWeight': 'normal', 'paddingLeft': '3px', 'textAlign': 'left'}" text="Gerhard Sommersguter">
+        </rz-heading>
+      </rz-card>
+    </div>
+    <div class="col-lg-6    col-6 col-sm-6 col-md-6 col-xl-6" [ngStyle]="{'paddingLeft': '5px'}">
+      <rz-card #card4 [style]="{'backgroundColor': '#ffffff', 'borderBottom': '3px solid #a71330', 'display': 'block', 'height': '120px', 'paddingLeft': '15px', 'paddingRight': '20px'}">
+        <div [ngStyle]="{'paddingBottom': '0px', 'paddingTop': '0px'}" class="row">
+          <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+            <rz-icon #icon4 icon="assignment" [style]="{'color': '#A71330', 'fontSize': '36px'}">
+            </rz-icon>
+          </div>
+        </div>
+        <rz-button #button4 size="sm" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#5d717b', 'fontSize': '18px', 'fontWeight': '600', 'paddingLeft': '3px', 'position': 'static', 'textAlign': 'left', 'width': '100%'}" text="Erfassen" (click)="button4Click($event)">
+        </rz-button>
+        <rz-heading #heading6 size="H4" [style]="{'color': '#5d717b', 'display': 'block', 'fontSize': '12px', 'fontWeight': 'normal', 'paddingLeft': '3px', 'textAlign': 'left'}" text="Neu 3 | Offen 2">
+        </rz-heading>
+      </rz-card>
+    </div>
+  </div>
+  <div [ngStyle]="{'paddingBottom': '10px'}" class="row">
+    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" [ngStyle]="{'paddingRight': '5px'}">
+      <rz-card #card3 [style]="{'backgroundColor': '#ffffff', 'borderBottom': '3px solid #a71330', 'display': 'block', 'height': '120px', 'paddingLeft': '15px', 'paddingRight': '20px'}">
+        <div [ngStyle]="{'paddingBottom': '0px', 'paddingTop': '0px'}" class="row">
+          <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+            <rz-icon #icon3 icon="settings" [style]="{'color': '#A71330', 'fontSize': '36px'}">
+            </rz-icon>
+          </div>
+        </div>
+        <rz-button #button3 size="sm" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#5d717b', 'fontSize': '18px', 'fontWeight': '600', 'paddingLeft': '3px', 'position': 'static', 'textAlign': 'left', 'width': '100%'}" text="Einstellungen" (click)="button3Click($event)">
+        </rz-button>
+        <rz-heading #heading5 size="H4" [style]="{'color': '#5d717b', 'display': 'block', 'fontSize': '12px', 'fontWeight': 'normal', 'paddingLeft': '3px', 'textAlign': 'left'}" text="Einträge 7">
+        </rz-heading>
+      </rz-card>
+    </div>
+    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" [ngStyle]="{'paddingLeft': '5px'}">
+      <rz-card #card5 [style]="{'backgroundColor': '#ffffff', 'borderBottom': '3px solid #a71330', 'display': 'block', 'height': '120px', 'paddingLeft': '15px', 'paddingRight': '20px'}">
+        <div [ngStyle]="{'paddingBottom': '0px', 'paddingTop': '0px'}" class="row">
+          <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+            <rz-icon #icon5 icon="assignment_turned_in" [style]="{'color': '#A71330', 'fontSize': '36px'}">
+            </rz-icon>
+          </div>
+        </div>
+        <rz-button #button5 size="sm" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#5d717b', 'fontSize': '18px', 'fontWeight': '600', 'paddingLeft': '3px', 'position': 'static', 'textAlign': 'left', 'width': '100%'}" text="Übersicht" (click)="button5Click($event)">
+        </rz-button>
+        <rz-heading #heading7 size="H4" [style]="{'color': '#5d717b', 'display': 'block', 'fontSize': '12px', 'fontWeight': 'normal', 'paddingLeft': '3px', 'textAlign': 'left'}" text="Dein Profil">
+        </rz-heading>
+      </rz-card>
+    </div>
+  </div>
+  <rz-card #card8 [style]="{'backgroundColor': '#FFFFFF', 'display': 'block', 'height': '65px', 'paddingTop': '11px'}">
+    <rz-heading #heading8 size="H6" [style]="{'color': '#5d717b', 'fontWeight': 'normal', 'marginBottom': '0px', 'textAlign': 'center'}" text="© 2021 Optimo Schlafsysteme GmbH">
+    </rz-heading>
+    <rz-link #link0 path="versionen" [style]="{'float': 'right', 'marginTop': '-2px', 'textAlign': 'center', 'width': '100%'}" text="Version 1.01.027">
+    </rz-link>
+  </rz-card>
+</rz-content>

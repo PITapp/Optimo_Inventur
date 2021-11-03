@@ -18,7 +18,6 @@ import { ContentContainerComponent } from '@radzen/angular/dist/content-containe
 
 import { ConfigService } from '../config.service';
 
-import { SecurityService } from '../security.service';
 
 export class LoginLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
@@ -50,8 +49,6 @@ export class LoginLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
   _location: Location;
 
   _subscription: Subscription;
-
-  security: SecurityService;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -78,7 +75,6 @@ export class LoginLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.httpClient = this.injector.get(HttpClient);
 
-    this.security = this.injector.get(SecurityService);
   }
 
   ngAfterViewInit() {

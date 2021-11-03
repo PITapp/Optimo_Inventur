@@ -20,7 +20,6 @@ import { LinkComponent } from '@radzen/angular/dist/link';
 import { ConfigService } from '../config.service';
 import { BaseDetailsComponent } from '../base-details/base-details.component';
 
-import { SecurityService } from '../security.service';
 
 export class BaseGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
@@ -52,8 +51,6 @@ export class BaseGenerated implements AfterViewInit, OnInit, OnDestroy {
   _location: Location;
 
   _subscription: Subscription;
-
-  security: SecurityService;
   suchenBase: any;
   parameters: any;
 
@@ -81,7 +78,6 @@ export class BaseGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.httpClient = this.injector.get(HttpClient);
 
-    this.security = this.injector.get(SecurityService);
   }
 
   ngAfterViewInit() {

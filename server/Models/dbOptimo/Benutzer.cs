@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,6 +15,9 @@ namespace OptimoInventur.Models.DbOptimo
       get;
       set;
     }
+
+
+    public ICollection<InventurErfassung> InventurErfassungs { get; set; }
     public int BaseID
     {
       get;
@@ -46,52 +50,12 @@ namespace OptimoInventur.Models.DbOptimo
       get;
       set;
     }
-    public int? LetzteKundenID
-    {
-      get;
-      set;
-    }
-    public int? LetzteMitarbeiterID
-    {
-      get;
-      set;
-    }
     public int? LetzteBaseID
     {
       get;
       set;
     }
     public int? LetzteBenutzerID
-    {
-      get;
-      set;
-    }
-    public string FilterKontakteName
-    {
-      get;
-      set;
-    }
-    public string FilterKontakteStrasse
-    {
-      get;
-      set;
-    }
-    public string FilterKontaktePlz
-    {
-      get;
-      set;
-    }
-    public string FilterKontakteOrt
-    {
-      get;
-      set;
-    }
-    public string FilterKontakteNotiz
-    {
-      get;
-      set;
-    }
-    public string FilterKontakteVerlinkt
     {
       get;
       set;

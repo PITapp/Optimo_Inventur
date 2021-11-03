@@ -3,6 +3,7 @@ import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 
 import { DetailsLayoutComponent } from './details-layout/details-layout.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
+import { MainTempLayoutComponent } from './main-temp-layout/main-temp-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BaseComponent } from './base/base.component';
@@ -16,12 +17,10 @@ import { EinstellungenComponent } from './einstellungen/einstellungen.component'
 import { ImpressumComponent } from './impressum/impressum.component';
 import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 import { VersionenComponent } from './versionen/versionen.component';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { CopyOfDashboardComponent } from './copy-of-dashboard/copy-of-dashboard.component';
+import { CopyOfDashboard1Component } from './copy-of-dashboard-1/copy-of-dashboard-1.component';
+import { TestComponent } from './test/test.component';
 
-import { SecurityService } from './security.service';
-import { AuthGuard } from './auth.guard';
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
@@ -30,83 +29,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
         component: DashboardComponent
-      },
-      {
-        path: 'dienstplan',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: DienstplanComponent
-      },
-      {
-        path: 'kunden',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: KundenComponent
-      },
-      {
-        path: 'kontakte',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: KontakteComponent
-      },
-      {
-        path: 'nachrichten',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: NachrichtenComponent
-      },
-      {
-        path: 'fahrtenbuch',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: FahrtenbuchComponent
-      },
-      {
-        path: 'einstellungen',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: EinstellungenComponent
-      },
-      {
-        path: 'impressum',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: ImpressumComponent
-      },
-      {
-        path: 'datenschutz',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: DatenschutzComponent
-      },
-      {
-        path: 'versionen',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: VersionenComponent
       },
     ]
   },
@@ -116,47 +39,65 @@ export const routes: Routes = [
     children: [
       {
         path: 'base',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
         component: BaseComponent
       },
       {
         path: 'base-details/:baseID',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
         component: BaseDetailsComponent
       },
       {
-        path: 'profile',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: ProfileComponent
-      },
-      {
-        path: 'unauthorized',
-        data: {
-          roles: ['Everybody'],
-        },
-        component: UnauthorizedComponent
+        path: 'test',
+        component: TestComponent
       },
     ]
   },
   {
     path: '',
-    component: LoginLayoutComponent,
+    component: MainTempLayoutComponent,
     children: [
       {
-        path: 'login',
-        data: {
-          roles: ['Everybody'],
-        },
-        component: LoginComponent
+        path: 'dienstplan',
+        component: DienstplanComponent
+      },
+      {
+        path: 'kunden',
+        component: KundenComponent
+      },
+      {
+        path: 'kontakte',
+        component: KontakteComponent
+      },
+      {
+        path: 'nachrichten',
+        component: NachrichtenComponent
+      },
+      {
+        path: 'fahrtenbuch',
+        component: FahrtenbuchComponent
+      },
+      {
+        path: 'einstellungen',
+        component: EinstellungenComponent
+      },
+      {
+        path: 'impressum',
+        component: ImpressumComponent
+      },
+      {
+        path: 'datenschutz',
+        component: DatenschutzComponent
+      },
+      {
+        path: 'versionen',
+        component: VersionenComponent
+      },
+      {
+        path: 'copy-of-dashboard',
+        component: CopyOfDashboardComponent
+      },
+      {
+        path: 'copy-of-dashboard-1',
+        component: CopyOfDashboard1Component
       },
     ]
   },
