@@ -18,13 +18,13 @@ import { ImageModule } from '@radzen/angular/dist/image';
 import { HeadingModule } from '@radzen/angular/dist/heading';
 import { ProgressBarModule } from '@radzen/angular/dist/progressbar';
 import { ContentModule } from '@radzen/angular/dist/content';
-import { SparklineModule } from '@radzen/angular/dist/sparkline';
-import { TextBoxModule } from '@radzen/angular/dist/textbox';
-import { IconModule } from '@radzen/angular/dist/icon';
 import { DataListModule } from '@radzen/angular/dist/datalist';
+import { IconModule } from '@radzen/angular/dist/icon';
+import { TextBoxModule } from '@radzen/angular/dist/textbox';
 import { TextAreaModule } from '@radzen/angular/dist/textarea';
 import { TabsModule } from '@radzen/angular/dist/tabs';
 import { HtmlModule } from '@radzen/angular/dist/html';
+import { SparklineModule } from '@radzen/angular/dist/sparkline';
 import { PanelModule } from '@radzen/angular/dist/panel';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
@@ -50,10 +50,12 @@ import { VersionenComponent } from './versionen/versionen.component';
 import { CopyOfDashboardComponent } from './copy-of-dashboard/copy-of-dashboard.component';
 import { CopyOfDashboard1Component } from './copy-of-dashboard-1/copy-of-dashboard-1.component';
 import { TestComponent } from './test/test.component';
+import { CopyOfDashboard2Component } from './copy-of-dashboard-2/copy-of-dashboard-2.component';
 import { DetailsLayoutComponent } from './details-layout/details-layout.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainTempLayoutComponent } from './main-temp-layout/main-temp-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
 
 import { DbOptimoService } from './db-optimo.service';
 
@@ -73,6 +75,7 @@ export const PageDeclarations = [
   CopyOfDashboardComponent,
   CopyOfDashboard1Component,
   TestComponent,
+  CopyOfDashboard2Component,
 ];
 
 export const LayoutDeclarations = [
@@ -80,6 +83,7 @@ export const LayoutDeclarations = [
   LoginLayoutComponent,
   MainTempLayoutComponent,
   MainLayoutComponent,
+  InventurStartLayoutComponent,
 ];
 
 export const AppDeclarations = [
@@ -120,13 +124,13 @@ export const AppImports = [
   HeadingModule,
   ProgressBarModule,
   ContentModule,
-  SparklineModule,
-  TextBoxModule,
-  IconModule,
   DataListModule,
+  IconModule,
+  TextBoxModule,
   TextAreaModule,
   TabsModule,
   HtmlModule,
+  SparklineModule,
   PanelModule,
   SharedModule,
   NotificationModule,

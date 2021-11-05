@@ -19,7 +19,8 @@
     "Details",
     "Login",
     "MainTemp",
-    "Main"
+    "Main",
+    "InventurStart"
   ],
   "logo": "",
   "name": "Optimo Inventur",
@@ -28,7 +29,8 @@
     "Dashboard",
     "Copy of Dashboard",
     "Copy of Dashboard 1",
-    "Test"
+    "Test",
+    "Copy of Dashboard 2"
   ],
   "pages": [
     "Dashboard",
@@ -45,7 +47,8 @@
     "Versionen",
     "Copy of Dashboard",
     "Copy of Dashboard 1",
-    "Test"
+    "Test",
+    "Copy of Dashboard 2"
   ],
   "port": 8000,
   "serverLang": "cs",

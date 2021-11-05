@@ -1,7 +1,12 @@
 /* --- Meine Einstellungen --- */
 
+.body {
+  overflow: hidden;
+}
+
+
 /* --- Kopfzeile: verlaufend dunkel --- */
-.header {
+.nicht_verwendet_header {
   border: none;
   background-image: linear-gradient(#E7E7E7, #D8D8D8);
   background-image: linear-gradient(#E9E9E9, #D8D8D8);

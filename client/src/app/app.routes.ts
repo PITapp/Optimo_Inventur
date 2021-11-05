@@ -5,6 +5,7 @@ import { DetailsLayoutComponent } from './details-layout/details-layout.componen
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainTempLayoutComponent } from './main-temp-layout/main-temp-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BaseComponent } from './base/base.component';
 import { BaseDetailsComponent } from './base-details/base-details.component';
@@ -20,16 +21,21 @@ import { VersionenComponent } from './versionen/versionen.component';
 import { CopyOfDashboardComponent } from './copy-of-dashboard/copy-of-dashboard.component';
 import { CopyOfDashboard1Component } from './copy-of-dashboard-1/copy-of-dashboard-1.component';
 import { TestComponent } from './test/test.component';
+import { CopyOfDashboard2Component } from './copy-of-dashboard-2/copy-of-dashboard-2.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
     path: '',
-    component: MainLayoutComponent,
+    component: InventurStartLayoutComponent,
     children: [
       {
         path: 'dashboard',
         component: DashboardComponent
+      },
+      {
+        path: 'copy-of-dashboard-2',
+        component: CopyOfDashboard2Component
       },
     ]
   },
