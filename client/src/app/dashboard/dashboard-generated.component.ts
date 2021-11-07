@@ -11,13 +11,13 @@ import { Subscription } from 'rxjs';
 import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dist/dialog';
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
-import { DataListComponent } from '@radzen/angular/dist/datalist';
 import { CardComponent } from '@radzen/angular/dist/card';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
-import { LabelComponent } from '@radzen/angular/dist/label';
+import { ProgressBarComponent } from '@radzen/angular/dist/progressbar';
 import { IconComponent } from '@radzen/angular/dist/icon';
+import { LabelComponent } from '@radzen/angular/dist/label';
+import { DataListComponent } from '@radzen/angular/dist/datalist';
 import { ButtonComponent } from '@radzen/angular/dist/button';
-import { LinkComponent } from '@radzen/angular/dist/link';
 
 import { ConfigService } from '../config.service';
 
@@ -26,42 +26,23 @@ import { DbOptimoService } from '../db-optimo.service';
 export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
+  @ViewChild('card15') card15: CardComponent;
+  @ViewChild('heading3') heading3: HeadingComponent;
+  @ViewChild('heading6') heading6: HeadingComponent;
+  @ViewChild('progressbar0') progressbar0: ProgressBarComponent;
+  @ViewChild('heading10') heading10: HeadingComponent;
+  @ViewChild('heading11') heading11: HeadingComponent;
+  @ViewChild('progressbar1') progressbar1: ProgressBarComponent;
+  @ViewChild('card14') card14: CardComponent;
+  @ViewChild('icon11') icon11: IconComponent;
+  @ViewChild('label14') label14: LabelComponent;
+  @ViewChild('label15') label15: LabelComponent;
   @ViewChild('datalistLagerorte') datalistLagerorte: DataListComponent;
-  @ViewChild('card4') card4: CardComponent;
-  @ViewChild('icon6') icon6: IconComponent;
-  @ViewChild('label5') label5: LabelComponent;
-  @ViewChild('label6') label6: LabelComponent;
-  @ViewChild('card7') card7: CardComponent;
-  @ViewChild('icon7') icon7: IconComponent;
-  @ViewChild('label7') label7: LabelComponent;
-  @ViewChild('card9') card9: CardComponent;
-  @ViewChild('icon8') icon8: IconComponent;
-  @ViewChild('label9') label9: LabelComponent;
-  @ViewChild('label10') label10: LabelComponent;
-  @ViewChild('card2') card2: CardComponent;
-  @ViewChild('icon1') icon1: IconComponent;
-  @ViewChild('label0') label0: LabelComponent;
-  @ViewChild('label2') label2: LabelComponent;
-  @ViewChild('label4') label4: LabelComponent;
-  @ViewChild('card1') card1: CardComponent;
-  @ViewChild('icon0') icon0: IconComponent;
-  @ViewChild('button0') button0: ButtonComponent;
-  @ViewChild('heading1') heading1: HeadingComponent;
-  @ViewChild('card6') card6: CardComponent;
-  @ViewChild('icon2') icon2: IconComponent;
-  @ViewChild('button1') button1: ButtonComponent;
-  @ViewChild('heading2') heading2: HeadingComponent;
-  @ViewChild('card3') card3: CardComponent;
-  @ViewChild('icon3') icon3: IconComponent;
-  @ViewChild('button3') button3: ButtonComponent;
-  @ViewChild('heading5') heading5: HeadingComponent;
-  @ViewChild('card5') card5: CardComponent;
-  @ViewChild('icon5') icon5: IconComponent;
-  @ViewChild('button5') button5: ButtonComponent;
-  @ViewChild('heading7') heading7: HeadingComponent;
   @ViewChild('card8') card8: CardComponent;
   @ViewChild('heading8') heading8: HeadingComponent;
-  @ViewChild('link0') link0: LinkComponent;
+  @ViewChild('heading1') heading1: HeadingComponent;
+  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('buttonNavigateToErfassen') buttonNavigateToErfassen: ButtonComponent;
 
   router: Router;
 
@@ -86,9 +67,8 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   _subscription: Subscription;
 
   dbOptimo: DbOptimoService;
-  dateHeute: any;
-  onClickStartBenutzer: any;
-  onClickLagerortInventur: any;
+  onClickStartErfassen: any;
+  onClickStartInfos: any;
   parameters: any;
   rstLagerorte: any;
   rstLagerorteCount: any;
@@ -140,21 +120,28 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
 
 
   load() {
-    this.dateHeute = new Date();
-
-    this.onClickStartBenutzer = () => {
-    console.log("onClick...")
-};
-
     this.datalistLagerorte.load();
 
-    this.onClickLagerortInventur = (data) => {
-    console.log("onClickLagerortInventur...", data)
+    this.onClickStartErfassen = (data) => {
+
+console.log(data);
+
+    if (this.dialogRef) {
+        this.dialogRef.close();
+    }
+    this.router.navigate(['erfassen', data.InventurID]);
+};
+
+    this.onClickStartInfos = () => {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+    this.router.navigate(['infos']);
 };
   }
 
   datalistLagerorteLoadData(event: any) {
-    this.dbOptimo.getInventurBases(null, null, null, null, null, null, null, null)
+    this.dbOptimo.getInventurBases(null, null, null, `LagerortNummer`, null, null, null, null)
     .subscribe((result: any) => {
       this.rstLagerorte = result.value;
 
@@ -164,41 +151,10 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
     });
   }
 
-  button0Click(event: any) {
+  buttonNavigateToErfassenClick(event: any) {
     if (this.dialogRef) {
       this.dialogRef.close();
     }
-    this.router.navigate(['kontakte']);
-
-    window.scroll(0,0);
-  }
-
-  button1Click(event: any) {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    }
-    this.router.navigate(['nachrichten']);
-
-    window.scroll(0,0);
-  }
-
-  button3Click(event: any) {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    }
-    this.router.navigate(['nachrichten']);
-
-    window.scroll(0,0);
-
-
-  }
-
-  button5Click(event: any) {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    }
-    this.router.navigate(['einstellungen']);
-
-    window.scroll(0,0);
+    this.router.navigate(['erfassen', 0]);
   }
 }

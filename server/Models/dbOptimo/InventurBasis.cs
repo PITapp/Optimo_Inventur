@@ -33,6 +33,16 @@ namespace OptimoInventur.Models.DbOptimo
       get;
       set;
     }
+    public string LagerortNummer
+    {
+      get;
+      set;
+    }
+    public string LagerortTitel
+    {
+      get;
+      set;
+    }
     public string Beschreibung
     {
       get;

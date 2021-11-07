@@ -430,6 +430,8 @@
         "AuftragCode",
         "ErfassungNr",
         "Lagerort",
+        "LagerortNummer",
+        "LagerortTitel",
         "Beschreibung",
         "Status"
       ],
@@ -459,7 +461,17 @@
         "Lagerort": {
           "x-nullable": false,
           "type": "string",
-          "length": 50
+          "length": 70
+        },
+        "LagerortNummer": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 10
+        },
+        "LagerortTitel": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 70
         },
         "Beschreibung": {
           "x-nullable": false,
@@ -473,7 +485,7 @@
         },
         "Verantwortlich": {
           "type": "string",
-          "length": 200
+          "length": 100
         },
         "Notiz": {
           "type": "string",

@@ -74,6 +74,8 @@ export interface InventurBasis {
   AuftragCode: string;
   ErfassungNr: number;
   Lagerort: string;
+  LagerortNummer: string;
+  LagerortTitel: string;
   Beschreibung: string;
   Status: string;
   Verantwortlich: string;

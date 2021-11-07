@@ -1,0 +1,17 @@
+<rz-body #body1 [style]="{'backgroundColor': '#e9e9e9', 'paddingBottom': '10px', 'paddingLeft': '10px', 'paddingRight': '10px', 'paddingTop': '10px'}">
+  <rz-content-container #main [style]="{'width': '1823px'}" name="main">
+  </rz-content-container>
+</rz-body>
+<rz-header #header0 [style]="{'backgroundColor': '#e9e9e9', 'borderBottom': '1px dotted #a71330', 'height': '55px', 'marginLeft': '0px'}">
+  <div class="row justify-content-start align-items-center" [ngStyle]="{}">
+    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" [ngStyle]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'marginLeft': '', 'marginRight': '', 'marginTop': '', 'paddingLeft': '25px', 'paddingRight': ''}">
+      <rz-button #buttonBack size="sm" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#A71330', 'fontSize': '32px', 'fontWeight': '600', 'height': '100%', 'paddingLeft': '10px', 'paddingRight': '10px', 'paddingTop': '3px', 'textAlign': 'left', 'width': '100%'}" text="←" (click)="buttonBackClick($event)">
+      </rz-button>
+    </div>
+    <div class="text-lg-right           justify-content-end d-flex      col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" [ngStyle]="{'display': 'inline-block', 'float': 'right', 'marginTop': '-4px', 'textAlign': 'right'}">
+      <rz-label #label5 [style]="{'color': '#A71330', 'display': 'block', 'float': 'none', 'fontFamily': 'courier new,courier,monospace', 'fontSize': '16px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'marginRight': '15px', 'marginTop': '18px'}" text="Erfassen">
+      </rz-label>
+    </div>
+  </div>
+</rz-header>
+<router-outlet></router-outlet>

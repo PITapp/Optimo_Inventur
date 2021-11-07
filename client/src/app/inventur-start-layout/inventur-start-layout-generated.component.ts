@@ -13,9 +13,6 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { HeaderComponent } from '@radzen/angular/dist/header';
 import { ImageComponent } from '@radzen/angular/dist/image';
 import { LabelComponent } from '@radzen/angular/dist/label';
-import { CardComponent } from '@radzen/angular/dist/card';
-import { HeadingComponent } from '@radzen/angular/dist/heading';
-import { ProgressBarComponent } from '@radzen/angular/dist/progressbar';
 import { BodyComponent } from '@radzen/angular/dist/body';
 import { ContentContainerComponent } from '@radzen/angular/dist/content-container';
 
@@ -27,14 +24,6 @@ export class InventurStartLayoutGenerated implements AfterViewInit, OnInit, OnDe
   @ViewChild('header0') header0: HeaderComponent;
   @ViewChild('image0') image0: ImageComponent;
   @ViewChild('label5') label5: LabelComponent;
-  @ViewChild('card4') card4: CardComponent;
-  @ViewChild('heading3') heading3: HeadingComponent;
-  @ViewChild('heading4') heading4: HeadingComponent;
-  @ViewChild('progressbar1') progressbar1: ProgressBarComponent;
-  @ViewChild('card7') card7: CardComponent;
-  @ViewChild('heading10') heading10: HeadingComponent;
-  @ViewChild('heading11') heading11: HeadingComponent;
-  @ViewChild('progressbar2') progressbar2: ProgressBarComponent;
   @ViewChild('body0') body0: BodyComponent;
   @ViewChild('main') main: ContentContainerComponent;
 

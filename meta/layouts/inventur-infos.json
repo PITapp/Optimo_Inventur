@@ -1,0 +1,117 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "class": "justify-content-start align-items-center",
+          "components": [
+            {
+              "attributes": [],
+              "class": "col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6",
+              "components": [
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "type": "back"
+                      }
+                    ]
+                  },
+                  "icon": "",
+                  "name": "buttonBack",
+                  "size": "sm",
+                  "style": {
+                    "backgroundColor": "rgba(0, 0, 0, 0)",
+                    "color": "#A71330",
+                    "fontSize": "32px",
+                    "fontWeight": "600",
+                    "height": "100%",
+                    "paddingLeft": "10px",
+                    "paddingRight": "10px",
+                    "paddingTop": "3px",
+                    "textAlign": "left",
+                    "width": "100%"
+                  },
+                  "text": "←",
+                  "tooltip": "",
+                  "type": "button"
+                }
+              ],
+              "name": "col2",
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "marginLeft": "",
+                "marginRight": "",
+                "marginTop": "",
+                "paddingLeft": "25px",
+                "paddingRight": ""
+              },
+              "type": "col"
+            },
+            {
+              "class": "text-lg-right           justify-content-end d-flex      col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6",
+              "components": [
+                {
+                  "name": "label5",
+                  "style": {
+                    "color": "#A71330",
+                    "display": "block",
+                    "float": "none",
+                    "fontFamily": "courier new,courier,monospace",
+                    "fontSize": "16px",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                    "marginRight": "15px",
+                    "marginTop": "18px"
+                  },
+                  "text": "Infos",
+                  "type": "label"
+                }
+              ],
+              "name": "rightCol",
+              "style": {
+                "display": "inline-block",
+                "float": "right",
+                "marginTop": "-4px",
+                "textAlign": "right"
+              },
+              "type": "col"
+            }
+          ],
+          "name": "headerRow",
+          "style": {},
+          "type": "row"
+        }
+      ],
+      "name": "header0",
+      "style": {
+        "backgroundColor": "#e9e9e9",
+        "borderBottom": "1px dotted #a71330",
+        "height": "55px",
+        "marginLeft": "0px"
+      },
+      "type": "header"
+    },
+    {
+      "components": [
+        {
+          "name": "main",
+          "style": {
+            "width": "1823px"
+          },
+          "type": "content-container"
+        }
+      ],
+      "name": "body0",
+      "style": {
+        "backgroundColor": "#e9e9e9",
+        "paddingBottom": "10px",
+        "paddingLeft": "10px",
+        "paddingRight": "10px",
+        "paddingTop": "10px"
+      },
+      "type": "body"
+    }
+  ],
+  "name": "InventurInfos"
+}

@@ -20,107 +20,6 @@
   background-image: linear-gradient(#E7E7E7, #D8D8D8);
 }
 
-/* --- Umschalter für Seitenmenü links --- */
-.sidebar-toggle {
-  border: none;
-  /* border-right: 1px solid #a2a2a2; */
-  background-color: transparent;
-  color: whitesmoke;
-  font-size: 18px;
-}
-
-.sidebar-toggle:hover {
-  color: #212529;
-  background: transparent;
-  border-radius: 0;
-}
-
-
-/* --- Profilmenü rechts oben --- */
-ul.profile-menu {
-  background-color: transparent;
-  color: whitesmoke;
-  border-left: 0px solid #a2a2a2;
-}
-
-ul.profile-menu .navigation-item-icon-children {
-  color: whitesmoke;
-}
-
-ul.profile-menu .navigation-menu {
-  background-color: #ffffff;
-  top: calc(100%);
-}
-
-ul.profile-menu .navigation-menu .navigation-item-wrapper:hover {
-  background-color: #f3f5f7;
-  background-color: gray;
-  background-color: #F1903C;
-}
-
-ul.profile-menu .navigation-menu .navigation-item-wrapper:hover .navigation-item-link {
-  color: #212529;
-  color: whitesmoke;
-}
-
-
-/* --- Einstellungen Seitenmenü links --- */
-.panel-menu {
-  color: #212529;
-  background-color: #FFFFFF;
-}
-
-.panel-menu .navigation-item {
-  border-bottom: solid 1px #E6E5E5;
-}
-
-.panel-menu .navigation-item-wrapper:hover {
-  background-color: #f3f5f7;
-  color: #212529;
-}
-
-.panel-menu .navigation-item-icon {
-  color: #727272;
-}
-
-.panel-menu .navigation-item-wrapper-active {
-  background-color: #F4F5F7;
-  color: #546D99;
-  color: #A71330;
-}
-
-.panel-menu .navigation-item-wrapper-active .navigation-item-icon {
-  color: #546D99;
-  color: #A71330;
-}
-
-.panel-menu .navigation-item-wrapper-active:before {
-  width: 7px;
-  /* background-color: #F1903C; */
-  background-color: #546D99;
-  background-color: #A71330;
-}
-
-
-/* --- Einstellungen Seitenmenü links | zweite Ebene --- */
-.panel-menu .navigation-item-active {
-  background-color: #ffffff;
-}
-
-.panel-menu .navigation-menu .navigation-item-wrapper {
-  background-color: #ffffff;
-}
-
-.panel-menu .navigation-menu .navigation-item-wrapper:hover {
-  background-color: #f3f5f7;
-}
-
-.panel-menu .navigation-menu .navigation-item-wrapper-active {
-  background-color: #F4F5F7;
-  color: #546D99;
-  color: #A71330;
-}
-
 
 /* --- DataList --- */
 .ui-datalist-data>li,
@@ -160,10 +59,10 @@ rz-link {
 /* --- Darstellung des Focus in Eingabefeldern --- */
 input:focus {
   outline: none;
-  border: 1px solid #F1903C;
-  box-shadow: 0px 0px 4px #F1903C;
-  -moz-box-shadow: 0px 0px 4px #F1903C;
-  -webkit-box-shadow: 0px 0px 4px #F1903C;
+  border: 1px solid #A71330;
+  box-shadow: 0px 0px 4px #A71330;
+  -moz-box-shadow: 0px 0px 4px #A71330;
+  -webkit-box-shadow: 0px 0px 4px #A71330;
 }
 
 .ui-tabview-nav .ui-tabview-selected {
@@ -182,27 +81,16 @@ input:focus {
   color: #3a474d;
 }
 
-/*
-.ui-tabview-nav li {
-  border-top-width: 4px;
-}
-
-.ui-tabview-nav .ui-tabview-selected {
-  border-top-color: #A71330;
-}
-*/
-
 
 /* --- Den Überlauf in den Tabs unsichtbat machen --- */
 .ui-tabview-panel {
   overflow: hidden !important;
 }
 
-
 /* --- Kopfzeile in Dialogen --- */
 .ui-dialog-titlebar {
-  background-color: #F1903C;
-  background-image: linear-gradient(#F1903C, #A71330);
+  background-color: #A71330;
+  background-image: linear-gradient(#A71330, #A71330);
   color: whitesmoke;
 }
 
@@ -212,18 +100,4 @@ input:focus {
 
 .ui-dialog-titlebar-close .pi-times:before {
   color: whitesmoke;
-}
-
-
-/* --- Quill Editor --- */
-.ql-toolbar.ql-snow {
-  border: 1px solid #dadfe2;
-  border-radius: 4px 4px 0px 0px;
-}
-
-.ql-container {
-  font-family: 'Open Sans', sans-serif, Helvetica, Arial;
-  font-size: 14px;
-  border: 1px solid #dadfe2;
-  border-radius: 0px 0px 4px 4px;
 }

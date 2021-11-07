@@ -1,0 +1,374 @@
+{
+  "access": [],
+  "components": [
+    {
+      "components": [
+        {
+          "attributes": [],
+          "components": [
+            {
+              "attributes": [
+                {
+                  "name": "(click)",
+                  "value": "onClickAuswahlLagerorte()"
+                }
+              ],
+              "components": [
+                {
+                  "class": "col-2 align-items-center d-flex",
+                  "components": [
+                    {
+                      "name": "heading0",
+                      "size": "H5",
+                      "style": {
+                        "color": "#3a474d",
+                        "fontSize": "30px",
+                        "fontWeight": "normal",
+                        "textAlign": "left",
+                        "verticalAlign": "baseline"
+                      },
+                      "text": "${dsoLagerort.LagerortNummer}",
+                      "type": "heading"
+                    }
+                  ],
+                  "name": "col6",
+                  "style": {
+                    "fontSize": "16px",
+                    "lineHeight": "16px",
+                    "textAlign": "right"
+                  },
+                  "type": "col"
+                },
+                {
+                  "class": "col-8",
+                  "components": [
+                    {
+                      "name": "heading3",
+                      "size": "H5",
+                      "style": {
+                        "color": "#3a474d",
+                        "fontSize": "18px",
+                        "fontWeight": "normal",
+                        "lineHeight": "20px",
+                        "marginBottom": "0"
+                      },
+                      "text": "aaa",
+                      "type": "heading"
+                    },
+                    {
+                      "name": "label1",
+                      "style": {
+                        "color": "#598087",
+                        "fontSize": "12px",
+                        "fontStyle": "normal",
+                        "fontWeight": "normal",
+                        "width": "100%"
+                      },
+                      "text": "Status: offen",
+                      "type": "label"
+                    }
+                  ],
+                  "name": "col7",
+                  "style": {
+                    "paddingLeft": "10px",
+                    "paddingRight": "0px",
+                    "verticalAlign": "baseline"
+                  },
+                  "type": "col"
+                },
+                {
+                  "class": "align-items-center d-flex justify-content-end col-2",
+                  "components": [
+                    {
+                      "icon": "open_in_new",
+                      "name": "icon1",
+                      "style": {
+                        "color": "#a71330",
+                        "fontSize": "20px",
+                        "fontWeight": "normal"
+                      },
+                      "type": "icon"
+                    }
+                  ],
+                  "name": "col8",
+                  "style": {
+                    "paddingRight": "25px",
+                    "textAlign": "right"
+                  },
+                  "type": "col"
+                }
+              ],
+              "name": "row3",
+              "style": {
+                "marginBottom": "10px"
+              },
+              "type": "row"
+            },
+            {
+              "components": [],
+              "name": "row1",
+              "style": {
+                "borderBottom": "1px solid #e6ecef",
+                "height": "1px",
+                "marginBottom": "10px",
+                "marginLeft": "0px",
+                "marginRight": "10px"
+              },
+              "type": "row"
+            },
+            {
+              "components": [
+                {
+                  "class": "col-10",
+                  "components": [
+                    {
+                      "name": "label0",
+                      "style": {
+                        "color": "#a71330",
+                        "marginBottom": "5px",
+                        "paddingLeft": "5px",
+                        "textAlign": "left",
+                        "width": "100%"
+                      },
+                      "text": "Artikel",
+                      "type": "label"
+                    },
+                    {
+                      "name": "textbox1",
+                      "readOnly": true,
+                      "style": {
+                        "width": "100%"
+                      },
+                      "type": "textbox",
+                      "value": ""
+                    }
+                  ],
+                  "name": "col9",
+                  "style": {
+                    "fontSize": "16px",
+                    "lineHeight": "16px",
+                    "textAlign": "right"
+                  },
+                  "type": "col"
+                },
+                {
+                  "class": "align-items-center d-flex justify-content-end col-2",
+                  "components": [
+                    {
+                      "icon": "playlist_add_check",
+                      "name": "icon0",
+                      "style": {
+                        "color": "#a71330",
+                        "fontSize": "24px",
+                        "fontWeight": "normal"
+                      },
+                      "type": "icon"
+                    }
+                  ],
+                  "name": "col11",
+                  "style": {
+                    "paddingLeft": "",
+                    "paddingRight": "25px",
+                    "textAlign": "right"
+                  },
+                  "type": "col"
+                }
+              ],
+              "name": "row4",
+              "type": "row"
+            },
+            {
+              "components": [
+                {
+                  "class": "col-10",
+                  "components": [
+                    {
+                      "name": "label3",
+                      "style": {
+                        "color": "#a71330",
+                        "marginBottom": "5px",
+                        "paddingLeft": "5px",
+                        "textAlign": "left",
+                        "width": "100%"
+                      },
+                      "text": "Menge",
+                      "type": "label"
+                    },
+                    {
+                      "name": "textbox2",
+                      "readOnly": true,
+                      "style": {
+                        "textAlign": "left",
+                        "width": "50%"
+                      },
+                      "type": "textbox",
+                      "value": ""
+                    }
+                  ],
+                  "name": "col0",
+                  "style": {
+                    "fontSize": "16px",
+                    "lineHeight": "16px",
+                    "textAlign": "left"
+                  },
+                  "type": "col"
+                },
+                {
+                  "class": "align-items-center d-flex justify-content-end col-2",
+                  "components": [
+                    {
+                      "icon": "playlist_add_check",
+                      "name": "icon2",
+                      "style": {
+                        "color": "#a71330",
+                        "fontSize": "24px",
+                        "fontWeight": "normal"
+                      },
+                      "type": "icon"
+                    }
+                  ],
+                  "name": "col1",
+                  "style": {
+                    "paddingLeft": "",
+                    "paddingRight": "25px",
+                    "textAlign": "right"
+                  },
+                  "type": "col"
+                }
+              ],
+              "name": "row0",
+              "type": "row"
+            }
+          ],
+          "name": "card0",
+          "style": {
+            "backgroundColor": "#ffffff",
+            "height": "250px",
+            "marginBottom": "10px",
+            "paddingBottom": "10px",
+            "paddingLeft": "15px",
+            "paddingRight": "5px",
+            "paddingTop": "10px",
+            "position": "static",
+            "textAlign": "left"
+          },
+          "type": "card",
+          "visible": true
+        },
+        {
+          "components": [
+            {
+              "allowPaging": false,
+              "count": "${rstLagerorteCount}",
+              "data": "${rstLagerorte}",
+              "defaultRowText": "Template for index",
+              "emptyText": "No records found.",
+              "events": {
+                "loadData": [
+                  {
+                    "name": "dbOptimo.getInventurBases",
+                    "then": [
+                      {
+                        "name": "rstLagerorte",
+                        "type": "set",
+                        "value": "${result.value}"
+                      },
+                      {
+                        "name": "rstLagerorteCount",
+                        "type": "set",
+                        "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "name": "datalistLagerorte",
+              "style": {},
+              "template": [
+                {
+                  "name": "textbox0",
+                  "type": "textbox",
+                  "value": "${data.Lagerort}"
+                }
+              ],
+              "type": "datalist",
+              "wrapItems": false
+            }
+          ],
+          "name": "card1",
+          "style": {
+            "position": "static"
+          },
+          "type": "card",
+          "visible": true
+        },
+        {
+          "name": "label2",
+          "style": {
+            "backgroundColor": "#e6c54f",
+            "width": "100%"
+          },
+          "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren die Parameter erstellt werden!",
+          "type": "label",
+          "visible": false
+        },
+        {
+          "events": {
+            "click": [
+              {
+                "path": "erfassen-auswahl-lagerorte",
+                "title": "Auswahl Lagerorte",
+                "type": "popup"
+              }
+            ]
+          },
+          "name": "buttonOpenDialogAuswahlLagerorte",
+          "text": "Unsichtbar: OpenDialogAuswahlLagerorte",
+          "tooltip": "",
+          "type": "button",
+          "visible": false
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "code": "window.scroll(0,0);",
+        "type": "execute"
+      },
+      {
+        "name": "dbOptimo.getInventurBases",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "InventurID eq ${parameters.InventurID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "dsoLagerort",
+            "type": "set",
+            "value": "${result.value[0]}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "code": "this.datalistLagerorte.load();",
+        "type": "execute"
+      },
+      {
+        "name": "onClickAuswahlLagerorte",
+        "type": "set",
+        "value": "() => {\n    this.buttonOpenDialogAuswahlLagerorteClick('');\n}"
+      },
+      {}
+    ]
+  },
+  "layout": "InventurErfassen",
+  "name": "Erfassen"
+}

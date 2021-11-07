@@ -1,0 +1,961 @@
+{
+  "access": [],
+  "components": [
+    {
+      "components": [
+        {
+          "allowPaging": false,
+          "count": "${rstLagerorteCount}",
+          "data": "${rstLagerorte}",
+          "defaultRowText": "Template for index",
+          "emptyText": "No records found.",
+          "events": {
+            "loadData": [
+              {
+                "name": "dbOptimo.getInventurBases",
+                "then": [
+                  {
+                    "name": "rstLagerorte",
+                    "type": "set",
+                    "value": "${result.value}"
+                  },
+                  {
+                    "name": "rstLagerorteCount",
+                    "type": "set",
+                    "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                  }
+                ],
+                "type": "invoke"
+              }
+            ]
+          },
+          "name": "datalistLagerorte",
+          "pageSize": 0,
+          "style": {
+            "marginBottom": "10px",
+            "marginTop": "-6px"
+          },
+          "template": [
+            {
+              "name": "row0",
+              "style": {
+                "backgroundColor": "#e9e9e9",
+                "height": "10px"
+              },
+              "type": "row"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "(click)",
+                  "value": "onClickLagerortInventur(data)"
+                }
+              ],
+              "components": [
+                {
+                  "components": [
+                    {
+                      "class": "col-10",
+                      "components": [
+                        {
+                          "name": "heading4",
+                          "size": "H5",
+                          "style": {
+                            "color": "#3a474d"
+                          },
+                          "text": "${data.Lagerort}",
+                          "type": "heading"
+                        },
+                        {
+                          "name": "label3",
+                          "style": {
+                            "backgroundColor": "#d2d2d2",
+                            "fontSize": "12px",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                            "width": "100%"
+                          },
+                          "text": "Status: offen",
+                          "type": "label"
+                        },
+                        {
+                          "name": "label1",
+                          "style": {
+                            "backgroundColor": "#d2d2d2",
+                            "fontSize": "12px",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                            "textAlign": "right",
+                            "width": "100%"
+                          },
+                          "text": "Status: offen",
+                          "type": "label"
+                        }
+                      ],
+                      "name": "col1",
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-2",
+                      "components": [
+                        {
+                          "icon": "keyboard_arrow_right",
+                          "name": "icon4",
+                          "style": {
+                            "color": "#a71330",
+                            "fontSize": "32px",
+                            "fontWeight": "bold"
+                          },
+                          "type": "icon"
+                        }
+                      ],
+                      "name": "col15",
+                      "style": {
+                        "textAlign": "right"
+                      },
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row1",
+                  "type": "row"
+                }
+              ],
+              "name": "card0",
+              "style": {
+                "border": "1px solid #ffffff",
+                "marginLeft": "-1px",
+                "marginRight": "-1px",
+                "paddingBottom": "0",
+                "paddingLeft": "0",
+                "paddingRight": "0",
+                "paddingTop": "0"
+              },
+              "type": "card",
+              "visible": true
+            }
+          ],
+          "type": "datalist",
+          "wrapItems": false
+        },
+        {
+          "attributes": [
+            {
+              "name": "(click)",
+              "value": "onClickStartBenutzer()"
+            }
+          ],
+          "components": [
+            {
+              "components": [
+                {
+                  "class": "col-2       align-items-center d-flex",
+                  "components": [
+                    {
+                      "icon": "person",
+                      "name": "icon6",
+                      "style": {
+                        "color": "#A71330",
+                        "fontSize": "36px"
+                      },
+                      "type": "icon"
+                    }
+                  ],
+                  "name": "col14",
+                  "type": "col"
+                },
+                {
+                  "class": "col-10       align-items-center d-flex",
+                  "components": [
+                    {
+                      "name": "label5",
+                      "style": {
+                        "color": "#5d717b",
+                        "fontSize": "24px",
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "width": "100%"
+                      },
+                      "text": "Benutzer",
+                      "type": "label"
+                    },
+                    {
+                      "name": "label6",
+                      "style": {
+                        "color": "#5d717b",
+                        "fontSize": "24px",
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "width": "100%"
+                      },
+                      "text": "Benutzer",
+                      "type": "label"
+                    }
+                  ],
+                  "name": "col16",
+                  "style": {
+                    "display": "inline-block"
+                  },
+                  "type": "col"
+                }
+              ],
+              "name": "row11",
+              "style": {
+                "paddingBottom": "0px",
+                "paddingTop": "0px"
+              },
+              "type": "row"
+            }
+          ],
+          "name": "card4",
+          "style": {
+            "backgroundColor": "#ffffff",
+            "borderBottom": "3px solid #a71330",
+            "display": "block",
+            "height": "70px",
+            "marginBottom": "10px",
+            "paddingTop": "5px"
+          },
+          "type": "card",
+          "visible": true
+        },
+        {
+          "attributes": [
+            {
+              "name": "(click)",
+              "value": "onClickStartBenutzer()"
+            }
+          ],
+          "components": [
+            {
+              "components": [
+                {
+                  "class": "col-2 align-items-center d-flex",
+                  "components": [
+                    {
+                      "icon": "assignment",
+                      "name": "icon7",
+                      "style": {
+                        "color": "#a71330",
+                        "fontSize": "36px",
+                        "fontWeight": "bold"
+                      },
+                      "type": "icon"
+                    }
+                  ],
+                  "name": "col18",
+                  "style": {},
+                  "type": "col"
+                },
+                {
+                  "class": "col-10",
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "name": "label7",
+                          "style": {
+                            "color": "#5d717b",
+                            "fontSize": "24px",
+                            "fontStyle": "normal",
+                            "fontWeight": "bold",
+                            "marginBottom": "-25px",
+                            "textAlign": "right",
+                            "width": "100%"
+                          },
+                          "text": "Erfassen",
+                          "type": "label"
+                        }
+                      ],
+                      "name": "row14",
+                      "type": "row"
+                    }
+                  ],
+                  "name": "col17",
+                  "type": "col"
+                }
+              ],
+              "name": "row12",
+              "type": "row"
+            }
+          ],
+          "name": "card7",
+          "style": {
+            "backgroundColor": "#ffffff",
+            "borderBottom": "3px solid #a71330",
+            "display": "block",
+            "height": "70px",
+            "marginBottom": "10px",
+            "paddingTop": "5px"
+          },
+          "type": "card",
+          "visible": true
+        },
+        {
+          "attributes": [
+            {
+              "name": "(click)",
+              "value": "onClickStartBenutzer()"
+            }
+          ],
+          "components": [
+            {
+              "components": [
+                {
+                  "class": "col-2 align-items-center d-flex",
+                  "components": [
+                    {
+                      "icon": "assignment",
+                      "name": "icon8",
+                      "style": {
+                        "color": "#a71330",
+                        "fontSize": "36px",
+                        "fontWeight": "bold"
+                      },
+                      "type": "icon"
+                    }
+                  ],
+                  "name": "col19",
+                  "style": {},
+                  "type": "col"
+                },
+                {
+                  "class": "col-10",
+                  "components": [
+                    {
+                      "name": "label9",
+                      "style": {
+                        "color": "#5d717b",
+                        "fontSize": "24px",
+                        "fontStyle": "normal",
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "width": "100%"
+                      },
+                      "text": "Erfassen",
+                      "type": "label"
+                    },
+                    {
+                      "name": "label10",
+                      "style": {
+                        "color": "#5d717b",
+                        "fontSize": "12px",
+                        "fontStyle": "normal",
+                        "fontWeight": "normal",
+                        "textAlign": "right",
+                        "width": "100%"
+                      },
+                      "text": "Status: offen",
+                      "type": "label"
+                    }
+                  ],
+                  "name": "col20",
+                  "type": "col"
+                }
+              ],
+              "name": "row13",
+              "type": "row"
+            }
+          ],
+          "name": "card9",
+          "style": {
+            "backgroundColor": "#ffffff",
+            "borderBottom": "3px solid #a71330",
+            "display": "block",
+            "height": "70px",
+            "marginBottom": "10px",
+            "paddingTop": "5px"
+          },
+          "type": "card",
+          "visible": true
+        },
+        {
+          "components": [
+            {
+              "class": "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "components": [
+                {
+                  "attributes": [
+                    {
+                      "name": "(click)",
+                      "value": "onClickStartBenutzer()"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 justify-content-start d-flex align-items-center",
+                          "components": [
+                            {
+                              "icon": "person",
+                              "name": "icon1",
+                              "style": {
+                                "color": "#A71330",
+                                "fontSize": "36px"
+                              },
+                              "type": "icon"
+                            }
+                          ],
+                          "name": "col7",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 justify-content-end d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label0",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontSize": "24px",
+                                "fontWeight": "bold"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col6",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row6",
+                      "style": {
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 justify-content-start d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label2",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontWeight": "normal"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col11",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 justify-content-end d-flex align-items-center",
+                          "components": [
+                            {
+                              "name": "label4",
+                              "style": {
+                                "color": "#5d717b",
+                                "fontWeight": "normal"
+                              },
+                              "text": "Benutzer",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col13",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row8",
+                      "style": {
+                        "marginTop": "-7px",
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    }
+                  ],
+                  "name": "card2",
+                  "style": {
+                    "backgroundColor": "#ffffff",
+                    "borderBottom": "3px solid #a71330",
+                    "display": "block",
+                    "height": "70px",
+                    "paddingTop": "5px"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col2",
+              "style": {},
+              "type": "col"
+            }
+          ],
+          "name": "row2",
+          "style": {
+            "paddingBottom": "5px",
+            "paddingLeft": ""
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-lg-6    col-6 col-sm-6 col-md-6 col-xl-6",
+              "components": [
+                {
+                  "attributes": [],
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3",
+                          "components": [
+                            {
+                              "icon": "person",
+                              "name": "icon0",
+                              "style": {
+                                "color": "#A71330",
+                                "fontSize": "36px"
+                              },
+                              "type": "icon"
+                            }
+                          ],
+                          "name": "col4",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row5",
+                      "style": {
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "events": {
+                        "click": [
+                          {
+                            "path": "kontakte",
+                            "type": "navigate"
+                          },
+                          {
+                            "code": "window.scroll(0,0);",
+                            "type": "execute"
+                          }
+                        ]
+                      },
+                      "name": "button0",
+                      "size": "sm",
+                      "style": {
+                        "backgroundColor": "rgba(0, 0, 0, 0)",
+                        "color": "#5d717b",
+                        "fontSize": "18px",
+                        "fontWeight": "600",
+                        "paddingLeft": "3px",
+                        "position": "static",
+                        "textAlign": "left",
+                        "width": "100%"
+                      },
+                      "text": "Benutzer",
+                      "tooltip": "",
+                      "type": "button"
+                    },
+                    {
+                      "name": "heading1",
+                      "size": "H4",
+                      "style": {
+                        "color": "#5d717b",
+                        "display": "block",
+                        "fontSize": "12px",
+                        "fontWeight": "normal",
+                        "paddingLeft": "3px",
+                        "textAlign": "left"
+                      },
+                      "text": "Gerhard",
+                      "type": "heading"
+                    }
+                  ],
+                  "name": "card1",
+                  "style": {
+                    "backgroundColor": "#ffffff",
+                    "borderBottom": "3px solid #a71330",
+                    "display": "block",
+                    "height": "120px",
+                    "paddingLeft": "15px",
+                    "paddingRight": "20px"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col3",
+              "style": {
+                "paddingRight": "5px"
+              },
+              "type": "col"
+            },
+            {
+              "class": "col-lg-6    col-6 col-sm-6 col-md-6 col-xl-6",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3",
+                          "components": [
+                            {
+                              "icon": "assignment",
+                              "name": "icon2",
+                              "style": {
+                                "color": "#A71330",
+                                "fontSize": "36px"
+                              },
+                              "type": "icon"
+                            }
+                          ],
+                          "name": "col10",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row10",
+                      "style": {
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "events": {
+                        "click": [
+                          {
+                            "path": "nachrichten",
+                            "type": "navigate"
+                          },
+                          {
+                            "code": "window.scroll(0,0);",
+                            "type": "execute"
+                          }
+                        ]
+                      },
+                      "name": "button1",
+                      "size": "sm",
+                      "style": {
+                        "backgroundColor": "rgba(0, 0, 0, 0)",
+                        "color": "#5d717b",
+                        "fontSize": "18px",
+                        "fontWeight": "600",
+                        "paddingLeft": "3px",
+                        "position": "static",
+                        "textAlign": "left",
+                        "width": "100%"
+                      },
+                      "text": "Erfassen",
+                      "tooltip": "",
+                      "type": "button"
+                    },
+                    {
+                      "name": "heading2",
+                      "size": "H4",
+                      "style": {
+                        "color": "#5d717b",
+                        "display": "block",
+                        "fontSize": "12px",
+                        "fontWeight": "normal",
+                        "paddingLeft": "3px",
+                        "textAlign": "left"
+                      },
+                      "text": "Neu 3 | Offen 2",
+                      "type": "heading"
+                    }
+                  ],
+                  "name": "card6",
+                  "style": {
+                    "backgroundColor": "#ffffff",
+                    "borderBottom": "3px solid #a71330",
+                    "display": "block",
+                    "height": "120px",
+                    "paddingLeft": "15px",
+                    "paddingRight": "20px"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col5",
+              "style": {
+                "paddingLeft": "5px"
+              },
+              "type": "col"
+            }
+          ],
+          "name": "row3",
+          "style": {
+            "paddingBottom": "10px",
+            "paddingLeft": ""
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3",
+                          "components": [
+                            {
+                              "icon": "settings",
+                              "name": "icon3",
+                              "style": {
+                                "color": "#A71330",
+                                "fontSize": "36px"
+                              },
+                              "type": "icon"
+                            }
+                          ],
+                          "name": "col9",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row7",
+                      "style": {
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "events": {
+                        "click": [
+                          {
+                            "path": "nachrichten",
+                            "type": "navigate"
+                          },
+                          {
+                            "code": "window.scroll(0,0);",
+                            "type": "execute"
+                          },
+                          {}
+                        ]
+                      },
+                      "name": "button3",
+                      "size": "sm",
+                      "style": {
+                        "backgroundColor": "rgba(0, 0, 0, 0)",
+                        "color": "#5d717b",
+                        "fontSize": "18px",
+                        "fontWeight": "600",
+                        "paddingLeft": "3px",
+                        "position": "static",
+                        "textAlign": "left",
+                        "width": "100%"
+                      },
+                      "text": "Einstellungen",
+                      "tooltip": "",
+                      "type": "button"
+                    },
+                    {
+                      "name": "heading5",
+                      "size": "H4",
+                      "style": {
+                        "color": "#5d717b",
+                        "display": "block",
+                        "fontSize": "12px",
+                        "fontWeight": "normal",
+                        "paddingLeft": "3px",
+                        "textAlign": "left"
+                      },
+                      "text": "Einträge 7",
+                      "type": "heading"
+                    }
+                  ],
+                  "name": "card3",
+                  "style": {
+                    "backgroundColor": "#ffffff",
+                    "borderBottom": "3px solid #a71330",
+                    "display": "block",
+                    "height": "120px",
+                    "paddingLeft": "15px",
+                    "paddingRight": "20px"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col0",
+              "style": {
+                "paddingRight": "5px"
+              },
+              "type": "col"
+            },
+            {
+              "class": "col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3",
+                          "components": [
+                            {
+                              "icon": "assignment_turned_in",
+                              "name": "icon5",
+                              "style": {
+                                "color": "#A71330",
+                                "fontSize": "36px"
+                              },
+                              "type": "icon"
+                            }
+                          ],
+                          "name": "col12",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row9",
+                      "style": {
+                        "paddingBottom": "0px",
+                        "paddingTop": "0px"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "events": {
+                        "click": [
+                          {
+                            "path": "einstellungen",
+                            "type": "navigate"
+                          },
+                          {
+                            "code": "window.scroll(0,0);",
+                            "type": "execute"
+                          }
+                        ]
+                      },
+                      "name": "button5",
+                      "size": "sm",
+                      "style": {
+                        "backgroundColor": "rgba(0, 0, 0, 0)",
+                        "color": "#5d717b",
+                        "fontSize": "18px",
+                        "fontWeight": "600",
+                        "paddingLeft": "3px",
+                        "position": "static",
+                        "textAlign": "left",
+                        "width": "100%"
+                      },
+                      "text": "Übersicht",
+                      "tooltip": "",
+                      "type": "button"
+                    },
+                    {
+                      "name": "heading7",
+                      "size": "H4",
+                      "style": {
+                        "color": "#5d717b",
+                        "display": "block",
+                        "fontSize": "12px",
+                        "fontWeight": "normal",
+                        "paddingLeft": "3px",
+                        "textAlign": "left"
+                      },
+                      "text": "Dein Profil",
+                      "type": "heading"
+                    }
+                  ],
+                  "name": "card5",
+                  "style": {
+                    "backgroundColor": "#ffffff",
+                    "borderBottom": "3px solid #a71330",
+                    "display": "block",
+                    "height": "120px",
+                    "paddingLeft": "15px",
+                    "paddingRight": "20px"
+                  },
+                  "type": "card",
+                  "visible": true
+                }
+              ],
+              "name": "col8",
+              "style": {
+                "paddingLeft": "5px"
+              },
+              "type": "col"
+            }
+          ],
+          "name": "row4",
+          "style": {
+            "paddingBottom": "10px"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "name": "heading8",
+              "size": "H6",
+              "style": {
+                "color": "#A71330",
+                "fontWeight": "normal",
+                "marginBottom": "0px",
+                "textAlign": "center"
+              },
+              "text": "© 2021 Optimo Schlafsysteme GmbH",
+              "type": "heading"
+            },
+            {
+              "icon": "",
+              "name": "link0",
+              "path": "versionen",
+              "style": {
+                "float": "right",
+                "fontSize": "14px",
+                "marginTop": "-2px",
+                "textAlign": "center",
+                "width": "100%"
+              },
+              "text": "Version 1.01.027",
+              "type": "link"
+            }
+          ],
+          "name": "card8",
+          "style": {
+            "backgroundColor": "#FFFFFF",
+            "display": "block",
+            "height": "65px",
+            "paddingTop": "11px"
+          },
+          "type": "card",
+          "visible": true
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "dateHeute",
+        "type": "set",
+        "value": "${new Date()}"
+      },
+      {
+        "name": "onClickStartBenutzer",
+        "type": "set",
+        "value": "() => {\n    console.log(\"onClick...\")\n}"
+      },
+      {
+        "code": "this.datalistLagerorte.load();",
+        "type": "execute"
+      },
+      {
+        "name": "onClickLagerortInventur",
+        "type": "set",
+        "value": "(data) => {\n    console.log(\"onClickLagerortInventur...\", data)\n}"
+      }
+    ]
+  },
+  "layout": "InventurStart",
+  "name": "Copy of Dashboard 3"
+}

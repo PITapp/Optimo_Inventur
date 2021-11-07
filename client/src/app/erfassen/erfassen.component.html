@@ -1,0 +1,58 @@
+<rz-content #content1 container="main">
+  <rz-card #card0 [style]="{'backgroundColor': '#ffffff', 'height': '250px', 'marginBottom': '10px', 'paddingBottom': '10px', 'paddingLeft': '15px', 'paddingRight': '5px', 'paddingTop': '10px', 'position': 'static', 'textAlign': 'left'}">
+    <div [ngStyle]="{'marginBottom': '10px'}" class="row" (click)="onClickAuswahlLagerorte()">
+      <div class="col-2 align-items-center d-flex" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'textAlign': 'right'}">
+        <rz-heading #heading0 size="H5" [style]="{'color': '#3a474d', 'fontSize': '30px', 'fontWeight': 'normal', 'textAlign': 'left', 'verticalAlign': 'baseline'}" [text]="dsoLagerort?.LagerortNummer">
+        </rz-heading>
+      </div>
+      <div class="col-8" [ngStyle]="{'paddingLeft': '10px', 'paddingRight': '0px', 'verticalAlign': 'baseline'}">
+        <rz-heading #heading3 size="H5" [style]="{'color': '#3a474d', 'fontSize': '18px', 'fontWeight': 'normal', 'lineHeight': '20px', 'marginBottom': '0'}" text="aaa">
+        </rz-heading>
+        <rz-label #label1 [style]="{'color': '#598087', 'fontSize': '12px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'width': '100%'}" text="Status: offen">
+        </rz-label>
+      </div>
+      <div class="align-items-center d-flex justify-content-end col-2" [ngStyle]="{'paddingRight': '25px', 'textAlign': 'right'}">
+        <rz-icon #icon1 icon="open_in_new" [style]="{'color': '#a71330', 'fontSize': '20px', 'fontWeight': 'normal'}">
+        </rz-icon>
+      </div>
+    </div>
+    <div [ngStyle]="{'borderBottom': '1px solid #e6ecef', 'height': '1px', 'marginBottom': '10px', 'marginLeft': '0px', 'marginRight': '10px'}" class="row">
+    </div>
+    <div class="row">
+      <div class="col-10" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'textAlign': 'right'}">
+        <rz-label #label0 [style]="{'color': '#a71330', 'marginBottom': '5px', 'paddingLeft': '5px', 'textAlign': 'left', 'width': '100%'}" text="Artikel">
+        </rz-label>
+        <rz-textbox #textbox1 [readOnly]="true" [style]="{'width': '100%'}" name="textbox1">
+        </rz-textbox>
+      </div>
+      <div class="align-items-center d-flex justify-content-end col-2" [ngStyle]="{'paddingLeft': '', 'paddingRight': '25px', 'textAlign': 'right'}">
+        <rz-icon #icon0 icon="playlist_add_check" [style]="{'color': '#a71330', 'fontSize': '24px', 'fontWeight': 'normal'}">
+        </rz-icon>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-10" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'textAlign': 'left'}">
+        <rz-label #label3 [style]="{'color': '#a71330', 'marginBottom': '5px', 'paddingLeft': '5px', 'textAlign': 'left', 'width': '100%'}" text="Menge">
+        </rz-label>
+        <rz-textbox #textbox2 [readOnly]="true" [style]="{'textAlign': 'left', 'width': '50%'}" name="textbox2">
+        </rz-textbox>
+      </div>
+      <div class="align-items-center d-flex justify-content-end col-2" [ngStyle]="{'paddingLeft': '', 'paddingRight': '25px', 'textAlign': 'right'}">
+        <rz-icon #icon2 icon="playlist_add_check" [style]="{'color': '#a71330', 'fontSize': '24px', 'fontWeight': 'normal'}">
+        </rz-icon>
+      </div>
+    </div>
+  </rz-card>
+  <rz-card #card1 [style]="{'position': 'static'}">
+    <rz-datalist #datalistLagerorte [allowPaging]="false" [count]="rstLagerorteCount" [data]="rstLagerorte" defaultRowText="Template for index" emptyText="No records found." [style]="{}" [wrapItems]="false" (loadData)="datalistLagerorteLoadData($event)">
+      <ng-template let-data datalistTemplate>
+        <rz-textbox #textbox0 [(ngModel)]="data && data.Lagerort" name="textbox0">
+        </rz-textbox>
+      </ng-template>
+    </rz-datalist>
+  </rz-card>
+  <rz-label #label2 [style]="{'backgroundColor': '#e6c54f', 'width': '100%'}" text="Diese Schaltflächen müssen da sein, damit beim Compilieren die Parameter erstellt werden!" *ngIf="false">
+  </rz-label>
+  <rz-button #buttonOpenDialogAuswahlLagerorte text="Unsichtbar: OpenDialogAuswahlLagerorte" *ngIf="false" (click)="buttonOpenDialogAuswahlLagerorteClick($event)">
+  </rz-button>
+</rz-content>
