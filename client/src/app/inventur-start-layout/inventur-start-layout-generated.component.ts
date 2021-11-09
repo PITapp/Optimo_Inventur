@@ -48,6 +48,7 @@ export class InventurStartLayoutGenerated implements AfterViewInit, OnInit, OnDe
   _location: Location;
 
   _subscription: Subscription;
+   onClickStartInfos: any;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -96,7 +97,12 @@ export class InventurStartLayoutGenerated implements AfterViewInit, OnInit, OnDe
 
 
   load() {
-
+    this. onClickStartInfos = () => {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+    this.router.navigate(['infos']);
+};
   }
 
   image0Click(event: any) {

@@ -4,261 +4,6 @@
     {
       "components": [
         {
-          "attributes": [],
-          "components": [
-            {
-              "components": [
-                {
-                  "class": "col-6",
-                  "components": [
-                    {
-                      "class": "align-items-center",
-                      "components": [
-                        {
-                          "class": "col-6",
-                          "components": [
-                            {
-                              "name": "heading3",
-                              "size": "H5",
-                              "style": {
-                                "color": "#3a474d",
-                                "display": "inline",
-                                "fontWeight": "normal"
-                              },
-                              "text": "Lagerorte",
-                              "type": "heading"
-                            }
-                          ],
-                          "name": "col27",
-                          "style": {},
-                          "type": "col"
-                        },
-                        {
-                          "class": "col-6",
-                          "components": [
-                            {
-                              "name": "heading6",
-                              "size": "H3",
-                              "style": {
-                                "backgroundColor": "rgba(0, 0, 0, 0)",
-                                "color": "#3a474d",
-                                "display": "block",
-                                "float": "none",
-                                "fontSize": "20px",
-                                "fontWeight": "bold",
-                                "marginBottom": "0px",
-                                "textAlign": "right"
-                              },
-                              "text": "25",
-                              "type": "heading"
-                            }
-                          ],
-                          "name": "col28",
-                          "type": "col"
-                        }
-                      ],
-                      "name": "row21",
-                      "type": "row"
-                    },
-                    {
-                      "name": "progressbar0",
-                      "showValue": false,
-                      "style": {
-                        "height": "8px"
-                      },
-                      "type": "progressbar",
-                      "value": 75
-                    }
-                  ],
-                  "name": "col26",
-                  "style": {
-                    "display": "block"
-                  },
-                  "type": "col"
-                },
-                {
-                  "class": "col-6",
-                  "components": [
-                    {
-                      "class": "align-items-center",
-                      "components": [
-                        {
-                          "class": "col-4",
-                          "components": [
-                            {
-                              "name": "heading10",
-                              "size": "H5",
-                              "style": {
-                                "color": "#3a474d",
-                                "display": "inline",
-                                "fontWeight": "normal"
-                              },
-                              "text": "Artikel",
-                              "type": "heading"
-                            }
-                          ],
-                          "name": "col30",
-                          "style": {
-                            "color": "#3a474d"
-                          },
-                          "type": "col"
-                        },
-                        {
-                          "class": "col-8",
-                          "components": [
-                            {
-                              "name": "heading11",
-                              "size": "H3",
-                              "style": {
-                                "backgroundColor": "rgba(0, 0, 0, 0)",
-                                "color": "#3a474d",
-                                "display": "block",
-                                "float": "none",
-                                "fontSize": "20px",
-                                "fontWeight": "bold",
-                                "marginBottom": "0px",
-                                "textAlign": "right"
-                              },
-                              "text": "54.000",
-                              "type": "heading"
-                            }
-                          ],
-                          "name": "col31",
-                          "type": "col"
-                        }
-                      ],
-                      "name": "row22",
-                      "type": "row"
-                    },
-                    {
-                      "name": "progressbar1",
-                      "showValue": false,
-                      "style": {
-                        "height": "8px"
-                      },
-                      "type": "progressbar",
-                      "value": 75
-                    }
-                  ],
-                  "name": "col35",
-                  "style": {},
-                  "type": "col"
-                }
-              ],
-              "name": "row19",
-              "style": {},
-              "type": "row"
-            }
-          ],
-          "name": "card15",
-          "style": {
-            "backgroundColor": "#ffffff",
-            "display": "block",
-            "marginBottom": "10px",
-            "paddingBottom": "12px",
-            "paddingLeft": "17px",
-            "paddingRight": "16px",
-            "paddingTop": "3px",
-            "verticalAlign": "baseline"
-          },
-          "type": "card",
-          "visible": true
-        },
-        {
-          "attributes": [
-            {
-              "name": "(click)",
-              "value": "onClickStartErfassen({InventurID: 0})"
-            }
-          ],
-          "components": [
-            {
-              "components": [
-                {
-                  "class": "col-2",
-                  "components": [
-                    {
-                      "icon": "assignment_turned_in",
-                      "name": "icon11",
-                      "style": {
-                        "color": "#A71330",
-                        "fontSize": "36px",
-                        "marginTop": "5px"
-                      },
-                      "type": "icon"
-                    }
-                  ],
-                  "name": "col32",
-                  "style": {
-                    "display": "block",
-                    "paddingLeft": "13px"
-                  },
-                  "type": "col"
-                },
-                {
-                  "class": "col-10",
-                  "components": [
-                    {
-                      "name": "label14",
-                      "style": {
-                        "color": "#3a474d",
-                        "display": "block",
-                        "fontSize": "24px",
-                        "fontStyle": "normal",
-                        "fontWeight": "bold",
-                        "lineHeight": "24px",
-                        "textAlign": "right",
-                        "width": "100%"
-                      },
-                      "text": "Erfassen",
-                      "type": "label"
-                    },
-                    {
-                      "name": "label15",
-                      "style": {
-                        "color": "#3a474d",
-                        "display": "block",
-                        "fontSize": "14px",
-                        "fontStyle": "normal",
-                        "fontWeight": "normal",
-                        "lineHeight": "14px",
-                        "position": "static",
-                        "textAlign": "right",
-                        "width": "100%"
-                      },
-                      "text": "Artikel für einen Lagerort erfassen",
-                      "type": "label"
-                    }
-                  ],
-                  "name": "col33",
-                  "style": {
-                    "marginTop": "2px"
-                  },
-                  "type": "col"
-                }
-              ],
-              "name": "row18",
-              "style": {},
-              "type": "row"
-            }
-          ],
-          "name": "card14",
-          "style": {
-            "backgroundColor": "#ffffff",
-            "borderBottom": "3px solid #a71330",
-            "display": "block",
-            "height": "60px",
-            "marginBottom": "10px",
-            "paddingBottom": "15px",
-            "paddingLeft": "15px",
-            "paddingRight": "15px",
-            "paddingTop": "7px",
-            "verticalAlign": "baseline"
-          },
-          "type": "card",
-          "visible": true
-        },
-        {
           "allowPaging": false,
           "count": "${rstLagerorteCount}",
           "data": "${rstLagerorte}",
@@ -292,19 +37,8 @@
           },
           "name": "datalistLagerorte",
           "pageSize": 3,
-          "style": {
-            "marginBottom": "10px",
-            "marginTop": "-11px"
-          },
+          "style": {},
           "template": [
-            {
-              "name": "row0",
-              "style": {
-                "backgroundColor": "#e9e9e9",
-                "height": "10px"
-              },
-              "type": "row"
-            },
             {
               "attributes": [
                 {
@@ -316,15 +50,20 @@
                 {
                   "components": [
                     {
-                      "class": "col-2 align-items-center d-flex",
+                      "class": "col-2 align-items-center d-flex justify-content-start",
                       "components": [
                         {
                           "name": "heading0",
                           "size": "H5",
                           "style": {
                             "color": "#3a474d",
-                            "fontSize": "30px",
+                            "fontSize": "34px",
                             "fontWeight": "normal",
+                            "lineHeight": "36px",
+                            "marginBottom": "0",
+                            "marginLeft": "0",
+                            "marginRight": "0",
+                            "marginTop": "0",
                             "textAlign": "left",
                             "verticalAlign": "baseline"
                           },
@@ -348,10 +87,13 @@
                           "size": "H5",
                           "style": {
                             "color": "#3a474d",
-                            "fontSize": "18px",
+                            "fontSize": "20px",
                             "fontWeight": "normal",
-                            "lineHeight": "20px",
-                            "marginBottom": "0"
+                            "lineHeight": "22px",
+                            "marginBottom": "0",
+                            "marginLeft": "0",
+                            "marginRight": "0",
+                            "marginTop": "0"
                           },
                           "text": "${data.LagerortTitel}",
                           "type": "heading"
@@ -359,19 +101,33 @@
                         {
                           "name": "label3",
                           "style": {
-                            "color": "#598087",
-                            "fontSize": "12px",
+                            "color": "#6264A7",
+                            "fontSize": "16px",
                             "fontStyle": "normal",
                             "fontWeight": "normal",
-                            "width": "100%"
+                            "lineHeight": "18px",
+                            "paddingTop": "6px"
                           },
-                          "text": "Status: offen",
+                          "text": "127 gezählt",
+                          "type": "label"
+                        },
+                        {
+                          "name": "label1",
+                          "style": {
+                            "color": "#a71330",
+                            "fontSize": "16px",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                            "lineHeight": "18px",
+                            "paddingTop": "6px"
+                          },
+                          "text": " · in Bearbeitung",
                           "type": "label"
                         }
                       ],
                       "name": "col1",
                       "style": {
-                        "paddingLeft": "10px",
+                        "paddingLeft": "15px",
                         "paddingRight": "0px",
                         "verticalAlign": "baseline"
                       },
@@ -404,9 +160,7 @@
               ],
               "name": "card0",
               "style": {
-                "border": "1px solid #ffffff",
-                "marginLeft": "-1px",
-                "marginRight": "-1px",
+                "marginBottom": "10px",
                 "paddingBottom": "10px",
                 "paddingLeft": "15px",
                 "paddingRight": "5px",
@@ -443,7 +197,7 @@
               "name": "heading1",
               "size": "H6",
               "style": {
-                "color": "#A71330",
+                "color": "#6264A7",
                 "fontWeight": "normal",
                 "marginBottom": "0px",
                 "textAlign": "center"
@@ -466,6 +220,8 @@
           "name": "label0",
           "style": {
             "backgroundColor": "#e6c54f",
+            "marginBottom": "10px",
+            "marginTop": "20px",
             "width": "100%"
           },
           "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden!\nSiehe app.routes.ts",

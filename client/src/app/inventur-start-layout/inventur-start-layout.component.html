@@ -1,11 +1,11 @@
 <rz-header #header0 [style]="{'backgroundColor': '#e9e9e9', 'borderBottom': '1px dotted #a71330', 'height': '55px', 'marginLeft': '0px'}">
-  <div class="row justify-content-start align-items-center" [ngStyle]="{}">
+  <div class="row justify-content-start align-items-center" [ngStyle]="{}" (click)="onClickStartInfos()">
     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" [ngStyle]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'marginLeft': '', 'marginRight': '', 'marginTop': '', 'paddingLeft': '', 'paddingRight': ''}">
-      <rz-image #image0 path="assets/images/Logo01.png" [style]="{'float': 'left', 'height': '35px', 'marginLeft': '13px', 'marginTop': '11px'}" (click)="image0Click($event)">
+      <rz-image #image0 path="assets/images/Logo01.png" [style]="{'float': 'left', 'height': '35px', 'marginLeft': '18px', 'marginTop': '10px'}" (click)="image0Click($event)" (click)="onClickStartInfos()">
       </rz-image>
     </div>
     <div class="text-lg-right           justify-content-end d-flex      col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" [ngStyle]="{'display': 'inline-block', 'float': 'right', 'marginTop': '-4px', 'textAlign': 'right'}">
-      <rz-label #label5 [style]="{'color': '#A71330', 'display': 'block', 'float': 'none', 'fontFamily': 'courier new,courier,monospace', 'fontSize': '16px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'marginRight': '15px', 'marginTop': '15px'}" text="Inventur">
+      <rz-label #label5 [style]="{'color': '#A71330', 'display': 'block', 'float': 'none', 'fontFamily': 'courier new,courier,monospace', 'fontSize': '16px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'marginRight': '20px', 'marginTop': '14px'}" text="Inventur">
       </rz-label>
     </div>
   </div>

@@ -3,6 +3,12 @@
     {
       "components": [
         {
+          "attributes": [
+            {
+              "name": "(click)",
+              "value": "onClickNavigateBack()"
+            }
+          ],
           "class": "justify-content-start align-items-center",
           "components": [
             {
@@ -10,31 +16,16 @@
               "class": "col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6",
               "components": [
                 {
-                  "events": {
-                    "click": [
-                      {
-                        "type": "back"
-                      }
-                    ]
-                  },
-                  "icon": "",
-                  "name": "buttonBack",
-                  "size": "sm",
+                  "icon": "arrow_back",
+                  "name": "icon0",
                   "style": {
-                    "backgroundColor": "rgba(0, 0, 0, 0)",
-                    "color": "#A71330",
-                    "fontSize": "32px",
-                    "fontWeight": "600",
-                    "height": "100%",
-                    "paddingLeft": "10px",
-                    "paddingRight": "10px",
-                    "paddingTop": "3px",
-                    "textAlign": "left",
-                    "width": "100%"
+                    "color": "#a71330",
+                    "fontSize": "26px",
+                    "fontWeight": "normal",
+                    "marginLeft": "6px",
+                    "marginTop": "14px"
                   },
-                  "text": "←",
-                  "tooltip": "",
-                  "type": "button"
+                  "type": "icon"
                 }
               ],
               "name": "col2",
@@ -61,8 +52,8 @@
                     "fontSize": "16px",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
-                    "marginRight": "15px",
-                    "marginTop": "18px"
+                    "marginRight": "20px",
+                    "marginTop": "13px"
                   },
                   "text": "Infos",
                   "type": "label"
@@ -113,5 +104,14 @@
       "type": "body"
     }
   ],
+  "events": {
+    "load": [
+      {
+        "name": "onClickNavigateBack",
+        "type": "set",
+        "value": "() => {\n    if (this.dialogRef) {\n      this.dialogRef.close();\n    }\n    this._location.back();\n}"
+      }
+    ]
+  },
   "name": "InventurInfos"
 }

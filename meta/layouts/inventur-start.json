@@ -1,8 +1,15 @@
 {
   "components": [
     {
+      "attributes": [],
       "components": [
         {
+          "attributes": [
+            {
+              "name": "(click)",
+              "value": "onClickStartInfos()"
+            }
+          ],
           "class": "justify-content-start align-items-center",
           "components": [
             {
@@ -10,6 +17,12 @@
               "class": "col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6",
               "components": [
                 {
+                  "attributes": [
+                    {
+                      "name": "(click)",
+                      "value": "onClickStartInfos()"
+                    }
+                  ],
                   "events": {
                     "click": [
                       {
@@ -23,8 +36,8 @@
                   "style": {
                     "float": "left",
                     "height": "35px",
-                    "marginLeft": "13px",
-                    "marginTop": "11px"
+                    "marginLeft": "18px",
+                    "marginTop": "10px"
                   },
                   "type": "image"
                 }
@@ -53,8 +66,8 @@
                     "fontSize": "16px",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
-                    "marginRight": "15px",
-                    "marginTop": "15px"
+                    "marginRight": "20px",
+                    "marginTop": "14px"
                   },
                   "text": "Inventur",
                   "type": "label"
@@ -106,7 +119,13 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": " onClickStartInfos",
+        "type": "set",
+        "value": "() => {\n    if (this.dialogRef) {\n      this.dialogRef.close();\n    }\n    this.router.navigate(['infos']);\n}"
+      }
+    ]
   },
   "name": "InventurStart"
 }

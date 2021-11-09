@@ -7,24 +7,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HeaderModule } from '@radzen/angular/dist/header';
+import { ImageModule } from '@radzen/angular/dist/image';
+import { LabelModule } from '@radzen/angular/dist/label';
 import { BodyModule } from '@radzen/angular/dist/body';
 import { ContentContainerModule } from '@radzen/angular/dist/content-container';
-import { HeaderModule } from '@radzen/angular/dist/header';
-import { ButtonModule } from '@radzen/angular/dist/button';
-import { LabelModule } from '@radzen/angular/dist/label';
-import { LinkModule } from '@radzen/angular/dist/link';
-import { CardModule } from '@radzen/angular/dist/card';
-import { ImageModule } from '@radzen/angular/dist/image';
-import { HeadingModule } from '@radzen/angular/dist/heading';
-import { ProgressBarModule } from '@radzen/angular/dist/progressbar';
-import { ContentModule } from '@radzen/angular/dist/content';
 import { IconModule } from '@radzen/angular/dist/icon';
+import { ContentModule } from '@radzen/angular/dist/content';
 import { DataListModule } from '@radzen/angular/dist/datalist';
-import { TextBoxModule } from '@radzen/angular/dist/textbox';
-import { TextAreaModule } from '@radzen/angular/dist/textarea';
+import { CardModule } from '@radzen/angular/dist/card';
+import { HeadingModule } from '@radzen/angular/dist/heading';
+import { ButtonModule } from '@radzen/angular/dist/button';
 import { TabsModule } from '@radzen/angular/dist/tabs';
 import { HtmlModule } from '@radzen/angular/dist/html';
+import { ProgressBarModule } from '@radzen/angular/dist/progressbar';
 import { SparklineModule } from '@radzen/angular/dist/sparkline';
+import { LinkModule } from '@radzen/angular/dist/link';
+import { TextBoxModule } from '@radzen/angular/dist/textbox';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
 import { DialogModule } from '@radzen/angular/dist/dialog';
@@ -35,23 +34,13 @@ import { AppComponent } from './app.component';
 import { CacheInterceptor } from './cache.interceptor';
 export { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { BaseComponent } from './base/base.component';
-import { BaseDetailsComponent } from './base-details/base-details.component';
 import { InfosComponent } from './infos/infos.component';
-import { CopyOfDashboardComponent } from './copy-of-dashboard/copy-of-dashboard.component';
-import { CopyOfDashboard1Component } from './copy-of-dashboard-1/copy-of-dashboard-1.component';
+import { ZzDashboardV1Component } from './zz-dashboard-v-1/zz-dashboard-v-1.component';
 import { ErfassenComponent } from './erfassen/erfassen.component';
-import { CopyOfDashboard2Component } from './copy-of-dashboard-2/copy-of-dashboard-2.component';
-import { CopyOfDashboard3Component } from './copy-of-dashboard-3/copy-of-dashboard-3.component';
-import { CopyOfDashboard4Component } from './copy-of-dashboard-4/copy-of-dashboard-4.component';
-import { CopyOfDashboard5Component } from './copy-of-dashboard-5/copy-of-dashboard-5.component';
-import { ErfassenAuswahlLagerorteComponent } from './erfassen-auswahl-lagerorte/erfassen-auswahl-lagerorte.component';
-import { DetailsLayoutComponent } from './details-layout/details-layout.component';
-import { LoginLayoutComponent } from './login-layout/login-layout.component';
-import { MainTempLayoutComponent } from './main-temp-layout/main-temp-layout.component';
-import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { ZzDashboardV2Component } from './zz-dashboard-v-2/zz-dashboard-v-2.component';
+import { ZzErfassenAuswahlLagerorteComponent } from './zz-erfassen-auswahl-lagerorte/zz-erfassen-auswahl-lagerorte.component';
+import { ZzDashboardV3Component } from './zz-dashboard-v-3/zz-dashboard-v-3.component';
 import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
-import { InventurStartTempLayoutComponent } from './inventur-start-temp-layout/inventur-start-temp-layout.component';
 import { InventurInfosLayoutComponent } from './inventur-infos-layout/inventur-infos-layout.component';
 import { InventurErfassenLayoutComponent } from './inventur-erfassen-layout/inventur-erfassen-layout.component';
 
@@ -59,26 +48,16 @@ import { DbOptimoService } from './db-optimo.service';
 
 export const PageDeclarations = [
   DashboardComponent,
-  BaseComponent,
-  BaseDetailsComponent,
   InfosComponent,
-  CopyOfDashboardComponent,
-  CopyOfDashboard1Component,
+  ZzDashboardV1Component,
   ErfassenComponent,
-  CopyOfDashboard2Component,
-  CopyOfDashboard3Component,
-  CopyOfDashboard4Component,
-  CopyOfDashboard5Component,
-  ErfassenAuswahlLagerorteComponent,
+  ZzDashboardV2Component,
+  ZzErfassenAuswahlLagerorteComponent,
+  ZzDashboardV3Component,
 ];
 
 export const LayoutDeclarations = [
-  DetailsLayoutComponent,
-  LoginLayoutComponent,
-  MainTempLayoutComponent,
-  MainLayoutComponent,
   InventurStartLayoutComponent,
-  InventurStartTempLayoutComponent,
   InventurInfosLayoutComponent,
   InventurErfassenLayoutComponent,
 ];
@@ -110,24 +89,23 @@ export const AppImports = [
   BrowserAnimationsModule,
   FormsModule,
   HttpClientModule,
+  HeaderModule,
+  ImageModule,
+  LabelModule,
   BodyModule,
   ContentContainerModule,
-  HeaderModule,
-  ButtonModule,
-  LabelModule,
-  LinkModule,
-  CardModule,
-  ImageModule,
-  HeadingModule,
-  ProgressBarModule,
-  ContentModule,
   IconModule,
+  ContentModule,
   DataListModule,
-  TextBoxModule,
-  TextAreaModule,
+  CardModule,
+  HeadingModule,
+  ButtonModule,
   TabsModule,
   HtmlModule,
+  ProgressBarModule,
   SparklineModule,
+  LinkModule,
+  TextBoxModule,
   SharedModule,
   NotificationModule,
   DialogModule,

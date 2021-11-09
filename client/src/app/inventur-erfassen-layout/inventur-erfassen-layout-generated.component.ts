@@ -13,7 +13,7 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { BodyComponent } from '@radzen/angular/dist/body';
 import { ContentContainerComponent } from '@radzen/angular/dist/content-container';
 import { HeaderComponent } from '@radzen/angular/dist/header';
-import { ButtonComponent } from '@radzen/angular/dist/button';
+import { IconComponent } from '@radzen/angular/dist/icon';
 import { LabelComponent } from '@radzen/angular/dist/label';
 
 import { ConfigService } from '../config.service';
@@ -24,7 +24,7 @@ export class InventurErfassenLayoutGenerated implements AfterViewInit, OnInit, O
   @ViewChild('body1') body1: BodyComponent;
   @ViewChild('main') main: ContentContainerComponent;
   @ViewChild('header0') header0: HeaderComponent;
-  @ViewChild('buttonBack') buttonBack: ButtonComponent;
+  @ViewChild('icon0') icon0: IconComponent;
   @ViewChild('label5') label5: LabelComponent;
 
   router: Router;
@@ -48,6 +48,7 @@ export class InventurErfassenLayoutGenerated implements AfterViewInit, OnInit, O
   _location: Location;
 
   _subscription: Subscription;
+  onClickNavigateBack: any;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -96,14 +97,11 @@ export class InventurErfassenLayoutGenerated implements AfterViewInit, OnInit, O
 
 
   load() {
-
-  }
-
-  buttonBackClick(event: any) {
+    this.onClickNavigateBack = () => {
     if (this.dialogRef) {
       this.dialogRef.close();
-    } else {
-      this._location.back();
     }
+    this._location.back();
+};
   }
 }

@@ -22,7 +22,7 @@
                       "size": "H5",
                       "style": {
                         "color": "#3a474d",
-                        "fontSize": "30px",
+                        "fontSize": "34px",
                         "fontWeight": "normal",
                         "textAlign": "left",
                         "verticalAlign": "baseline"
@@ -40,31 +40,31 @@
                   "type": "col"
                 },
                 {
-                  "class": "col-8",
+                  "class": "col-10",
                   "components": [
                     {
                       "name": "heading3",
                       "size": "H5",
                       "style": {
                         "color": "#3a474d",
-                        "fontSize": "18px",
+                        "fontSize": "22px",
                         "fontWeight": "normal",
-                        "lineHeight": "20px",
-                        "marginBottom": "0"
+                        "lineHeight": "24px",
+                        "marginBottom": "3px"
                       },
-                      "text": "aaa",
+                      "text": "${dsoLagerort.LagerortTitel}",
                       "type": "heading"
                     },
                     {
-                      "name": "label1",
+                      "name": "label5",
                       "style": {
-                        "color": "#598087",
-                        "fontSize": "12px",
+                        "color": "#28a745",
+                        "fontSize": "14px",
                         "fontStyle": "normal",
                         "fontWeight": "normal",
                         "width": "100%"
                       },
-                      "text": "Status: offen",
+                      "text": "255 Artikel · 127 gezählt",
                       "type": "label"
                     }
                   ],
@@ -73,27 +73,6 @@
                     "paddingLeft": "10px",
                     "paddingRight": "0px",
                     "verticalAlign": "baseline"
-                  },
-                  "type": "col"
-                },
-                {
-                  "class": "align-items-center d-flex justify-content-end col-2",
-                  "components": [
-                    {
-                      "icon": "open_in_new",
-                      "name": "icon1",
-                      "style": {
-                        "color": "#a71330",
-                        "fontSize": "20px",
-                        "fontWeight": "normal"
-                      },
-                      "type": "icon"
-                    }
-                  ],
-                  "name": "col8",
-                  "style": {
-                    "paddingRight": "25px",
-                    "textAlign": "right"
                   },
                   "type": "col"
                 }
@@ -119,55 +98,51 @@
             {
               "components": [
                 {
-                  "class": "col-10",
+                  "class": "col-12",
                   "components": [
                     {
                       "name": "label0",
                       "style": {
                         "color": "#a71330",
+                        "fontSize": "14px",
                         "marginBottom": "5px",
                         "paddingLeft": "5px",
                         "textAlign": "left",
                         "width": "100%"
                       },
-                      "text": "Artikel",
+                      "text": "Artikelnummer",
                       "type": "label"
                     },
                     {
                       "name": "textbox1",
                       "readOnly": true,
                       "style": {
+                        "fontSize": "30px",
+                        "height": "40px",
                         "width": "100%"
                       },
                       "type": "textbox",
                       "value": ""
+                    },
+                    {
+                      "name": "label4",
+                      "style": {
+                        "fontSize": "18px",
+                        "fontWeight": "normal",
+                        "lineHeight": "22px",
+                        "paddingLeft": "5px",
+                        "paddingTop": "5px",
+                        "textAlign": "left",
+                        "width": "100%"
+                      },
+                      "text": "Ergoline LX 600 EL 4 Funk/Memory SM bis 100/200",
+                      "type": "label"
                     }
                   ],
                   "name": "col9",
                   "style": {
                     "fontSize": "16px",
                     "lineHeight": "16px",
-                    "textAlign": "right"
-                  },
-                  "type": "col"
-                },
-                {
-                  "class": "align-items-center d-flex justify-content-end col-2",
-                  "components": [
-                    {
-                      "icon": "playlist_add_check",
-                      "name": "icon0",
-                      "style": {
-                        "color": "#a71330",
-                        "fontSize": "24px",
-                        "fontWeight": "normal"
-                      },
-                      "type": "icon"
-                    }
-                  ],
-                  "name": "col11",
-                  "style": {
-                    "paddingLeft": "",
                     "paddingRight": "25px",
                     "textAlign": "right"
                   },
@@ -175,17 +150,21 @@
                 }
               ],
               "name": "row4",
+              "style": {
+                "marginBottom": "10px"
+              },
               "type": "row"
             },
             {
               "components": [
                 {
-                  "class": "col-10",
+                  "class": "col-6",
                   "components": [
                     {
                       "name": "label3",
                       "style": {
                         "color": "#a71330",
+                        "fontSize": "14px",
                         "marginBottom": "5px",
                         "paddingLeft": "5px",
                         "textAlign": "left",
@@ -199,7 +178,7 @@
                       "readOnly": true,
                       "style": {
                         "textAlign": "left",
-                        "width": "50%"
+                        "width": "100%"
                       },
                       "type": "textbox",
                       "value": ""
@@ -214,36 +193,41 @@
                   "type": "col"
                 },
                 {
-                  "class": "align-items-center d-flex justify-content-end col-2",
+                  "class": "d-flex justify-content-end col-6 align-items-end",
                   "components": [
                     {
-                      "icon": "playlist_add_check",
-                      "name": "icon2",
+                      "buttonStyle": "success",
+                      "name": "button0",
                       "style": {
-                        "color": "#a71330",
-                        "fontSize": "24px",
-                        "fontWeight": "normal"
+                        "backgroundColor": "#5dbf74",
+                        "color": "#ffffff",
+                        "width": "100%"
                       },
-                      "type": "icon"
+                      "text": "Erfassen",
+                      "tooltip": "",
+                      "type": "button"
                     }
                   ],
                   "name": "col1",
                   "style": {
                     "paddingLeft": "",
                     "paddingRight": "25px",
-                    "textAlign": "right"
+                    "textAlign": "right",
+                    "verticalAlign": "bottom"
                   },
                   "type": "col"
                 }
               ],
               "name": "row0",
+              "style": {
+                "marginBottom": "5px"
+              },
               "type": "row"
             }
           ],
           "name": "card0",
           "style": {
             "backgroundColor": "#ffffff",
-            "height": "250px",
             "marginBottom": "10px",
             "paddingBottom": "10px",
             "paddingLeft": "15px",
@@ -258,23 +242,41 @@
         {
           "components": [
             {
+              "name": "label6",
+              "style": {
+                "color": "#a71330",
+                "marginBottom": "5px",
+                "paddingLeft": "5px",
+                "textAlign": "left",
+                "width": "100%"
+              },
+              "text": "Erfasste Daten",
+              "type": "label"
+            },
+            {
               "allowPaging": false,
-              "count": "${rstLagerorteCount}",
-              "data": "${rstLagerorte}",
+              "count": "${rstLagerorteArtikelCount}",
+              "data": "${rstLagerorteArtikel}",
               "defaultRowText": "Template for index",
-              "emptyText": "No records found.",
+              "emptyText": "Artikel werden geladen...",
               "events": {
                 "loadData": [
                   {
-                    "name": "dbOptimo.getInventurBases",
+                    "name": "dbOptimo.getInventurArtikels",
+                    "parameters": [
+                      {
+                        "name": "$filter",
+                        "value": "InventurID eq 100016"
+                      }
+                    ],
                     "then": [
                       {
-                        "name": "rstLagerorte",
+                        "name": "rstLagerorteArtikel",
                         "type": "set",
                         "value": "${result.value}"
                       },
                       {
-                        "name": "rstLagerorteCount",
+                        "name": "rstLagerorteArtikelCount",
                         "type": "set",
                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                       }
@@ -283,13 +285,76 @@
                   }
                 ]
               },
-              "name": "datalistLagerorte",
-              "style": {},
+              "name": "datalistLagerorteArtikel",
+              "pageSize": 3,
+              "style": {
+                "border": "1px solid #ffffff",
+                "marginBottom": "10px"
+              },
               "template": [
                 {
-                  "name": "textbox0",
-                  "type": "textbox",
-                  "value": "${data.Lagerort}"
+                  "name": "row0",
+                  "style": {
+                    "backgroundColor": "#e9e9e9",
+                    "height": "1px"
+                  },
+                  "type": "row"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "(click)",
+                      "value": "onClickSetLagerort(data)"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "class": "align-items-center d-flex col-4",
+                      "components": [
+                        {
+                          "name": "label1",
+                          "style": {
+                            "color": "#3a474d"
+                          },
+                          "text": "${data.Artikelnummer}",
+                          "type": "label"
+                        }
+                      ],
+                      "name": "col21",
+                      "style": {
+                        "fontSize": "16px",
+                        "lineHeight": "16px",
+                        "textAlign": "right"
+                      },
+                      "type": "col"
+                    },
+                    {
+                      "class": "align-items-center d-flex  justify-content-start col-8",
+                      "components": [
+                        {
+                          "name": "label0",
+                          "style": {
+                            "color": "#3a474d"
+                          },
+                          "text": "${data.Beschreibung}",
+                          "type": "label"
+                        }
+                      ],
+                      "name": "col1",
+                      "style": {
+                        "marginTop": "3px",
+                        "paddingLeft": "15px",
+                        "paddingRight": "0px",
+                        "verticalAlign": "baseline"
+                      },
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row1",
+                  "style": {
+                    "height": "55px"
+                  },
+                  "type": "row"
                 }
               ],
               "type": "datalist",
@@ -298,7 +363,7 @@
           ],
           "name": "card1",
           "style": {
-            "position": "static"
+            "marginBottom": "10px"
           },
           "type": "card",
           "visible": true
@@ -317,7 +382,27 @@
           "events": {
             "click": [
               {
-                "path": "erfassen-auswahl-lagerorte",
+                "path": "zz-erfassen-auswahl-lagerorte",
+                "then": [
+                  {
+                    "condition": "${result} != null",
+                    "name": "dbOptimo.getInventurBases",
+                    "parameters": [
+                      {
+                        "name": "$filter",
+                        "value": "InventurID eq ${result}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "name": "dsoLagerort",
+                        "type": "set",
+                        "value": "${result.value[0]}"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
                 "title": "Auswahl Lagerorte",
                 "type": "popup"
               }
@@ -358,15 +443,14 @@
         "type": "invoke"
       },
       {
-        "code": "this.datalistLagerorte.load();",
+        "code": "this.datalistLagerorteArtikel.load();",
         "type": "execute"
       },
       {
         "name": "onClickAuswahlLagerorte",
         "type": "set",
         "value": "() => {\n    this.buttonOpenDialogAuswahlLagerorteClick('');\n}"
-      },
-      {}
+      }
     ]
   },
   "layout": "InventurErfassen",
