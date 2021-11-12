@@ -8,6 +8,17 @@
             {
               "components": [
                 {
+                  "content": "<div innerHTML='${htmlVersionen}'></div>",
+                  "name": "html1",
+                  "type": "html"
+                }
+              ],
+              "selected": false,
+              "text": "Version"
+            },
+            {
+              "components": [
+                {
                   "class": "col-md-12",
                   "components": [
                     {
@@ -22,17 +33,6 @@
               ],
               "selected": true,
               "text": "Handbuch"
-            },
-            {
-              "components": [
-                {
-                  "content": "<div innerHTML='${htmlVersionen}'></div>",
-                  "name": "html1",
-                  "type": "html"
-                }
-              ],
-              "selected": false,
-              "text": "Version"
             }
           ],
           "name": "tabs0",

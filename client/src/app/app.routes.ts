@@ -11,6 +11,11 @@ import { ErfassenComponent } from './erfassen/erfassen.component';
 import { ZzDashboardV2Component } from './zz-dashboard-v-2/zz-dashboard-v-2.component';
 import { ZzErfassenAuswahlLagerorteComponent } from './zz-erfassen-auswahl-lagerorte/zz-erfassen-auswahl-lagerorte.component';
 import { ZzDashboardV3Component } from './zz-dashboard-v-3/zz-dashboard-v-3.component';
+import { CopyOfDashboardComponent } from './copy-of-dashboard/copy-of-dashboard.component';
+import { CopyOfErfassenComponent } from './copy-of-erfassen/copy-of-erfassen.component';
+import { InventurErfassungComponent } from './inventur-erfassung/inventur-erfassung.component';
+import { AddInventurErfassungComponent } from './add-inventur-erfassung/add-inventur-erfassung.component';
+import { EditInventurErfassungComponent } from './edit-inventur-erfassung/edit-inventur-erfassung.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -33,6 +38,22 @@ export const routes: Routes = [
       {
         path: 'zz-dashboard-v-3',
         component: ZzDashboardV3Component
+      },
+      {
+        path: 'copy-of-dashboard',
+        component: CopyOfDashboardComponent
+      },
+      {
+        path: 'inventur-erfassung',
+        component: InventurErfassungComponent
+      },
+      {
+        path: 'add-inventur-erfassung',
+        component: AddInventurErfassungComponent
+      },
+      {
+        path: 'edit-inventur-erfassung/:ErfassungID',
+        component: EditInventurErfassungComponent
       },
     ]
   },
@@ -57,6 +78,10 @@ export const routes: Routes = [
       {
         path: 'zz-erfassen-auswahl-lagerorte',
         component: ZzErfassenAuswahlLagerorteComponent
+      },
+      {
+        path: 'copy-of-erfassen',
+        component: CopyOfErfassenComponent
       },
     ]
   },

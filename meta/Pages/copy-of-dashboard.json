@@ -1,0 +1,276 @@
+{
+  "access": [],
+  "components": [
+    {
+      "components": [
+        {
+          "allowPaging": false,
+          "count": "${rstLagerorteCount}",
+          "data": "${rstLagerorte}",
+          "defaultRowText": "Template for index",
+          "emptyText": "Lagerorte werden geladen...",
+          "events": {
+            "loadData": [
+              {
+                "name": "dbOptimo.getInventurBases",
+                "parameters": [
+                  {
+                    "name": "$orderby",
+                    "value": "LagerortNummer"
+                  }
+                ],
+                "then": [
+                  {
+                    "name": "rstLagerorte",
+                    "type": "set",
+                    "value": "${result.value}"
+                  },
+                  {
+                    "name": "rstLagerorteCount",
+                    "type": "set",
+                    "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                  }
+                ],
+                "type": "invoke"
+              }
+            ]
+          },
+          "name": "datalistLagerorte",
+          "pageSize": 3,
+          "style": {},
+          "template": [
+            {
+              "attributes": [
+                {
+                  "name": "(click)",
+                  "value": "onClickStartErfassen(data)"
+                }
+              ],
+              "components": [
+                {
+                  "components": [
+                    {
+                      "class": "col-2 align-items-center d-flex justify-content-start",
+                      "components": [
+                        {
+                          "name": "heading0",
+                          "size": "H5",
+                          "style": {
+                            "color": "#3a474d",
+                            "fontSize": "34px",
+                            "fontWeight": "normal",
+                            "lineHeight": "36px",
+                            "marginBottom": "0",
+                            "marginLeft": "0",
+                            "marginRight": "0",
+                            "marginTop": "0",
+                            "textAlign": "left",
+                            "verticalAlign": "baseline"
+                          },
+                          "text": "${data.LagerortNummer}",
+                          "type": "heading"
+                        }
+                      ],
+                      "name": "col21",
+                      "style": {
+                        "fontSize": "16px",
+                        "lineHeight": "16px",
+                        "textAlign": "right"
+                      },
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-8",
+                      "components": [
+                        {
+                          "name": "heading4",
+                          "size": "H5",
+                          "style": {
+                            "color": "#3a474d",
+                            "fontSize": "20px",
+                            "fontWeight": "normal",
+                            "lineHeight": "22px",
+                            "marginBottom": "0",
+                            "marginLeft": "0",
+                            "marginRight": "0",
+                            "marginTop": "0"
+                          },
+                          "text": "${data.LagerortTitel}",
+                          "type": "heading"
+                        },
+                        {
+                          "name": "label3",
+                          "style": {
+                            "color": "#6264A7",
+                            "fontSize": "16px",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                            "lineHeight": "18px",
+                            "paddingTop": "6px"
+                          },
+                          "text": "127 gezählt",
+                          "type": "label"
+                        },
+                        {
+                          "name": "label1",
+                          "style": {
+                            "color": "#a71330",
+                            "fontSize": "16px",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                            "lineHeight": "18px",
+                            "paddingTop": "6px"
+                          },
+                          "text": " · in Bearbeitung",
+                          "type": "label"
+                        }
+                      ],
+                      "name": "col1",
+                      "style": {
+                        "paddingLeft": "15px",
+                        "paddingRight": "0px",
+                        "verticalAlign": "baseline"
+                      },
+                      "type": "col"
+                    },
+                    {
+                      "class": "align-items-center d-flex justify-content-end col-2",
+                      "components": [
+                        {
+                          "icon": "keyboard_arrow_right",
+                          "name": "icon4",
+                          "style": {
+                            "color": "#a71330",
+                            "fontSize": "32px",
+                            "fontWeight": "normal"
+                          },
+                          "type": "icon"
+                        }
+                      ],
+                      "name": "col15",
+                      "style": {
+                        "textAlign": "right"
+                      },
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row1",
+                  "type": "row"
+                }
+              ],
+              "name": "card0",
+              "style": {
+                "marginBottom": "10px",
+                "paddingBottom": "10px",
+                "paddingLeft": "15px",
+                "paddingRight": "5px",
+                "paddingTop": "10px"
+              },
+              "type": "card",
+              "visible": true
+            }
+          ],
+          "type": "datalist",
+          "wrapItems": false
+        },
+        {
+          "attributes": [
+            {
+              "name": "(click)",
+              "value": "onClickStartInfos()"
+            }
+          ],
+          "components": [
+            {
+              "name": "heading8",
+              "size": "H6",
+              "style": {
+                "color": "#3a474d",
+                "fontWeight": "normal",
+                "marginBottom": "0px",
+                "textAlign": "center"
+              },
+              "text": "© 2021 Optimo Schlafsysteme GmbH",
+              "type": "heading"
+            },
+            {
+              "name": "heading1",
+              "size": "H6",
+              "style": {
+                "color": "#6264A7",
+                "fontWeight": "normal",
+                "marginBottom": "0px",
+                "textAlign": "center"
+              },
+              "text": "Version 1.01.027",
+              "type": "heading"
+            }
+          ],
+          "name": "card8",
+          "style": {
+            "backgroundColor": "#FFFFFF",
+            "display": "block",
+            "height": "65px",
+            "paddingTop": "11px"
+          },
+          "type": "card",
+          "visible": true
+        },
+        {
+          "name": "label0",
+          "style": {
+            "backgroundColor": "#e6c54f",
+            "marginBottom": "10px",
+            "marginTop": "20px",
+            "width": "100%"
+          },
+          "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden!\nSiehe app.routes.ts",
+          "type": "label",
+          "visible": false
+        },
+        {
+          "events": {
+            "click": [
+              {
+                "parameters": [
+                  {
+                    "name": "InventurID",
+                    "value": "0"
+                  }
+                ],
+                "path": "erfassen",
+                "type": "navigate"
+              }
+            ]
+          },
+          "name": "buttonNavigateToErfassen",
+          "text": "Unsichtbar: NavigateToErfassen",
+          "type": "button",
+          "visible": false
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "code": "this.datalistLagerorte.load();",
+        "type": "execute"
+      },
+      {
+        "name": "onClickStartErfassen",
+        "type": "set",
+        "value": "(data) => {\n\nconsole.log(data);\n\n    if (this.dialogRef) {\n        this.dialogRef.close();\n    }\n    this.router.navigate(['erfassen', data.InventurID]);\n}"
+      },
+      {
+        "name": "onClickStartInfos",
+        "type": "set",
+        "value": "() => {\n    if (this.dialogRef) {\n      this.dialogRef.close();\n    }\n    this.router.navigate(['infos']);\n}"
+      }
+    ]
+  },
+  "layout": "InventurStart",
+  "name": "Copy of Dashboard"
+}

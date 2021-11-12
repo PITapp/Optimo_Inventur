@@ -10,9 +10,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Builder;
+
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Hosting;
@@ -69,8 +71,10 @@ namespace OptimoInventur
       }).AddNewtonsoftJson();
 
       services.AddAuthorization();
-      services.AddOData();
-      services.AddODataQueryFilter();
+      
+          services.AddOData();
+          services.AddODataQueryFilter();
+
       services.AddHttpContextAccessor();
 
       services.AddDbContext<OptimoInventur.Data.DbOptimoContext>(options =>
@@ -113,15 +117,16 @@ namespace OptimoInventur
 
       app.UseMvc(builder =>
       {
-          builder.Count().Filter().OrderBy().Expand().Select().MaxTop(null).SetTimeZoneInfo(TimeZoneInfo.Utc);
+        if (env.EnvironmentName == "Development")
+        {
+            builder.MapRoute(name: "default",
+              template: "{controller}/{action}/{id?}",
+              defaults: new { controller = "Home", action = "Index" }
+            );
+        }
 
-          if (env.EnvironmentName == "Development")
-          {
-              builder.MapRoute(name: "default",
-                template: "{controller}/{action}/{id?}",
-                defaults: new { controller = "Home", action = "Index" }
-              );
-          }
+          builder.Count().Filter().OrderBy().Expand().Select().MaxTop(null).SetTimeZoneInfo(TimeZoneInfo.Utc);
+        
 
           var oDataBuilder = new ODataConventionModelBuilder(provider);
 
@@ -151,6 +156,7 @@ namespace OptimoInventur
           builder.MapODataServiceRoute("odata/dbOptimo", "odata/dbOptimo", model);
 
       });
+
 
       if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RADZEN")) && env.IsDevelopment())
       {

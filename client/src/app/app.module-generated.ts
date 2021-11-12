@@ -24,6 +24,8 @@ import { ProgressBarModule } from '@radzen/angular/dist/progressbar';
 import { SparklineModule } from '@radzen/angular/dist/sparkline';
 import { LinkModule } from '@radzen/angular/dist/link';
 import { TextBoxModule } from '@radzen/angular/dist/textbox';
+import { GridModule } from '@radzen/angular/dist/grid';
+import { FormModule } from '@radzen/angular/dist/form';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
 import { DialogModule } from '@radzen/angular/dist/dialog';
@@ -40,6 +42,11 @@ import { ErfassenComponent } from './erfassen/erfassen.component';
 import { ZzDashboardV2Component } from './zz-dashboard-v-2/zz-dashboard-v-2.component';
 import { ZzErfassenAuswahlLagerorteComponent } from './zz-erfassen-auswahl-lagerorte/zz-erfassen-auswahl-lagerorte.component';
 import { ZzDashboardV3Component } from './zz-dashboard-v-3/zz-dashboard-v-3.component';
+import { CopyOfDashboardComponent } from './copy-of-dashboard/copy-of-dashboard.component';
+import { CopyOfErfassenComponent } from './copy-of-erfassen/copy-of-erfassen.component';
+import { InventurErfassungComponent } from './inventur-erfassung/inventur-erfassung.component';
+import { AddInventurErfassungComponent } from './add-inventur-erfassung/add-inventur-erfassung.component';
+import { EditInventurErfassungComponent } from './edit-inventur-erfassung/edit-inventur-erfassung.component';
 import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
 import { InventurInfosLayoutComponent } from './inventur-infos-layout/inventur-infos-layout.component';
 import { InventurErfassenLayoutComponent } from './inventur-erfassen-layout/inventur-erfassen-layout.component';
@@ -54,6 +61,11 @@ export const PageDeclarations = [
   ZzDashboardV2Component,
   ZzErfassenAuswahlLagerorteComponent,
   ZzDashboardV3Component,
+  CopyOfDashboardComponent,
+  CopyOfErfassenComponent,
+  InventurErfassungComponent,
+  AddInventurErfassungComponent,
+  EditInventurErfassungComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -106,6 +118,8 @@ export const AppImports = [
   SparklineModule,
   LinkModule,
   TextBoxModule,
+  GridModule,
+  FormModule,
   SharedModule,
   NotificationModule,
   DialogModule,

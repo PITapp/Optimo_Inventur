@@ -22,8 +22,8 @@ export class InfosGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
-  @ViewChild('html0') html0: HtmlComponent;
   @ViewChild('html1') html1: HtmlComponent;
+  @ViewChild('html0') html0: HtmlComponent;
 
   router: Router;
 

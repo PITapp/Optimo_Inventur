@@ -11,12 +11,11 @@ import { Subscription } from 'rxjs';
 import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dist/dialog';
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
-import { CardComponent } from '@radzen/angular/dist/card';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { LabelComponent } from '@radzen/angular/dist/label';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { ButtonComponent } from '@radzen/angular/dist/button';
-import { DataListComponent } from '@radzen/angular/dist/datalist';
+import { GridComponent } from '@radzen/angular/dist/grid';
 
 import { ConfigService } from '../config.service';
 import { ZzErfassenAuswahlLagerorteComponent } from '../zz-erfassen-auswahl-lagerorte/zz-erfassen-auswahl-lagerorte.component';
@@ -26,19 +25,20 @@ import { DbOptimoService } from '../db-optimo.service';
 export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('card0') card0: CardComponent;
-  @ViewChild('heading0') heading0: HeadingComponent;
-  @ViewChild('heading3') heading3: HeadingComponent;
-  @ViewChild('label5') label5: LabelComponent;
-  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('heading1') heading1: HeadingComponent;
+  @ViewChild('heading2') heading2: HeadingComponent;
+  @ViewChild('label1') label1: LabelComponent;
   @ViewChild('textbox1') textbox1: TextBoxComponent;
+  @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('label4') label4: LabelComponent;
+  @ViewChild('label6') label6: LabelComponent;
+  @ViewChild('label9') label9: LabelComponent;
   @ViewChild('label3') label3: LabelComponent;
   @ViewChild('textbox2') textbox2: TextBoxComponent;
   @ViewChild('button0') button0: ButtonComponent;
-  @ViewChild('card1') card1: CardComponent;
-  @ViewChild('label6') label6: LabelComponent;
-  @ViewChild('datalistLagerorteArtikel') datalistLagerorteArtikel: DataListComponent;
+  @ViewChild('heading0') heading0: HeadingComponent;
+  @ViewChild('heading3') heading3: HeadingComponent;
+  @ViewChild('gridErfassung') gridErfassung: GridComponent;
   @ViewChild('label2') label2: LabelComponent;
   @ViewChild('buttonOpenDialogAuswahlLagerorte') buttonOpenDialogAuswahlLagerorte: ButtonComponent;
 
@@ -68,8 +68,8 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   dsoLagerort: any;
   onClickAuswahlLagerorte: any;
   parameters: any;
-  rstLagerorteArtikel: any;
-  rstLagerorteArtikelCount: any;
+  getInventurErfassungsResult: any;
+  getInventurErfassungsCount: any;
 
   constructor(private injector: Injector) {
   }
@@ -127,22 +127,45 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     });
 
-    this.datalistLagerorteArtikel.load();
+    this.gridErfassung.load();
 
     this.onClickAuswahlLagerorte = () => {
     this.buttonOpenDialogAuswahlLagerorteClick('');
 };
   }
 
-  datalistLagerorteArtikelLoadData(event: any) {
-    this.dbOptimo.getInventurArtikels(`InventurID eq 100016`, null, null, null, null, null, null, null)
+  gridErfassungAdd(event: any) {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+    this.router.navigate(['add-inventur-erfassung']);
+  }
+
+  gridErfassungDelete(event: any) {
+    this.dbOptimo.deleteInventurErfassung(event.ErfassungID)
     .subscribe((result: any) => {
-      this.rstLagerorteArtikel = result.value;
-
-      this.rstLagerorteArtikelCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+      this.notificationService.notify({ severity: "success", summary: `Success`, detail: `InventurErfassung deleted!` });
     }, (result: any) => {
-
+      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to delete InventurErfassung` });
     });
+  }
+
+  gridErfassungLoadData(event: any) {
+    this.dbOptimo.getInventurErfassungs(`${event.filter}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, `InventurArtikel`, null, null)
+    .subscribe((result: any) => {
+      this.getInventurErfassungsResult = result.value;
+
+      this.getInventurErfassungsCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to load InventurErfassungs` });
+    });
+  }
+
+  gridErfassungRowSelect(event: any) {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+    this.router.navigate(['edit-inventur-erfassung', event.ErfassungID]);
   }
 
   buttonOpenDialogAuswahlLagerorteClick(event: any) {
