@@ -1,0 +1,211 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "InventurArtikel"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "name": "grid0",
+                  "allowDelete": true,
+                  "confirmDelete": true,
+                  "allowAdd": true,
+                  "allowFiltering": true,
+                  "allowMultiSorting": false,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "count": "${getInventurArtikelsCount}",
+                  "data": "${getInventurArtikelsResult}",
+                  "events": {
+                    "loadData": [
+                      {
+                        "name": "dbOptimo.getInventurArtikels",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "event.top"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "event.skip"
+                          },
+                          {
+                            "name": "$count",
+                            "value": "event.top != null && event.skip != null"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getInventurArtikelsResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getInventurArtikelsCount",
+                            "type": "set",
+                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                          }
+                        ],
+                        "type": "invoke",
+                        "error": [
+                          {
+                            "detail": "Unable to load InventurArtikels",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ]
+                      }
+                    ],
+                    "delete": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to delete InventurArtikel",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "dbOptimo.deleteInventurArtikel",
+                        "parameters": [
+                          {
+                            "name": "ArtikelID",
+                            "value": "${event.ArtikelID}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "detail": "InventurArtikel deleted!",
+                            "severity": "success",
+                            "summary": "Success",
+                            "type": "notify"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "add": [
+                      {
+                        "path": "add-inventur-artikel",
+                        "type": "navigate"
+                      }
+                    ],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "ArtikelID",
+                            "value": "${event.ArtikelID}"
+                          }
+                        ],
+                        "path": "edit-inventur-artikel",
+                        "type": "navigate"
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "ArtikelID",
+                      "title": "Artikel ID",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "InventurID",
+                      "title": "Inventur ID",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "ZeilenNr",
+                      "title": "Zeilen Nr",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "Artikelnummer",
+                      "title": "Artikelnummer",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Beschreibung",
+                      "title": "Beschreibung",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Beschreibung2",
+                      "title": "Beschreibung 2",
+                      "type": "string"
+                    },
+                    {
+                      "property": "StdKreditorName",
+                      "title": "Std Kreditor Name",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Status",
+                      "title": "Status",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Notiz",
+                      "title": "Notiz",
+                      "type": "string"
+                    }
+                  ],
+                  "type": "grid",
+                  "confirmDeleteText": "Are you sure you want to delete this record?",
+                  "confirmDeleteTitle": "Confirmation",
+                  "confirmDeleteOkText": "Ok",
+                  "confirmDeleteCancelText": "Cancel",
+                  "emptyText": "No records to display.",
+                  "addText": "Add",
+                  "clearFilterText": "Clear",
+                  "applyFilterText": "Apply",
+                  "equalsText": "Equals",
+                  "notEqualsText": "Not equals",
+                  "lessThanText": "Less than",
+                  "lessThanOrEqualsText": "Less than or equals",
+                  "greaterThanText": "Greater than",
+                  "greaterThanOrEqualsText": "Greater than or equals",
+                  "endsWithText": "Ends with",
+                  "containsText": "Contains",
+                  "startsWithText": "Starts with"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "type": "execute",
+        "code": "this.grid0.load();"
+      }
+    ]
+  },
+  "name": "InventurArtikel",
+  "layout": "InventurStart"
+}

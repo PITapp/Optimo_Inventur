@@ -137,7 +137,9 @@ namespace OptimoInventur
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InfotexteHtml>("InfotexteHtmls");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurArtikel>("InventurArtikels");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurBasis>("InventurBases");
+          oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurBasisStatus>("InventurBasisStatuses");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurErfassung>("InventurErfassungs");
+          oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurErfassungGeloescht>("InventurErfassungGeloeschts");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.Notizen>("Notizens");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.Protokoll>("Protokolls");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwBase>("VwBases");
@@ -147,6 +149,9 @@ namespace OptimoInventur
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwBasePlz>("VwBasePlzs");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwBenutzerBase>("VwBenutzerBases");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwBenutzerRollen>("VwBenutzerRollens");
+          oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwInventurArtikel>("VwInventurArtikels");
+          oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwInventurErfassung>("VwInventurErfassungs");
+          oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwInventurLagerorte>("VwInventurLagerortes");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwRollen>("VwRollens");
 
           this.OnConfigureOData(oDataBuilder);

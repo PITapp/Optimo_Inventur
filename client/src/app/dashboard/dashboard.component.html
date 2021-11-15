@@ -10,9 +10,9 @@
           <div class="col-8" [ngStyle]="{'paddingLeft': '15px', 'paddingRight': '0px', 'verticalAlign': 'baseline'}">
             <rz-heading #heading4 size="H5" [style]="{'color': '#3a474d', 'fontSize': '20px', 'fontWeight': 'normal', 'lineHeight': '22px', 'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '0'}" [text]="data?.LagerortTitel">
             </rz-heading>
-            <rz-label #label3 [style]="{'color': '#6264A7', 'fontSize': '16px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '18px', 'paddingTop': '6px'}" text="127 gezählt">
+            <rz-label #label3 [style]="{'color': '#6264A7', 'fontSize': '16px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '18px', 'paddingTop': '6px'}" [text]="data?.InventurBasisStatus?.IconStatus">
             </rz-label>
-            <rz-label #label1 [style]="{'color': '#a71330', 'fontSize': '16px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '18px', 'paddingTop': '6px'}" text=" · in Bearbeitung">
+            <rz-label #label1 [style]="{'color': '#6264A7', 'fontSize': '16px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '18px', 'marginLeft': '5px', 'paddingTop': '6px'}" [text]="data?.LagerortStatus">
             </rz-label>
           </div>
           <div class="align-items-center d-flex justify-content-end col-2" [ngStyle]="{'textAlign': 'right'}">

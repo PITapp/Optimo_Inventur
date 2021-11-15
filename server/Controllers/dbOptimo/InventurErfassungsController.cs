@@ -116,7 +116,7 @@ namespace OptimoInventur.Controllers.DbOptimo
             this.context.SaveChanges();
 
             var itemToReturn = this.context.InventurErfassungs.Where(i => i.ErfassungID == key);
-            Request.QueryString = Request.QueryString.Add("$expand", "Benutzer,InventurArtikel");
+            Request.QueryString = Request.QueryString.Add("$expand", "InventurArtikel");
             return new ObjectResult(SingleResult.Create(itemToReturn));
         }
         catch(Exception ex)
@@ -152,7 +152,7 @@ namespace OptimoInventur.Controllers.DbOptimo
             this.context.SaveChanges();
 
             var itemToReturn = this.context.InventurErfassungs.Where(i => i.ErfassungID == key);
-            Request.QueryString = Request.QueryString.Add("$expand", "Benutzer,InventurArtikel");
+            Request.QueryString = Request.QueryString.Add("$expand", "InventurArtikel");
             return new ObjectResult(SingleResult.Create(itemToReturn));
         }
         catch(Exception ex)
@@ -188,7 +188,7 @@ namespace OptimoInventur.Controllers.DbOptimo
 
             var itemToReturn = this.context.InventurErfassungs.Where(i => i.ErfassungID == key);
 
-            Request.QueryString = Request.QueryString.Add("$expand", "Benutzer,InventurArtikel");
+            Request.QueryString = Request.QueryString.Add("$expand", "InventurArtikel");
 
             return new ObjectResult(SingleResult.Create(itemToReturn))
             {

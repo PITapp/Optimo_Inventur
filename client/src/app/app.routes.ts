@@ -4,6 +4,7 @@ import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
 import { InventurInfosLayoutComponent } from './inventur-infos-layout/inventur-infos-layout.component';
 import { InventurErfassenLayoutComponent } from './inventur-erfassen-layout/inventur-erfassen-layout.component';
+import { InventurDialogLayoutComponent } from './inventur-dialog-layout/inventur-dialog-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InfosComponent } from './infos/infos.component';
 import { ZzDashboardV1Component } from './zz-dashboard-v-1/zz-dashboard-v-1.component';
@@ -16,6 +17,10 @@ import { CopyOfErfassenComponent } from './copy-of-erfassen/copy-of-erfassen.com
 import { InventurErfassungComponent } from './inventur-erfassung/inventur-erfassung.component';
 import { AddInventurErfassungComponent } from './add-inventur-erfassung/add-inventur-erfassung.component';
 import { EditInventurErfassungComponent } from './edit-inventur-erfassung/edit-inventur-erfassung.component';
+import { ErfassenArtikelAuswahlComponent } from './erfassen-artikel-auswahl/erfassen-artikel-auswahl.component';
+import { InventurArtikelComponent } from './inventur-artikel/inventur-artikel.component';
+import { AddInventurArtikelComponent } from './add-inventur-artikel/add-inventur-artikel.component';
+import { EditInventurArtikelComponent } from './edit-inventur-artikel/edit-inventur-artikel.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -55,6 +60,18 @@ export const routes: Routes = [
         path: 'edit-inventur-erfassung/:ErfassungID',
         component: EditInventurErfassungComponent
       },
+      {
+        path: 'inventur-artikel',
+        component: InventurArtikelComponent
+      },
+      {
+        path: 'add-inventur-artikel',
+        component: AddInventurArtikelComponent
+      },
+      {
+        path: 'edit-inventur-artikel/:ArtikelID',
+        component: EditInventurArtikelComponent
+      },
     ]
   },
   {
@@ -82,6 +99,16 @@ export const routes: Routes = [
       {
         path: 'copy-of-erfassen',
         component: CopyOfErfassenComponent
+      },
+    ]
+  },
+  {
+    path: '',
+    component: InventurDialogLayoutComponent,
+    children: [
+      {
+        path: 'erfassen-artikel-auswahl',
+        component: ErfassenArtikelAuswahlComponent
       },
     ]
   },

@@ -117,6 +117,7 @@ namespace OptimoInventur.Controllers.DbOptimo
             this.context.SaveChanges();
 
             var itemToReturn = this.context.InventurBases.Where(i => i.InventurID == key);
+            Request.QueryString = Request.QueryString.Add("$expand", "InventurBasisStatus");
             return new ObjectResult(SingleResult.Create(itemToReturn));
         }
         catch(Exception ex)
@@ -152,6 +153,7 @@ namespace OptimoInventur.Controllers.DbOptimo
             this.context.SaveChanges();
 
             var itemToReturn = this.context.InventurBases.Where(i => i.InventurID == key);
+            Request.QueryString = Request.QueryString.Add("$expand", "InventurBasisStatus");
             return new ObjectResult(SingleResult.Create(itemToReturn));
         }
         catch(Exception ex)
@@ -183,7 +185,16 @@ namespace OptimoInventur.Controllers.DbOptimo
             this.context.InventurBases.Add(item);
             this.context.SaveChanges();
 
-            return Created($"odata/DbOptimo/InventurBases/{item.InventurID}", item);
+            var key = item.InventurID;
+
+            var itemToReturn = this.context.InventurBases.Where(i => i.InventurID == key);
+
+            Request.QueryString = Request.QueryString.Add("$expand", "InventurBasisStatus");
+
+            return new ObjectResult(SingleResult.Create(itemToReturn))
+            {
+                StatusCode = 201
+            };
         }
         catch(Exception ex)
         {

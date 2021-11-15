@@ -50,14 +50,19 @@ namespace OptimoInventur.Data
                   .WithMany(i => i.InventurArtikels)
                   .HasForeignKey(i => i.InventurID)
                   .HasPrincipalKey(i => i.InventurID);
-            builder.Entity<OptimoInventur.Models.DbOptimo.InventurErfassung>()
-                  .HasOne(i => i.Benutzer)
-                  .WithMany(i => i.InventurErfassungs)
-                  .HasForeignKey(i => i.BenutzerID)
-                  .HasPrincipalKey(i => i.BenutzerID);
+            builder.Entity<OptimoInventur.Models.DbOptimo.InventurBasis>()
+                  .HasOne(i => i.InventurBasisStatus)
+                  .WithMany(i => i.InventurBases)
+                  .HasForeignKey(i => i.LagerortStatus)
+                  .HasPrincipalKey(i => i.LagerortStatus);
             builder.Entity<OptimoInventur.Models.DbOptimo.InventurErfassung>()
                   .HasOne(i => i.InventurArtikel)
                   .WithMany(i => i.InventurErfassungs)
+                  .HasForeignKey(i => i.ArtikelID)
+                  .HasPrincipalKey(i => i.ArtikelID);
+            builder.Entity<OptimoInventur.Models.DbOptimo.InventurErfassungGeloescht>()
+                  .HasOne(i => i.InventurArtikel)
+                  .WithMany(i => i.InventurErfassungGeloeschts)
                   .HasForeignKey(i => i.ArtikelID)
                   .HasPrincipalKey(i => i.ArtikelID);
             builder.Entity<OptimoInventur.Models.DbOptimo.Protokoll>()
@@ -88,6 +93,30 @@ namespace OptimoInventur.Data
 
             builder.Entity<OptimoInventur.Models.DbOptimo.VwBenutzerRollen>()
                   .Property(p => p.BenutzerID)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurArtikel>()
+                  .Property(p => p.ArtikelID)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurArtikel>()
+                  .Property(p => p.AnzahlErfasst)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurErfassung>()
+                  .Property(p => p.ErfassungID)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurLagerorte>()
+                  .Property(p => p.InventurID)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurLagerorte>()
+                  .Property(p => p.AnzahlArtikel)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurLagerorte>()
+                  .Property(p => p.AnzahlErfasst)
                   .HasDefaultValueSql("0");
 
             this.OnModelBuilding(builder);
@@ -136,7 +165,19 @@ namespace OptimoInventur.Data
           set;
         }
 
+        public DbSet<OptimoInventur.Models.DbOptimo.InventurBasisStatus> InventurBasisStatuses
+        {
+          get;
+          set;
+        }
+
         public DbSet<OptimoInventur.Models.DbOptimo.InventurErfassung> InventurErfassungs
+        {
+          get;
+          set;
+        }
+
+        public DbSet<OptimoInventur.Models.DbOptimo.InventurErfassungGeloescht> InventurErfassungGeloeschts
         {
           get;
           set;
@@ -191,6 +232,24 @@ namespace OptimoInventur.Data
         }
 
         public DbSet<OptimoInventur.Models.DbOptimo.VwBenutzerRollen> VwBenutzerRollens
+        {
+          get;
+          set;
+        }
+
+        public DbSet<OptimoInventur.Models.DbOptimo.VwInventurArtikel> VwInventurArtikels
+        {
+          get;
+          set;
+        }
+
+        public DbSet<OptimoInventur.Models.DbOptimo.VwInventurErfassung> VwInventurErfassungs
+        {
+          get;
+          set;
+        }
+
+        public DbSet<OptimoInventur.Models.DbOptimo.VwInventurLagerorte> VwInventurLagerortes
         {
           get;
           set;

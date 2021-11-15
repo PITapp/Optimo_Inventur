@@ -1,0 +1,218 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Add Inventur Artikel"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "data": "",
+                  "events": {
+                    "cancel": [
+                      {
+                        "type": "back"
+                      }
+                    ],
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new InventurArtikel!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "dbOptimo.createInventurArtikel",
+                        "parameters": [
+                          {
+                            "name": "InventurArtikel",
+                            "value": "${event}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "back"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "loadData": [
+                      {
+                        "name": "dbOptimo.getInventurBases",
+                        "condition": "event.property == 'InventurID'",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "${event.top}"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "${event.skip}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter}"
+                          },
+                          {
+                            "name": "$count",
+                            "value": "true"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getInventurBasesForInventurIDResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getInventurBasesForInventurIDCount",
+                            "type": "set",
+                            "value": "result['@odata.count']"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "fields": [
+                    {
+                      "data": "${getInventurBasesForInventurIDResult}",
+                      "property": "InventurID",
+                      "required": true,
+                      "textProperty": "AuftragCode",
+                      "title": "Inventur Basis",
+                      "type": "lookuppopup",
+                      "valueProperty": "InventurID",
+                      "placeholder": "Choose InventurBasis",
+                      "count": "${getInventurBasesForInventurIDCount}",
+                      "pageSize": "${getInventurBasesForInventurIDPageSize}",
+                      "requiredText": "is required"
+                    },
+                    {
+                      "property": "ZeilenNr",
+                      "required": true,
+                      "title": "Zeilen Nr",
+                      "type": "integer",
+                      "requiredText": "is required",
+                      "minText": "cannot be less than",
+                      "maxText": "cannot be more than"
+                    },
+                    {
+                      "property": "Artikelnummer",
+                      "required": true,
+                      "title": "Artikelnummer",
+                      "type": "string",
+                      "maxLength": 30,
+                      "requiredText": "is required"
+                    },
+                    {
+                      "property": "Beschreibung",
+                      "required": false,
+                      "title": "Beschreibung",
+                      "type": "string",
+                      "maxLength": 100,
+                      "requiredText": "is required"
+                    },
+                    {
+                      "property": "Beschreibung2",
+                      "required": false,
+                      "title": "Beschreibung 2",
+                      "type": "string",
+                      "maxLength": 100,
+                      "requiredText": "is required"
+                    },
+                    {
+                      "property": "StdKreditorName",
+                      "required": false,
+                      "title": "Std Kreditor Name",
+                      "type": "string",
+                      "maxLength": 50,
+                      "requiredText": "is required"
+                    },
+                    {
+                      "property": "Status",
+                      "required": true,
+                      "title": "Status",
+                      "type": "string",
+                      "maxLength": 10,
+                      "requiredText": "is required"
+                    },
+                    {
+                      "property": "Notiz",
+                      "required": false,
+                      "title": "Notiz",
+                      "type": "string",
+                      "maxLength": 65535,
+                      "requiredText": "is required"
+                    }
+                  ],
+                  "name": "form0",
+                  "type": "form"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "getInventurBasesForInventurIDPageSize",
+        "type": "set",
+        "value": "10"
+      },
+      {
+        "name": "dbOptimo.getInventurBases",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "${getInventurBasesForInventurIDPageSize}"
+          },
+          {
+            "name": "$skip",
+            "value": "0"
+          },
+          {
+            "name": "$count",
+            "value": "true"
+          }
+        ],
+        "then": [
+          {
+            "name": "getInventurBasesForInventurIDResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getInventurBasesForInventurIDCount",
+            "type": "set",
+            "value": "result['@odata.count']"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Add Inventur Artikel",
+  "layout": "InventurStart"
+}

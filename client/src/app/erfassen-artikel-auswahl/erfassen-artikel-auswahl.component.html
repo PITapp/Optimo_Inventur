@@ -1,0 +1,32 @@
+<rz-content #content1 container="main">
+  <div class="row align-items-center" [ngStyle]="{'backgroundColor': '#ffffff', 'marginLeft': '-20px', 'paddingBottom': '10px', 'paddingRight': '10px', 'paddingTop': '10px', 'position': 'fixed', 'top': '55px', 'width': '100%', 'zIndex': '1000'}">
+    <div class="col-10" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'paddingLeft': '10px', 'paddingRight': '10px', 'textAlign': 'right'}">
+      <rz-textbox #textbox2 placeholder="Filter" [readOnly]="false" [style]="{'fontWeight': 'normal', 'height': '40px', 'width': '100%'}" name="textbox2">
+      </rz-textbox>
+    </div>
+    <div class="col-2" [ngStyle]="{'paddingLeft': '0', 'paddingRight': '0', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
+      <rz-button #buttonArtikelAuswahl buttonStyle="light" icon="done" [style]="{'backgroundColor': '#e9e9e9', 'border': '1px solid #dadfe2', 'color': '#a71330', 'fontSize': '28px', 'fontWeight': 'normal', 'height': '40px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}" (click)="buttonArtikelAuswahlClick($event)">
+      </rz-button>
+    </div>
+  </div>
+  <div [ngStyle]="{'marginTop': '100px', 'position': 'static', 'top': '100px'}" class="row">
+    <div class="col-md-12">
+      <rz-datalist #datalistArtikel [allowPaging]="false" [count]="rstArtikelCount" [data]="rstArtikel" defaultRowText="Template for index" emptyText="Artikel werden geladen..." [pageSize]="14" [style]="{'border': '1px solid #ffffff', 'display': 'block'}" [wrapItems]="false" (loadData)="datalistArtikelLoadData($event)">
+        <ng-template let-data datalistTemplate>
+          <div [ngStyle]="{'backgroundColor': '#e9e9e9', 'height': '1px'}" class="row">
+          </div>
+          <div [ngStyle]="{'height': '55px'}" class="row" (click)="onClickSetArtikel(data)">
+            <div class="col-2 align-items-center d-flex" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'textAlign': 'right'}">
+              <rz-label #label1 [style]="{'color': '#3a474d', 'fontSize': '30px', 'lineHeight': '34px'}" [text]="data?.Artikelnummer">
+              </rz-label>
+            </div>
+            <div class="align-items-center d-flex col-10 justify-content-start" [ngStyle]="{'marginTop': '3px', 'paddingLeft': '15px', 'paddingRight': '0px', 'verticalAlign': 'baseline'}">
+              <rz-label #label0 [style]="{'color': '#3a474d', 'fontSize': '18px', 'lineHeight': '22px'}" [text]="data?.Beschreibung">
+              </rz-label>
+            </div>
+          </div>
+        </ng-template>
+      </rz-datalist>
+    </div>
+  </div>
+</rz-content>

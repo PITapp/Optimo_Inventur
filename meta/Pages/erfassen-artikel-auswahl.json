@@ -1,0 +1,243 @@
+{
+  "access": [],
+  "components": [
+    {
+      "components": [
+        {
+          "class": "align-items-center",
+          "components": [
+            {
+              "class": "col-10",
+              "components": [
+                {
+                  "name": "textbox2",
+                  "placeholder": "Filter",
+                  "readOnly": false,
+                  "style": {
+                    "fontWeight": "normal",
+                    "height": "40px",
+                    "width": "100%"
+                  },
+                  "type": "textbox",
+                  "value": ""
+                }
+              ],
+              "name": "col10",
+              "style": {
+                "fontSize": "16px",
+                "lineHeight": "16px",
+                "paddingLeft": "10px",
+                "paddingRight": "10px",
+                "textAlign": "right"
+              },
+              "type": "col"
+            },
+            {
+              "class": "col-2",
+              "components": [
+                {
+                  "buttonStyle": "light",
+                  "events": {
+                    "click": [
+                      {
+                        "height": 510,
+                        "path": "erfassen-artikel-auswahl",
+                        "title": "Artikel",
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "icon": "done",
+                  "name": "buttonArtikelAuswahl",
+                  "style": {
+                    "backgroundColor": "#e9e9e9",
+                    "border": "1px solid #dadfe2",
+                    "color": "#a71330",
+                    "fontSize": "28px",
+                    "fontWeight": "normal",
+                    "height": "40px",
+                    "paddingBottom": "0",
+                    "paddingLeft": "0",
+                    "paddingRight": "0",
+                    "paddingTop": "0",
+                    "width": "100%"
+                  },
+                  "text": "",
+                  "tooltip": "",
+                  "type": "button"
+                }
+              ],
+              "name": "col3",
+              "style": {
+                "paddingLeft": "0",
+                "paddingRight": "0",
+                "textAlign": "right",
+                "verticalAlign": "bottom"
+              },
+              "type": "col"
+            }
+          ],
+          "name": "row8",
+          "style": {
+            "backgroundColor": "#ffffff",
+            "marginLeft": "-20px",
+            "paddingBottom": "10px",
+            "paddingRight": "10px",
+            "paddingTop": "10px",
+            "position": "fixed",
+            "top": "55px",
+            "width": "100%",
+            "zIndex": "1000"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "allowPaging": false,
+                  "count": "${rstArtikelCount}",
+                  "data": "${rstArtikel}",
+                  "defaultRowText": "Template for index",
+                  "emptyText": "Artikel werden geladen...",
+                  "events": {
+                    "loadData": [
+                      {
+                        "name": "dbOptimo.getInventurArtikels",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "100"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "rstArtikel",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "rstArtikelCount",
+                            "type": "set",
+                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "name": "datalistArtikel",
+                  "pageSize": 14,
+                  "style": {
+                    "border": "1px solid #ffffff",
+                    "display": "block"
+                  },
+                  "template": [
+                    {
+                      "name": "row0",
+                      "style": {
+                        "backgroundColor": "#e9e9e9",
+                        "height": "1px"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "attributes": [
+                        {
+                          "name": "(click)",
+                          "value": "onClickSetArtikel(data)"
+                        }
+                      ],
+                      "components": [
+                        {
+                          "class": "col-2 align-items-center d-flex",
+                          "components": [
+                            {
+                              "name": "label1",
+                              "style": {
+                                "color": "#3a474d",
+                                "fontSize": "30px",
+                                "lineHeight": "34px"
+                              },
+                              "text": "${data.Artikelnummer}",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col21",
+                          "style": {
+                            "fontSize": "16px",
+                            "lineHeight": "16px",
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "align-items-center d-flex col-10 justify-content-start",
+                          "components": [
+                            {
+                              "name": "label0",
+                              "style": {
+                                "color": "#3a474d",
+                                "fontSize": "18px",
+                                "lineHeight": "22px"
+                              },
+                              "text": "${data.Beschreibung}",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col1",
+                          "style": {
+                            "marginTop": "3px",
+                            "paddingLeft": "15px",
+                            "paddingRight": "0px",
+                            "verticalAlign": "baseline"
+                          },
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row1",
+                      "style": {
+                        "height": "55px"
+                      },
+                      "type": "row"
+                    }
+                  ],
+                  "type": "datalist",
+                  "wrapItems": false
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            }
+          ],
+          "name": "row2",
+          "style": {
+            "marginTop": "100px",
+            "position": "static",
+            "top": "100px"
+          },
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "code": "this.datalistArtikel.load();",
+        "type": "execute"
+      },
+      {
+        "name": "onClickSetArtikel",
+        "type": "set",
+        "value": "(data) => {\n    this.dialogRef.close(data.ArtikelID);\n}"
+      }
+    ]
+  },
+  "layout": "InventurDialog",
+  "name": "ErfassenArtikelAuswahl"
+}

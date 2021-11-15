@@ -72,7 +72,6 @@ namespace OptimoInventur.Controllers.DbOptimo
 
             var itemToDelete = this.context.Benutzers
                 .Where(i => i.BenutzerID == key)
-                .Include(i => i.InventurErfassungs)
                 .FirstOrDefault();
 
             if (itemToDelete == null)

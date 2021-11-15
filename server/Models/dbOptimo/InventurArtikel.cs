@@ -18,6 +18,8 @@ namespace OptimoInventur.Models.DbOptimo
 
 
     public ICollection<InventurErfassung> InventurErfassungs { get; set; }
+
+    public ICollection<InventurErfassungGeloescht> InventurErfassungGeloeschts { get; set; }
     public int InventurID
     {
       get;
@@ -40,7 +42,17 @@ namespace OptimoInventur.Models.DbOptimo
       get;
       set;
     }
-    public string Status
+    public string Beschreibung2
+    {
+      get;
+      set;
+    }
+    public string StdKreditorName
+    {
+      get;
+      set;
+    }
+    public string ArtikelStatus
     {
       get;
       set;

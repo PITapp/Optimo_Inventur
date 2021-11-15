@@ -47,9 +47,14 @@ import { CopyOfErfassenComponent } from './copy-of-erfassen/copy-of-erfassen.com
 import { InventurErfassungComponent } from './inventur-erfassung/inventur-erfassung.component';
 import { AddInventurErfassungComponent } from './add-inventur-erfassung/add-inventur-erfassung.component';
 import { EditInventurErfassungComponent } from './edit-inventur-erfassung/edit-inventur-erfassung.component';
+import { ErfassenArtikelAuswahlComponent } from './erfassen-artikel-auswahl/erfassen-artikel-auswahl.component';
+import { InventurArtikelComponent } from './inventur-artikel/inventur-artikel.component';
+import { AddInventurArtikelComponent } from './add-inventur-artikel/add-inventur-artikel.component';
+import { EditInventurArtikelComponent } from './edit-inventur-artikel/edit-inventur-artikel.component';
 import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
 import { InventurInfosLayoutComponent } from './inventur-infos-layout/inventur-infos-layout.component';
 import { InventurErfassenLayoutComponent } from './inventur-erfassen-layout/inventur-erfassen-layout.component';
+import { InventurDialogLayoutComponent } from './inventur-dialog-layout/inventur-dialog-layout.component';
 
 import { DbOptimoService } from './db-optimo.service';
 
@@ -66,12 +71,17 @@ export const PageDeclarations = [
   InventurErfassungComponent,
   AddInventurErfassungComponent,
   EditInventurErfassungComponent,
+  ErfassenArtikelAuswahlComponent,
+  InventurArtikelComponent,
+  AddInventurArtikelComponent,
+  EditInventurArtikelComponent,
 ];
 
 export const LayoutDeclarations = [
   InventurStartLayoutComponent,
   InventurInfosLayoutComponent,
   InventurErfassenLayoutComponent,
+  InventurDialogLayoutComponent,
 ];
 
 export const AppDeclarations = [

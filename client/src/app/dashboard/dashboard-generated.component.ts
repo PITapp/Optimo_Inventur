@@ -111,9 +111,6 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.datalistLagerorte.load();
 
     this.onClickStartErfassen = (data) => {
-
-console.log(data);
-
     if (this.dialogRef) {
         this.dialogRef.close();
     }
@@ -129,7 +126,7 @@ console.log(data);
   }
 
   datalistLagerorteLoadData(event: any) {
-    this.dbOptimo.getInventurBases(null, null, null, `LagerortNummer`, null, null, null, null)
+    this.dbOptimo.getInventurBases(null, null, null, null, null, `InventurBasisStatus`, null, null)
     .subscribe((result: any) => {
       this.rstLagerorte = result.value;
 

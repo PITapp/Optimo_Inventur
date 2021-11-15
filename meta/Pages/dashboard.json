@@ -15,8 +15,8 @@
                 "name": "dbOptimo.getInventurBases",
                 "parameters": [
                   {
-                    "name": "$orderby",
-                    "value": "LagerortNummer"
+                    "name": "$expand",
+                    "value": "InventurBasisStatus"
                   }
                 ],
                 "then": [
@@ -108,21 +108,23 @@
                             "lineHeight": "18px",
                             "paddingTop": "6px"
                           },
-                          "text": "127 gezählt",
+                          "text": "${data.InventurBasisStatus.IconStatus}",
                           "type": "label"
                         },
                         {
                           "name": "label1",
                           "style": {
-                            "color": "#a71330",
+                            "color": "#6264A7",
                             "fontSize": "16px",
                             "fontStyle": "normal",
                             "fontWeight": "normal",
                             "lineHeight": "18px",
+                            "marginLeft": "5px",
                             "paddingTop": "6px"
                           },
-                          "text": " · in Bearbeitung",
-                          "type": "label"
+                          "text": "${data.LagerortStatus}",
+                          "type": "label",
+                          "visible": ""
                         }
                       ],
                       "name": "col1",
@@ -262,7 +264,7 @@
       {
         "name": "onClickStartErfassen",
         "type": "set",
-        "value": "(data) => {\n\nconsole.log(data);\n\n    if (this.dialogRef) {\n        this.dialogRef.close();\n    }\n    this.router.navigate(['erfassen', data.InventurID]);\n}"
+        "value": "(data) => {\n    if (this.dialogRef) {\n        this.dialogRef.close();\n    }\n    this.router.navigate(['erfassen', data.InventurID]);\n}"
       },
       {
         "name": "onClickStartInfos",

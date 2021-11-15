@@ -13,7 +13,7 @@
                   "type": "html"
                 }
               ],
-              "selected": false,
+              "selected": true,
               "text": "Version"
             },
             {
@@ -31,7 +31,7 @@
                   "type": "col"
                 }
               ],
-              "selected": true,
+              "selected": false,
               "text": "Handbuch"
             }
           ],

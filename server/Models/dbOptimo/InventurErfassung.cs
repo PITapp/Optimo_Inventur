@@ -14,13 +14,6 @@ namespace OptimoInventur.Models.DbOptimo
       get;
       set;
     }
-    public int BenutzerID
-    {
-      get;
-      set;
-    }
-
-    public Benutzer Benutzer { get; set; }
     public int ArtikelID
     {
       get;

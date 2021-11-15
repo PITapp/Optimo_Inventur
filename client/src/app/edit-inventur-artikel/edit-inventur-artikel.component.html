@@ -1,0 +1,26 @@
+<rz-content #content1 container="main">
+  <rz-heading #pageTitle size="H1" text="Edit Inventur Artikel">
+  </rz-heading>
+  <div class="row">
+    <div class="col-md-12">
+      <rz-form #form0 [data]="inventurartikel" *ngIf="inventurartikel" (cancel)="form0Cancel($event)" (submit)="form0Submit($event)" (loadData)="form0LoadData($event)">
+        <rz-lookuppopup-form-field [data]="getInventurBasesForInventurIDResult" property="InventurID" [required]="true" textProperty="AuftragCode" title="Inventur Basis" valueProperty="InventurID" placeholder="Choose InventurBasis" [count]="getInventurBasesForInventurIDCount" [pageSize]="getInventurBasesForInventurIDPageSize" [value]="getByInventurBasesForInventurIDResult" requiredText="is required" type="lookuppopup">
+        </rz-lookuppopup-form-field>
+        <rz-integer-form-field property="ZeilenNr" [required]="true" title="Zeilen Nr" requiredText="is required" minText="cannot be less than" maxText="cannot be more than" type="integer">
+        </rz-integer-form-field>
+        <rz-string-form-field property="Artikelnummer" [required]="true" title="Artikelnummer" [maxLength]="30" requiredText="is required" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field property="Beschreibung" [required]="false" title="Beschreibung" [maxLength]="100" requiredText="is required" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field property="Beschreibung2" [required]="false" title="Beschreibung 2" [maxLength]="100" requiredText="is required" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field property="StdKreditorName" [required]="false" title="Std Kreditor Name" [maxLength]="50" requiredText="is required" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field property="Status" [required]="true" title="Status" [maxLength]="10" requiredText="is required" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field property="Notiz" [required]="false" title="Notiz" [maxLength]="65535" requiredText="is required" type="string">
+        </rz-string-form-field>
+      </rz-form>
+    </div>
+  </div>
+</rz-content>
