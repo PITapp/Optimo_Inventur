@@ -23,9 +23,11 @@ import { HtmlModule } from '@radzen/angular/dist/html';
 import { ProgressBarModule } from '@radzen/angular/dist/progressbar';
 import { SparklineModule } from '@radzen/angular/dist/sparkline';
 import { LinkModule } from '@radzen/angular/dist/link';
+import { SelectBarModule } from '@radzen/angular/dist/selectbar';
 import { TextBoxModule } from '@radzen/angular/dist/textbox';
 import { GridModule } from '@radzen/angular/dist/grid';
 import { FormModule } from '@radzen/angular/dist/form';
+import { TemplateFormModule } from '@radzen/angular/dist/template-form';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
 import { DialogModule } from '@radzen/angular/dist/dialog';
@@ -51,10 +53,14 @@ import { ErfassenArtikelAuswahlComponent } from './erfassen-artikel-auswahl/erfa
 import { InventurArtikelComponent } from './inventur-artikel/inventur-artikel.component';
 import { AddInventurArtikelComponent } from './add-inventur-artikel/add-inventur-artikel.component';
 import { EditInventurArtikelComponent } from './edit-inventur-artikel/edit-inventur-artikel.component';
+import { CopyOfInfosComponent } from './copy-of-infos/copy-of-infos.component';
+import { CopyOfErfassenArtikelAuswahlComponent } from './copy-of-erfassen-artikel-auswahl/copy-of-erfassen-artikel-auswahl.component';
+import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
+import { CopyOfErfassen1Component } from './copy-of-erfassen-1/copy-of-erfassen-1.component';
 import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
 import { InventurInfosLayoutComponent } from './inventur-infos-layout/inventur-infos-layout.component';
 import { InventurErfassenLayoutComponent } from './inventur-erfassen-layout/inventur-erfassen-layout.component';
-import { InventurDialogLayoutComponent } from './inventur-dialog-layout/inventur-dialog-layout.component';
+import { InventurLeerLayoutComponent } from './inventur-leer-layout/inventur-leer-layout.component';
 
 import { DbOptimoService } from './db-optimo.service';
 
@@ -75,13 +81,17 @@ export const PageDeclarations = [
   InventurArtikelComponent,
   AddInventurArtikelComponent,
   EditInventurArtikelComponent,
+  CopyOfInfosComponent,
+  CopyOfErfassenArtikelAuswahlComponent,
+  MeldungLoeschenComponent,
+  CopyOfErfassen1Component,
 ];
 
 export const LayoutDeclarations = [
   InventurStartLayoutComponent,
   InventurInfosLayoutComponent,
   InventurErfassenLayoutComponent,
-  InventurDialogLayoutComponent,
+  InventurLeerLayoutComponent,
 ];
 
 export const AppDeclarations = [
@@ -127,9 +137,11 @@ export const AppImports = [
   ProgressBarModule,
   SparklineModule,
   LinkModule,
+  SelectBarModule,
   TextBoxModule,
   GridModule,
   FormModule,
+  TemplateFormModule,
   SharedModule,
   NotificationModule,
   DialogModule,

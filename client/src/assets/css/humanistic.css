@@ -13836,7 +13836,6 @@ a.fc-event .fc-content {
 
 /* --- Kopfzeile: verlaufend dunkel --- */
 .header {
-  background-image: linear-gradient(#e1e1e1, #E9E9E9);
   background-image: linear-gradient(#e2e2e2, #E9E9E9);
 }
 
@@ -13857,7 +13856,7 @@ a.fc-event .fc-content {
 }
 
 .kopfzeileVerlaufend {
-  background-image: linear-gradient(#E7E7E7, #D8D8D8);
+  background-image: linear-gradient(#e2e2e2, #E9E9E9);
 }
 
 /* --- DataList --- */
@@ -14021,4 +14020,45 @@ input:focus {
 
 .ui-dialog-content {
   min-height: 455px;
+}
+
+/* --- Card: ohne Schatten --- */
+.rz-card {
+  box-shadow: none;
+}
+
+/* --- SelectBar: Einstellungen --- */
+.ui-selectbutton .ui-button,
+.ui-selectbutton .ui-paginator-element {
+  margin-left: 0;
+  background-color: transparent;
+  color: #212529;
+  font-weight: 600;
+  border: none;
+}
+
+.ui-selectbutton .ui-button:first-child,
+.ui-selectbutton .ui-paginator-element:first-child {
+  border: none;
+  border-bottom: solid 2px #dfe7ec;  
+}
+
+.ui-selectbutton .ui-button:last-child,
+.ui-selectbutton .ui-paginator-element:last-child {
+  border: none;
+  border-bottom: solid 2px #dfe7ec;  
+}
+
+.ui-selectbutton .ui-button.ui-state-active,
+.ui-selectbutton .ui-state-active.ui-paginator-element {
+  background-color: transparent;
+  color: #212529;
+  font-weight: 600;
+  border: none;
+  border-bottom: 2px solid #a71330;
+}
+
+/* --- placeholder: Farbe --- */
+input::placeholder {
+  color: #e9e9e9;
 }

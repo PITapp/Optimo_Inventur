@@ -4,14 +4,72 @@
     {
       "components": [
         {
-          "class": "align-items-center",
+          "attributes": [],
           "components": [
+            {
+              "attributes": [
+                {
+                  "name": "(click)",
+                  "value": "onClickNavigateBack()"
+                }
+              ],
+              "class": "col-3",
+              "components": [
+                {
+                  "icon": "arrow_back",
+                  "name": "icon0",
+                  "style": {
+                    "color": "#a71330",
+                    "fontSize": "26px",
+                    "fontWeight": "normal",
+                    "marginLeft": "6px",
+                    "marginTop": "13px"
+                  },
+                  "type": "icon"
+                }
+              ],
+              "name": "col2",
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "marginLeft": "",
+                "marginRight": "",
+                "marginTop": "",
+                "paddingLeft": "25px",
+                "paddingRight": "",
+                "paddingTop": "1px"
+              },
+              "type": "col"
+            },
+            {
+              "class": "text-lg-right             col-9",
+              "components": [
+                {
+                  "name": "label2",
+                  "style": {
+                    "color": "#a71330",
+                    "fontFamily": "courier new,courier,monospace",
+                    "fontSize": "16px"
+                  },
+                  "text": "Artikel auswählen",
+                  "type": "label"
+                }
+              ],
+              "name": "rightCol",
+              "style": {
+                "display": "inline-block",
+                "float": "right",
+                "paddingRight": "25px",
+                "paddingTop": "14px",
+                "textAlign": "right"
+              },
+              "type": "col"
+            },
             {
               "class": "col-10",
               "components": [
                 {
-                  "name": "textbox2",
-                  "placeholder": "Filter",
+                  "name": "textboxArtikelSuchen",
+                  "placeholder": "Suchen",
                   "readOnly": false,
                   "style": {
                     "fontWeight": "normal",
@@ -26,7 +84,9 @@
               "style": {
                 "fontSize": "16px",
                 "lineHeight": "16px",
-                "paddingLeft": "10px",
+                "marginBottom": "15px",
+                "marginTop": "13px",
+                "paddingLeft": "25px",
                 "paddingRight": "10px",
                 "textAlign": "right"
               },
@@ -38,19 +98,12 @@
                 {
                   "buttonStyle": "light",
                   "events": {
-                    "click": [
-                      {
-                        "height": 510,
-                        "path": "erfassen-artikel-auswahl",
-                        "title": "Artikel",
-                        "type": "popup"
-                      }
-                    ]
+                    "click": []
                   },
                   "icon": "done",
-                  "name": "buttonArtikelAuswahl",
+                  "name": "buttonArtikelSuchen",
                   "style": {
-                    "backgroundColor": "#e9e9e9",
+                    "backgroundColor": "#D9D9D9",
                     "border": "1px solid #dadfe2",
                     "color": "#a71330",
                     "fontSize": "28px",
@@ -69,25 +122,25 @@
               ],
               "name": "col3",
               "style": {
+                "marginTop": "13px",
                 "paddingLeft": "0",
-                "paddingRight": "0",
                 "textAlign": "right",
                 "verticalAlign": "bottom"
               },
               "type": "col"
             }
           ],
-          "name": "row8",
+          "name": "row5",
           "style": {
-            "backgroundColor": "#ffffff",
-            "marginLeft": "-20px",
-            "paddingBottom": "10px",
+            "backgroundColor": "#e9e9e9",
+            "borderBottom": "1px dotted #a71330",
+            "color": "#3a474d",
+            "left": "0",
             "paddingRight": "10px",
-            "paddingTop": "10px",
             "position": "fixed",
-            "top": "55px",
-            "width": "100%",
-            "zIndex": "1000"
+            "right": "0",
+            "top": "0",
+            "zIndex": "3000"
           },
           "type": "row"
         },
@@ -109,7 +162,7 @@
                         "parameters": [
                           {
                             "name": "$top",
-                            "value": "100"
+                            "value": "50"
                           }
                         ],
                         "then": [
@@ -131,77 +184,124 @@
                   "name": "datalistArtikel",
                   "pageSize": 14,
                   "style": {
-                    "border": "1px solid #ffffff",
-                    "display": "block"
+                    "border": "1px solid #ffffff"
                   },
                   "template": [
-                    {
-                      "name": "row0",
-                      "style": {
-                        "backgroundColor": "#e9e9e9",
-                        "height": "1px"
-                      },
-                      "type": "row"
-                    },
                     {
                       "attributes": [
                         {
                           "name": "(click)",
-                          "value": "onClickSetArtikel(data)"
+                          "value": "onClickStartErfassen(data)"
                         }
                       ],
                       "components": [
                         {
-                          "class": "col-2 align-items-center d-flex",
                           "components": [
                             {
-                              "name": "label1",
+                              "class": "col-10",
+                              "components": [
+                                {
+                                  "name": "heading0",
+                                  "size": "H5",
+                                  "style": {
+                                    "color": "#6264A7",
+                                    "fontWeight": "normal",
+                                    "marginBottom": "0",
+                                    "marginLeft": "0",
+                                    "marginRight": "0",
+                                    "marginTop": "0",
+                                    "textAlign": "left",
+                                    "verticalAlign": "baseline"
+                                  },
+                                  "text": "${data.Artikelnummer}",
+                                  "type": "heading"
+                                },
+                                {
+                                  "name": "label3",
+                                  "style": {
+                                    "color": "#3a474d",
+                                    "fontSize": "18px",
+                                    "fontStyle": "normal",
+                                    "fontWeight": "normal",
+                                    "lineHeight": "20px",
+                                    "width": "100%"
+                                  },
+                                  "text": "${data.Beschreibung}",
+                                  "type": "label",
+                                  "visible": true
+                                },
+                                {
+                                  "name": "label0",
+                                  "style": {
+                                    "color": "#3a474d",
+                                    "fontSize": "16px",
+                                    "fontStyle": "normal",
+                                    "fontWeight": "normal",
+                                    "lineHeight": "18px",
+                                    "width": "100%"
+                                  },
+                                  "text": "${data.Beschreibung2}",
+                                  "type": "label",
+                                  "visible": "${data.Beschreibung2 != null}"
+                                },
+                                {
+                                  "name": "label1",
+                                  "style": {
+                                    "color": "#3a474d",
+                                    "fontSize": "16px",
+                                    "fontStyle": "normal",
+                                    "fontWeight": "normal",
+                                    "lineHeight": "18px",
+                                    "width": "100%"
+                                  },
+                                  "text": "${data.StdKreditorName}",
+                                  "type": "label",
+                                  "visible": "${data.StdKreditorName != null}"
+                                }
+                              ],
+                              "name": "col1",
                               "style": {
-                                "color": "#3a474d",
-                                "fontSize": "30px",
-                                "lineHeight": "34px"
+                                "paddingLeft": "15px",
+                                "paddingRight": "0px",
+                                "verticalAlign": "baseline"
                               },
-                              "text": "${data.Artikelnummer}",
-                              "type": "label"
-                            }
-                          ],
-                          "name": "col21",
-                          "style": {
-                            "fontSize": "16px",
-                            "lineHeight": "16px",
-                            "textAlign": "right"
-                          },
-                          "type": "col"
-                        },
-                        {
-                          "class": "align-items-center d-flex col-10 justify-content-start",
-                          "components": [
+                              "type": "col"
+                            },
                             {
-                              "name": "label0",
+                              "class": "align-items-center d-flex justify-content-end col-2",
+                              "components": [
+                                {
+                                  "icon": "keyboard_arrow_right",
+                                  "name": "icon4",
+                                  "style": {
+                                    "color": "#a71330",
+                                    "fontSize": "32px",
+                                    "fontWeight": "normal"
+                                  },
+                                  "type": "icon"
+                                }
+                              ],
+                              "name": "col15",
                               "style": {
-                                "color": "#3a474d",
-                                "fontSize": "18px",
-                                "lineHeight": "22px"
+                                "textAlign": "right"
                               },
-                              "text": "${data.Beschreibung}",
-                              "type": "label"
+                              "type": "col"
                             }
                           ],
-                          "name": "col1",
-                          "style": {
-                            "marginTop": "3px",
-                            "paddingLeft": "15px",
-                            "paddingRight": "0px",
-                            "verticalAlign": "baseline"
-                          },
-                          "type": "col"
+                          "name": "row1",
+                          "type": "row"
                         }
                       ],
-                      "name": "row1",
+                      "name": "card0",
                       "style": {
-                        "height": "55px"
+                        "marginBottom": "2px",
+                        "paddingBottom": "10px",
+                        "paddingLeft": "15px",
+                        "paddingRight": "5px",
+                        "paddingTop": "10px"
                       },
-                      "type": "row"
+                      "type": "card",
+                      "visible": true
                     }
                   ],
                   "type": "datalist",
@@ -214,9 +314,8 @@
           ],
           "name": "row2",
           "style": {
-            "marginTop": "100px",
-            "position": "static",
-            "top": "100px"
+            "marginTop": "57px",
+            "zIndex": "3000"
           },
           "type": "row"
         }
@@ -235,9 +334,14 @@
         "name": "onClickSetArtikel",
         "type": "set",
         "value": "(data) => {\n    this.dialogRef.close(data.ArtikelID);\n}"
+      },
+      {
+        "name": "onClickNavigateBack",
+        "type": "set",
+        "value": "() => {\n    if (this.dialogRef) {\n      this.dialogRef.close();\n    }\n    this._location.back();\n}"
       }
     ]
   },
-  "layout": "InventurDialog",
+  "layout": "InventurLeer",
   "name": "ErfassenArtikelAuswahl"
 }

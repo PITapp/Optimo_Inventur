@@ -4,7 +4,7 @@ import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
 import { InventurInfosLayoutComponent } from './inventur-infos-layout/inventur-infos-layout.component';
 import { InventurErfassenLayoutComponent } from './inventur-erfassen-layout/inventur-erfassen-layout.component';
-import { InventurDialogLayoutComponent } from './inventur-dialog-layout/inventur-dialog-layout.component';
+import { InventurLeerLayoutComponent } from './inventur-leer-layout/inventur-leer-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InfosComponent } from './infos/infos.component';
 import { ZzDashboardV1Component } from './zz-dashboard-v-1/zz-dashboard-v-1.component';
@@ -21,6 +21,10 @@ import { ErfassenArtikelAuswahlComponent } from './erfassen-artikel-auswahl/erfa
 import { InventurArtikelComponent } from './inventur-artikel/inventur-artikel.component';
 import { AddInventurArtikelComponent } from './add-inventur-artikel/add-inventur-artikel.component';
 import { EditInventurArtikelComponent } from './edit-inventur-artikel/edit-inventur-artikel.component';
+import { CopyOfInfosComponent } from './copy-of-infos/copy-of-infos.component';
+import { CopyOfErfassenArtikelAuswahlComponent } from './copy-of-erfassen-artikel-auswahl/copy-of-erfassen-artikel-auswahl.component';
+import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
+import { CopyOfErfassen1Component } from './copy-of-erfassen-1/copy-of-erfassen-1.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -82,6 +86,10 @@ export const routes: Routes = [
         path: 'infos',
         component: InfosComponent
       },
+      {
+        path: 'copy-of-infos',
+        component: CopyOfInfosComponent
+      },
     ]
   },
   {
@@ -100,15 +108,27 @@ export const routes: Routes = [
         path: 'copy-of-erfassen',
         component: CopyOfErfassenComponent
       },
+      {
+        path: 'copy-of-erfassen-1',
+        component: CopyOfErfassen1Component
+      },
     ]
   },
   {
     path: '',
-    component: InventurDialogLayoutComponent,
+    component: InventurLeerLayoutComponent,
     children: [
       {
         path: 'erfassen-artikel-auswahl',
         component: ErfassenArtikelAuswahlComponent
+      },
+      {
+        path: 'copy-of-erfassen-artikel-auswahl',
+        component: CopyOfErfassenArtikelAuswahlComponent
+      },
+      {
+        path: 'meldung-loeschen/:strMeldung',
+        component: MeldungLoeschenComponent
       },
     ]
   },

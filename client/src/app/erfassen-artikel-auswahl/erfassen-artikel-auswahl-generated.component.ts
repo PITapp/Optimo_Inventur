@@ -11,21 +11,25 @@ import { Subscription } from 'rxjs';
 import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dist/dialog';
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
+import { IconComponent } from '@radzen/angular/dist/icon';
+import { LabelComponent } from '@radzen/angular/dist/label';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 import { DataListComponent } from '@radzen/angular/dist/datalist';
-import { LabelComponent } from '@radzen/angular/dist/label';
+import { CardComponent } from '@radzen/angular/dist/card';
+import { HeadingComponent } from '@radzen/angular/dist/heading';
 
 import { ConfigService } from '../config.service';
-import { ErfassenArtikelAuswahlComponent } from '../erfassen-artikel-auswahl/erfassen-artikel-auswahl.component';
 
 import { DbOptimoService } from '../db-optimo.service';
 
 export class ErfassenArtikelAuswahlGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('textbox2') textbox2: TextBoxComponent;
-  @ViewChild('buttonArtikelAuswahl') buttonArtikelAuswahl: ButtonComponent;
+  @ViewChild('icon0') icon0: IconComponent;
+  @ViewChild('label2') label2: LabelComponent;
+  @ViewChild('textboxArtikelSuchen') textboxArtikelSuchen: TextBoxComponent;
+  @ViewChild('buttonArtikelSuchen') buttonArtikelSuchen: ButtonComponent;
   @ViewChild('datalistArtikel') datalistArtikel: DataListComponent;
 
   router: Router;
@@ -52,6 +56,7 @@ export class ErfassenArtikelAuswahlGenerated implements AfterViewInit, OnInit, O
 
   dbOptimo: DbOptimoService;
   onClickSetArtikel: any;
+  onClickNavigateBack: any;
   parameters: any;
   rstArtikel: any;
   rstArtikelCount: any;
@@ -108,14 +113,17 @@ export class ErfassenArtikelAuswahlGenerated implements AfterViewInit, OnInit, O
     this.onClickSetArtikel = (data) => {
     this.dialogRef.close(data.ArtikelID);
 };
-  }
 
-  buttonArtikelAuswahlClick(event: any) {
-    this.dialogService.open(ErfassenArtikelAuswahlComponent, { parameters: {}, height: 510, title: `Artikel` });
+    this.onClickNavigateBack = () => {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+    this._location.back();
+};
   }
 
   datalistArtikelLoadData(event: any) {
-    this.dbOptimo.getInventurArtikels(null, 100, null, null, null, null, null, null)
+    this.dbOptimo.getInventurArtikels(null, 50, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.rstArtikel = result.value;
 

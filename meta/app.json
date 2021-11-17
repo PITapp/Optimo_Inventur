@@ -21,7 +21,7 @@
     "InventurStart",
     "InventurInfos",
     "InventurErfassen",
-    "InventurDialog"
+    "InventurLeer"
   ],
   "logo": "",
   "name": "Optimo Inventur",
@@ -32,7 +32,8 @@
     "Copy of Dashboard",
     "Copy of Erfassen",
     "InventurErfassung",
-    "InventurArtikel"
+    "InventurArtikel",
+    "Copy of Erfassen 1"
   ],
   "pages": [
     "Dashboard",
@@ -50,7 +51,11 @@
     "ErfassenArtikelAuswahl",
     "InventurArtikel",
     "Add InventurArtikel",
-    "Edit InventurArtikel"
+    "Edit InventurArtikel",
+    "Copy of Infos",
+    "Copy of ErfassenArtikelAuswahl",
+    "MeldungLoeschen",
+    "Copy of Erfassen 1"
   ],
   "port": 8000,
   "serverLang": "cs",

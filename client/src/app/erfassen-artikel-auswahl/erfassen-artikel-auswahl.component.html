@@ -1,30 +1,44 @@
 <rz-content #content1 container="main">
-  <div class="row align-items-center" [ngStyle]="{'backgroundColor': '#ffffff', 'marginLeft': '-20px', 'paddingBottom': '10px', 'paddingRight': '10px', 'paddingTop': '10px', 'position': 'fixed', 'top': '55px', 'width': '100%', 'zIndex': '1000'}">
-    <div class="col-10" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'paddingLeft': '10px', 'paddingRight': '10px', 'textAlign': 'right'}">
-      <rz-textbox #textbox2 placeholder="Filter" [readOnly]="false" [style]="{'fontWeight': 'normal', 'height': '40px', 'width': '100%'}" name="textbox2">
+  <div [ngStyle]="{'backgroundColor': '#e9e9e9', 'borderBottom': '1px dotted #a71330', 'color': '#3a474d', 'left': '0', 'paddingRight': '10px', 'position': 'fixed', 'right': '0', 'top': '0', 'zIndex': '3000'}" class="row">
+    <div class="col-3" [ngStyle]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'marginLeft': '', 'marginRight': '', 'marginTop': '', 'paddingLeft': '25px', 'paddingRight': '', 'paddingTop': '1px'}" (click)="onClickNavigateBack()">
+      <rz-icon #icon0 icon="arrow_back" [style]="{'color': '#a71330', 'fontSize': '26px', 'fontWeight': 'normal', 'marginLeft': '6px', 'marginTop': '13px'}">
+      </rz-icon>
+    </div>
+    <div class="text-lg-right             col-9" [ngStyle]="{'display': 'inline-block', 'float': 'right', 'paddingRight': '25px', 'paddingTop': '14px', 'textAlign': 'right'}">
+      <rz-label #label2 [style]="{'color': '#a71330', 'fontFamily': 'courier new,courier,monospace', 'fontSize': '16px'}" text="Artikel auswählen">
+      </rz-label>
+    </div>
+    <div class="col-10" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'marginBottom': '15px', 'marginTop': '13px', 'paddingLeft': '25px', 'paddingRight': '10px', 'textAlign': 'right'}">
+      <rz-textbox #textboxArtikelSuchen placeholder="Suchen" [readOnly]="false" [style]="{'fontWeight': 'normal', 'height': '40px', 'width': '100%'}" name="textboxArtikelSuchen">
       </rz-textbox>
     </div>
-    <div class="col-2" [ngStyle]="{'paddingLeft': '0', 'paddingRight': '0', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
-      <rz-button #buttonArtikelAuswahl buttonStyle="light" icon="done" [style]="{'backgroundColor': '#e9e9e9', 'border': '1px solid #dadfe2', 'color': '#a71330', 'fontSize': '28px', 'fontWeight': 'normal', 'height': '40px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}" (click)="buttonArtikelAuswahlClick($event)">
+    <div class="col-2" [ngStyle]="{'marginTop': '13px', 'paddingLeft': '0', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
+      <rz-button #buttonArtikelSuchen buttonStyle="light" icon="done" [style]="{'backgroundColor': '#D9D9D9', 'border': '1px solid #dadfe2', 'color': '#a71330', 'fontSize': '28px', 'fontWeight': 'normal', 'height': '40px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}">
       </rz-button>
     </div>
   </div>
-  <div [ngStyle]="{'marginTop': '100px', 'position': 'static', 'top': '100px'}" class="row">
+  <div [ngStyle]="{'marginTop': '57px', 'zIndex': '3000'}" class="row">
     <div class="col-md-12">
-      <rz-datalist #datalistArtikel [allowPaging]="false" [count]="rstArtikelCount" [data]="rstArtikel" defaultRowText="Template for index" emptyText="Artikel werden geladen..." [pageSize]="14" [style]="{'border': '1px solid #ffffff', 'display': 'block'}" [wrapItems]="false" (loadData)="datalistArtikelLoadData($event)">
+      <rz-datalist #datalistArtikel [allowPaging]="false" [count]="rstArtikelCount" [data]="rstArtikel" defaultRowText="Template for index" emptyText="Artikel werden geladen..." [pageSize]="14" [style]="{'border': '1px solid #ffffff'}" [wrapItems]="false" (loadData)="datalistArtikelLoadData($event)">
         <ng-template let-data datalistTemplate>
-          <div [ngStyle]="{'backgroundColor': '#e9e9e9', 'height': '1px'}" class="row">
-          </div>
-          <div [ngStyle]="{'height': '55px'}" class="row" (click)="onClickSetArtikel(data)">
-            <div class="col-2 align-items-center d-flex" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'textAlign': 'right'}">
-              <rz-label #label1 [style]="{'color': '#3a474d', 'fontSize': '30px', 'lineHeight': '34px'}" [text]="data?.Artikelnummer">
-              </rz-label>
+          <rz-card #card0 [style]="{'marginBottom': '2px', 'paddingBottom': '10px', 'paddingLeft': '15px', 'paddingRight': '5px', 'paddingTop': '10px'}" (click)="onClickStartErfassen(data)">
+            <div class="row">
+              <div class="col-10" [ngStyle]="{'paddingLeft': '15px', 'paddingRight': '0px', 'verticalAlign': 'baseline'}">
+                <rz-heading #heading0 size="H5" [style]="{'color': '#6264A7', 'fontWeight': 'normal', 'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '0', 'textAlign': 'left', 'verticalAlign': 'baseline'}" [text]="data?.Artikelnummer">
+                </rz-heading>
+                <rz-label #label3 [style]="{'color': '#3a474d', 'fontSize': '18px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '20px', 'width': '100%'}" [text]="data?.Beschreibung">
+                </rz-label>
+                <rz-label #label0 [style]="{'color': '#3a474d', 'fontSize': '16px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '18px', 'width': '100%'}" [text]="data?.Beschreibung2" *ngIf="data?.Beschreibung2 != null">
+                </rz-label>
+                <rz-label #label1 [style]="{'color': '#3a474d', 'fontSize': '16px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '18px', 'width': '100%'}" [text]="data?.StdKreditorName" *ngIf="data?.StdKreditorName != null">
+                </rz-label>
+              </div>
+              <div class="align-items-center d-flex justify-content-end col-2" [ngStyle]="{'textAlign': 'right'}">
+                <rz-icon #icon4 icon="keyboard_arrow_right" [style]="{'color': '#a71330', 'fontSize': '32px', 'fontWeight': 'normal'}">
+                </rz-icon>
+              </div>
             </div>
-            <div class="align-items-center d-flex col-10 justify-content-start" [ngStyle]="{'marginTop': '3px', 'paddingLeft': '15px', 'paddingRight': '0px', 'verticalAlign': 'baseline'}">
-              <rz-label #label0 [style]="{'color': '#3a474d', 'fontSize': '18px', 'lineHeight': '22px'}" [text]="data?.Beschreibung">
-              </rz-label>
-            </div>
-          </div>
+          </rz-card>
         </ng-template>
       </rz-datalist>
     </div>

@@ -124,7 +124,7 @@
                           },
                           "text": "${data.LagerortStatus}",
                           "type": "label",
-                          "visible": ""
+                          "visible": true
                         }
                       ],
                       "name": "col1",

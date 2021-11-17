@@ -12,16 +12,16 @@ import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dis
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
-import { LabelComponent } from '@radzen/angular/dist/label';
+import { SelectBarComponent } from '@radzen/angular/dist/selectbar';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { ButtonComponent } from '@radzen/angular/dist/button';
-import { IconComponent } from '@radzen/angular/dist/icon';
-import { DataListComponent } from '@radzen/angular/dist/datalist';
+import { LabelComponent } from '@radzen/angular/dist/label';
 import { CardComponent } from '@radzen/angular/dist/card';
+import { DataListComponent } from '@radzen/angular/dist/datalist';
+import { IconComponent } from '@radzen/angular/dist/icon';
 
 import { ConfigService } from '../config.service';
-import { ZzErfassenAuswahlLagerorteComponent } from '../zz-erfassen-auswahl-lagerorte/zz-erfassen-auswahl-lagerorte.component';
-import { ErfassenArtikelAuswahlComponent } from '../erfassen-artikel-auswahl/erfassen-artikel-auswahl.component';
+import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 
 import { DbOptimoService } from '../db-optimo.service';
 
@@ -30,23 +30,24 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('heading1') heading1: HeadingComponent;
   @ViewChild('heading2') heading2: HeadingComponent;
-  @ViewChild('label1') label1: LabelComponent;
-  @ViewChild('textbox1') textbox1: TextBoxComponent;
+  @ViewChild('selectbarErfassenModus') selectbarErfassenModus: SelectBarComponent;
+  @ViewChild('textboxArtikelnummer') textboxArtikelnummer: TextBoxComponent;
   @ViewChild('buttonArtikelAuswahl') buttonArtikelAuswahl: ButtonComponent;
   @ViewChild('label4') label4: LabelComponent;
   @ViewChild('label6') label6: LabelComponent;
   @ViewChild('label9') label9: LabelComponent;
-  @ViewChild('label3') label3: LabelComponent;
+  @ViewChild('button0') button0: ButtonComponent;
+  @ViewChild('card1') card1: CardComponent;
   @ViewChild('textbox2') textbox2: TextBoxComponent;
   @ViewChild('button2') button2: ButtonComponent;
-  @ViewChild('heading6') heading6: HeadingComponent;
-  @ViewChild('heading7') heading7: HeadingComponent;
-  @ViewChild('label5') label5: LabelComponent;
-  @ViewChild('label7') label7: LabelComponent;
-  @ViewChild('icon4') icon4: IconComponent;
-  @ViewChild('datalistLagerorte') datalistLagerorte: DataListComponent;
+  @ViewChild('button3') button3: ButtonComponent;
+  @ViewChild('button1') button1: ButtonComponent;
+  @ViewChild('label12') label12: LabelComponent;
+  @ViewChild('label1') label1: LabelComponent;
+  @ViewChild('label3') label3: LabelComponent;
+  @ViewChild('datalistErfassung') datalistErfassung: DataListComponent;
   @ViewChild('label2') label2: LabelComponent;
-  @ViewChild('buttonOpenDialogAuswahlLagerorte') buttonOpenDialogAuswahlLagerorte: ButtonComponent;
+  @ViewChild('buttonOpenDialogErfassungLoeschen') buttonOpenDialogErfassungLoeschen: ButtonComponent;
 
   router: Router;
 
@@ -73,9 +74,11 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   dbOptimo: DbOptimoService;
   dsoLagerort: any;
   onClickAuswahlLagerorte: any;
+  onClickErfassungLoeschen: any;
+  strErfassungModus: any;
   parameters: any;
-  rstLagerorte: any;
-  rstLagerorteCount: any;
+  rstErfassung: any;
+  rstErfassungCount: any;
 
   constructor(private injector: Injector) {
   }
@@ -130,48 +133,71 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
     .subscribe((result: any) => {
       this.dsoLagerort = result.value[0];
 
-      this.datalistLagerorte.load();
+      this.datalistErfassung.load();
     }, (result: any) => {
 
     });
 
     this.onClickAuswahlLagerorte = () => {
-    this.buttonOpenDialogAuswahlLagerorteClick('');
+    
 };
 
 
+
+    this.onClickErfassungLoeschen = (data) => {
+    this.buttonOpenDialogErfassungLoeschenClick('');
+};
+
+    this.strErfassungModus = 'Mengen';
+
+    setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)
+  }
+
+  selectbarErfassenModusChange(event: any) {
+    setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)
   }
 
   buttonArtikelAuswahlClick(event: any) {
-    this.dialogService.open(ErfassenArtikelAuswahlComponent, { parameters: {}, title: `Artikel` });
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+    this.router.navigate(['erfassen-artikel-auswahl']);
+  }
+
+  button0Click(event: any) {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+    this.router.navigate(['erfassen-artikel-auswahl']);
   }
 
   button2Click(event: any) {
-    this.notificationService.notify({ severity: "success", summary: ``, detail: `Artikel gezählt!`, duration: 50000 });
+    this.notificationService.notify({ severity: "success", summary: ``, detail: `5 Artikel erfasst!` });
   }
 
-  datalistLagerorteLoadData(event: any) {
-    this.dbOptimo.getInventurBases(null, null, null, `LagerortNummer`, null, null, null, null)
-    .subscribe((result: any) => {
-      this.rstLagerorte = result.value;
+  button3Click(event: any) {
+    this.notificationService.notify({ severity: "success", summary: ``, detail: `5 Artikel erfasst!` });
+  }
 
-      this.rstLagerorteCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+  button1Click(event: any) {
+    this.notificationService.notify({ severity: "success", summary: ``, detail: `5 Artikel erfasst!` });
+  }
+
+  datalistErfassungLoadData(event: any) {
+    this.dbOptimo.getVwInventurErfassungs(null, null, null, null, null, null, null, null)
+    .subscribe((result: any) => {
+      this.rstErfassung = result.value;
+
+      this.rstErfassungCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
     }, (result: any) => {
 
     });
   }
 
-  buttonOpenDialogAuswahlLagerorteClick(event: any) {
-    this.dialogService.open(ZzErfassenAuswahlLagerorteComponent, { parameters: {}, title: `Auswahl Lagerorte` })
+  buttonOpenDialogErfassungLoeschenClick(event: any) {
+    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: 'Soll die Erfassung vom ... gelöscht werden?'}, title: `Löschen Erfassung` })
         .afterClosed().subscribe(result => {
-              if (result != null) {
-              this.dbOptimo.getInventurBases(`InventurID eq ${result}`, null, null, null, null, null, null, null)
-        .subscribe((result: any) => {
-              this.dsoLagerort = result.value[0];
-        }, (result: any) => {
-      
-        });
-      }
+              this.notificationService.notify({ severity: "info", summary: ``, detail: `Erfassung gelöscht` });
     });
   }
 }
