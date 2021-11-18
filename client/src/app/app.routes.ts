@@ -25,6 +25,7 @@ import { CopyOfInfosComponent } from './copy-of-infos/copy-of-infos.component';
 import { CopyOfErfassenArtikelAuswahlComponent } from './copy-of-erfassen-artikel-auswahl/copy-of-erfassen-artikel-auswahl.component';
 import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
 import { CopyOfErfassen1Component } from './copy-of-erfassen-1/copy-of-erfassen-1.component';
+import { CopyOfErfassen2Component } from './copy-of-erfassen-2/copy-of-erfassen-2.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -111,6 +112,10 @@ export const routes: Routes = [
       {
         path: 'copy-of-erfassen-1',
         component: CopyOfErfassen1Component
+      },
+      {
+        path: 'copy-of-erfassen-2',
+        component: CopyOfErfassen2Component
       },
     ]
   },

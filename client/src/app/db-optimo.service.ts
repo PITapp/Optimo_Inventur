@@ -197,26 +197,6 @@ export class DbOptimoService {
     return this.odata.patch(`/InventurErfassungs(${erfassungId})`, inventurErfassung, item => item.ErfassungID == erfassungId, { expand }, ['InventurArtikel']);
   }
 
-  getInventurErfassungGeloeschts(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
-    return this.odata.get(`/InventurErfassungGeloeschts`, { filter, top, skip, orderby, count, expand, format, select });
-  }
-
-  createInventurErfassungGeloescht(expand: string | null, inventurErfassungGeloescht: models.InventurErfassungGeloescht | null) : Observable<any> {
-    return this.odata.post(`/InventurErfassungGeloeschts`, inventurErfassungGeloescht, { expand }, ['InventurArtikel']);
-  }
-
-  deleteInventurErfassungGeloescht(erfassungGeloeschtId: number | null) : Observable<any> {
-    return this.odata.delete(`/InventurErfassungGeloeschts(${erfassungGeloeschtId})`, item => !(item.ErfassungGeloeschtID == erfassungGeloeschtId));
-  }
-
-  getInventurErfassungGeloeschtByErfassungGeloeschtId(expand: string | null, erfassungGeloeschtId: number | null) : Observable<any> {
-    return this.odata.getById(`/InventurErfassungGeloeschts(${erfassungGeloeschtId})`, { expand });
-  }
-
-  updateInventurErfassungGeloescht(expand: string | null, erfassungGeloeschtId: number | null, inventurErfassungGeloescht: models.InventurErfassungGeloescht | null) : Observable<any> {
-    return this.odata.patch(`/InventurErfassungGeloeschts(${erfassungGeloeschtId})`, inventurErfassungGeloescht, item => item.ErfassungGeloeschtID == erfassungGeloeschtId, { expand }, ['InventurArtikel']);
-  }
-
   getNotizens(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
     return this.odata.get(`/Notizens`, { filter, top, skip, orderby, count, expand, format, select });
   }

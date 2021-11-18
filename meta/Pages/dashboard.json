@@ -114,7 +114,7 @@
                         {
                           "name": "label1",
                           "style": {
-                            "color": "#6264A7",
+                            "color": "#002171",
                             "fontSize": "16px",
                             "fontStyle": "normal",
                             "fontWeight": "normal",
@@ -264,7 +264,7 @@
       {
         "name": "onClickStartErfassen",
         "type": "set",
-        "value": "(data) => {\n    if (this.dialogRef) {\n        this.dialogRef.close();\n    }\n    this.router.navigate(['erfassen', data.InventurID]);\n}"
+        "value": "(data) => {\n    if (this.dialogRef) {\n        this.dialogRef.close();\n    }\n    sessionStorage.setItem(\"globalArtikelID\", \"\");\n    this.router.navigate(['erfassen', data.InventurID]);\n}"
       },
       {
         "name": "onClickStartInfos",

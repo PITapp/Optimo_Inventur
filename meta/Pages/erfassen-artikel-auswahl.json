@@ -191,7 +191,7 @@
                       "attributes": [
                         {
                           "name": "(click)",
-                          "value": "onClickStartErfassen(data)"
+                          "value": "onClickNavigateBack(data)"
                         }
                       ],
                       "components": [
@@ -331,14 +331,9 @@
         "type": "execute"
       },
       {
-        "name": "onClickSetArtikel",
-        "type": "set",
-        "value": "(data) => {\n    this.dialogRef.close(data.ArtikelID);\n}"
-      },
-      {
         "name": "onClickNavigateBack",
         "type": "set",
-        "value": "() => {\n    if (this.dialogRef) {\n      this.dialogRef.close();\n    }\n    this._location.back();\n}"
+        "value": "(data) => {\n    if (this.dialogRef) {\n      this.dialogRef.close();\n    }\n    if (data == null) {\n      sessionStorage.setItem(\"globalArtikelID\", \"\");\n    } else {\n      sessionStorage.setItem(\"globalArtikelID\", data.ArtikelID);\n    }\n    this._location.back();\n}"
       }
     ]
   },

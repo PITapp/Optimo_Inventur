@@ -55,7 +55,6 @@ export class ErfassenArtikelAuswahlGenerated implements AfterViewInit, OnInit, O
   _subscription: Subscription;
 
   dbOptimo: DbOptimoService;
-  onClickSetArtikel: any;
   onClickNavigateBack: any;
   parameters: any;
   rstArtikel: any;
@@ -110,13 +109,14 @@ export class ErfassenArtikelAuswahlGenerated implements AfterViewInit, OnInit, O
   load() {
     this.datalistArtikel.load();
 
-    this.onClickSetArtikel = (data) => {
-    this.dialogRef.close(data.ArtikelID);
-};
-
-    this.onClickNavigateBack = () => {
+    this.onClickNavigateBack = (data) => {
     if (this.dialogRef) {
       this.dialogRef.close();
+    }
+    if (data == null) {
+      sessionStorage.setItem("globalArtikelID", "");
+    } else {
+      sessionStorage.setItem("globalArtikelID", data.ArtikelID);
     }
     this._location.back();
 };

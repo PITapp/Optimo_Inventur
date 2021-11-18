@@ -18,8 +18,6 @@ namespace OptimoInventur.Models.DbOptimo
 
 
     public ICollection<InventurErfassung> InventurErfassungs { get; set; }
-
-    public ICollection<InventurErfassungGeloescht> InventurErfassungGeloeschts { get; set; }
     public int InventurID
     {
       get;

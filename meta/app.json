@@ -33,7 +33,8 @@
     "Copy of Erfassen",
     "InventurErfassung",
     "InventurArtikel",
-    "Copy of Erfassen 1"
+    "Copy of Erfassen 1",
+    "Copy of Erfassen 2"
   ],
   "pages": [
     "Dashboard",
@@ -55,7 +56,8 @@
     "Copy of Infos",
     "Copy of ErfassenArtikelAuswahl",
     "MeldungLoeschen",
-    "Copy of Erfassen 1"
+    "Copy of Erfassen 1",
+    "Copy of Erfassen 2"
   ],
   "port": 8000,
   "serverLang": "cs",

@@ -28,6 +28,11 @@ namespace OptimoInventur.Models.DbOptimo
       get;
       set;
     }
+    public DateTime? GeloeschtAm
+    {
+      get;
+      set;
+    }
     public string Artikelnummer
     {
       get;

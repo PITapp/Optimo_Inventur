@@ -60,11 +60,6 @@ namespace OptimoInventur.Data
                   .WithMany(i => i.InventurErfassungs)
                   .HasForeignKey(i => i.ArtikelID)
                   .HasPrincipalKey(i => i.ArtikelID);
-            builder.Entity<OptimoInventur.Models.DbOptimo.InventurErfassungGeloescht>()
-                  .HasOne(i => i.InventurArtikel)
-                  .WithMany(i => i.InventurErfassungGeloeschts)
-                  .HasForeignKey(i => i.ArtikelID)
-                  .HasPrincipalKey(i => i.ArtikelID);
             builder.Entity<OptimoInventur.Models.DbOptimo.Protokoll>()
                   .HasOne(i => i.Base)
                   .WithMany(i => i.Protokolls)
@@ -172,12 +167,6 @@ namespace OptimoInventur.Data
         }
 
         public DbSet<OptimoInventur.Models.DbOptimo.InventurErfassung> InventurErfassungs
-        {
-          get;
-          set;
-        }
-
-        public DbSet<OptimoInventur.Models.DbOptimo.InventurErfassungGeloescht> InventurErfassungGeloeschts
         {
           get;
           set;

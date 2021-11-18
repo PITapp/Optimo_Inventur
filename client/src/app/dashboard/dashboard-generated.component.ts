@@ -114,6 +114,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
     if (this.dialogRef) {
         this.dialogRef.close();
     }
+    sessionStorage.setItem("globalArtikelID", "");
     this.router.navigate(['erfassen', data.InventurID]);
 };
 

@@ -179,7 +179,6 @@
                   "events": {
                     "click": [
                       {
-                        "parameters": [],
                         "path": "erfassen-artikel-auswahl",
                         "type": "navigate"
                       }
@@ -340,32 +339,19 @@
         {
           "components": [
             {
-              "class": "align-items-center d-flex col-6",
+              "class": "col-7",
               "components": [
                 {
                   "name": "label5",
                   "style": {
                     "color": "#002171",
-                    "fontSize": "24px",
+                    "fontSize": "28px",
                     "fontWeight": "normal",
-                    "lineHeight": "24px",
-                    "textAlign": "left"
+                    "lineHeight": "30px",
+                    "textAlign": "left",
+                    "width": "100%"
                   },
-                  "text": "2.938",
-                  "type": "label"
-                },
-                {
-                  "name": "label13",
-                  "style": {
-                    "color": "#3a474d",
-                    "fontSize": "14px",
-                    "fontWeight": "normal",
-                    "lineHeight": "14px",
-                    "marginLeft": "5px",
-                    "paddingTop": "4px",
-                    "textAlign": "left"
-                  },
-                  "text": "gezählt",
+                  "text": "2.938 erfasst",
                   "type": "label"
                 }
               ],
@@ -382,39 +368,67 @@
               "type": "col"
             },
             {
-              "class": "col-6 align-items-center d-flex justify-content-end",
+              "class": "col-3",
               "components": [
                 {
                   "name": "label7",
                   "style": {
-                    "color": "#a71330",
-                    "fontSize": "18px",
+                    "color": "#3a474d",
+                    "fontSize": "14px",
                     "fontWeight": "normal",
-                    "lineHeight": "18px",
-                    "paddingRight": "10px",
-                    "textAlign": "left"
+                    "lineHeight": "16px",
+                    "textAlign": "left",
+                    "width": "100%"
                   },
-                  "text": "Protokoll",
+                  "text": "Inventurliste",
                   "type": "label",
-                  "visible": true
-                },
-                {
-                  "icon": "navigate_next",
-                  "name": "icon1",
-                  "style": {
-                    "color": "#a71330",
-                    "fontSize": "22px",
-                    "fontWeight": "normal",
-                    "marginTop": "3px"
-                  },
-                  "type": "icon",
                   "visible": true
                 }
               ],
               "name": "col20",
               "style": {
                 "paddingLeft": "0",
-                "paddingRight": "15px",
+                "paddingRight": "0",
+                "textAlign": "right",
+                "verticalAlign": "bottom"
+              },
+              "type": "col"
+            },
+            {
+              "class": "col-2",
+              "components": [
+                {
+                  "buttonStyle": "light",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "erfassen-artikel-auswahl",
+                        "type": "navigate"
+                      }
+                    ]
+                  },
+                  "icon": "keyboard_arrow_right",
+                  "name": "button5",
+                  "style": {
+                    "backgroundColor": "#e9e9e9",
+                    "color": "#a71330",
+                    "fontWeight": "normal",
+                    "height": "100%",
+                    "paddingBottom": "0",
+                    "paddingLeft": "0",
+                    "paddingRight": "0",
+                    "paddingTop": "0",
+                    "width": "100%"
+                  },
+                  "text": "",
+                  "tooltip": "",
+                  "type": "button"
+                }
+              ],
+              "name": "col21",
+              "style": {
+                "paddingLeft": "0",
+                "paddingRight": "0",
                 "textAlign": "right",
                 "verticalAlign": "bottom"
               },
@@ -425,15 +439,12 @@
           "style": {
             "backgroundColor": "#e9e9e9",
             "borderTop": "1px dotted #a71330",
-            "height": "45px",
-            "marginBottom": "10px",
             "marginLeft": "10px",
             "marginRight": "10px",
-            "marginTop": "0",
-            "paddingBottom": "0",
+            "paddingBottom": "10px",
             "paddingLeft": "10px",
             "paddingRight": "0",
-            "paddingTop": "0"
+            "paddingTop": "10px"
           },
           "type": "row"
         },
@@ -483,7 +494,6 @@
                             "detail": "5 Artikel erfasst!",
                             "duration": "",
                             "severity": "success",
-                            "summary": "Ein Test",
                             "type": "notify"
                           }
                         ]
@@ -523,15 +533,14 @@
                 "marginBottom": "0",
                 "marginLeft": "0",
                 "marginRight": "0",
-                "marginTop": "5px"
+                "marginTop": "10px"
               },
               "type": "row"
             }
           ],
           "name": "card1",
           "style": {
-            "marginTop": "-5px",
-            "paddingBottom": "5px",
+            "paddingBottom": "9px",
             "paddingLeft": "0",
             "paddingRight": "0",
             "paddingTop": "0"
@@ -540,271 +549,457 @@
           "visible": "${strErfassungModus == 'Mengen'}"
         },
         {
-          "allowPaging": false,
-          "count": "${rstErfassungCount}",
-          "data": "${rstErfassung}",
-          "defaultRowText": "Template for index",
-          "emptyText": "Erfasste Daten werden geladen...",
-          "events": {
-            "loadData": [
-              {
-                "name": "dbOptimo.getVwInventurErfassungs",
-                "parameters": [],
-                "then": [
-                  {
-                    "name": "rstErfassung",
-                    "type": "set",
-                    "value": "${result.value}"
-                  },
-                  {
-                    "name": "rstErfassungCount",
-                    "type": "set",
-                    "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
-                  }
-                ],
-                "type": "invoke"
-              }
-            ]
-          },
-          "name": "datalistErfassung",
-          "pageSize": 3,
-          "style": {
-            "borderTop": "1px dotted #a71330",
-            "marginTop": "5px"
-          },
-          "template": [
+          "components": [
             {
+              "class": "col-6",
               "components": [
                 {
-                  "name": "label0",
+                  "buttonStyle": "light",
+                  "events": {
+                    "click": [
+                      {
+                        "detail": "5 Artikel erfasst!",
+                        "duration": "",
+                        "severity": "success",
+                        "type": "notify"
+                      }
+                    ]
+                  },
+                  "icon": "done",
+                  "name": "button3",
                   "style": {
-                    "fontSize": "12px",
+                    "backgroundColor": "#e9e9e9",
+                    "border": "1px solid #dadfe2",
+                    "color": "#a71330",
+                    "fontSize": "18px",
+                    "fontWeight": "normal",
+                    "height": "50px",
+                    "paddingBottom": "0",
+                    "paddingLeft": "0",
+                    "paddingRight": "0",
+                    "paddingTop": "0",
+                    "width": "100%"
+                  },
+                  "text": "Erfassen",
+                  "tooltip": "",
+                  "type": "button"
+                }
+              ],
+              "name": "col16",
+              "style": {
+                "fontSize": "16px",
+                "lineHeight": "16px",
+                "paddingLeft": "10px",
+                "paddingRight": "10px",
+                "textAlign": "left"
+              },
+              "type": "col"
+            },
+            {
+              "class": "col-6",
+              "components": [
+                {
+                  "buttonStyle": "light",
+                  "events": {
+                    "click": [
+                      {
+                        "detail": "5 Artikel erfasst!",
+                        "duration": "",
+                        "severity": "success",
+                        "type": "notify"
+                      }
+                    ]
+                  },
+                  "icon": "done",
+                  "name": "button1",
+                  "style": {
+                    "backgroundColor": "#e9e9e9",
+                    "border": "1px solid #dadfe2",
+                    "color": "#a71330",
+                    "fontSize": "18px",
+                    "fontWeight": "normal",
+                    "height": "50px",
+                    "paddingBottom": "0",
+                    "paddingLeft": "0",
+                    "paddingRight": "0",
+                    "paddingTop": "0",
+                    "width": "100%"
+                  },
+                  "text": "Erfassen",
+                  "tooltip": "",
+                  "type": "button"
+                }
+              ],
+              "name": "col17",
+              "style": {
+                "paddingLeft": "0",
+                "paddingRight": "10px",
+                "textAlign": "right",
+                "verticalAlign": "bottom"
+              },
+              "type": "col"
+            }
+          ],
+          "name": "row11",
+          "style": {
+            "marginBottom": "0",
+            "marginLeft": "0",
+            "marginRight": "0",
+            "marginTop": "10px"
+          },
+          "type": "row"
+        },
+        {
+          "class": "align-items-center",
+          "components": [
+            {
+              "class": "col-12",
+              "components": [
+                {
+                  "name": "label12",
+                  "style": {
+                    "color": "#ffffff",
+                    "fontSize": "26px",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
-                    "lineHeight": "14px"
+                    "textAlign": "center",
+                    "width": "100%"
                   },
-                  "text": ">>> Gelöscht am 18.11.2021 12:57",
+                  "text": "2.938 erfasst",
                   "type": "label"
                 }
               ],
-              "name": "card2",
+              "name": "col13",
               "style": {
-                "color": "#a71330",
-                "fontWeight": "bold",
-                "marginBottom": "-5px",
-                "marginLeft": "15px",
-                "marginRight": "15px",
-                "paddingBottom": "0",
-                "paddingLeft": "0",
-                "paddingRight": "0",
-                "paddingTop": "0"
+                "backgroundColor": "#8ea3b5",
+                "verticalAlign": "baseline"
               },
-              "type": "card",
-              "visible": "${data.GeloeschtAm != null}"
-            },
+              "type": "col"
+            }
+          ],
+          "name": "row2",
+          "style": {
+            "height": "50px",
+            "marginBottom": "0",
+            "marginLeft": "0",
+            "marginRight": "0",
+            "marginTop": "0",
+            "paddingBottom": "0",
+            "paddingLeft": "10px",
+            "paddingRight": "10px",
+            "paddingTop": "0"
+          },
+          "type": "row"
+        },
+        {
+          "class": "align-items-center",
+          "components": [
             {
-              "attributes": [
-                {
-                  "name": "(click)",
-                  "value": "onClickErfassungLoeschen(data)"
-                }
-              ],
+              "class": "col-12",
               "components": [
                 {
-                  "class": "align-items-center",
-                  "components": [
+                  "name": "label1",
+                  "style": {
+                    "color": "#ffffff",
+                    "fontSize": "26px",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "100%"
+                  },
+                  "text": "Artikel Inventurliste",
+                  "type": "label"
+                }
+              ],
+              "name": "col14",
+              "style": {
+                "backgroundColor": "#8ea3b5",
+                "verticalAlign": "baseline"
+              },
+              "type": "col"
+            }
+          ],
+          "name": "row7",
+          "style": {
+            "height": "50px",
+            "marginBottom": "0",
+            "marginLeft": "0",
+            "marginRight": "0",
+            "marginTop": "0",
+            "paddingBottom": "0",
+            "paddingLeft": "10px",
+            "paddingRight": "10px",
+            "paddingTop": "0"
+          },
+          "type": "row"
+        },
+        {
+          "class": "align-items-center",
+          "components": [
+            {
+              "class": "col-12",
+              "components": [
+                {
+                  "name": "label3",
+                  "style": {
+                    "color": "#ffffff",
+                    "fontSize": "26px",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "100%"
+                  },
+                  "text": "Erfassungsprotokoll",
+                  "type": "label"
+                }
+              ],
+              "name": "col15",
+              "style": {
+                "backgroundColor": "#8ea3b5",
+                "verticalAlign": "baseline"
+              },
+              "type": "col"
+            }
+          ],
+          "name": "row10",
+          "style": {
+            "height": "50px",
+            "marginBottom": "0",
+            "marginLeft": "0",
+            "marginRight": "0",
+            "marginTop": "100px",
+            "paddingBottom": "0",
+            "paddingLeft": "10px",
+            "paddingRight": "10px",
+            "paddingTop": "0"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "allowPaging": false,
+                  "count": "${rstErfassungCount}",
+                  "data": "${rstErfassung}",
+                  "defaultRowText": "Template for index",
+                  "emptyText": "Erfasste Daten werden geladen...",
+                  "events": {
+                    "loadData": [
+                      {
+                        "name": "dbOptimo.getVwInventurErfassungs",
+                        "parameters": [],
+                        "then": [
+                          {
+                            "name": "rstErfassung",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "rstErfassungCount",
+                            "type": "set",
+                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "name": "datalistErfassung",
+                  "pageSize": 3,
+                  "style": {
+                    "borderTop": "1px dotted #a71330"
+                  },
+                  "template": [
                     {
-                      "class": "col-8",
+                      "attributes": [
+                        {
+                          "name": "(click)",
+                          "value": "onClickErfassungLoeschen(data)"
+                        }
+                      ],
                       "components": [
                         {
                           "components": [
                             {
-                              "class": "col-12",
+                              "class": "col-10",
                               "components": [
                                 {
-                                  "name": "label1",
-                                  "style": {
-                                    "color": "#002171",
-                                    "fontSize": "12px",
-                                    "fontStyle": "normal",
-                                    "fontWeight": "normal",
-                                    "lineHeight": "12px"
-                                  },
-                                  "text": "${data.ErfasstAm | date : 'dd.MM.yyyy HH:mm'}",
-                                  "type": "label",
-                                  "visible": ""
+                                  "components": [
+                                    {
+                                      "class": "col-6",
+                                      "components": [
+                                        {
+                                          "name": "heading3",
+                                          "size": "H5",
+                                          "style": {
+                                            "color": "#6264A7",
+                                            "fontWeight": "normal",
+                                            "marginBottom": "0",
+                                            "marginLeft": "0",
+                                            "marginRight": "0",
+                                            "marginTop": "0",
+                                            "textAlign": "left",
+                                            "verticalAlign": "baseline"
+                                          },
+                                          "text": "${data.ErfasstAm | date : 'dd.MM.yyyy HH:mm'}",
+                                          "type": "heading"
+                                        }
+                                      ],
+                                      "name": "col11",
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-6",
+                                      "components": [
+                                        {
+                                          "name": "heading0",
+                                          "size": "H5",
+                                          "style": {
+                                            "color": "#6264A7",
+                                            "fontWeight": "normal",
+                                            "marginBottom": "0",
+                                            "marginLeft": "0",
+                                            "marginRight": "0",
+                                            "marginTop": "0",
+                                            "textAlign": "right",
+                                            "verticalAlign": "baseline"
+                                          },
+                                          "text": "${data.ErfasstAnzahl} Stück",
+                                          "type": "heading"
+                                        }
+                                      ],
+                                      "name": "col12",
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "name": "row5",
+                                  "type": "row"
                                 },
                                 {
-                                  "name": "label12",
+                                  "name": "label0",
                                   "style": {
-                                    "color": "#3a474d",
-                                    "fontSize": "12px",
+                                    "color": "#a71330",
                                     "fontStyle": "normal",
                                     "fontWeight": "normal",
-                                    "lineHeight": "12px",
-                                    "marginLeft": "20px"
+                                    "width": "100%"
                                   },
                                   "text": "${data.Artikelnummer}",
                                   "type": "label",
-                                  "visible": ""
+                                  "visible": true
+                                },
+                                {
+                                  "name": "label11",
+                                  "style": {
+                                    "color": "#3a474d",
+                                    "fontSize": "18px",
+                                    "fontStyle": "normal",
+                                    "fontWeight": "normal",
+                                    "lineHeight": "20px",
+                                    "width": "100%"
+                                  },
+                                  "text": "${data.Beschreibung}",
+                                  "type": "label",
+                                  "visible": true
+                                },
+                                {
+                                  "name": "label8",
+                                  "style": {
+                                    "color": "#3a474d",
+                                    "fontSize": "16px",
+                                    "fontStyle": "normal",
+                                    "fontWeight": "normal",
+                                    "lineHeight": "18px",
+                                    "width": "100%"
+                                  },
+                                  "text": "${data.Beschreibung2}",
+                                  "type": "label",
+                                  "visible": "${data.Beschreibung2 != null}"
+                                },
+                                {
+                                  "name": "label10",
+                                  "style": {
+                                    "color": "#3a474d",
+                                    "fontSize": "16px",
+                                    "fontStyle": "normal",
+                                    "fontWeight": "normal",
+                                    "lineHeight": "18px",
+                                    "width": "100%"
+                                  },
+                                  "text": "${data.StdKreditorName}",
+                                  "type": "label",
+                                  "visible": "${data.StdKreditorName != null}"
                                 }
                               ],
-                              "name": "col11",
+                              "name": "col7",
                               "style": {
-                                "paddingRight": "0"
+                                "paddingLeft": "15px",
+                                "paddingRight": "0px",
+                                "verticalAlign": "baseline"
+                              },
+                              "type": "col"
+                            },
+                            {
+                              "class": "align-items-center d-flex justify-content-end col-2",
+                              "components": [
+                                {
+                                  "icon": "clear",
+                                  "name": "icon0",
+                                  "style": {
+                                    "color": "#a71330",
+                                    "fontSize": "20px",
+                                    "fontWeight": "normal"
+                                  },
+                                  "type": "icon"
+                                }
+                              ],
+                              "name": "col9",
+                              "style": {
+                                "paddingRight": "25px",
+                                "textAlign": "right"
                               },
                               "type": "col"
                             }
                           ],
-                          "name": "row5",
-                          "style": {
-                            "marginBottom": "-5px",
-                            "paddingBottom": "0",
-                            "paddingTop": "0"
-                          },
+                          "name": "row4",
                           "type": "row"
-                        },
-                        {
-                          "name": "label11",
-                          "style": {
-                            "color": "#3a474d",
-                            "fontSize": "14px",
-                            "fontStyle": "normal",
-                            "fontWeight": "normal",
-                            "lineHeight": "18px",
-                            "width": "100%"
-                          },
-                          "text": "${data.Beschreibung}",
-                          "type": "label",
-                          "visible": true
-                        },
-                        {
-                          "name": "label8",
-                          "style": {
-                            "color": "#3a474d",
-                            "fontSize": "14px",
-                            "fontStyle": "normal",
-                            "fontWeight": "normal",
-                            "lineHeight": "16px",
-                            "width": "100%"
-                          },
-                          "text": "${data.Beschreibung2}",
-                          "type": "label",
-                          "visible": "${data.Beschreibung2 != null}"
-                        },
-                        {
-                          "name": "label10",
-                          "style": {
-                            "color": "#3a474d",
-                            "fontSize": "14px",
-                            "fontStyle": "normal",
-                            "fontWeight": "normal",
-                            "lineHeight": "16px",
-                            "width": "100%"
-                          },
-                          "text": "${data.StdKreditorName}",
-                          "type": "label",
-                          "visible": "${data.StdKreditorName != null}"
                         }
                       ],
-                      "name": "col7",
+                      "name": "card0",
                       "style": {
+                        "backgroundColor": "#f2f3fd",
+                        "marginBottom": "1px",
+                        "marginTop": "1px",
+                        "paddingBottom": "10px",
                         "paddingLeft": "15px",
-                        "paddingRight": "0px",
-                        "verticalAlign": "baseline"
+                        "paddingRight": "5px",
+                        "paddingTop": "10px"
                       },
-                      "type": "col"
-                    },
-                    {
-                      "attributes": [],
-                      "class": "col-2 align-items-center d-flex justify-content-end",
-                      "components": [
-                        {
-                          "attributes": [],
-                          "name": "label3",
-                          "style": {
-                            "color": "#3a474d",
-                            "fontSize": "22px",
-                            "fontStyle": "normal",
-                            "fontWeight": "normal",
-                            "paddingRight": "15px",
-                            "textAlign": "right",
-                            "width": "100%"
-                          },
-                          "text": "${data.ErfasstAnzahl}",
-                          "type": "label",
-                          "visible": true
-                        }
-                      ],
-                      "name": "col13",
-                      "style": {
-                        "paddingLeft": "15px",
-                        "paddingRight": "0px",
-                        "verticalAlign": "baseline"
-                      },
-                      "type": "col"
-                    },
-                    {
-                      "class": "align-items-center d-flex justify-content-end col-2",
-                      "components": [
-                        {
-                          "icon": "backspace",
-                          "name": "icon0",
-                          "style": {
-                            "color": "#a71330",
-                            "fontSize": "16px",
-                            "fontWeight": "normal"
-                          },
-                          "type": "icon",
-                          "visible": "${data.GeloeschtAm == null}"
-                        },
-                        {
-                          "icon": "delete",
-                          "name": "icon2",
-                          "style": {
-                            "color": "#88989b",
-                            "fontSize": "16px",
-                            "fontWeight": "normal"
-                          },
-                          "type": "icon",
-                          "visible": "${data.GeloeschtAm != null}"
-                        }
-                      ],
-                      "name": "col9",
-                      "style": {
-                        "height": "40px",
-                        "paddingRight": "25px",
-                        "paddingTop": "5px",
-                        "textAlign": "right"
-                      },
-                      "type": "col"
+                      "type": "card",
+                      "visible": true
                     }
                   ],
-                  "name": "row4",
-                  "type": "row"
+                  "type": "datalist",
+                  "wrapItems": false
                 }
               ],
-              "name": "card0",
-              "style": {
-                "borderBottom": "1px dotted #a71330",
-                "paddingBottom": "4px",
-                "paddingLeft": "15px",
-                "paddingRight": "5px",
-                "paddingTop": "0"
-              },
-              "type": "card",
-              "visible": true
+              "name": "col18",
+              "type": "col"
             }
           ],
-          "type": "datalist",
-          "wrapItems": false
+          "name": "row12",
+          "style": {
+            "backgroundColor": "#f2f3fd"
+          },
+          "type": "row"
         },
         {
           "name": "label2",
           "style": {
             "backgroundColor": "#e6c54f",
             "marginBottom": "10px",
-            "marginTop": "20px",
             "width": "100%"
           },
           "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren die Parameter erstellt werden!",
@@ -891,20 +1086,9 @@
       {
         "code": "setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
         "type": "execute"
-      },
-      {
-        "name": "globalArtikelID",
-        "type": "set",
-        "value": "sessionStorage.getItem(\"globalArtikelID\")"
-      },
-      {
-        "detail": "${globalArtikelID}",
-        "severity": "info",
-        "summary": "test",
-        "type": "notify"
       }
     ]
   },
   "layout": "InventurErfassen",
-  "name": "Erfassen"
+  "name": "Copy of Erfassen 2"
 }

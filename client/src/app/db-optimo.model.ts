@@ -97,15 +97,7 @@ export interface InventurErfassung {
   ArtikelID: number;
   ErfasstAm: string;
   ErfasstAnzahl: number;
-  Notiz: string;
-}
-
-export interface InventurErfassungGeloescht {
-  ErfassungGeloeschtID: number;
-  ArtikelID: number;
   GeloeschtAm: string;
-  ErfasstAm: string;
-  ErfasstAnzahl: number;
   Notiz: string;
 }
 
@@ -280,6 +272,7 @@ export interface VwInventurErfassung {
   ArtikelID: number;
   ErfasstAm: string;
   ErfasstAnzahl: number;
+  GeloeschtAm: string;
   Artikelnummer: string;
   Beschreibung: string;
   Beschreibung2: string;

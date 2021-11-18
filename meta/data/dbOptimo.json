@@ -360,11 +360,6 @@
               "inversePropertyName": "InventurArtikel",
               "name": "InventurErfassungs",
               "type": "InventurErfassung"
-            },
-            {
-              "inversePropertyName": "InventurArtikel",
-              "name": "InventurErfassungGeloeschts",
-              "type": "InventurErfassungGeloescht"
             }
           ]
         },
@@ -419,12 +414,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/InventurErfassung"
-          }
-        },
-        "InventurErfassungGeloeschts": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/InventurErfassungGeloescht"
           }
         }
       }
@@ -604,58 +593,9 @@
           "x-nullable": false,
           "type": "integer"
         },
-        "Notiz": {
-          "type": "string",
-          "length": 65535
-        }
-      }
-    },
-    "InventurErfassungGeloescht": {
-      "x-table": "def.InventurErfassungGeloescht",
-      "resource": "InventurErfassungGeloeschts",
-      "required": [
-        "ArtikelID",
-        "GeloeschtAm",
-        "ErfasstAm",
-        "ErfasstAnzahl"
-      ],
-      "properties": {
-        "ErfassungGeloeschtID": {
-          "x-key": true,
-          "x-identity": true,
-          "x-nullable": false,
-          "type": "integer"
-        },
-        "InventurArtikel": {
-          "type": "object",
-          "$ref": "#/definitions/InventurArtikel"
-        },
-        "ArtikelID": {
-          "x-nullable": false,
-          "type": "integer",
-          "x-foreignKey": {
-            "parentTable": "InventurArtikel",
-            "parentEntityType": "InventurArtikel",
-            "type": "InventurArtikel",
-            "principalKey": "ArtikelID",
-            "name": "InventurArtikel",
-            "textProperty": "Artikelnummer",
-            "navigationProperty": "InventurErfassungGeloeschts"
-          }
-        },
         "GeloeschtAm": {
-          "x-nullable": false,
           "type": "string",
           "format": "date-time"
-        },
-        "ErfasstAm": {
-          "x-nullable": false,
-          "type": "string",
-          "format": "date-time"
-        },
-        "ErfasstAnzahl": {
-          "x-nullable": false,
-          "type": "integer"
         },
         "Notiz": {
           "type": "string",
@@ -1399,6 +1339,10 @@
         "ErfasstAnzahl": {
           "x-nullable": false,
           "type": "integer"
+        },
+        "GeloeschtAm": {
+          "type": "string",
+          "format": "date-time"
         },
         "Artikelnummer": {
           "x-nullable": false,
@@ -2342,102 +2286,6 @@
           "201": {
             "schema": {
               "$ref": "#/definitions/InventurErfassung"
-            }
-          },
-          "default": {
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/InventurErfassungGeloeschts": {
-      "get": {
-        "operationId": "getInventurErfassungGeloeschts",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "$filter",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$top",
-            "type": "integer"
-          },
-          {
-            "in": "query",
-            "name": "$skip",
-            "type": "integer"
-          },
-          {
-            "in": "query",
-            "name": "$orderby",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$count",
-            "type": "boolean"
-          },
-          {
-            "in": "query",
-            "name": "$expand",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "schema": {
-              "properties": {
-                "value": {
-                  "items": {
-                    "$ref": "#/definitions/InventurErfassungGeloescht"
-                  },
-                  "type": "array"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "default": {
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "post": {
-        "operationId": "createInventurErfassungGeloescht",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "$expand",
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "InventurErfassungGeloescht",
-            "schema": {
-              "$ref": "#/definitions/InventurErfassungGeloescht"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "schema": {
-              "$ref": "#/definitions/InventurErfassungGeloescht"
             }
           },
           "default": {
@@ -4057,83 +3905,6 @@
             "name": "InventurErfassung",
             "schema": {
               "$ref": "#/definitions/InventurErfassung"
-            }
-          }
-        ],
-        "responses": {
-          "204": {},
-          "default": {
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/InventurErfassungGeloeschts({ErfassungGeloeschtID})": {
-      "delete": {
-        "operationId": "deleteInventurErfassungGeloescht",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "ErfassungGeloeschtID",
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "204": {},
-          "default": {
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "get": {
-        "operationId": "getInventurErfassungGeloeschtByErfassungGeloeschtID",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "$expand",
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "ErfassungGeloeschtID",
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "schema": {
-              "$ref": "#/definitions/InventurErfassungGeloescht"
-            }
-          },
-          "default": {
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "patch": {
-        "operationId": "updateInventurErfassungGeloescht",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "$expand",
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "ErfassungGeloeschtID",
-            "type": "integer"
-          },
-          {
-            "in": "body",
-            "name": "InventurErfassungGeloescht",
-            "schema": {
-              "$ref": "#/definitions/InventurErfassungGeloescht"
             }
           }
         ],
