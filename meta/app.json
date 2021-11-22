@@ -28,13 +28,7 @@
   "namespaces": [],
   "navigation": [
     "Dashboard",
-    "Erfassen",
-    "Copy of Dashboard",
-    "Copy of Erfassen",
-    "InventurErfassung",
-    "InventurArtikel",
-    "Copy of Erfassen 1",
-    "Copy of Erfassen 2"
+    "Erfassen"
   ],
   "pages": [
     "Dashboard",
@@ -42,22 +36,14 @@
     "zzDashboard V1",
     "Erfassen",
     "zzDashboard V2",
-    "zzErfassenAuswahlLagerorte",
+    "zzErfassenAuswahlLagerorte V1",
     "zzDashboard V3",
-    "Copy of Dashboard",
-    "Copy of Erfassen",
-    "InventurErfassung",
-    "Add InventurErfassung",
-    "Edit InventurErfassung",
+    "zzDashboard V4",
+    "zzErfassen V1",
     "ErfassenArtikelAuswahl",
-    "InventurArtikel",
-    "Add InventurArtikel",
-    "Edit InventurArtikel",
-    "Copy of Infos",
-    "Copy of ErfassenArtikelAuswahl",
+    "zzErfassenArtikelAuswahl V1",
     "MeldungLoeschen",
-    "Copy of Erfassen 1",
-    "Copy of Erfassen 2"
+    "zzErfassen V2"
   ],
   "port": 8000,
   "serverLang": "cs",

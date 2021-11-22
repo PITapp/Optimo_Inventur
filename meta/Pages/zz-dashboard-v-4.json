@@ -8,19 +8,15 @@
           "count": "${rstLagerorteCount}",
           "data": "${rstLagerorte}",
           "defaultRowText": "Template for index",
-          "emptyText": "Lagerorte laden...",
+          "emptyText": "Lagerorte werden geladen...",
           "events": {
             "loadData": [
               {
                 "name": "dbOptimo.getInventurBases",
                 "parameters": [
                   {
-                    "name": "$expand",
-                    "value": "InventurBasisStatus"
-                  },
-                  {
                     "name": "$orderby",
-                    "value": "LagerortNummer, LagerortTitel"
+                    "value": "LagerortNummer"
                   }
                 ],
                 "then": [
@@ -106,29 +102,27 @@
                           "name": "label3",
                           "style": {
                             "color": "#6264A7",
-                            "fontSize": "14px",
+                            "fontSize": "16px",
                             "fontStyle": "normal",
                             "fontWeight": "normal",
-                            "lineHeight": "16px",
+                            "lineHeight": "18px",
                             "paddingTop": "6px"
                           },
-                          "text": "${data.InventurBasisStatus.IconStatus}",
+                          "text": "127 gezählt",
                           "type": "label"
                         },
                         {
                           "name": "label1",
                           "style": {
-                            "color": "#002171",
-                            "fontSize": "14px",
+                            "color": "#a71330",
+                            "fontSize": "16px",
                             "fontStyle": "normal",
                             "fontWeight": "normal",
-                            "lineHeight": "16px",
-                            "marginLeft": "5px",
+                            "lineHeight": "18px",
                             "paddingTop": "6px"
                           },
-                          "text": "${data.LagerortStatus}",
-                          "type": "label",
-                          "visible": true
+                          "text": " · in Bearbeitung",
+                          "type": "label"
                         }
                       ],
                       "name": "col1",
@@ -166,7 +160,7 @@
               ],
               "name": "card0",
               "style": {
-                "marginBottom": "2px",
+                "marginBottom": "10px",
                 "paddingBottom": "10px",
                 "paddingLeft": "15px",
                 "paddingRight": "5px",
@@ -215,10 +209,8 @@
           "name": "card8",
           "style": {
             "backgroundColor": "#FFFFFF",
-            "borderTop": "1px dotted #a71330",
             "display": "block",
             "height": "65px",
-            "marginTop": "2px",
             "paddingTop": "11px"
           },
           "type": "card",
@@ -270,7 +262,7 @@
       {
         "name": "onClickStartErfassen",
         "type": "set",
-        "value": "(data) => {\n    if (this.dialogRef) {\n        this.dialogRef.close();\n    }\n    sessionStorage.setItem(\"globalArtikelID\", \"0\");\n    this.router.navigate(['erfassen', data.InventurID]);\n}"
+        "value": "(data) => {\n\nconsole.log(data);\n\n    if (this.dialogRef) {\n        this.dialogRef.close();\n    }\n    this.router.navigate(['erfassen', data.InventurID]);\n}"
       },
       {
         "name": "onClickStartInfos",
@@ -280,5 +272,5 @@
     ]
   },
   "layout": "InventurStart",
-  "name": "Dashboard"
+  "name": "zzDashboard V4"
 }

@@ -23,7 +23,7 @@
   </div>
   <div class="row" [ngStyle]="{'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '15px'}">
     <div class="col-10" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'paddingLeft': '10px', 'paddingRight': '10px', 'textAlign': 'right'}">
-      <rz-textbox #textboxArtikelnummer placeholder="Artikelnummer" [readOnly]="true" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#3a474d', 'fontSize': '32px', 'fontWeight': 'normal', 'height': '40px', 'lineHeight': '32px', 'width': '100%'}" name="textboxArtikelnummer">
+      <rz-textbox #textboxArtikelnummer placeholder="Artikelnummer" [readOnly]="true" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#3a474d', 'fontSize': '32px', 'fontWeight': 'normal', 'height': '40px', 'lineHeight': '32px', 'width': '100%'}" [(ngModel)]="dsoArtikel && dsoArtikel.Artikelnummer" name="textboxArtikelnummer">
       </rz-textbox>
     </div>
     <div class="col-2" [ngStyle]="{'paddingLeft': '0', 'paddingRight': '10px', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
@@ -33,15 +33,15 @@
   </div>
   <div [ngStyle]="{'backgroundColor': '#e9e9e9', 'marginLeft': '10px', 'marginRight': '10px', 'marginTop': '10px', 'paddingBottom': '10px', 'paddingLeft': '10px', 'paddingRight': '0', 'paddingTop': '10px'}" class="row">
     <div class="col-10" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'textAlign': 'right'}">
-      <rz-label #label4 [style]="{'color': '#002171', 'fontSize': '18px', 'fontWeight': 'normal', 'lineHeight': '20px', 'textAlign': 'left', 'width': '100%'}" text="Aventura Premium EL 4 Funk/MemoSM über 100/200_zzz">
+      <rz-label #label4 [style]="{'color': '#002171', 'fontSize': '18px', 'fontWeight': 'normal', 'lineHeight': '20px', 'textAlign': 'left', 'width': '100%'}" [text]="dsoArtikel?.Beschreibung">
       </rz-label>
-      <rz-label #label6 [style]="{'color': '#3a474d', 'fontSize': '14px', 'fontWeight': 'normal', 'lineHeight': '16px', 'textAlign': 'left', 'width': '100%'}" text="Innenmaß 450x450x1460">
+      <rz-label #label6 [style]="{'color': '#3a474d', 'fontSize': '14px', 'fontWeight': 'normal', 'lineHeight': '16px', 'textAlign': 'left', 'width': '100%'}" [text]="dsoArtikel?.Beschreibung2" *ngIf="dsoArtikel?.Beschreibung2 != null">
       </rz-label>
-      <rz-label #label9 [style]="{'color': '#3a474d', 'fontSize': '14px', 'fontWeight': 'normal', 'lineHeight': '16px', 'textAlign': 'left', 'width': '100%'}" text="Schweitzer Sperrholzwerk GmbH">
+      <rz-label #label9 [style]="{'color': '#3a474d', 'fontSize': '14px', 'fontWeight': 'normal', 'lineHeight': '16px', 'textAlign': 'left', 'width': '100%'}" [text]="dsoArtikel?.StdKreditorName" *ngIf="dsoArtikel?.StdKreditorName != null">
       </rz-label>
     </div>
     <div class="col-2" [ngStyle]="{'paddingLeft': '0', 'paddingRight': '0', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
-      <rz-button #button0 buttonStyle="light" icon="clear" [style]="{'backgroundColor': '#e9e9e9', 'color': '#a71330', 'fontSize': '28px', 'fontWeight': 'normal', 'height': '100%', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}" (click)="button0Click($event)">
+      <rz-button #buttonArtikelEntfernen buttonStyle="secondary" icon="clear" size="md" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#a71330', 'fontSize': '28px', 'fontWeight': 'normal', 'height': '100%', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}" (click)="buttonArtikelEntfernenClick($event)">
       </rz-button>
     </div>
   </div>
@@ -71,10 +71,10 @@
       </div>
     </div>
   </rz-card>
-  <rz-datalist #datalistErfassung [allowPaging]="false" [count]="rstErfassungCount" [data]="rstErfassung" defaultRowText="Template for index" emptyText="Erfasste Daten werden geladen..." [pageSize]="3" [style]="{'borderTop': '1px dotted #a71330', 'marginTop': '5px'}" [wrapItems]="false" (loadData)="datalistErfassungLoadData($event)">
+  <rz-datalist #datalistErfassung [allowPaging]="false" [count]="rstErfassungCount" [data]="rstErfassung" defaultRowText="Template for index" emptyText="Protokoll Erfassung laden..." [pageSize]="3" [style]="{'borderTop': '1px dotted #a71330', 'marginTop': '5px'}" [wrapItems]="false" (loadData)="datalistErfassungLoadData($event)">
     <ng-template let-data datalistTemplate>
       <rz-card #card2 [style]="{'color': '#a71330', 'fontWeight': 'bold', 'marginBottom': '-5px', 'marginLeft': '15px', 'marginRight': '15px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0'}" *ngIf="data?.GeloeschtAm != null">
-        <rz-label #label0 [style]="{'fontSize': '12px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '14px'}" text=">>> Gelöscht am 18.11.2021 12:57">
+        <rz-label #label0 [style]="{'fontSize': '12px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '14px'}" text=">>> Gelöscht am {{data?.GeloeschtAm | date:'dd.MM.yyyy HH:mm'}}">
         </rz-label>
       </rz-card>
       <rz-card #card0 [style]="{'borderBottom': '1px dotted #a71330', 'paddingBottom': '4px', 'paddingLeft': '15px', 'paddingRight': '5px', 'paddingTop': '0'}" (click)="onClickErfassungLoeschen(data)">

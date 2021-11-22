@@ -1,0 +1,138 @@
+{
+  "access": [],
+  "components": [
+    {
+      "components": [
+        {
+          "allowPaging": false,
+          "count": "${rstLagerorteCount}",
+          "data": "${rstLagerorte}",
+          "defaultRowText": "Template for index",
+          "emptyText": "Lagerorte werden geladen...",
+          "events": {
+            "loadData": [
+              {
+                "name": "dbOptimo.getInventurBases",
+                "parameters": [
+                  {
+                    "name": "$orderby",
+                    "value": "LagerortNummer"
+                  }
+                ],
+                "then": [
+                  {
+                    "name": "rstLagerorte",
+                    "type": "set",
+                    "value": "${result.value}"
+                  },
+                  {
+                    "name": "rstLagerorteCount",
+                    "type": "set",
+                    "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                  }
+                ],
+                "type": "invoke"
+              }
+            ]
+          },
+          "name": "datalistLagerorte",
+          "pageSize": 3,
+          "style": {
+            "border": "1px solid #ffffff",
+            "marginBottom": "10px",
+            "marginTop": "-11px"
+          },
+          "template": [
+            {
+              "name": "row0",
+              "style": {
+                "backgroundColor": "#e9e9e9",
+                "height": "1px"
+              },
+              "type": "row"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "(click)",
+                  "value": "onClickSetLagerort(data)"
+                }
+              ],
+              "components": [
+                {
+                  "class": "col-2 align-items-center d-flex",
+                  "components": [
+                    {
+                      "name": "label1",
+                      "style": {
+                        "color": "#3a474d",
+                        "fontSize": "30px",
+                        "lineHeight": "34px"
+                      },
+                      "text": "${data.LagerortNummer}",
+                      "type": "label"
+                    }
+                  ],
+                  "name": "col21",
+                  "style": {
+                    "fontSize": "16px",
+                    "lineHeight": "16px",
+                    "textAlign": "right"
+                  },
+                  "type": "col"
+                },
+                {
+                  "class": "align-items-center d-flex col-10 justify-content-start",
+                  "components": [
+                    {
+                      "name": "label0",
+                      "style": {
+                        "color": "#3a474d",
+                        "fontSize": "18px",
+                        "lineHeight": "22px"
+                      },
+                      "text": "${data.LagerortTitel}",
+                      "type": "label"
+                    }
+                  ],
+                  "name": "col1",
+                  "style": {
+                    "marginTop": "3px",
+                    "paddingLeft": "15px",
+                    "paddingRight": "0px",
+                    "verticalAlign": "baseline"
+                  },
+                  "type": "col"
+                }
+              ],
+              "name": "row1",
+              "style": {
+                "height": "55px"
+              },
+              "type": "row"
+            }
+          ],
+          "type": "datalist",
+          "wrapItems": false
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "code": "this.datalistLagerorte.load();",
+        "type": "execute"
+      },
+      {
+        "name": "onClickSetLagerort",
+        "type": "set",
+        "value": "(data) => {\n    this.dialogRef.close(data.InventurID);\n}"
+      }
+    ]
+  },
+  "layout": "InventurErfassen",
+  "name": "zzErfassenAuswahlLagerorte V1"
+}

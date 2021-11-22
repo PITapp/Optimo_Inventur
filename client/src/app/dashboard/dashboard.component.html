@@ -1,5 +1,5 @@
 <rz-content #content1 container="main">
-  <rz-datalist #datalistLagerorte [allowPaging]="false" [count]="rstLagerorteCount" [data]="rstLagerorte" defaultRowText="Template for index" emptyText="Lagerorte werden geladen..." [pageSize]="3" [style]="{}" [wrapItems]="false" (loadData)="datalistLagerorteLoadData($event)">
+  <rz-datalist #datalistLagerorte [allowPaging]="false" [count]="rstLagerorteCount" [data]="rstLagerorte" defaultRowText="Template for index" emptyText="Lagerorte laden..." [pageSize]="3" [style]="{}" [wrapItems]="false" (loadData)="datalistLagerorteLoadData($event)">
     <ng-template let-data datalistTemplate>
       <rz-card #card0 [style]="{'marginBottom': '2px', 'paddingBottom': '10px', 'paddingLeft': '15px', 'paddingRight': '5px', 'paddingTop': '10px'}" (click)="onClickStartErfassen(data)">
         <div class="row">
@@ -10,9 +10,9 @@
           <div class="col-8" [ngStyle]="{'paddingLeft': '15px', 'paddingRight': '0px', 'verticalAlign': 'baseline'}">
             <rz-heading #heading4 size="H5" [style]="{'color': '#3a474d', 'fontSize': '20px', 'fontWeight': 'normal', 'lineHeight': '22px', 'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '0'}" [text]="data?.LagerortTitel">
             </rz-heading>
-            <rz-label #label3 [style]="{'color': '#6264A7', 'fontSize': '16px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '18px', 'paddingTop': '6px'}" [text]="data?.InventurBasisStatus?.IconStatus">
+            <rz-label #label3 [style]="{'color': '#6264A7', 'fontSize': '14px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '16px', 'paddingTop': '6px'}" [text]="data?.InventurBasisStatus?.IconStatus">
             </rz-label>
-            <rz-label #label1 [style]="{'color': '#002171', 'fontSize': '16px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '18px', 'marginLeft': '5px', 'paddingTop': '6px'}" [text]="data?.LagerortStatus">
+            <rz-label #label1 [style]="{'color': '#002171', 'fontSize': '14px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '16px', 'marginLeft': '5px', 'paddingTop': '6px'}" [text]="data?.LagerortStatus">
             </rz-label>
           </div>
           <div class="align-items-center d-flex justify-content-end col-2" [ngStyle]="{'textAlign': 'right'}">
@@ -23,7 +23,7 @@
       </rz-card>
     </ng-template>
   </rz-datalist>
-  <rz-card #card8 [style]="{'backgroundColor': '#FFFFFF', 'display': 'block', 'height': '65px', 'paddingTop': '11px'}" (click)="onClickStartInfos()">
+  <rz-card #card8 [style]="{'backgroundColor': '#FFFFFF', 'borderTop': '1px dotted #a71330', 'display': 'block', 'height': '65px', 'marginTop': '2px', 'paddingTop': '11px'}" (click)="onClickStartInfos()">
     <rz-heading #heading8 size="H6" [style]="{'color': '#3a474d', 'fontWeight': 'normal', 'marginBottom': '0px', 'textAlign': 'center'}" text="© 2021 Optimo Schlafsysteme GmbH">
     </rz-heading>
     <rz-heading #heading1 size="H6" [style]="{'color': '#6264A7', 'fontWeight': 'normal', 'marginBottom': '0px', 'textAlign': 'center'}" text="Version 1.01.027">

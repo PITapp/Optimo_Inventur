@@ -114,7 +114,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
     if (this.dialogRef) {
         this.dialogRef.close();
     }
-    sessionStorage.setItem("globalArtikelID", "");
+    sessionStorage.setItem("globalArtikelID", "0");
     this.router.navigate(['erfassen', data.InventurID]);
 };
 
@@ -127,7 +127,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   datalistLagerorteLoadData(event: any) {
-    this.dbOptimo.getInventurBases(null, null, null, null, null, `InventurBasisStatus`, null, null)
+    this.dbOptimo.getInventurBases(null, null, null, `LagerortNummer, LagerortTitel`, null, `InventurBasisStatus`, null, null)
     .subscribe((result: any) => {
       this.rstLagerorte = result.value;
 

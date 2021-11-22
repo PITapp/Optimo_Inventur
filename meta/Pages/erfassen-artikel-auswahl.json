@@ -333,7 +333,7 @@
       {
         "name": "onClickNavigateBack",
         "type": "set",
-        "value": "(data) => {\n    if (this.dialogRef) {\n      this.dialogRef.close();\n    }\n    if (data == null) {\n      sessionStorage.setItem(\"globalArtikelID\", \"\");\n    } else {\n      sessionStorage.setItem(\"globalArtikelID\", data.ArtikelID);\n    }\n    this._location.back();\n}"
+        "value": "(data) => {\n    if (this.dialogRef) {\n      this.dialogRef.close();\n    }\n    if (data != null) {\n      sessionStorage.setItem(\"globalArtikelID\", data.ArtikelID);\n    }\n    this._location.back();\n}"
       }
     ]
   },
