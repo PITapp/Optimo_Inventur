@@ -21,14 +21,17 @@
     "InventurStart",
     "InventurInfos",
     "InventurErfassen",
-    "InventurLeer"
+    "InventurLeer",
+    "InventurDevice",
+    "InventurMeldung"
   ],
   "logo": "",
   "name": "Optimo Inventur",
   "namespaces": [],
   "navigation": [
     "Dashboard",
-    "Erfassen"
+    "Erfassen",
+    "zzErfassen V3"
   ],
   "pages": [
     "Dashboard",
@@ -43,7 +46,11 @@
     "ErfassenArtikelAuswahl",
     "zzErfassenArtikelAuswahl V1",
     "MeldungLoeschen",
-    "zzErfassen V2"
+    "zzErfassen V2",
+    "zzErfassen V3",
+    "Copy of DeviceAnmelden",
+    "DeviceAnmelden",
+    "MeldungOK"
   ],
   "port": 8000,
   "serverLang": "cs",
@@ -245,7 +252,7 @@
     "$scheduler-view-selected-color": "#ffffff",
     "$scrollbar-background-color": "#ffffff",
     "$scrollbar-border-radius": "0px",
-    "$scrollbar-color": "#479cc8",
+    "$scrollbar-color": "#d0021b",
     "$secondary": "#3ba5fc",
     "$selectbar-background-color": "#ffffff",
     "$selectbar-border": "1px solid #dadfe2",

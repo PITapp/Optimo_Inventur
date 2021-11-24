@@ -29,7 +29,8 @@ export class ErfassenArtikelAuswahlGenerated implements AfterViewInit, OnInit, O
   @ViewChild('icon0') icon0: IconComponent;
   @ViewChild('label2') label2: LabelComponent;
   @ViewChild('textboxArtikelSuchen') textboxArtikelSuchen: TextBoxComponent;
-  @ViewChild('buttonArtikelSuchen') buttonArtikelSuchen: ButtonComponent;
+  @ViewChild('buttonSuchenLoeschen') buttonSuchenLoeschen: ButtonComponent;
+  @ViewChild('buttonTastatur') buttonTastatur: ButtonComponent;
   @ViewChild('datalistArtikel') datalistArtikel: DataListComponent;
 
   router: Router;
@@ -120,8 +121,13 @@ export class ErfassenArtikelAuswahlGenerated implements AfterViewInit, OnInit, O
 };
   }
 
+  buttonSuchenLoeschenClick(event: any) {
+    this.textboxArtikelSuchen.value = null;
+this.datalistArtikel.load();
+  }
+
   datalistArtikelLoadData(event: any) {
-    this.dbOptimo.getInventurArtikels(null, 50, null, null, null, null, null, null)
+    this.dbOptimo.getInventurArtikels(`InventurID eq ${this.parameters.InventurID} and (contains(tolower(Artikelnummer),tolower('${this.textboxArtikelSuchen.value || ''}')) OR contains(tolower(Beschreibung),tolower('${this.textboxArtikelSuchen.value || ''}')))`, 50, null, `Artikelnummer`, null, null, null, null)
     .subscribe((result: any) => {
       this.rstArtikel = result.value;
 

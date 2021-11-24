@@ -21,6 +21,13 @@ namespace OptimoInventur.Models.DbOptimo
     }
 
     public InventurArtikel InventurArtikel { get; set; }
+    public string DeviceNummer
+    {
+      get;
+      set;
+    }
+
+    public InventurDevice InventurDevice { get; set; }
     public DateTime ErfasstAm
     {
       get;

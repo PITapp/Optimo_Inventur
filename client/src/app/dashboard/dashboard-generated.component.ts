@@ -19,6 +19,7 @@ import { IconComponent } from '@radzen/angular/dist/icon';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 
 import { ConfigService } from '../config.service';
+import { MeldungOkComponent } from '../meldung-ok/meldung-ok.component';
 
 import { DbOptimoService } from '../db-optimo.service';
 
@@ -29,6 +30,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('card8') card8: CardComponent;
   @ViewChild('heading8') heading8: HeadingComponent;
   @ViewChild('heading1') heading1: HeadingComponent;
+  @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('label0') label0: LabelComponent;
   @ViewChild('buttonNavigateToErfassen') buttonNavigateToErfassen: ButtonComponent;
 
@@ -57,9 +59,12 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   dbOptimo: DbOptimoService;
   onClickStartErfassen: any;
   onClickStartInfos: any;
+  strDeviceNummer: any;
+  dsoDevice: any;
   parameters: any;
   rstLagerorte: any;
   rstLagerorteCount: any;
+  globalDeviceNummer: any;
 
   constructor(private injector: Injector) {
   }
@@ -111,11 +116,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.datalistLagerorte.load();
 
     this.onClickStartErfassen = (data) => {
-    if (this.dialogRef) {
-        this.dialogRef.close();
-    }
-    sessionStorage.setItem("globalArtikelID", "0");
-    this.router.navigate(['erfassen', data.InventurID]);
+    this.buttonNavigateToErfassenClick(data);
 };
 
     this.onClickStartInfos = () => {
@@ -124,6 +125,15 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
     }
     this.router.navigate(['infos']);
 };
+
+    this.strDeviceNummer = localStorage.getItem("globalDeviceNummer");
+
+    this.dbOptimo.getInventurDevices(`DeviceNummer eq ${this.strDeviceNummer}`, null, null, null, null, null, null, null)
+    .subscribe((result: any) => {
+      this.dsoDevice = result.value[0];
+    }, (result: any) => {
+
+    });
   }
 
   datalistLagerorteLoadData(event: any) {
@@ -138,9 +148,35 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   buttonNavigateToErfassenClick(event: any) {
-    if (this.dialogRef) {
-      this.dialogRef.close();
+    this.globalDeviceNummer = localStorage.getItem("globalDeviceNummer");
+
+    sessionStorage.setItem("globalArtikelID", "0");
+
+    if (event.LagerortStatus == 'Erfassung offen' && this.globalDeviceNummer != null) {
+      if (this.dialogRef) {
+        this.dialogRef.close();
+      }
+      this.router.navigate(['erfassen', event.InventurID]);
     }
-    this.router.navigate(['erfassen', 0]);
+
+    if (event.LagerortStatus == 'Erfassung abgeschlossen' && this.globalDeviceNummer != null) {
+      this.notificationService.notify({ severity: "error", summary: `Erfassung abgeschlossen`, detail: `Die Erfassung für diesen Lagerort wurde bereits abgeschlossen!`, duration: 5000 });
+    }
+
+    if (event.LagerortStatus == 'Erfassung zur Zeit gesperrt' && this.globalDeviceNummer != null) {
+      this.notificationService.notify({ severity: "error", summary: `Erfassung zur Zeit gesperrt`, detail: `Die Erfassung ist zur Zeit gesperrt, weil ein Mitarbeiter für diesen Lagerort gerade Daten erfasst!`, duration: 5000 });
+    }
+
+    if (this.globalDeviceNummer == null) {
+      this.dialogService.open(MeldungOkComponent, { parameters: {strMeldung: "Dieses Gerät wurde noch nicht angemeldet. Nach Bestätigung dieser Benachrichtigung wird ein Dialogfenster mit den verfügbaren Geräte Anmeldungen geöffnet. Wählen Sie die passende Gerätenummer für Ihr Gerät aus. Nach der Auswahl ist dieses Gerät automatisch unter der gewählten Gerätenummer angemeldet."}, title: `Info Gerät` })
+          .afterClosed().subscribe(result => {
+                  if (result == 'OK') {
+          if (this.dialogRef) {
+            this.dialogRef.close();
+          }
+          this.router.navigate(['device-anmelden']);
+        }
+      });
+    }
   }
 }

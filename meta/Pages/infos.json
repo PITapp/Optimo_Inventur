@@ -8,12 +8,74 @@
             {
               "components": [
                 {
+                  "name": "label0",
+                  "style": {
+                    "width": "100%"
+                  },
+                  "text": "Dieses Gerät wurde Registriert am 23.11.2021 09:26",
+                  "type": "label"
+                },
+                {
+                  "name": "label2",
+                  "style": {
+                    "width": "100%"
+                  },
+                  "text": "Gerätenummer: 10",
+                  "type": "label"
+                },
+                {
+                  "name": "label3",
+                  "style": {
+                    "width": "100%"
+                  },
+                  "text": "Gerätename: Lager Nord",
+                  "type": "label"
+                },
+                {
+                  "name": "label5",
+                  "style": {
+                    "width": "100%"
+                  },
+                  "text": "Info:",
+                  "type": "label"
+                },
+                {
+                  "name": "label1",
+                  "style": {
+                    "width": "100%"
+                  },
+                  "text": "Letzte Anmeldung: 23.11.2021 07:35 ",
+                  "type": "label"
+                },
+                {
+                  "name": "label4",
+                  "style": {
+                    "width": "100%"
+                  },
+                  "text": "Letzte Abmeldung: --- wird noch verwendet ---",
+                  "type": "label"
+                },
+                {
+                  "name": "button0",
+                  "style": {
+                    "width": "100%"
+                  },
+                  "text": "Gerät abmelden",
+                  "type": "button"
+                }
+              ],
+              "selected": true,
+              "text": "Gerät"
+            },
+            {
+              "components": [
+                {
                   "content": "<div innerHTML='${htmlVersionen}'></div>",
                   "name": "html1",
                   "type": "html"
                 }
               ],
-              "selected": true,
+              "selected": false,
               "text": "Version"
             },
             {
@@ -31,8 +93,9 @@
                   "type": "col"
                 }
               ],
+              "icon": "",
               "selected": false,
-              "text": "Handbuch"
+              "text": "Hilfe"
             }
           ],
           "name": "tabs0",

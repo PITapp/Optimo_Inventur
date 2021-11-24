@@ -8,12 +8,16 @@
       <rz-label #label2 [style]="{'color': '#a71330', 'fontFamily': 'courier new,courier,monospace', 'fontSize': '16px'}" text="Artikel auswählen">
       </rz-label>
     </div>
-    <div class="col-10" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'marginBottom': '15px', 'marginTop': '13px', 'paddingLeft': '25px', 'paddingRight': '10px', 'textAlign': 'right'}">
-      <rz-textbox #textboxArtikelSuchen placeholder="Suchen" [readOnly]="false" [style]="{'fontWeight': 'normal', 'height': '40px', 'width': '100%'}" name="textboxArtikelSuchen">
+    <div class="col-8" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'marginBottom': '15px', 'marginTop': '13px', 'paddingLeft': '25px', 'paddingRight': '10px', 'textAlign': 'right'}">
+      <rz-textbox #textboxArtikelSuchen placeholder="Suchen..." [readOnly]="false" [style]="{'fontWeight': 'normal', 'height': '40px', 'width': '100%'}" name="textboxArtikelSuchen" (input)="this.datalistArtikel.load();">
       </rz-textbox>
     </div>
     <div class="col-2" [ngStyle]="{'marginTop': '13px', 'paddingLeft': '0', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
-      <rz-button #buttonArtikelSuchen buttonStyle="light" icon="done" [style]="{'backgroundColor': '#D9D9D9', 'border': '1px solid #dadfe2', 'color': '#a71330', 'fontSize': '28px', 'fontWeight': 'normal', 'height': '40px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}">
+      <rz-button #buttonSuchenLoeschen buttonStyle="light" icon="clear" [style]="{'backgroundColor': '#D9D9D9', 'border': '1px solid #dadfe2', 'color': '#a71330', 'fontSize': '28px', 'fontWeight': 'normal', 'height': '40px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}" (click)="buttonSuchenLoeschenClick($event)">
+      </rz-button>
+    </div>
+    <div class="col-2" [ngStyle]="{'marginLeft': '-5px', 'marginTop': '13px', 'paddingLeft': '0', 'paddingRight': '10px', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
+      <rz-button #buttonTastatur buttonStyle="light" icon="keyboard_hide" [style]="{'backgroundColor': '#D9D9D9', 'border': '1px solid #dadfe2', 'color': '#a71330', 'fontSize': '28px', 'fontWeight': 'normal', 'height': '40px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}">
       </rz-button>
     </div>
   </div>

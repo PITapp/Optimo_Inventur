@@ -138,6 +138,7 @@ namespace OptimoInventur
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurArtikel>("InventurArtikels");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurBasis>("InventurBases");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurBasisStatus>("InventurBasisStatuses");
+          oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurDevice>("InventurDevices");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.InventurErfassung>("InventurErfassungs");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.Notizen>("Notizens");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.Protokoll>("Protokolls");

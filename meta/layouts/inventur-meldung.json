@@ -1,0 +1,24 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "name": "main",
+          "style": {
+            "width": "1823px"
+          },
+          "type": "content-container"
+        }
+      ],
+      "name": "body0",
+      "style": {
+        "paddingBottom": "0",
+        "paddingLeft": "0",
+        "paddingRight": "0",
+        "paddingTop": "0"
+      },
+      "type": "body"
+    }
+  ],
+  "name": "InventurMeldung"
+}

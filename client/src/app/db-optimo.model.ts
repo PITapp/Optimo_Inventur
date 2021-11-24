@@ -92,9 +92,20 @@ export interface InventurBasisStatus {
   Notiz: string;
 }
 
+export interface InventurDevice {
+  DeviceID: number;
+  DeviceNummer: string;
+  DeviceTitel: string;
+  RegistriertAm: string;
+  AnmeldungAm: string;
+  AbmeldungAm: string;
+  Info: string;
+}
+
 export interface InventurErfassung {
   ErfassungID: number;
   ArtikelID: number;
+  DeviceNummer: string;
   ErfasstAm: string;
   ErfasstAnzahl: number;
   GeloeschtAm: string;
@@ -264,7 +275,15 @@ export interface VwInventurArtikel {
   Beschreibung: string;
   Beschreibung2: string;
   StdKreditorName: string;
+  ArtikelStatus: string;
+  Notiz: string;
+  LagerortNummer: string;
+  LagerortTitel: string;
+  LagerortGesamt: string;
   AnzahlErfasst: number;
+  SummeGezaehlt: number;
+  AnzahlErfasstFormatiert: string;
+  SummeGezaehltFormatiert: string;
 }
 
 export interface VwInventurErfassung {
@@ -272,20 +291,28 @@ export interface VwInventurErfassung {
   ArtikelID: number;
   ErfasstAm: string;
   ErfasstAnzahl: number;
+  ErfasstAnzahlFormatiert: string;
   GeloeschtAm: string;
+  InventurID: number;
   Artikelnummer: string;
   Beschreibung: string;
   Beschreibung2: string;
   StdKreditorName: string;
+  LagerortNummer: string;
+  LagerortTitel: string;
+  LagerortGesamt: string;
 }
 
 export interface VwInventurLagerorte {
   InventurID: number;
   LagerortNummer: string;
   LagerortTitel: string;
+  LagerortGesamt: string;
   LagerortStatus: string;
   AnzahlArtikel: number;
   AnzahlErfasst: number;
+  AnzahlArtikelFormatiert: string;
+  AnzahlErfasstFormatiert: string;
 }
 
 export interface VwRollen {

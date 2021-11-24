@@ -16,9 +16,9 @@ import { SelectBarComponent } from '@radzen/angular/dist/selectbar';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 import { LabelComponent } from '@radzen/angular/dist/label';
-import { IconComponent } from '@radzen/angular/dist/icon';
 import { CardComponent } from '@radzen/angular/dist/card';
 import { DataListComponent } from '@radzen/angular/dist/datalist';
+import { IconComponent } from '@radzen/angular/dist/icon';
 
 import { ConfigService } from '../config.service';
 import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
@@ -39,14 +39,13 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('buttonArtikelEntfernen') buttonArtikelEntfernen: ButtonComponent;
   @ViewChild('label5') label5: LabelComponent;
   @ViewChild('label13') label13: LabelComponent;
-  @ViewChild('label7') label7: LabelComponent;
-  @ViewChild('icon1') icon1: IconComponent;
   @ViewChild('card1') card1: CardComponent;
   @ViewChild('textbox2') textbox2: TextBoxComponent;
   @ViewChild('button2') button2: ButtonComponent;
   @ViewChild('datalistErfassung') datalistErfassung: DataListComponent;
   @ViewChild('label2') label2: LabelComponent;
   @ViewChild('buttonOpenDialogErfassungLoeschen') buttonOpenDialogErfassungLoeschen: ButtonComponent;
+  @ViewChild('buttonArtikelLadenByArtikelnummer') buttonArtikelLadenByArtikelnummer: ButtonComponent;
 
   router: Router;
 
@@ -76,6 +75,9 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   strErfassungModus: any;
   globalArtikelID: any;
   dsoArtikel: any;
+  onKeyDownSetArtikelnummer: any;
+  onClickArtikelProtokollOeffnen: any;
+  strStatusArtikelnummer: any;
   parameters: any;
   rstErfassung: any;
   rstErfassungCount: any;
@@ -141,7 +143,7 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
 
     this.onClickErfassungLoeschen = (data) => {
-    this.buttonOpenDialogErfassungLoeschenClick('');
+    this.buttonOpenDialogErfassungLoeschenClick(data);
 };
 
     this.strErfassungModus = 'Mengen';
@@ -156,6 +158,67 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
     }, (result: any) => {
 
     });
+
+    this.onKeyDownSetArtikelnummer = (event) => {
+  console.log("taste gedrückt");
+  console.log(event);
+    
+  if(this.textboxArtikelnummer.value === undefined) {
+    this.textboxArtikelnummer.value = "";
+  }
+
+  if(this.strStatusArtikelnummer == 'Artikel geladen') {
+    this.textboxArtikelnummer.value = "";
+    this.strStatusArtikelnummer = 'Unbekannt'
+  }
+
+  switch (event.key) {
+    case "F12":
+    case "Shift":
+    case "Tab":
+    case "Control":
+      // Taste - nix tun
+      break;
+      
+    case "Enter":
+    case "Unidentified":
+      console.log("--------- Enter ---------");
+          
+      if(this.textboxArtikelnummer.value.length >= 1) {
+        this.strStatusArtikelnummer = 'Artikel geladen';
+
+        var strArtikelnummer = this.textboxArtikelnummer.value;
+        var pos = strArtikelnummer.indexOf('-F');
+
+        if (pos > 0) {
+          strArtikelnummer = strArtikelnummer.substr(0, pos);
+          this.textboxArtikelnummer.value = strArtikelnummer;
+        }
+        
+        this.buttonArtikelLadenByArtikelnummerClick(strArtikelnummer);
+      }
+          
+      //this.notificationService.notify({ severity: "info", summary: ``, detail: `Bin fertig` });
+      //document.getElementById("Feld123").focus()
+      break;
+
+    case "Backspace":
+      if(this.textboxArtikelnummer.value.length >= 1) {
+        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1);
+      }
+      break;
+
+    default:
+      this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key;
+      break;
+  }
+};
+
+    this.onClickArtikelProtokollOeffnen = (data) => {
+    // this.buttonOpenDialogErfassungLoeschenClick(data);
+};
+
+    this.strStatusArtikelnummer = 'Unbekannt';
   }
 
   selectbarErfassenModusChange(event: any) {
@@ -166,7 +229,7 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
     if (this.dialogRef) {
       this.dialogRef.close();
     }
-    this.router.navigate(['erfassen-artikel-auswahl']);
+    this.router.navigate(['erfassen-artikel-auswahl', this.dsoLagerort.InventurID]);
   }
 
   buttonArtikelEntfernenClick(event: any) {
@@ -191,9 +254,20 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   buttonOpenDialogErfassungLoeschenClick(event: any) {
-    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: 'Soll die Erfassung vom ... gelöscht werden?'}, title: `Löschen Erfassung` })
+    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll die Erfassung vom " + event.ErfasstAm + " für den Artikel '" + event.Artikelnummer + " " + event.Beschreibung + "'  gelöscht werden?"}, title: `Löschen Erfassung` })
         .afterClosed().subscribe(result => {
-              this.notificationService.notify({ severity: "info", summary: ``, detail: `Erfassung gelöscht` });
+              if (result == 'Löschen') {
+        this.notificationService.notify({ severity: "info", summary: ``, detail: `Erfassung gelöscht ${event.ErfassungID}` });
+      }
+    });
+  }
+
+  buttonArtikelLadenByArtikelnummerClick(event: any) {
+    this.dbOptimo.getInventurArtikels(`Artikelnummer eq '${event}'`, null, null, null, null, null, null, null)
+    .subscribe((result: any) => {
+      this.dsoArtikel = result.value[0];
+    }, (result: any) => {
+
     });
   }
 }

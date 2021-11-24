@@ -14023,10 +14023,6 @@ input:focus {
   height: 55px;
 }
 
-.ui-dialog-content {
-  min-height: 455px;
-}
-
 /* --- Card: ohne Schatten --- */
 .rz-card {
   box-shadow: none;
@@ -14037,7 +14033,7 @@ input:focus {
 .ui-selectbutton .ui-paginator-element {
   margin-left: 0;
   background-color: transparent;
-  color: #212529;
+  color: #3a474d;
   font-weight: 600;
   border: none;
 }
@@ -14045,25 +14041,62 @@ input:focus {
 .ui-selectbutton .ui-button:first-child,
 .ui-selectbutton .ui-paginator-element:first-child {
   border: none;
-  border-bottom: solid 2px #dfe7ec;  
+  border-bottom: solid 3px #dadfe2;  
 }
 
 .ui-selectbutton .ui-button:last-child,
 .ui-selectbutton .ui-paginator-element:last-child {
   border: none;
-  border-bottom: solid 2px #dfe7ec;  
+  border-bottom: solid 3px #dadfe2;  
 }
 
 .ui-selectbutton .ui-button.ui-state-active,
 .ui-selectbutton .ui-state-active.ui-paginator-element {
   background-color: transparent;
-  color: #212529;
+  color: #3a474d;
   font-weight: 600;
   border: none;
-  border-bottom: 2px solid #a71330;
+  border-bottom: 3px solid #a71330;
 }
 
 /* --- placeholder: Farbe --- */
 input::placeholder {
-  color: #e9e9e9;
+  color: #dadfe2;
+}
+
+/* --- Button: Ohne Schatten unten --- */
+.ui-button:not(.ui-state-disabled):hover:not(:active),
+.ui-paginator-element:not(.ui-state-disabled):hover:not(:active) {
+  box-shadow: none;
+}
+
+/* --- Scrollbar: Farbe und Einstellungen --- */
+body:not(.rz-default-scrollbars)::-webkit-scrollbar {
+  background-color: #ffffff;
+}
+
+body:not(.rz-default-scrollbars)::-webkit-scrollbar-thumb {
+  background: #dadfe2;
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 8px;
+}
+
+body:not(.rz-default-scrollbars)::-webkit-scrollbar-corner {
+  background-color: #ffffff;
+}
+
+body:not(.rz-default-scrollbars) ::-webkit-scrollbar {
+  background-color: #ffffff;
+}
+
+body:not(.rz-default-scrollbars) ::-webkit-scrollbar-thumb {
+  background: #dadfe2;
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 8px;
+}
+
+body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
+  background-color: #ffffff;
 }

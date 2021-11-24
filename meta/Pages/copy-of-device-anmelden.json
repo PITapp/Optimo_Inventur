@@ -1,0 +1,165 @@
+{
+  "access": [],
+  "components": [
+    {
+      "components": [
+        {
+          "allowPaging": false,
+          "count": "${rstDeviceCount}",
+          "data": "${rstDevice}",
+          "defaultRowText": "Template for index",
+          "emptyText": "Geräteliste wird geladen...",
+          "events": {
+            "loadData": [
+              {
+                "name": "dbOptimo.getInventurDevices",
+                "parameters": [
+                  {
+                    "name": "$orderby",
+                    "value": "DeviceNummer"
+                  }
+                ],
+                "then": [
+                  {
+                    "name": "rstDevice",
+                    "type": "set",
+                    "value": "${result.value}"
+                  },
+                  {
+                    "name": "rstDeviceCount",
+                    "type": "set",
+                    "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                  }
+                ],
+                "type": "invoke"
+              }
+            ]
+          },
+          "name": "datalistDevice",
+          "pageSize": 14,
+          "style": {
+            "border": "1px solid #ffffff"
+          },
+          "template": [
+            {
+              "attributes": [
+                {
+                  "name": "(click)",
+                  "value": "onClickNavigateBack(data)"
+                }
+              ],
+              "components": [
+                {
+                  "components": [
+                    {
+                      "class": "col-10",
+                      "components": [
+                        {
+                          "name": "heading0",
+                          "size": "H5",
+                          "style": {
+                            "color": "#6264A7",
+                            "fontWeight": "normal",
+                            "marginBottom": "0",
+                            "marginLeft": "0",
+                            "marginRight": "0",
+                            "marginTop": "0",
+                            "textAlign": "left",
+                            "verticalAlign": "baseline"
+                          },
+                          "text": "${data.DeviceNummer}",
+                          "type": "heading"
+                        },
+                        {
+                          "name": "label3",
+                          "style": {
+                            "color": "#3a474d",
+                            "fontSize": "18px",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                            "lineHeight": "20px",
+                            "width": "100%"
+                          },
+                          "text": "${data.DeviceTitel}",
+                          "type": "label",
+                          "visible": true
+                        },
+                        {
+                          "name": "label0",
+                          "style": {
+                            "color": "#3a474d",
+                            "fontSize": "16px",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                            "lineHeight": "18px",
+                            "width": "100%"
+                          },
+                          "text": "${data.RegistriertAm}",
+                          "type": "label",
+                          "visible": true
+                        }
+                      ],
+                      "name": "col1",
+                      "style": {
+                        "paddingLeft": "15px",
+                        "paddingRight": "0px",
+                        "verticalAlign": "baseline"
+                      },
+                      "type": "col"
+                    },
+                    {
+                      "class": "align-items-center d-flex justify-content-end col-2",
+                      "components": [
+                        {
+                          "icon": "keyboard_arrow_right",
+                          "name": "icon4",
+                          "style": {
+                            "color": "#a71330",
+                            "fontSize": "32px",
+                            "fontWeight": "normal"
+                          },
+                          "type": "icon"
+                        }
+                      ],
+                      "name": "col15",
+                      "style": {
+                        "paddingRight": "5px",
+                        "textAlign": "right"
+                      },
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row1",
+                  "type": "row"
+                }
+              ],
+              "name": "card0",
+              "style": {
+                "paddingBottom": "10px",
+                "paddingLeft": "0",
+                "paddingRight": "0",
+                "paddingTop": "10px"
+              },
+              "type": "card",
+              "visible": true
+            }
+          ],
+          "type": "datalist",
+          "wrapItems": false
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "code": "this.datalistDevice.load();",
+        "type": "execute"
+      }
+    ]
+  },
+  "layout": "InventurLeer",
+  "name": "Copy of DeviceAnmelden"
+}

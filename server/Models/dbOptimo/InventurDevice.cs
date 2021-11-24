@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace OptimoInventur.Models.DbOptimo
+{
+  [Table("InventurDevice")]
+  public partial class InventurDevice
+  {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int DeviceID
+    {
+      get;
+      set;
+    }
+    public string DeviceNummer
+    {
+      get;
+      set;
+    }
+
+
+    public ICollection<InventurErfassung> InventurErfassungs { get; set; }
+    public string DeviceTitel
+    {
+      get;
+      set;
+    }
+    public DateTime? RegistriertAm
+    {
+      get;
+      set;
+    }
+    public DateTime? AnmeldungAm
+    {
+      get;
+      set;
+    }
+    public DateTime? AbmeldungAm
+    {
+      get;
+      set;
+    }
+    public string Info
+    {
+      get;
+      set;
+    }
+  }
+}

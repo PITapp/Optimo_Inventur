@@ -166,6 +166,7 @@
               ],
               "name": "card0",
               "style": {
+                "backgroundColor": "#f5f5f5",
                 "marginBottom": "2px",
                 "paddingBottom": "10px",
                 "paddingLeft": "15px",
@@ -203,22 +204,34 @@
               "name": "heading1",
               "size": "H6",
               "style": {
+                "color": "#a71330",
+                "fontWeight": "normal",
+                "marginBottom": "0px",
+                "textAlign": "center"
+              },
+              "text": "Gerät ${dsoDevice.DeviceNummer} · ${dsoDevice.DeviceTitel} ${dsoDevice.DeviceNummer == null ? 'nicht angemeldet' : ''}",
+              "type": "heading"
+            },
+            {
+              "name": "heading2",
+              "size": "H6",
+              "style": {
                 "color": "#6264A7",
                 "fontWeight": "normal",
                 "marginBottom": "0px",
                 "textAlign": "center"
               },
-              "text": "Version 1.01.027",
+              "text": "Version 1.02.058",
               "type": "heading"
             }
           ],
           "name": "card8",
           "style": {
-            "backgroundColor": "#FFFFFF",
+            "backgroundColor": "#f5f5f5",
             "borderTop": "1px dotted #a71330",
             "display": "block",
-            "height": "65px",
-            "marginTop": "2px",
+            "height": "85px",
+            "marginTop": "-2px",
             "paddingTop": "11px"
           },
           "type": "card",
@@ -232,7 +245,7 @@
             "marginTop": "20px",
             "width": "100%"
           },
-          "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden!\nSiehe app.routes.ts",
+          "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Clik-Ereignisse aktiviert werden.\nSiehe app.routes.ts",
           "type": "label",
           "visible": false
         },
@@ -240,14 +253,59 @@
           "events": {
             "click": [
               {
+                "name": "globalDeviceNummer",
+                "type": "set",
+                "value": "localStorage.getItem(\"globalDeviceNummer\")"
+              },
+              {
+                "code": "sessionStorage.setItem(\"globalArtikelID\", \"0\");",
+                "type": "execute"
+              },
+              {
+                "condition": "${event.LagerortStatus} == 'Erfassung offen' && this.globalDeviceNummer != null",
                 "parameters": [
                   {
                     "name": "InventurID",
-                    "value": "0"
+                    "value": "${event.InventurID}"
                   }
                 ],
                 "path": "erfassen",
                 "type": "navigate"
+              },
+              {
+                "condition": "${event.LagerortStatus} == 'Erfassung abgeschlossen' && this.globalDeviceNummer != null",
+                "detail": "Die Erfassung für diesen Lagerort wurde bereits abgeschlossen!",
+                "duration": 5000,
+                "severity": "error",
+                "summary": "Erfassung abgeschlossen",
+                "type": "notify"
+              },
+              {
+                "condition": "${event.LagerortStatus} == 'Erfassung zur Zeit gesperrt' && this.globalDeviceNummer != null",
+                "detail": "Die Erfassung ist zur Zeit gesperrt, weil ein Mitarbeiter für diesen Lagerort gerade Daten erfasst!",
+                "duration": 5000,
+                "severity": "error",
+                "summary": "Erfassung zur Zeit gesperrt",
+                "type": "notify"
+              },
+              {
+                "condition": " this.globalDeviceNummer == null",
+                "parameters": [
+                  {
+                    "name": "strMeldung",
+                    "value": "\"Dieses Gerät wurde noch nicht angemeldet. Nach Bestätigung dieser Benachrichtigung wird ein Dialogfenster mit den verfügbaren Geräte Anmeldungen geöffnet. Wählen Sie die passende Gerätenummer für Ihr Gerät aus. Nach der Auswahl ist dieses Gerät automatisch unter der gewählten Gerätenummer angemeldet.\""
+                  }
+                ],
+                "path": "meldung-ok",
+                "then": [
+                  {
+                    "condition": "${result} == 'OK'",
+                    "path": "device-anmelden",
+                    "type": "navigate"
+                  }
+                ],
+                "title": "Info Gerät",
+                "type": "popup"
               }
             ]
           },
@@ -270,12 +328,34 @@
       {
         "name": "onClickStartErfassen",
         "type": "set",
-        "value": "(data) => {\n    if (this.dialogRef) {\n        this.dialogRef.close();\n    }\n    sessionStorage.setItem(\"globalArtikelID\", \"0\");\n    this.router.navigate(['erfassen', data.InventurID]);\n}"
+        "value": "(data) => {\n    this.buttonNavigateToErfassenClick(data);\n}"
       },
       {
         "name": "onClickStartInfos",
         "type": "set",
         "value": "() => {\n    if (this.dialogRef) {\n      this.dialogRef.close();\n    }\n    this.router.navigate(['infos']);\n}"
+      },
+      {
+        "name": "strDeviceNummer",
+        "type": "set",
+        "value": "localStorage.getItem(\"globalDeviceNummer\")"
+      },
+      {
+        "name": "dbOptimo.getInventurDevices",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "DeviceNummer eq ${strDeviceNummer}"
+          }
+        ],
+        "then": [
+          {
+            "name": "dsoDevice",
+            "type": "set",
+            "value": "${result.value[0]}"
+          }
+        ],
+        "type": "invoke"
       }
     ]
   },

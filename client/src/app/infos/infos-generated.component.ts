@@ -12,6 +12,8 @@ import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dis
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
+import { LabelComponent } from '@radzen/angular/dist/label';
+import { ButtonComponent } from '@radzen/angular/dist/button';
 import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
@@ -22,6 +24,13 @@ export class InfosGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
+  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('label2') label2: LabelComponent;
+  @ViewChild('label3') label3: LabelComponent;
+  @ViewChild('label5') label5: LabelComponent;
+  @ViewChild('label1') label1: LabelComponent;
+  @ViewChild('label4') label4: LabelComponent;
+  @ViewChild('button0') button0: ButtonComponent;
   @ViewChild('html1') html1: HtmlComponent;
   @ViewChild('html0') html0: HtmlComponent;
 

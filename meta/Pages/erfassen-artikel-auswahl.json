@@ -65,11 +65,17 @@
               "type": "col"
             },
             {
-              "class": "col-10",
+              "class": "col-8",
               "components": [
                 {
+                  "attributes": [
+                    {
+                      "name": "(input)",
+                      "value": "this.datalistArtikel.load();"
+                    }
+                  ],
                   "name": "textboxArtikelSuchen",
-                  "placeholder": "Suchen",
+                  "placeholder": "Suchen...",
                   "readOnly": false,
                   "style": {
                     "fontWeight": "normal",
@@ -98,10 +104,15 @@
                 {
                   "buttonStyle": "light",
                   "events": {
-                    "click": []
+                    "click": [
+                      {
+                        "code": "this.textboxArtikelSuchen.value = null;\nthis.datalistArtikel.load();",
+                        "type": "execute"
+                      }
+                    ]
                   },
-                  "icon": "done",
-                  "name": "buttonArtikelSuchen",
+                  "icon": "clear",
+                  "name": "buttonSuchenLoeschen",
                   "style": {
                     "backgroundColor": "#D9D9D9",
                     "border": "1px solid #dadfe2",
@@ -124,6 +135,45 @@
               "style": {
                 "marginTop": "13px",
                 "paddingLeft": "0",
+                "textAlign": "right",
+                "verticalAlign": "bottom"
+              },
+              "type": "col"
+            },
+            {
+              "class": "col-2",
+              "components": [
+                {
+                  "buttonStyle": "light",
+                  "events": {
+                    "click": []
+                  },
+                  "icon": "keyboard_hide",
+                  "name": "buttonTastatur",
+                  "style": {
+                    "backgroundColor": "#D9D9D9",
+                    "border": "1px solid #dadfe2",
+                    "color": "#a71330",
+                    "fontSize": "28px",
+                    "fontWeight": "normal",
+                    "height": "40px",
+                    "paddingBottom": "0",
+                    "paddingLeft": "0",
+                    "paddingRight": "0",
+                    "paddingTop": "0",
+                    "width": "100%"
+                  },
+                  "text": "",
+                  "tooltip": "",
+                  "type": "button"
+                }
+              ],
+              "name": "col4",
+              "style": {
+                "marginLeft": "-5px",
+                "marginTop": "13px",
+                "paddingLeft": "0",
+                "paddingRight": "10px",
                 "textAlign": "right",
                 "verticalAlign": "bottom"
               },
@@ -163,6 +213,30 @@
                           {
                             "name": "$top",
                             "value": "50"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": [
+                              {
+                                "value": "InventurID eq ${parameters.InventurID}"
+                              },
+                              {
+                                "filters": [
+                                  {
+                                    "value": "contains(tolower(Artikelnummer),tolower('${this.textboxArtikelSuchen.value || ''}')) OR contains(tolower(Beschreibung),tolower('${this.textboxArtikelSuchen.value || ''}'))"
+                                  }
+                                ],
+                                "operator": "or"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": [
+                              {
+                                "value": "Artikelnummer"
+                              }
+                            ]
                           }
                         ],
                         "then": [

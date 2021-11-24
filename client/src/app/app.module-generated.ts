@@ -48,10 +48,16 @@ import { ErfassenArtikelAuswahlComponent } from './erfassen-artikel-auswahl/erfa
 import { ZzErfassenArtikelAuswahlV1Component } from './zz-erfassen-artikel-auswahl-v-1/zz-erfassen-artikel-auswahl-v-1.component';
 import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
 import { ZzErfassenV2Component } from './zz-erfassen-v-2/zz-erfassen-v-2.component';
+import { ZzErfassenV3Component } from './zz-erfassen-v-3/zz-erfassen-v-3.component';
+import { CopyOfDeviceAnmeldenComponent } from './copy-of-device-anmelden/copy-of-device-anmelden.component';
+import { DeviceAnmeldenComponent } from './device-anmelden/device-anmelden.component';
+import { MeldungOkComponent } from './meldung-ok/meldung-ok.component';
 import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
 import { InventurInfosLayoutComponent } from './inventur-infos-layout/inventur-infos-layout.component';
 import { InventurErfassenLayoutComponent } from './inventur-erfassen-layout/inventur-erfassen-layout.component';
 import { InventurLeerLayoutComponent } from './inventur-leer-layout/inventur-leer-layout.component';
+import { InventurDeviceLayoutComponent } from './inventur-device-layout/inventur-device-layout.component';
+import { InventurMeldungLayoutComponent } from './inventur-meldung-layout/inventur-meldung-layout.component';
 
 import { DbOptimoService } from './db-optimo.service';
 
@@ -69,6 +75,10 @@ export const PageDeclarations = [
   ZzErfassenArtikelAuswahlV1Component,
   MeldungLoeschenComponent,
   ZzErfassenV2Component,
+  ZzErfassenV3Component,
+  CopyOfDeviceAnmeldenComponent,
+  DeviceAnmeldenComponent,
+  MeldungOkComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -76,6 +86,8 @@ export const LayoutDeclarations = [
   InventurInfosLayoutComponent,
   InventurErfassenLayoutComponent,
   InventurLeerLayoutComponent,
+  InventurDeviceLayoutComponent,
+  InventurMeldungLayoutComponent,
 ];
 
 export const AppDeclarations = [
