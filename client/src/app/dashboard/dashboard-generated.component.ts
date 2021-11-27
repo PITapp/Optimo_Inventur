@@ -128,7 +128,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.strDeviceNummer = localStorage.getItem("globalDeviceNummer");
 
-    this.dbOptimo.getInventurDevices(`DeviceNummer eq ${this.strDeviceNummer}`, null, null, null, null, null, null, null)
+    this.dbOptimo.getInventurDevices(`DeviceNummer eq '${this.strDeviceNummer}'`, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.dsoDevice = result.value[0];
     }, (result: any) => {

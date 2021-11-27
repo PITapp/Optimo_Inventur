@@ -204,7 +204,7 @@
                   "count": "${rstArtikelCount}",
                   "data": "${rstArtikel}",
                   "defaultRowText": "Template for index",
-                  "emptyText": "Artikel werden geladen...",
+                  "emptyText": "Artikel nicht gefunden!",
                   "events": {
                     "loadData": [
                       {
@@ -368,7 +368,7 @@
                       ],
                       "name": "card0",
                       "style": {
-                        "marginBottom": "2px",
+                        "borderBottom": "1px solid #dadfe2",
                         "paddingBottom": "10px",
                         "paddingLeft": "15px",
                         "paddingRight": "5px",

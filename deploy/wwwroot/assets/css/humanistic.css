@@ -13839,9 +13839,10 @@ a.fc-event .fc-content {
   background-image: linear-gradient(#e2e2e2, #E9E9E9);
 }
 
-/* --- Body ohne Überlauf --- */
+/* --- Body: ohne Überlauf, Hintergrund weis --- */
 .body {
   overflow: hidden;
+  background-color: #f5f5f5;
 }
 
 /* --- Kopfzeile: verlaufend dunkel --- */

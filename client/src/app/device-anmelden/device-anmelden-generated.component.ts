@@ -13,9 +13,9 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { DataListComponent } from '@radzen/angular/dist/datalist';
 import { CardComponent } from '@radzen/angular/dist/card';
-import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { LabelComponent } from '@radzen/angular/dist/label';
 import { IconComponent } from '@radzen/angular/dist/icon';
+import { ButtonComponent } from '@radzen/angular/dist/button';
 
 import { ConfigService } from '../config.service';
 
@@ -25,6 +25,8 @@ export class DeviceAnmeldenGenerated implements AfterViewInit, OnInit, OnDestroy
   // Components
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('datalistDevice') datalistDevice: DataListComponent;
+  @ViewChild('label2') label2: LabelComponent;
+  @ViewChild('buttonDeviceAnmelden') buttonDeviceAnmelden: ButtonComponent;
 
   router: Router;
 
@@ -49,9 +51,11 @@ export class DeviceAnmeldenGenerated implements AfterViewInit, OnInit, OnDestroy
   _subscription: Subscription;
 
   dbOptimo: DbOptimoService;
+  onClickDeviceAnmelden: any;
   parameters: any;
   rstDevice: any;
   rstDeviceCount: any;
+  bolDeviceAngemeldet: any;
 
   constructor(private injector: Injector) {
   }
@@ -101,6 +105,10 @@ export class DeviceAnmeldenGenerated implements AfterViewInit, OnInit, OnDestroy
 
   load() {
     this.datalistDevice.load();
+
+    this.onClickDeviceAnmelden = (data) => {
+    this.buttonDeviceAnmeldenClick(data);
+};
   }
 
   datalistDeviceLoadData(event: any) {
@@ -112,5 +120,42 @@ export class DeviceAnmeldenGenerated implements AfterViewInit, OnInit, OnDestroy
     }, (result: any) => {
 
     });
+  }
+
+  buttonDeviceAnmeldenClick(event: any) {
+    this.bolDeviceAngemeldet = event.RegistriertAm == null ? false : true;
+
+    if (this.bolDeviceAngemeldet == true) {
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Dieses Gerät ist bereits angemeldet`, duration: 5000 });
+    }
+
+    if (this.bolDeviceAngemeldet == false) {
+      var date = new Date();
+
+event.RegistriertAm = new Date(Date.UTC(date.getFullYear(),
+                                         date.getMonth(),
+                                         date.getDate(),
+                                         date.getHours(),
+                                         date.getMinutes(),
+                                         date.getSeconds(),
+                                         date.getMilliseconds() ))
+    }
+
+    if (this.bolDeviceAngemeldet == false) {
+          this.dbOptimo.updateInventurDevice(null, event.DeviceID, event)
+      .subscribe((result: any) => {
+          this.notificationService.notify({ severity: "success", summary: ``, detail: `Gerät angemeldet` });
+
+      localStorage.setItem("globalDeviceNummer", event.DeviceNummer)
+
+      if (this.dialogRef) {
+        this.dialogRef.close();
+      } else {
+        this._location.back();
+      }
+      }, (result: any) => {
+          this.notificationService.notify({ severity: "error", summary: ``, detail: `Gerät konnte nicht angemeldet werden!` });
+      });
+    }
   }
 }

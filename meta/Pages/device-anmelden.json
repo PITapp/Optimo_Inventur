@@ -47,7 +47,7 @@
               "attributes": [
                 {
                   "name": "(click)",
-                  "value": "onClickNavigateBack(data)"
+                  "value": "onClickDeviceAnmelden(data)"
                 }
               ],
               "components": [
@@ -57,29 +57,24 @@
                       "class": "col-10",
                       "components": [
                         {
-                          "name": "heading0",
-                          "size": "H5",
-                          "style": {
-                            "color": "#6264A7",
-                            "fontWeight": "normal",
-                            "marginBottom": "0",
-                            "marginLeft": "0",
-                            "marginRight": "0",
-                            "marginTop": "0",
-                            "textAlign": "left",
-                            "verticalAlign": "baseline"
-                          },
-                          "text": "${data.DeviceNummer}",
-                          "type": "heading"
-                        },
-                        {
                           "name": "label3",
                           "style": {
-                            "color": "#3a474d",
-                            "fontSize": "18px",
+                            "color": "#6264A7",
+                            "fontSize": "20px",
                             "fontStyle": "normal",
                             "fontWeight": "normal",
-                            "lineHeight": "20px",
+                            "width": "100%"
+                          },
+                          "text": "${data.DeviceNummer}",
+                          "type": "label",
+                          "visible": true
+                        },
+                        {
+                          "name": "label1",
+                          "style": {
+                            "color": "#3a474d",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
                             "width": "100%"
                           },
                           "text": "${data.DeviceTitel}",
@@ -89,14 +84,13 @@
                         {
                           "name": "label0",
                           "style": {
-                            "color": "#3a474d",
-                            "fontSize": "16px",
+                            "color": "#a71330",
+                            "fontSize": "14px",
                             "fontStyle": "normal",
                             "fontWeight": "normal",
-                            "lineHeight": "18px",
                             "width": "100%"
                           },
-                          "text": "${data.RegistriertAm}",
+                          "text": "${data.RegistriertAm == null ? 'Dieses Gerät kann angemeldet werden' : '>>> Registriert am '}${data.RegistriertAm | date:'dd.MM.yyyy HH:mm':'UTC'}",
                           "type": "label",
                           "visible": true
                         }
@@ -138,11 +132,11 @@
               "name": "card0",
               "style": {
                 "backgroundColor": "rgba(0, 0, 0, 0)",
-                "borderBottom": "2px solid #88989b",
-                "paddingBottom": "10px",
-                "paddingLeft": "10px",
-                "paddingRight": "10px",
-                "paddingTop": "10px"
+                "borderBottom": "1px solid #dadfe2",
+                "paddingBottom": "5px",
+                "paddingLeft": "15px",
+                "paddingRight": "14px",
+                "paddingTop": "5px"
               },
               "type": "card",
               "visible": true
@@ -150,6 +144,81 @@
           ],
           "type": "datalist",
           "wrapItems": false
+        },
+        {
+          "name": "label2",
+          "style": {
+            "backgroundColor": "#e6c54f",
+            "marginBottom": "10px",
+            "marginTop": "20px",
+            "width": "100%"
+          },
+          "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Clik-Ereignisse aktiviert werden.\nSiehe app.routes.ts",
+          "type": "label",
+          "visible": false
+        },
+        {
+          "events": {
+            "click": [
+              {
+                "name": "bolDeviceAngemeldet",
+                "type": "set",
+                "value": "${event.RegistriertAm} == null ? false : true"
+              },
+              {
+                "condition": "this.bolDeviceAngemeldet == true",
+                "detail": "Dieses Gerät ist bereits angemeldet",
+                "duration": 5000,
+                "severity": "error",
+                "type": "notify"
+              },
+              {
+                "code": "var date = new Date();\n\nevent.RegistriertAm = new Date(Date.UTC(date.getFullYear(),\n                                         date.getMonth(),\n                                         date.getDate(),\n                                         date.getHours(),\n                                         date.getMinutes(),\n                                         date.getSeconds(),\n                                         date.getMilliseconds() ))",
+                "condition": "this.bolDeviceAngemeldet == false",
+                "type": "execute"
+              },
+              {
+                "condition": "this.bolDeviceAngemeldet == false",
+                "error": [
+                  {
+                    "detail": "Gerät konnte nicht angemeldet werden!",
+                    "severity": "error",
+                    "type": "notify"
+                  }
+                ],
+                "name": "dbOptimo.updateInventurDevice",
+                "parameters": [
+                  {
+                    "name": "DeviceID",
+                    "value": "${event.DeviceID}"
+                  },
+                  {
+                    "name": "InventurDevice",
+                    "value": "${event}"
+                  }
+                ],
+                "then": [
+                  {
+                    "detail": "Gerät angemeldet",
+                    "severity": "success",
+                    "type": "notify"
+                  },
+                  {
+                    "code": "localStorage.setItem(\"globalDeviceNummer\", ${event.DeviceNummer})",
+                    "type": "execute"
+                  },
+                  {
+                    "type": "back"
+                  }
+                ],
+                "type": "invoke"
+              }
+            ]
+          },
+          "name": "buttonDeviceAnmelden",
+          "text": "Unsichtbar: GerätAnmelden",
+          "type": "button",
+          "visible": false
         }
       ],
       "container": "main",
@@ -161,6 +230,11 @@
       {
         "code": "this.datalistDevice.load();",
         "type": "execute"
+      },
+      {
+        "name": "onClickDeviceAnmelden",
+        "type": "set",
+        "value": "(data) => {\n    this.buttonDeviceAnmeldenClick(data);\n}"
       }
     ]
   },

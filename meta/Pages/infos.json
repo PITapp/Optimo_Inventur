@@ -12,7 +12,7 @@
                   "style": {
                     "width": "100%"
                   },
-                  "text": "Dieses Gerät wurde Registriert am 23.11.2021 09:26",
+                  "text": "Registriert am 23.11.2021 09:26",
                   "type": "label"
                 },
                 {
@@ -52,12 +52,13 @@
                   "style": {
                     "width": "100%"
                   },
-                  "text": "Letzte Abmeldung: --- wird noch verwendet ---",
+                  "text": "Letzte Abmeldung:",
                   "type": "label"
                 },
                 {
                   "name": "button0",
                   "style": {
+                    "marginTop": "20px",
                     "width": "100%"
                   },
                   "text": "Gerät abmelden",

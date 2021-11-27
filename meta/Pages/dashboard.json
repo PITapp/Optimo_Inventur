@@ -166,8 +166,8 @@
               ],
               "name": "card0",
               "style": {
-                "backgroundColor": "#f5f5f5",
-                "marginBottom": "2px",
+                "backgroundColor": "#ffffff",
+                "borderBottom": "1px solid #dadfe2",
                 "paddingBottom": "10px",
                 "paddingLeft": "15px",
                 "paddingRight": "5px",
@@ -209,7 +209,7 @@
                 "marginBottom": "0px",
                 "textAlign": "center"
               },
-              "text": "Gerät ${dsoDevice.DeviceNummer} · ${dsoDevice.DeviceTitel} ${dsoDevice.DeviceNummer == null ? 'nicht angemeldet' : ''}",
+              "text": "Gerät · ${dsoDevice.DeviceNummer} · ${dsoDevice.DeviceTitel} ${dsoDevice.DeviceNummer == null ? 'nicht angemeldet' : ''}",
               "type": "heading"
             },
             {
@@ -227,7 +227,7 @@
           ],
           "name": "card8",
           "style": {
-            "backgroundColor": "#f5f5f5",
+            "backgroundColor": "#ffffff",
             "borderTop": "1px dotted #a71330",
             "display": "block",
             "height": "85px",
@@ -326,6 +326,33 @@
         "type": "execute"
       },
       {
+        "name": "globalDeviceID",
+        "type": "set",
+        "value": "localStorage.getItem(\"globalDeviceID\")"
+      },
+      {
+        "code": "localStorage.setItem(\"globalDeviceID\",\"0\");\nthis.globalDeviceID = \"0\";",
+        "condition": "globalDeviceID == null",
+        "type": "execute"
+      },
+      {
+        "name": "dbOptimo.getInventurDeviceByDeviceID",
+        "parameters": [
+          {
+            "name": "DeviceID",
+            "value": "${globalDeviceID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "dsoDevice",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
         "name": "onClickStartErfassen",
         "type": "set",
         "value": "(data) => {\n    this.buttonNavigateToErfassenClick(data);\n}"
@@ -334,28 +361,6 @@
         "name": "onClickStartInfos",
         "type": "set",
         "value": "() => {\n    if (this.dialogRef) {\n      this.dialogRef.close();\n    }\n    this.router.navigate(['infos']);\n}"
-      },
-      {
-        "name": "strDeviceNummer",
-        "type": "set",
-        "value": "localStorage.getItem(\"globalDeviceNummer\")"
-      },
-      {
-        "name": "dbOptimo.getInventurDevices",
-        "parameters": [
-          {
-            "name": "$filter",
-            "value": "DeviceNummer eq ${strDeviceNummer}"
-          }
-        ],
-        "then": [
-          {
-            "name": "dsoDevice",
-            "type": "set",
-            "value": "${result.value[0]}"
-          }
-        ],
-        "type": "invoke"
       }
     ]
   },
