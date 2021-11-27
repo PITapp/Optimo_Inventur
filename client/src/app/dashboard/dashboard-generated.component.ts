@@ -33,6 +33,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('label0') label0: LabelComponent;
   @ViewChild('buttonNavigateToErfassen') buttonNavigateToErfassen: ButtonComponent;
+  @ViewChild('buttonTest') buttonTest: ButtonComponent;
 
   router: Router;
 
@@ -57,14 +58,13 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   _subscription: Subscription;
 
   dbOptimo: DbOptimoService;
+  globalDeviceID: any;
+  dsoDevice: any;
   onClickStartErfassen: any;
   onClickStartInfos: any;
-  strDeviceNummer: any;
-  dsoDevice: any;
   parameters: any;
   rstLagerorte: any;
   rstLagerorteCount: any;
-  globalDeviceNummer: any;
 
   constructor(private injector: Injector) {
   }
@@ -115,8 +115,23 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   load() {
     this.datalistLagerorte.load();
 
+    this.globalDeviceID = localStorage.getItem("globalDeviceID");
+
+    if (this.globalDeviceID == null) {
+      localStorage.setItem("globalDeviceID","0");
+this.globalDeviceID = "0";
+    }
+
+    this.dbOptimo.getInventurDeviceByDeviceId(null, this.globalDeviceID)
+    .subscribe((result: any) => {
+      this.dsoDevice = result;
+    }, (result: any) => {
+      this.globalDeviceID = "0";
+    });
+
     this.onClickStartErfassen = (data) => {
-    this.buttonNavigateToErfassenClick(data);
+    //this.buttonNavigateToErfassenClick(data);
+    this.buttonTestClick(data);
 };
 
     this.onClickStartInfos = () => {
@@ -125,15 +140,6 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
     }
     this.router.navigate(['infos']);
 };
-
-    this.strDeviceNummer = localStorage.getItem("globalDeviceNummer");
-
-    this.dbOptimo.getInventurDevices(`DeviceNummer eq '${this.strDeviceNummer}'`, null, null, null, null, null, null, null)
-    .subscribe((result: any) => {
-      this.dsoDevice = result.value[0];
-    }, (result: any) => {
-
-    });
   }
 
   datalistLagerorteLoadData(event: any) {
@@ -148,11 +154,9 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   buttonNavigateToErfassenClick(event: any) {
-    this.globalDeviceNummer = localStorage.getItem("globalDeviceNummer");
-
     sessionStorage.setItem("globalArtikelID", "0");
 
-    if (event.LagerortStatus == 'Erfassung offen' && this.globalDeviceNummer != null) {
+    if (event.LagerortStatus == 'Erfassung offen' && this.globalDeviceID != "0") {
       if (this.dialogRef) {
         this.dialogRef.close();
       }
@@ -178,5 +182,11 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
         }
       });
     }
+  }
+
+  buttonTestClick(event: any) {
+    console.log("event1", event);
+this.datalistLagerorte.load();
+console.log("event2", event);
   }
 }

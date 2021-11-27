@@ -245,7 +245,7 @@
             "marginTop": "20px",
             "width": "100%"
           },
-          "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Clik-Ereignisse aktiviert werden.\nSiehe app.routes.ts",
+          "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Click-Ereignisse aktiviert werden.\nSiehe app.routes.ts",
           "type": "label",
           "visible": false
         },
@@ -253,16 +253,11 @@
           "events": {
             "click": [
               {
-                "name": "globalDeviceNummer",
-                "type": "set",
-                "value": "localStorage.getItem(\"globalDeviceNummer\")"
-              },
-              {
                 "code": "sessionStorage.setItem(\"globalArtikelID\", \"0\");",
                 "type": "execute"
               },
               {
-                "condition": "${event.LagerortStatus} == 'Erfassung offen' && this.globalDeviceNummer != null",
+                "condition": "${event.LagerortStatus} == 'Erfassung offen' && ${globalDeviceID} != \"0\"",
                 "parameters": [
                   {
                     "name": "InventurID",
@@ -310,7 +305,24 @@
             ]
           },
           "name": "buttonNavigateToErfassen",
-          "text": "Unsichtbar: NavigateToErfassen",
+          "text": "NavigateToErfassen",
+          "type": "button",
+          "visible": false
+        },
+        {
+          "events": {
+            "click": [
+              {
+                "code": "console.log(\"event1\", ${event});\nthis.datalistLagerorte.load();\nconsole.log(\"event2\", ${event});",
+                "type": "execute"
+              }
+            ]
+          },
+          "name": "buttonTest",
+          "style": {
+            "marginLeft": "20px"
+          },
+          "text": "Test",
           "type": "button",
           "visible": false
         }
@@ -332,10 +344,17 @@
       },
       {
         "code": "localStorage.setItem(\"globalDeviceID\",\"0\");\nthis.globalDeviceID = \"0\";",
-        "condition": "globalDeviceID == null",
+        "condition": "this.globalDeviceID == null",
         "type": "execute"
       },
       {
+        "error": [
+          {
+            "name": "globalDeviceID",
+            "type": "set",
+            "value": "\"0\""
+          }
+        ],
         "name": "dbOptimo.getInventurDeviceByDeviceID",
         "parameters": [
           {
@@ -355,7 +374,7 @@
       {
         "name": "onClickStartErfassen",
         "type": "set",
-        "value": "(data) => {\n    this.buttonNavigateToErfassenClick(data);\n}"
+        "value": "(data) => {\n    //this.buttonNavigateToErfassenClick(data);\n    this.buttonTestClick(data);\n}"
       },
       {
         "name": "onClickStartInfos",

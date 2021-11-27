@@ -31,9 +31,11 @@
     <rz-heading #heading2 size="H6" [style]="{'color': '#6264A7', 'fontWeight': 'normal', 'marginBottom': '0px', 'textAlign': 'center'}" text="Version 1.02.058">
     </rz-heading>
   </rz-card>
-  <rz-label #label0 [style]="{'backgroundColor': '#e6c54f', 'marginBottom': '10px', 'marginTop': '20px', 'width': '100%'}" text="Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Clik-Ereignisse aktiviert werden.
+  <rz-label #label0 [style]="{'backgroundColor': '#e6c54f', 'marginBottom': '10px', 'marginTop': '20px', 'width': '100%'}" text="Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Click-Ereignisse aktiviert werden.
   Siehe app.routes.ts" *ngIf="false">
   </rz-label>
-  <rz-button #buttonNavigateToErfassen text="Unsichtbar: NavigateToErfassen" *ngIf="false" (click)="buttonNavigateToErfassenClick($event)">
+  <rz-button #buttonNavigateToErfassen text="NavigateToErfassen" *ngIf="false" (click)="buttonNavigateToErfassenClick($event)">
+  </rz-button>
+  <rz-button #buttonTest [style]="{'marginLeft': '20px'}" text="Test" *ngIf="false" (click)="buttonTestClick($event)">
   </rz-button>
 </rz-content>

@@ -23,7 +23,7 @@
   </div>
   <div [ngStyle]="{'marginTop': '57px', 'zIndex': '3000'}" class="row">
     <div class="col-md-12">
-      <rz-datalist #datalistArtikel [allowPaging]="false" [count]="rstArtikelCount" [data]="rstArtikel" defaultRowText="Template for index" emptyText="Artikel werden geladen..." [pageSize]="14" [style]="{'border': '1px solid #ffffff'}" [wrapItems]="false" (loadData)="datalistArtikelLoadData($event)">
+      <rz-datalist #datalistArtikel [allowPaging]="false" [count]="rstArtikelCount" [data]="rstArtikel" defaultRowText="Template for index" emptyText="Artikel nicht gefunden!" [pageSize]="14" [style]="{'border': '1px solid #ffffff'}" [wrapItems]="false" (loadData)="datalistArtikelLoadData($event)">
         <ng-template let-data datalistTemplate>
           <rz-card #card0 [style]="{'borderBottom': '1px solid #dadfe2', 'paddingBottom': '10px', 'paddingLeft': '15px', 'paddingRight': '5px', 'paddingTop': '10px'}" (click)="onClickNavigateBack(data)">
             <div class="row">
