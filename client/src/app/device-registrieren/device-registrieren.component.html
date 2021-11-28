@@ -1,7 +1,7 @@
 <rz-content #content1 container="main">
   <rz-datalist #datalistDevice [allowPaging]="false" [count]="rstDeviceCount" [data]="rstDevice" defaultRowText="Template for index" emptyText="Geräteliste wird geladen..." [pageSize]="14" [style]="{'border': '1px solid #ffffff'}" [wrapItems]="false" (loadData)="datalistDeviceLoadData($event)">
     <ng-template let-data datalistTemplate>
-      <rz-card #card0 [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'borderBottom': '1px solid #dadfe2', 'paddingBottom': '5px', 'paddingLeft': '15px', 'paddingRight': '14px', 'paddingTop': '5px'}" (click)="onClickDeviceAnmelden(data)">
+      <rz-card #card0 [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'borderBottom': '1px solid #dadfe2', 'paddingBottom': '5px', 'paddingLeft': '15px', 'paddingRight': '14px', 'paddingTop': '5px'}" (click)="onClickDeviceRegistrieren(data)">
         <div class="row">
           <div class="col-10" [ngStyle]="{'paddingLeft': '15px', 'paddingRight': '0px', 'verticalAlign': 'baseline'}">
             <rz-label #label3 [style]="{'color': '#6264A7', 'fontSize': '20px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'width': '100%'}" [text]="data?.DeviceNummer">
@@ -19,9 +19,9 @@
       </rz-card>
     </ng-template>
   </rz-datalist>
-  <rz-label #label2 [style]="{'backgroundColor': '#e6c54f', 'marginBottom': '10px', 'marginTop': '20px', 'width': '100%'}" text="Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Clik-Ereignisse aktiviert werden.
+  <rz-label #label2 [style]="{'backgroundColor': '#e6c54f', 'marginBottom': '10px', 'marginTop': '20px', 'width': '100%'}" text="Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Click-Ereignisse aktiviert werden.
   Siehe app.routes.ts" *ngIf="false">
   </rz-label>
-  <rz-button #buttonDeviceAnmelden text="Unsichtbar: GerätAnmelden" *ngIf="false" (click)="buttonDeviceAnmeldenClick($event)">
+  <rz-button #buttonDeviceRegistrieren text="GerätRegistrieren" *ngIf="false" (click)="buttonDeviceRegistrierenClick($event)">
   </rz-button>
 </rz-content>

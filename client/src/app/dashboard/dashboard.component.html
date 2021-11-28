@@ -26,7 +26,7 @@
   <rz-card #card8 [style]="{'backgroundColor': '#ffffff', 'borderTop': '1px dotted #a71330', 'display': 'block', 'height': '85px', 'marginTop': '-2px', 'paddingTop': '11px'}" (click)="onClickStartInfos()">
     <rz-heading #heading8 size="H6" [style]="{'color': '#3a474d', 'fontWeight': 'normal', 'marginBottom': '0px', 'textAlign': 'center'}" text="© 2021 Optimo Schlafsysteme GmbH">
     </rz-heading>
-    <rz-heading #heading1 size="H6" [style]="{'color': '#a71330', 'fontWeight': 'normal', 'marginBottom': '0px', 'textAlign': 'center'}" text="Gerät · {{dsoDevice?.DeviceNummer}} · {{dsoDevice?.DeviceTitel}} {{((dsoDevice?.DeviceNummer == null) ? ('nicht angemeldet') : (''))}}">
+    <rz-heading #heading1 size="H6" [style]="{'color': '#a71330', 'fontWeight': 'normal', 'marginBottom': '0px', 'textAlign': 'center'}" text="Gerät · {{dsoDevice?.DeviceNummer}} · {{dsoDevice?.DeviceTitel}} {{((dsoDevice?.DeviceNummer == null) ? ('nicht registriert') : (''))}}">
     </rz-heading>
     <rz-heading #heading2 size="H6" [style]="{'color': '#6264A7', 'fontWeight': 'normal', 'marginBottom': '0px', 'textAlign': 'center'}" text="Version 1.02.058">
     </rz-heading>
@@ -35,7 +35,5 @@
   Siehe app.routes.ts" *ngIf="false">
   </rz-label>
   <rz-button #buttonNavigateToErfassen text="NavigateToErfassen" *ngIf="false" (click)="buttonNavigateToErfassenClick($event)">
-  </rz-button>
-  <rz-button #buttonTest [style]="{'marginLeft': '20px'}" text="Test" *ngIf="false" (click)="buttonTestClick($event)">
   </rz-button>
 </rz-content>

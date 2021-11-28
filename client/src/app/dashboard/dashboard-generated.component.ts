@@ -33,7 +33,6 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('label0') label0: LabelComponent;
   @ViewChild('buttonNavigateToErfassen') buttonNavigateToErfassen: ButtonComponent;
-  @ViewChild('buttonTest') buttonTest: ButtonComponent;
 
   router: Router;
 
@@ -65,6 +64,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   parameters: any;
   rstLagerorte: any;
   rstLagerorteCount: any;
+  strLagerortStatus: any;
 
   constructor(private injector: Injector) {
   }
@@ -115,23 +115,24 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   load() {
     this.datalistLagerorte.load();
 
-    this.globalDeviceID = localStorage.getItem("globalDeviceID");
+    this.globalDeviceID = "0";
 
-    if (this.globalDeviceID == null) {
-      localStorage.setItem("globalDeviceID","0");
-this.globalDeviceID = "0";
-    }
+    if(localStorage.getItem("globalDeviceID") == null) {
+    localStorage.setItem("globalDeviceID","0");
+    this.globalDeviceID = "0";
+} else {
+    this.globalDeviceID = localStorage.getItem("globalDeviceID");
+}
 
     this.dbOptimo.getInventurDeviceByDeviceId(null, this.globalDeviceID)
     .subscribe((result: any) => {
       this.dsoDevice = result;
     }, (result: any) => {
-      this.globalDeviceID = "0";
+
     });
 
     this.onClickStartErfassen = (data) => {
-    //this.buttonNavigateToErfassenClick(data);
-    this.buttonTestClick(data);
+    this.buttonNavigateToErfassenClick(data);
 };
 
     this.onClickStartInfos = () => {
@@ -154,39 +155,43 @@ this.globalDeviceID = "0";
   }
 
   buttonNavigateToErfassenClick(event: any) {
+    this.datalistLagerorte.load();
+
     sessionStorage.setItem("globalArtikelID", "0");
 
-    if (event.LagerortStatus == 'Erfassung offen' && this.globalDeviceID != "0") {
-      if (this.dialogRef) {
-        this.dialogRef.close();
-      }
-      this.router.navigate(['erfassen', event.InventurID]);
-    }
+    this.dbOptimo.getInventurDeviceByDeviceId(null, this.globalDeviceID)
+    .subscribe((result: any) => {
+      this.dbOptimo.getInventurBasisByInventurId(null, event.InventurID)
+      .subscribe((result: any) => {
+        this.strLagerortStatus = result.LagerortStatus;
 
-    if (event.LagerortStatus == 'Erfassung abgeschlossen' && this.globalDeviceNummer != null) {
-      this.notificationService.notify({ severity: "error", summary: `Erfassung abgeschlossen`, detail: `Die Erfassung für diesen Lagerort wurde bereits abgeschlossen!`, duration: 5000 });
-    }
+        if (this.strLagerortStatus == 'Erfassung offen') {
+          if (this.dialogRef) {
+            this.dialogRef.close();
+          }
+          this.router.navigate(['erfassen', event.InventurID]);
+        }
 
-    if (event.LagerortStatus == 'Erfassung zur Zeit gesperrt' && this.globalDeviceNummer != null) {
-      this.notificationService.notify({ severity: "error", summary: `Erfassung zur Zeit gesperrt`, detail: `Die Erfassung ist zur Zeit gesperrt, weil ein Mitarbeiter für diesen Lagerort gerade Daten erfasst!`, duration: 5000 });
-    }
+        if (this.strLagerortStatus == 'Erfassung abgeschlossen') {
+          this.notificationService.notify({ severity: "error", summary: `Erfassung abgeschlossen`, detail: `Die Erfassung für diesen Lagerort wurde bereits abgeschlossen!`, duration: 5000 });
+        }
 
-    if (this.globalDeviceNummer == null) {
-      this.dialogService.open(MeldungOkComponent, { parameters: {strMeldung: "Dieses Gerät wurde noch nicht angemeldet. Nach Bestätigung dieser Benachrichtigung wird ein Dialogfenster mit den verfügbaren Geräte Anmeldungen geöffnet. Wählen Sie die passende Gerätenummer für Ihr Gerät aus. Nach der Auswahl ist dieses Gerät automatisch unter der gewählten Gerätenummer angemeldet."}, title: `Info Gerät` })
+        if (this.strLagerortStatus == 'Erfassung zur Zeit gesperrt') {
+          this.notificationService.notify({ severity: "error", summary: `Erfassung gesperrt`, detail: `Die Erfassung ist zur Zeit gesperrt, weil ein Mitarbeiter für diesen Lagerort gerade Daten erfasst!`, duration: 5000 });
+        }
+      }, (result: any) => {
+        this.notificationService.notify({ severity: "error", summary: ``, detail: `Lagerort konnte nicht geladen werden!` });
+      });
+    }, (result: any) => {
+      this.dialogService.open(MeldungOkComponent, { parameters: {strMeldung: "Dieses Gerät wurde noch nicht registriert. Nach Bestätigung dieser Benachrichtigung wird ein Dialogfenster mit den verfügbaren Geräten geöffnet. Wählen Sie die passende Gerätenummer für Ihr Gerät aus. Nach der Auswahl ist dieses Gerät automatisch unter der gewählten Gerätenummer registriert."}, title: `Gerät registrieren` })
           .afterClosed().subscribe(result => {
                   if (result == 'OK') {
           if (this.dialogRef) {
             this.dialogRef.close();
           }
-          this.router.navigate(['device-anmelden']);
+          this.router.navigate(['device-registrieren']);
         }
       });
-    }
-  }
-
-  buttonTestClick(event: any) {
-    console.log("event1", event);
-this.datalistLagerorte.load();
-console.log("event2", event);
+    });
   }
 }

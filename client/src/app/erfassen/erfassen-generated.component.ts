@@ -12,13 +12,13 @@ import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dis
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
+import { IconComponent } from '@radzen/angular/dist/icon';
 import { SelectBarComponent } from '@radzen/angular/dist/selectbar';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 import { LabelComponent } from '@radzen/angular/dist/label';
 import { CardComponent } from '@radzen/angular/dist/card';
 import { DataListComponent } from '@radzen/angular/dist/datalist';
-import { IconComponent } from '@radzen/angular/dist/icon';
 
 import { ConfigService } from '../config.service';
 import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
@@ -30,6 +30,7 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('heading1') heading1: HeadingComponent;
   @ViewChild('heading2') heading2: HeadingComponent;
+  @ViewChild('icon1') icon1: IconComponent;
   @ViewChild('selectbarErfassenModus') selectbarErfassenModus: SelectBarComponent;
   @ViewChild('textboxArtikelnummer') textboxArtikelnummer: TextBoxComponent;
   @ViewChild('buttonArtikelAuswahl') buttonArtikelAuswahl: ButtonComponent;
@@ -78,6 +79,7 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   onKeyDownSetArtikelnummer: any;
   onClickArtikelProtokollOeffnen: any;
   strStatusArtikelnummer: any;
+  onClickNavigateBack: any;
   parameters: any;
   rstErfassung: any;
   rstErfassungCount: any;
@@ -219,6 +221,13 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
 };
 
     this.strStatusArtikelnummer = 'Unbekannt';
+
+    this.onClickNavigateBack = () => {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+    this._location.back();
+};
   }
 
   selectbarErfassenModusChange(event: any) {

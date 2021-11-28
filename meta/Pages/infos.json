@@ -8,19 +8,12 @@
             {
               "components": [
                 {
-                  "name": "label0",
-                  "style": {
-                    "width": "100%"
-                  },
-                  "text": "Registriert am 23.11.2021 09:26",
-                  "type": "label"
-                },
-                {
                   "name": "label2",
                   "style": {
+                    "fontWeight": "bold",
                     "width": "100%"
                   },
-                  "text": "Gerätenummer: 10",
+                  "text": "Gerät: ${dsoDevice.DeviceNummer == null ? 'Nicht registriert!' : dsoDevice.DeviceNummer}",
                   "type": "label"
                 },
                 {
@@ -28,7 +21,7 @@
                   "style": {
                     "width": "100%"
                   },
-                  "text": "Gerätename: Lager Nord",
+                  "text": "Titel: ",
                   "type": "label"
                 },
                 {
@@ -36,32 +29,86 @@
                   "style": {
                     "width": "100%"
                   },
-                  "text": "Info:",
+                  "text": "Info: ${dsoDevice.Info}",
                   "type": "label"
                 },
                 {
-                  "name": "label1",
+                  "name": "label0",
                   "style": {
                     "width": "100%"
                   },
-                  "text": "Letzte Anmeldung: 23.11.2021 07:35 ",
+                  "text": "Registriert: ${dsoDevice.RegistriertAm | date : 'dd.MM.yyyy HH:mm'}",
                   "type": "label"
                 },
                 {
-                  "name": "label4",
-                  "style": {
-                    "width": "100%"
+                  "disabled": "${dsoDevice.DeviceID == null}",
+                  "events": {
+                    "click": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "strMeldung",
+                            "value": "\"Soll die aktuelle Registrierung für dieses Gerät gelöscht werden?\""
+                          }
+                        ],
+                        "path": "meldung-loeschen",
+                        "then": [
+                          {
+                            "code": "this.dsoDevice.RegistriertAm = null;\nthis.dsoDevice.AnmeldungAm = null;\nthis.dsoDevice.AbmeldungAm = null;",
+                            "condition": "${result} == 'Löschen'",
+                            "type": "execute"
+                          },
+                          {
+                            "condition": "${result} == 'Löschen'",
+                            "error": [
+                              {
+                                "detail": "Registrierung konnte nicht gelöscht werden!",
+                                "severity": "error",
+                                "type": "notify"
+                              }
+                            ],
+                            "name": "dbOptimo.updateInventurDevice",
+                            "parameters": [
+                              {
+                                "name": "DeviceID",
+                                "value": "${dsoDevice.DeviceID}"
+                              },
+                              {
+                                "name": "InventurDevice",
+                                "value": "${dsoDevice}"
+                              }
+                            ],
+                            "then": [
+                              {
+                                "detail": "Registrierung gelöscht",
+                                "severity": "success",
+                                "type": "notify"
+                              },
+                              {
+                                "code": "localStorage.setItem(\"globalDeviceID\",\"0\")",
+                                "type": "execute"
+                              },
+                              {
+                                "name": "dsoDevice",
+                                "type": "set",
+                                "value": "null"
+                              }
+                            ],
+                            "type": "invoke"
+                          }
+                        ],
+                        "title": "Registrierung",
+                        "type": "popup"
+                      }
+                    ]
                   },
-                  "text": "Letzte Abmeldung:",
-                  "type": "label"
-                },
-                {
-                  "name": "button0",
+                  "name": "buttonRegistrierungLoeschen",
                   "style": {
                     "marginTop": "20px",
                     "width": "100%"
                   },
-                  "text": "Gerät abmelden",
+                  "text": "Registrierung löschen",
+                  "tooltip": "",
                   "type": "button"
                 }
               ],
@@ -119,18 +166,18 @@
         "type": "execute"
       },
       {
-        "name": "dbOptimo.getInfotexteHtmls",
+        "name": "dbOptimo.getInventurDeviceByDeviceID",
         "parameters": [
           {
-            "name": "$filter",
-            "value": "Code eq 'MobileHandbuch'"
+            "name": "DeviceID",
+            "value": "Number(localStorage.getItem(\"globalDeviceID\"))"
           }
         ],
         "then": [
           {
-            "name": "htmlHandbuch",
+            "name": "dsoDevice",
             "type": "set",
-            "value": "${result.value[0].Inhalt}"
+            "value": "${result}"
           }
         ],
         "type": "invoke"
@@ -146,6 +193,23 @@
         "then": [
           {
             "name": "htmlVersionen",
+            "type": "set",
+            "value": "${result.value[0].Inhalt}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "dbOptimo.getInfotexteHtmls",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "Code eq 'MobileHandbuch'"
+          }
+        ],
+        "then": [
+          {
+            "name": "htmlHandbuch",
             "type": "set",
             "value": "${result.value[0].Inhalt}"
           }

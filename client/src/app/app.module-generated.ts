@@ -49,9 +49,9 @@ import { ZzErfassenArtikelAuswahlV1Component } from './zz-erfassen-artikel-auswa
 import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
 import { ZzErfassenV2Component } from './zz-erfassen-v-2/zz-erfassen-v-2.component';
 import { ZzErfassenV3Component } from './zz-erfassen-v-3/zz-erfassen-v-3.component';
-import { CopyOfDeviceAnmeldenComponent } from './copy-of-device-anmelden/copy-of-device-anmelden.component';
-import { DeviceAnmeldenComponent } from './device-anmelden/device-anmelden.component';
+import { DeviceRegistrierenComponent } from './device-registrieren/device-registrieren.component';
 import { MeldungOkComponent } from './meldung-ok/meldung-ok.component';
+import { MeldungJaNeinComponent } from './meldung-ja-nein/meldung-ja-nein.component';
 import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
 import { InventurInfosLayoutComponent } from './inventur-infos-layout/inventur-infos-layout.component';
 import { InventurErfassenLayoutComponent } from './inventur-erfassen-layout/inventur-erfassen-layout.component';
@@ -76,9 +76,9 @@ export const PageDeclarations = [
   MeldungLoeschenComponent,
   ZzErfassenV2Component,
   ZzErfassenV3Component,
-  CopyOfDeviceAnmeldenComponent,
-  DeviceAnmeldenComponent,
+  DeviceRegistrierenComponent,
   MeldungOkComponent,
+  MeldungJaNeinComponent,
 ];
 
 export const LayoutDeclarations = [

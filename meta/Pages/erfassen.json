@@ -4,7 +4,12 @@
     {
       "components": [
         {
-          "attributes": [],
+          "attributes": [
+            {
+              "name": "(click)",
+              "value": "onClickNavigateBack()"
+            }
+          ],
           "components": [
             {
               "class": "col-2 align-items-center d-flex justify-content-start",
@@ -54,11 +59,23 @@
                   },
                   "text": "${dsoLagerort.LagerortTitel}",
                   "type": "heading"
+                },
+                {
+                  "icon": "clear",
+                  "name": "icon1",
+                  "style": {
+                    "color": "#e9e9e9",
+                    "fontSize": "18px",
+                    "position": "fixed",
+                    "right": "10px",
+                    "top": "10px"
+                  },
+                  "type": "icon"
                 }
               ],
               "name": "col6",
               "style": {
-                "paddingLeft": "20px",
+                "paddingLeft": "30px",
                 "verticalAlign": "baseline"
               },
               "type": "col"
@@ -67,11 +84,11 @@
           "name": "row9",
           "style": {
             "backgroundColor": "#a71330",
-            "height": "90px",
+            "height": "110px",
             "marginLeft": "0",
             "marginRight": "0",
             "position": "fixed",
-            "top": "55px",
+            "top": "0px",
             "width": "100%",
             "zIndex": "100"
           },
@@ -105,26 +122,19 @@
                     }
                   ],
                   "style": {
-                    "float": "left"
+                    "float": "left",
+                    "marginBottom": "-2px"
                   },
                   "type": "selectbar",
                   "value": "${strErfassungModus}"
-                },
-                {
-                  "name": "row6",
-                  "style": {
-                    "borderBottom": "2px solid #dfe7ec",
-                    "height": "30px",
-                    "marginRight": "15px",
-                    "marginTop": "5px"
-                  },
-                  "type": "row"
                 }
               ],
               "name": "col5",
               "style": {
+                "borderBottom": "2px solid #dadfe2",
                 "fontSize": "16px",
                 "lineHeight": "16px",
+                "marginBottom": "-2px",
                 "paddingBottom": "0",
                 "paddingLeft": "0",
                 "paddingRight": "0",
@@ -136,13 +146,13 @@
           ],
           "name": "row3",
           "style": {
-            "backgroundColor": "#f5f5f5",
+            "backgroundColor": "#ffffff",
             "height": "55px",
-            "marginTop": "90px",
+            "marginTop": "98px",
             "paddingBottom": "0",
             "paddingLeft": "0",
             "paddingRight": "0",
-            "paddingTop": "12px"
+            "paddingTop": "0"
           },
           "type": "row"
         },
@@ -236,10 +246,12 @@
           ],
           "name": "row8",
           "style": {
+            "backgroundColor": "#ffffff",
             "marginBottom": "0",
             "marginLeft": "0",
             "marginRight": "0",
-            "marginTop": "15px"
+            "marginTop": "0",
+            "paddingTop": "17px"
           },
           "type": "row"
         },
@@ -320,7 +332,7 @@
                       }
                     ]
                   },
-                  "icon": "clear",
+                  "icon": "backspace",
                   "name": "buttonArtikelEntfernen",
                   "size": "md",
                   "style": {
@@ -745,7 +757,7 @@
                           "icon": "backspace",
                           "name": "icon0",
                           "style": {
-                            "color": "#ff6d41",
+                            "color": "#f9777f",
                             "fontSize": "16px",
                             "fontWeight": "normal"
                           },
@@ -802,7 +814,7 @@
             "marginTop": "20px",
             "width": "100%"
           },
-          "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren die Parameter erstellt werden!",
+          "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Click-Ereignisse aktiviert werden.\nSiehe app.routes.ts",
           "type": "label",
           "visible": false
         },
@@ -831,7 +843,7 @@
             ]
           },
           "name": "buttonOpenDialogErfassungLoeschen",
-          "text": "Unsichtbar: OpenDialogErfassungLoeschen",
+          "text": "OpenDialogErfassungLoeschen",
           "tooltip": "",
           "type": "button",
           "visible": false
@@ -862,7 +874,7 @@
           "style": {
             "marginLeft": "10px"
           },
-          "text": "Unsichtbar: ArtikelLadenByArtikelnummer",
+          "text": "ArtikelLadenByArtikelnummer",
           "tooltip": "",
           "type": "button",
           "visible": false
@@ -951,9 +963,14 @@
         "name": "strStatusArtikelnummer",
         "type": "set",
         "value": "'Unbekannt'"
+      },
+      {
+        "name": "onClickNavigateBack",
+        "type": "set",
+        "value": "() => {\n    if (this.dialogRef) {\n      this.dialogRef.close();\n    }\n    this._location.back();\n}"
       }
     ]
   },
-  "layout": "InventurErfassen",
+  "layout": "InventurLeer",
   "name": "Erfassen"
 }

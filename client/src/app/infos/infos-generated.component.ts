@@ -17,6 +17,7 @@ import { ButtonComponent } from '@radzen/angular/dist/button';
 import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
+import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 
 import { DbOptimoService } from '../db-optimo.service';
 
@@ -24,13 +25,11 @@ export class InfosGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
-  @ViewChild('label0') label0: LabelComponent;
   @ViewChild('label2') label2: LabelComponent;
   @ViewChild('label3') label3: LabelComponent;
   @ViewChild('label5') label5: LabelComponent;
-  @ViewChild('label1') label1: LabelComponent;
-  @ViewChild('label4') label4: LabelComponent;
-  @ViewChild('button0') button0: ButtonComponent;
+  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('buttonRegistrierungLoeschen') buttonRegistrierungLoeschen: ButtonComponent;
   @ViewChild('html1') html1: HtmlComponent;
   @ViewChild('html0') html0: HtmlComponent;
 
@@ -57,8 +56,9 @@ export class InfosGenerated implements AfterViewInit, OnInit, OnDestroy {
   _subscription: Subscription;
 
   dbOptimo: DbOptimoService;
-  htmlHandbuch: any;
+  dsoDevice: any;
   htmlVersionen: any;
+  htmlHandbuch: any;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -110,9 +110,9 @@ export class InfosGenerated implements AfterViewInit, OnInit, OnDestroy {
   load() {
     window.scroll(0,0);
 
-    this.dbOptimo.getInfotexteHtmls(`Code eq 'MobileHandbuch'`, null, null, null, null, null, null, null)
+    this.dbOptimo.getInventurDeviceByDeviceId(null, Number(localStorage.getItem("globalDeviceID")))
     .subscribe((result: any) => {
-      this.htmlHandbuch = result.value[0].Inhalt;
+      this.dsoDevice = result;
     }, (result: any) => {
 
     });
@@ -122,6 +122,37 @@ export class InfosGenerated implements AfterViewInit, OnInit, OnDestroy {
       this.htmlVersionen = result.value[0].Inhalt;
     }, (result: any) => {
 
+    });
+
+    this.dbOptimo.getInfotexteHtmls(`Code eq 'MobileHandbuch'`, null, null, null, null, null, null, null)
+    .subscribe((result: any) => {
+      this.htmlHandbuch = result.value[0].Inhalt;
+    }, (result: any) => {
+
+    });
+  }
+
+  buttonRegistrierungLoeschenClick(event: any) {
+    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll die aktuelle Registrierung für dieses Gerät gelöscht werden?"}, title: `Registrierung` })
+        .afterClosed().subscribe(result => {
+              if (result == 'Löschen') {
+        this.dsoDevice.RegistriertAm = null;
+this.dsoDevice.AnmeldungAm = null;
+this.dsoDevice.AbmeldungAm = null;
+      }
+
+      if (result == 'Löschen') {
+              this.dbOptimo.updateInventurDevice(null, this.dsoDevice.DeviceID, this.dsoDevice)
+        .subscribe((result: any) => {
+              this.notificationService.notify({ severity: "success", summary: ``, detail: `Registrierung gelöscht` });
+
+        localStorage.setItem("globalDeviceID","0")
+
+        this.dsoDevice = null;
+        }, (result: any) => {
+              this.notificationService.notify({ severity: "error", summary: ``, detail: `Registrierung konnte nicht gelöscht werden!` });
+        });
+      }
     });
   }
 }

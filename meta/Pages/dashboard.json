@@ -209,7 +209,7 @@
                 "marginBottom": "0px",
                 "textAlign": "center"
               },
-              "text": "Gerät · ${dsoDevice.DeviceNummer} · ${dsoDevice.DeviceTitel} ${dsoDevice.DeviceNummer == null ? 'nicht angemeldet' : ''}",
+              "text": "Gerät · ${dsoDevice.DeviceNummer} · ${dsoDevice.DeviceTitel} ${dsoDevice.DeviceNummer == null ? 'nicht registriert' : ''}",
               "type": "heading"
             },
             {
@@ -253,76 +253,100 @@
           "events": {
             "click": [
               {
+                "code": "this.datalistLagerorte.load();",
+                "type": "execute"
+              },
+              {
                 "code": "sessionStorage.setItem(\"globalArtikelID\", \"0\");",
                 "type": "execute"
               },
               {
-                "condition": "${event.LagerortStatus} == 'Erfassung offen' && ${globalDeviceID} != \"0\"",
-                "parameters": [
+                "error": [
                   {
-                    "name": "InventurID",
-                    "value": "${event.InventurID}"
+                    "parameters": [
+                      {
+                        "name": "strMeldung",
+                        "value": "\"Dieses Gerät wurde noch nicht registriert. Nach Bestätigung dieser Benachrichtigung wird ein Dialogfenster mit den verfügbaren Geräten geöffnet. Wählen Sie die passende Gerätenummer für Ihr Gerät aus. Nach der Auswahl ist dieses Gerät automatisch unter der gewählten Gerätenummer registriert.\""
+                      }
+                    ],
+                    "path": "meldung-ok",
+                    "then": [
+                      {
+                        "condition": "${result} == 'OK'",
+                        "path": "device-registrieren",
+                        "type": "navigate"
+                      }
+                    ],
+                    "title": "Gerät registrieren",
+                    "type": "popup"
                   }
                 ],
-                "path": "erfassen",
-                "type": "navigate"
-              },
-              {
-                "condition": "${event.LagerortStatus} == 'Erfassung abgeschlossen' && this.globalDeviceNummer != null",
-                "detail": "Die Erfassung für diesen Lagerort wurde bereits abgeschlossen!",
-                "duration": 5000,
-                "severity": "error",
-                "summary": "Erfassung abgeschlossen",
-                "type": "notify"
-              },
-              {
-                "condition": "${event.LagerortStatus} == 'Erfassung zur Zeit gesperrt' && this.globalDeviceNummer != null",
-                "detail": "Die Erfassung ist zur Zeit gesperrt, weil ein Mitarbeiter für diesen Lagerort gerade Daten erfasst!",
-                "duration": 5000,
-                "severity": "error",
-                "summary": "Erfassung zur Zeit gesperrt",
-                "type": "notify"
-              },
-              {
-                "condition": " this.globalDeviceNummer == null",
+                "name": "dbOptimo.getInventurDeviceByDeviceID",
                 "parameters": [
                   {
-                    "name": "strMeldung",
-                    "value": "\"Dieses Gerät wurde noch nicht angemeldet. Nach Bestätigung dieser Benachrichtigung wird ein Dialogfenster mit den verfügbaren Geräte Anmeldungen geöffnet. Wählen Sie die passende Gerätenummer für Ihr Gerät aus. Nach der Auswahl ist dieses Gerät automatisch unter der gewählten Gerätenummer angemeldet.\""
+                    "name": "DeviceID",
+                    "value": "${globalDeviceID}"
                   }
                 ],
-                "path": "meldung-ok",
                 "then": [
                   {
-                    "condition": "${result} == 'OK'",
-                    "path": "device-anmelden",
-                    "type": "navigate"
+                    "error": [
+                      {
+                        "detail": "Lagerort konnte nicht geladen werden!",
+                        "severity": "error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "dbOptimo.getInventurBasisByInventurID",
+                    "parameters": [
+                      {
+                        "name": "InventurID",
+                        "value": "${event.InventurID}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "name": "strLagerortStatus",
+                        "type": "set",
+                        "value": "${result.LagerortStatus}"
+                      },
+                      {
+                        "condition": "${strLagerortStatus} == 'Erfassung offen'",
+                        "parameters": [
+                          {
+                            "name": "InventurID",
+                            "value": "${event.InventurID}"
+                          }
+                        ],
+                        "path": "erfassen",
+                        "type": "navigate"
+                      },
+                      {
+                        "condition": "${strLagerortStatus} == 'Erfassung abgeschlossen'",
+                        "detail": "Die Erfassung für diesen Lagerort wurde bereits abgeschlossen!",
+                        "duration": 5000,
+                        "severity": "error",
+                        "summary": "Erfassung abgeschlossen",
+                        "type": "notify"
+                      },
+                      {
+                        "condition": "${strLagerortStatus} == 'Erfassung zur Zeit gesperrt'",
+                        "detail": "Die Erfassung ist zur Zeit gesperrt, weil ein Mitarbeiter für diesen Lagerort gerade Daten erfasst!",
+                        "duration": 5000,
+                        "severity": "error",
+                        "summary": "Erfassung gesperrt",
+                        "type": "notify"
+                      }
+                    ],
+                    "type": "invoke"
                   }
                 ],
-                "title": "Info Gerät",
-                "type": "popup"
+                "type": "invoke"
               }
             ]
           },
           "name": "buttonNavigateToErfassen",
           "text": "NavigateToErfassen",
-          "type": "button",
-          "visible": false
-        },
-        {
-          "events": {
-            "click": [
-              {
-                "code": "console.log(\"event1\", ${event});\nthis.datalistLagerorte.load();\nconsole.log(\"event2\", ${event});",
-                "type": "execute"
-              }
-            ]
-          },
-          "name": "buttonTest",
-          "style": {
-            "marginLeft": "20px"
-          },
-          "text": "Test",
           "type": "button",
           "visible": false
         }
@@ -340,21 +364,15 @@
       {
         "name": "globalDeviceID",
         "type": "set",
-        "value": "localStorage.getItem(\"globalDeviceID\")"
+        "value": "\"0\""
       },
       {
-        "code": "localStorage.setItem(\"globalDeviceID\",\"0\");\nthis.globalDeviceID = \"0\";",
-        "condition": "this.globalDeviceID == null",
+        "code": "if(localStorage.getItem(\"globalDeviceID\") == null) {\n    localStorage.setItem(\"globalDeviceID\",\"0\");\n    this.globalDeviceID = \"0\";\n} else {\n    this.globalDeviceID = localStorage.getItem(\"globalDeviceID\");\n}",
+        "condition": "",
         "type": "execute"
       },
       {
-        "error": [
-          {
-            "name": "globalDeviceID",
-            "type": "set",
-            "value": "\"0\""
-          }
-        ],
+        "error": [],
         "name": "dbOptimo.getInventurDeviceByDeviceID",
         "parameters": [
           {
@@ -374,7 +392,7 @@
       {
         "name": "onClickStartErfassen",
         "type": "set",
-        "value": "(data) => {\n    //this.buttonNavigateToErfassenClick(data);\n    this.buttonTestClick(data);\n}"
+        "value": "(data) => {\n    this.buttonNavigateToErfassenClick(data);\n}"
       },
       {
         "name": "onClickStartInfos",

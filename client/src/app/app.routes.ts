@@ -21,9 +21,9 @@ import { ZzErfassenArtikelAuswahlV1Component } from './zz-erfassen-artikel-auswa
 import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
 import { ZzErfassenV2Component } from './zz-erfassen-v-2/zz-erfassen-v-2.component';
 import { ZzErfassenV3Component } from './zz-erfassen-v-3/zz-erfassen-v-3.component';
-import { CopyOfDeviceAnmeldenComponent } from './copy-of-device-anmelden/copy-of-device-anmelden.component';
-import { DeviceAnmeldenComponent } from './device-anmelden/device-anmelden.component';
+import { DeviceRegistrierenComponent } from './device-registrieren/device-registrieren.component';
 import { MeldungOkComponent } from './meldung-ok/meldung-ok.component';
+import { MeldungJaNeinComponent } from './meldung-ja-nein/meldung-ja-nein.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -65,12 +65,26 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: InventurErfassenLayoutComponent,
+    component: InventurLeerLayoutComponent,
     children: [
       {
         path: 'erfassen/:InventurID',
         component: ErfassenComponent
       },
+      {
+        path: 'erfassen-artikel-auswahl/:InventurID',
+        component: ErfassenArtikelAuswahlComponent
+      },
+      {
+        path: 'zz-erfassen-artikel-auswahl-v-1',
+        component: ZzErfassenArtikelAuswahlV1Component
+      },
+    ]
+  },
+  {
+    path: '',
+    component: InventurErfassenLayoutComponent,
+    children: [
       {
         path: 'zz-erfassen-auswahl-lagerorte-v-1',
         component: ZzErfassenAuswahlLagerorteV1Component
@@ -91,24 +105,6 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: InventurLeerLayoutComponent,
-    children: [
-      {
-        path: 'erfassen-artikel-auswahl/:InventurID',
-        component: ErfassenArtikelAuswahlComponent
-      },
-      {
-        path: 'zz-erfassen-artikel-auswahl-v-1',
-        component: ZzErfassenArtikelAuswahlV1Component
-      },
-      {
-        path: 'copy-of-device-anmelden',
-        component: CopyOfDeviceAnmeldenComponent
-      },
-    ]
-  },
-  {
-    path: '',
     component: InventurMeldungLayoutComponent,
     children: [
       {
@@ -119,6 +115,10 @@ export const routes: Routes = [
         path: 'meldung-ok/:strMeldung',
         component: MeldungOkComponent
       },
+      {
+        path: 'meldung-ja-nein/:strMeldung',
+        component: MeldungJaNeinComponent
+      },
     ]
   },
   {
@@ -126,8 +126,8 @@ export const routes: Routes = [
     component: InventurDeviceLayoutComponent,
     children: [
       {
-        path: 'device-anmelden',
-        component: DeviceAnmeldenComponent
+        path: 'device-registrieren',
+        component: DeviceRegistrierenComponent
       },
     ]
   },

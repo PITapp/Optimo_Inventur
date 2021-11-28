@@ -14042,13 +14042,13 @@ input:focus {
 .ui-selectbutton .ui-button:first-child,
 .ui-selectbutton .ui-paginator-element:first-child {
   border: none;
-  border-bottom: solid 3px #dadfe2;  
+  border-bottom: solid 2px #dadfe2;  
 }
 
 .ui-selectbutton .ui-button:last-child,
 .ui-selectbutton .ui-paginator-element:last-child {
   border: none;
-  border-bottom: solid 3px #dadfe2;  
+  border-bottom: solid 2px #dadfe2;  
 }
 
 .ui-selectbutton .ui-button.ui-state-active,
@@ -14057,7 +14057,7 @@ input:focus {
   color: #3a474d;
   font-weight: 600;
   border: none;
-  border-bottom: 3px solid #a71330;
+  border-bottom: 2px solid #a71330;
 }
 
 /* --- placeholder: Farbe --- */

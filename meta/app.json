@@ -48,9 +48,9 @@
     "MeldungLoeschen",
     "zzErfassen V2",
     "zzErfassen V3",
-    "Copy of DeviceAnmelden",
-    "DeviceAnmelden",
-    "MeldungOK"
+    "DeviceRegistrieren",
+    "MeldungOK",
+    "MeldungJaNein"
   ],
   "port": 8000,
   "serverLang": "cs",

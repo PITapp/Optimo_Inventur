@@ -47,7 +47,7 @@
               "attributes": [
                 {
                   "name": "(click)",
-                  "value": "onClickDeviceAnmelden(data)"
+                  "value": "onClickDeviceRegistrieren(data)"
                 }
               ],
               "components": [
@@ -153,7 +153,7 @@
             "marginTop": "20px",
             "width": "100%"
           },
-          "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Clik-Ereignisse aktiviert werden.\nSiehe app.routes.ts",
+          "text": "Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Click-Ereignisse aktiviert werden.\nSiehe app.routes.ts",
           "type": "label",
           "visible": false
         },
@@ -161,62 +161,71 @@
           "events": {
             "click": [
               {
-                "name": "bolDeviceAngemeldet",
-                "type": "set",
-                "value": "${event.RegistriertAm} == null ? false : true"
-              },
-              {
-                "condition": "this.bolDeviceAngemeldet == true",
-                "detail": "Dieses Gerät ist bereits angemeldet",
-                "duration": 5000,
+                "condition": "${event.RegistriertAm} != null",
+                "detail": "Dieses Gerät ist bereits registriert!",
+                "duration": "",
                 "severity": "error",
                 "type": "notify"
               },
               {
-                "code": "var date = new Date();\n\nevent.RegistriertAm = new Date(Date.UTC(date.getFullYear(),\n                                         date.getMonth(),\n                                         date.getDate(),\n                                         date.getHours(),\n                                         date.getMinutes(),\n                                         date.getSeconds(),\n                                         date.getMilliseconds() ))",
-                "condition": "this.bolDeviceAngemeldet == false",
-                "type": "execute"
-              },
-              {
-                "condition": "this.bolDeviceAngemeldet == false",
-                "error": [
-                  {
-                    "detail": "Gerät konnte nicht angemeldet werden!",
-                    "severity": "error",
-                    "type": "notify"
-                  }
-                ],
-                "name": "dbOptimo.updateInventurDevice",
+                "condition": "${event.RegistriertAm} == null",
                 "parameters": [
                   {
-                    "name": "DeviceID",
-                    "value": "${event.DeviceID}"
-                  },
-                  {
-                    "name": "InventurDevice",
-                    "value": "${event}"
+                    "name": "strMeldung",
+                    "value": "\"Soll das ausgewählte Gerät '\" + ${event.DeviceNummer} + \"' registriert werden?\""
                   }
                 ],
+                "path": "meldung-ja-nein",
                 "then": [
                   {
-                    "detail": "Gerät angemeldet",
-                    "severity": "success",
-                    "type": "notify"
-                  },
-                  {
-                    "code": "localStorage.setItem(\"globalDeviceNummer\", ${event.DeviceNummer})",
+                    "code": "var date = new Date();\n\nevent.RegistriertAm = new Date(Date.UTC(date.getFullYear(),\n                                         date.getMonth(),\n                                         date.getDate(),\n                                         date.getHours(),\n                                         date.getMinutes(),\n                                         date.getSeconds(),\n                                         date.getMilliseconds() ));\n                                         \nevent.AnmeldungAm = null;\nevent.AbmeldungAm = null;",
+                    "condition": "${result} == 'Ja'",
                     "type": "execute"
                   },
                   {
-                    "type": "back"
+                    "condition": "${result} == 'Ja'",
+                    "error": [
+                      {
+                        "detail": "Gerät konnte nicht registriert werden!",
+                        "severity": "error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "dbOptimo.updateInventurDevice",
+                    "parameters": [
+                      {
+                        "name": "DeviceID",
+                        "value": "${event.DeviceID}"
+                      },
+                      {
+                        "name": "InventurDevice",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "detail": "Gerät registriert",
+                        "severity": "success",
+                        "type": "notify"
+                      },
+                      {
+                        "code": "localStorage.setItem(\"globalDeviceID\", ${event.DeviceID})",
+                        "type": "execute"
+                      },
+                      {
+                        "type": "back"
+                      }
+                    ],
+                    "type": "invoke"
                   }
                 ],
-                "type": "invoke"
+                "title": "Gerät registrieren",
+                "type": "popup"
               }
             ]
           },
-          "name": "buttonDeviceAnmelden",
-          "text": "Unsichtbar: GerätAnmelden",
+          "name": "buttonDeviceRegistrieren",
+          "text": "GerätRegistrieren",
           "type": "button",
           "visible": false
         }
@@ -232,12 +241,12 @@
         "type": "execute"
       },
       {
-        "name": "onClickDeviceAnmelden",
+        "name": "onClickDeviceRegistrieren",
         "type": "set",
-        "value": "(data) => {\n    this.buttonDeviceAnmeldenClick(data);\n}"
+        "value": "(data) => {\n    this.buttonDeviceRegistrierenClick(data);\n}"
       }
     ]
   },
   "layout": "InventurDevice",
-  "name": "DeviceAnmelden"
+  "name": "DeviceRegistrieren"
 }
