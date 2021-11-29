@@ -41,11 +41,12 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('label5') label5: LabelComponent;
   @ViewChild('label13') label13: LabelComponent;
   @ViewChild('card1') card1: CardComponent;
-  @ViewChild('textbox2') textbox2: TextBoxComponent;
-  @ViewChild('button2') button2: ButtonComponent;
+  @ViewChild('textboxMenge') textboxMenge: TextBoxComponent;
+  @ViewChild('buttonMengeErfassen') buttonMengeErfassen: ButtonComponent;
+  @ViewChild('label14') label14: LabelComponent;
   @ViewChild('datalistErfassung') datalistErfassung: DataListComponent;
   @ViewChild('label2') label2: LabelComponent;
-  @ViewChild('buttonOpenDialogErfassungLoeschen') buttonOpenDialogErfassungLoeschen: ButtonComponent;
+  @ViewChild('buttonErfassungLoeschen') buttonErfassungLoeschen: ButtonComponent;
   @ViewChild('buttonArtikelLadenByArtikelnummer') buttonArtikelLadenByArtikelnummer: ButtonComponent;
 
   router: Router;
@@ -71,18 +72,24 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   _subscription: Subscription;
 
   dbOptimo: DbOptimoService;
-  dsoLagerort: any;
-  onClickErfassungLoeschen: any;
-  strErfassungModus: any;
+  globalErfassungModus: any;
   globalArtikelID: any;
+  globalDeviceID: any;
+  strStatusArtikelnummer: any;
+  strArtikelnummer: any;
+  strMenge: any;
+  intSummeErfasst: any;
+  dsoErfassung: any;
+  dsoLagerort: any;
   dsoArtikel: any;
   onKeyDownSetArtikelnummer: any;
-  onClickArtikelProtokollOeffnen: any;
-  strStatusArtikelnummer: any;
+  onKeyDownSetMenge: any;
+  onClickErfassungLoeschen: any;
   onClickNavigateBack: any;
   parameters: any;
   rstErfassung: any;
   rstErfassungCount: any;
+  datGeloeschtAm: any;
 
   constructor(private injector: Injector) {
   }
@@ -131,7 +138,23 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
 
   load() {
-    window.scroll(0,0);
+    this.globalErfassungModus = localStorage.getItem("globalErfassungModus");
+
+    this.globalArtikelID = localStorage.getItem("globalArtikelID");
+
+    this.globalDeviceID = localStorage.getItem("globalDeviceID");
+
+    this.strStatusArtikelnummer = 'Unbekannt';
+
+    this.strArtikelnummer = '';
+
+    this.strMenge = '';
+
+    this.intSummeErfasst = 0;
+
+    this.dsoErfassung = {ArtikelID: 0, DeviceID: 0, ErfasstAm: '', ErfasstAnzahl: 0};
+
+    setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)
 
     this.dbOptimo.getInventurBases(`InventurID eq ${this.parameters.InventurID}`, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
@@ -142,35 +165,23 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     });
 
-
-
-    this.onClickErfassungLoeschen = (data) => {
-    this.buttonOpenDialogErfassungLoeschenClick(data);
-};
-
-    this.strErfassungModus = 'Mengen';
-
-    setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)
-
-    this.globalArtikelID = sessionStorage.getItem("globalArtikelID");
-
     this.dbOptimo.getInventurArtikelByArtikelId(null, this.globalArtikelID)
     .subscribe((result: any) => {
       this.dsoArtikel = result;
+
+      this.strArtikelnummer = result.Artikelnummer;
+
+      if (this.dsoArtikel != null && this.globalErfassungModus == 'Einzeln') {
+        this.strMenge = '1';
+this.buttonMengeErfassenClick(null);
+      }
     }, (result: any) => {
 
     });
 
     this.onKeyDownSetArtikelnummer = (event) => {
-  console.log("taste gedrückt");
-  console.log(event);
-    
-  if(this.textboxArtikelnummer.value === undefined) {
-    this.textboxArtikelnummer.value = "";
-  }
-
   if(this.strStatusArtikelnummer == 'Artikel geladen') {
-    this.textboxArtikelnummer.value = "";
+    this.textboxArtikelnummer.value = '';
     this.strStatusArtikelnummer = 'Unbekannt'
   }
 
@@ -216,11 +227,44 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 };
 
-    this.onClickArtikelProtokollOeffnen = (data) => {
-    // this.buttonOpenDialogErfassungLoeschenClick(data);
+    this.onKeyDownSetMenge = (event) => {
+	if (this.textboxMenge.value === undefined) {
+		this.textboxMenge.value = "";
+	}
+
+	switch (event.key) {
+		case "0":
+		case "1":
+		case "2":
+		case "3":
+		case "4":
+		case "5":
+		case "6":
+		case "7":
+		case "8":
+		case "9":
+			this.textboxMenge.value = this.textboxMenge.value + event.key;
+			break;
+	  
+		case "Enter":
+		case "Unidentified":
+			console.log("--------- Enter ---------");
+			break;
+
+		case "Backspace":
+			if (this.textboxMenge.value.length >= 1) {
+				this.textboxMenge.value = this.textboxMenge.value.substr(0, this.textboxMenge.value.length - 1);
+			}
+			break;
+
+		default:
+			break;
+	}
 };
 
-    this.strStatusArtikelnummer = 'Unbekannt';
+    this.onClickErfassungLoeschen = (data) => {
+    this.buttonErfassungLoeschenClick(data);
+};
 
     this.onClickNavigateBack = () => {
     if (this.dialogRef) {
@@ -231,7 +275,17 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   selectbarErfassenModusChange(event: any) {
+    this.dsoArtikel = null;
+
+    this.strArtikelnummer = '';
+
+    this.strStatusArtikelnummer = 'unbekannt';
+
+    this.strMenge = '';
+
     setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)
+
+    localStorage.setItem("globalErfassungModus", event)
   }
 
   buttonArtikelAuswahlClick(event: any) {
@@ -244,15 +298,54 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   buttonArtikelEntfernenClick(event: any) {
     this.dsoArtikel = null;
 
+    this.strArtikelnummer = '';
+
+    this.strStatusArtikelnummer = 'unbekannt';
+
     setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)
   }
 
-  button2Click(event: any) {
-    this.notificationService.notify({ severity: "success", summary: `Ein Test`, detail: `5 Artikel erfasst!` });
+  buttonMengeErfassenClick(event: any) {
+    if (this.strArtikelnummer == '') {
+      this.notificationService.notify({ severity: "warn", summary: ``, detail: `Keine Artikelnummer eingegeben!` });
+    }
+
+    if (this.strMenge == '') {
+      this.notificationService.notify({ severity: "warn", summary: ``, detail: `Keine Menge eingegeben!` });
+    }
+
+    if (this.strArtikelnummer != '' && this.strMenge != '') {
+      var date = new Date();
+
+this.dsoErfassung.ErfasstAm = new Date(Date.UTC(date.getFullYear(),
+                                                date.getMonth(),
+                                                date.getDate(),
+                                                date.getHours(),
+                                                date.getMinutes(),
+                                                date.getSeconds(),
+                                                date.getMilliseconds() ));
+                                         
+this.dsoErfassung.ArtikelID = Number(this.globalArtikelID);
+this.dsoErfassung.DeviceID = Number(this.globalDeviceID);
+this.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);
+    }
+
+    if (this.strArtikelnummer != '' && this.strMenge != '') {
+          this.dbOptimo.createInventurErfassung(null, this.dsoErfassung)
+      .subscribe((result: any) => {
+          this.notificationService.notify({ severity: "success", summary: ``, detail: `Menge ${this.strMenge} erfasst` });
+
+      this.strMenge = '';
+
+      this.datalistErfassung.load();
+      }, (result: any) => {
+          this.notificationService.notify({ severity: "error", summary: ``, detail: `Menge konnte nicht erfasst werden!` });
+      });
+    }
   }
 
   datalistErfassungLoadData(event: any) {
-    this.dbOptimo.getVwInventurErfassungs(null, null, null, null, null, null, null, null)
+    this.dbOptimo.getVwInventurErfassungs(`InventurID eq ${this.parameters.InventurID}`, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.rstErfassung = result.value;
 
@@ -262,13 +355,41 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
     });
   }
 
-  buttonOpenDialogErfassungLoeschenClick(event: any) {
-    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll die Erfassung vom " + event.ErfasstAm + " für den Artikel '" + event.Artikelnummer + " " + event.Beschreibung + "'  gelöscht werden?"}, title: `Löschen Erfassung` })
-        .afterClosed().subscribe(result => {
-              if (result == 'Löschen') {
-        this.notificationService.notify({ severity: "info", summary: ``, detail: `Erfassung gelöscht ${event.ErfassungID}` });
-      }
-    });
+  buttonErfassungLoeschenClick(event: any) {
+    if (event.GeloeschtAm == null) {
+      this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll die Erfassung vom '" + event.ErfasstAmFormatiert + "' für den Artikel '" + event.Artikelnummer + " · " + event.Beschreibung + "' gelöscht werden?"}, title: `Erfassung` })
+          .afterClosed().subscribe(result => {
+                  if (result == 'Löschen') {
+                this.datGeloeschtAm = '';
+        }
+
+        if (result == 'Löschen') {
+          var date = new Date();
+
+this.datGeloeschtAm = new Date(Date.UTC(date.getFullYear(),
+                                        date.getMonth(),
+                                        date.getDate(),
+                                        date.getHours(),
+                                        date.getMinutes(),
+                                        date.getSeconds(),
+                                        date.getMilliseconds() ));
+        }
+
+        if (result == 'Löschen') {
+                  this.dbOptimo.updateInventurErfassung(null, event.ErfassungID, {GeloeschtAm: this.datGeloeschtAm})
+          .subscribe((result: any) => {
+                  this.notificationService.notify({ severity: "success", summary: ``, detail: `Erfassung gelöscht` })
+          .subscribe(() => {
+
+          });
+
+          this.datalistErfassung.load();
+          }, (result: any) => {
+                  this.notificationService.notify({ severity: "error", summary: ``, detail: `Erfassung konnte nicht gelöscht werden!` });
+          });
+        }
+      });
+    }
   }
 
   buttonArtikelLadenByArtikelnummerClick(event: any) {

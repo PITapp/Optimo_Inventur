@@ -115,7 +115,7 @@ export class ErfassenArtikelAuswahlGenerated implements AfterViewInit, OnInit, O
       this.dialogRef.close();
     }
     if (data != null) {
-      sessionStorage.setItem("globalArtikelID", data.ArtikelID);
+      localStorage.setItem("globalArtikelID", data.ArtikelID);
     }
     this._location.back();
 };

@@ -441,6 +441,11 @@
               "inversePropertyName": "InventurBasis",
               "name": "InventurArtikels",
               "type": "InventurArtikel"
+            },
+            {
+              "inversePropertyName": "InventurBasis",
+              "name": "InventurDevices",
+              "type": "InventurDevice"
             }
           ]
         },
@@ -505,6 +510,12 @@
           "items": {
             "$ref": "#/definitions/InventurArtikel"
           }
+        },
+        "InventurDevices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InventurDevice"
+          }
         }
       }
     },
@@ -564,12 +575,7 @@
           "x-key": true,
           "x-identity": true,
           "x-nullable": false,
-          "type": "integer"
-        },
-        "DeviceNummer": {
-          "x-nullable": false,
-          "type": "string",
-          "length": 10,
+          "type": "integer",
           "x-navigation": [
             {
               "inversePropertyName": "InventurDevice",
@@ -578,10 +584,31 @@
             }
           ]
         },
+        "DeviceNummer": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 30
+        },
+        "InventurBasis": {
+          "type": "object",
+          "$ref": "#/definitions/InventurBasis"
+        },
+        "InventurID": {
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "InventurBasis",
+            "parentEntityType": "InventurBasis",
+            "type": "InventurBasis",
+            "principalKey": "InventurID",
+            "name": "InventurBasis",
+            "textProperty": "LagerortStatus",
+            "navigationProperty": "InventurDevices"
+          }
+        },
         "DeviceTitel": {
           "x-nullable": false,
           "type": "string",
-          "length": 100
+          "length": 150
         },
         "RegistriertAm": {
           "type": "string",
@@ -612,7 +639,7 @@
       "resource": "InventurErfassungs",
       "required": [
         "ArtikelID",
-        "DeviceNummer",
+        "DeviceID",
         "ErfasstAm",
         "ErfasstAnzahl"
       ],
@@ -644,18 +671,16 @@
           "type": "object",
           "$ref": "#/definitions/InventurDevice"
         },
-        "DeviceNummer": {
+        "DeviceID": {
           "x-nullable": false,
-          "type": "string",
-          "length": 10,
+          "type": "integer",
           "x-foreignKey": {
             "parentTable": "InventurDevice",
             "parentEntityType": "InventurDevice",
             "type": "InventurDevice",
-            "principalKey": "DeviceNummer",
+            "principalKey": "DeviceID",
             "name": "InventurDevice",
             "textProperty": "DeviceNummer",
-            "primaryKey": "DeviceID",
             "navigationProperty": "InventurErfassungs"
           }
         },
@@ -1430,12 +1455,15 @@
       "resource": "VwInventurErfassungs",
       "required": [
         "ArtikelID",
+        "DeviceID",
         "ErfasstAm",
         "ErfasstAnzahl",
         "InventurID",
         "Artikelnummer",
         "LagerortNummer",
-        "LagerortTitel"
+        "LagerortTitel",
+        "DeviceNummer",
+        "DeviceTitel"
       ],
       "properties": {
         "ErfassungID": {
@@ -1449,10 +1477,18 @@
           "x-key": true,
           "x-virtual": true
         },
+        "DeviceID": {
+          "x-nullable": false,
+          "type": "integer"
+        },
         "ErfasstAm": {
           "x-nullable": false,
           "type": "string",
           "format": "date-time"
+        },
+        "ErfasstAmFormatiert": {
+          "type": "string",
+          "length": 21
         },
         "ErfasstAnzahl": {
           "x-nullable": false,
@@ -1502,6 +1538,28 @@
           "x-nullable": false,
           "type": "string",
           "length": 81
+        },
+        "DeviceNummer": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 30
+        },
+        "DeviceTitel": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 150
+        },
+        "RegistriertAm": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "AnmeldungAm": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "AbmeldungAm": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
@@ -1509,6 +1567,72 @@
       "x-view": true,
       "x-table": "def.vwInventurLagerorte",
       "resource": "VwInventurLagerortes",
+      "required": [
+        "LagerortNummer",
+        "LagerortTitel",
+        "LagerortStatus"
+      ],
+      "properties": {
+        "InventurID": {
+          "x-default-sql": "0",
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "LagerortNummer": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 10,
+          "x-key": true,
+          "x-virtual": true
+        },
+        "LagerortTitel": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 70
+        },
+        "LagerortStatus": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 30
+        },
+        "Notiz": {
+          "type": "string",
+          "length": 65535
+        },
+        "DeviceID": {
+          "x-default-sql": "0",
+          "type": "integer"
+        },
+        "DeviceNummer": {
+          "type": "string",
+          "length": 30
+        },
+        "DeviceTitel": {
+          "type": "string",
+          "length": 150
+        },
+        "RegistriertAm": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "AnmeldungAm": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "AbmeldungAm": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "DeviceInfo": {
+          "type": "string",
+          "length": 65535
+        }
+      }
+    },
+    "VwInventurLagerorteMitSummen": {
+      "x-view": true,
+      "x-table": "def.vwInventurLagerorteMitSummen",
+      "resource": "VwInventurLagerorteMitSummens",
       "required": [
         "LagerortNummer",
         "LagerortTitel",
@@ -3396,6 +3520,73 @@
                 "value": {
                   "items": {
                     "$ref": "#/definitions/VwInventurLagerorte"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/VwInventurLagerorteMitSummens": {
+      "get": {
+        "operationId": "getVwInventurLagerorteMitSummens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/VwInventurLagerorteMitSummen"
                   },
                   "type": "array"
                 }

@@ -157,7 +157,9 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   buttonNavigateToErfassenClick(event: any) {
     this.datalistLagerorte.load();
 
-    sessionStorage.setItem("globalArtikelID", "0");
+    localStorage.setItem("globalArtikelID", "0");
+
+    localStorage.setItem("globalErfassungModus", "Mengen");
 
     this.dbOptimo.getInventurDeviceByDeviceId(null, this.globalDeviceID)
     .subscribe((result: any) => {

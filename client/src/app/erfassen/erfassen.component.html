@@ -11,9 +11,9 @@
       </rz-icon>
     </div>
   </div>
-  <div class="row" [ngStyle]="{'backgroundColor': '#ffffff', 'height': '55px', 'marginTop': '98px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0'}">
+  <div class="row" [ngStyle]="{'backgroundColor': '#ffffff', 'height': '55px', 'marginTop': '35px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0'}">
     <div class="col-12 align-items-end d-flex" [ngStyle]="{'borderBottom': '2px solid #dadfe2', 'fontSize': '16px', 'lineHeight': '16px', 'marginBottom': '-2px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'textAlign': 'right'}">
-      <rz-selectbar #selectbarErfassenModus [style]="{'float': 'left', 'marginBottom': '-2px'}" [(ngModel)]="strErfassungModus" name="selectbarErfassenModus" (change)="selectbarErfassenModusChange($event)">
+      <rz-selectbar #selectbarErfassenModus [style]="{'float': 'left', 'marginBottom': '-2px'}" [(ngModel)]="globalErfassungModus" name="selectbarErfassenModus" (change)="selectbarErfassenModusChange($event)">
         <rz-selectbar-option text="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mengen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" value="Mengen">
         </rz-selectbar-option>
         <rz-selectbar-option text="Einzelstücke" value="Einzeln">
@@ -23,7 +23,7 @@
   </div>
   <div class="row" [ngStyle]="{'backgroundColor': '#ffffff', 'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '0', 'paddingTop': '17px'}">
     <div class="col-10" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'paddingLeft': '10px', 'paddingRight': '10px', 'textAlign': 'right'}">
-      <rz-textbox #textboxArtikelnummer placeholder="Artikelnummer" [readOnly]="true" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#3a474d', 'fontSize': '32px', 'fontWeight': 'normal', 'height': '40px', 'lineHeight': '32px', 'width': '100%'}" [(ngModel)]="dsoArtikel && dsoArtikel.Artikelnummer" name="textboxArtikelnummer" (keydown)="onKeyDownSetArtikelnummer($event)">
+      <rz-textbox #textboxArtikelnummer placeholder="Artikelnummer" [readOnly]="true" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#3a474d', 'fontSize': '32px', 'fontWeight': 'normal', 'height': '40px', 'lineHeight': '32px', 'width': '100%'}" [(ngModel)]="strArtikelnummer" name="textboxArtikelnummer" (keydown)="onKeyDownSetArtikelnummer($event)">
       </rz-textbox>
     </div>
     <div class="col-2" [ngStyle]="{'paddingLeft': '0', 'paddingRight': '10px', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
@@ -31,8 +31,8 @@
       </rz-button>
     </div>
   </div>
-  <div [ngStyle]="{'backgroundColor': '#e9e9e9', 'marginLeft': '10px', 'marginRight': '10px', 'marginTop': '10px', 'paddingBottom': '10px', 'paddingLeft': '10px', 'paddingRight': '0', 'paddingTop': '10px'}" class="row">
-    <div class="col-10" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'textAlign': 'right'}">
+  <div [ngStyle]="{'backgroundColor': '#ffffff', 'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '0', 'paddingBottom': '0', 'paddingLeft': '10px', 'paddingRight': '10px', 'paddingTop': '10px'}" class="row">
+    <div class="col-10" [ngStyle]="{'backgroundColor': '#e9e9e9', 'fontSize': '16px', 'lineHeight': '16px', 'paddingBottom': '10px', 'paddingLeft': '10px', 'paddingRight': '0', 'paddingTop': '10px', 'textAlign': 'right'}">
       <rz-label #label4 [style]="{'color': '#002171', 'fontSize': '18px', 'fontWeight': 'normal', 'lineHeight': '20px', 'textAlign': 'left', 'width': '100%'}" [text]="dsoArtikel?.Beschreibung">
       </rz-label>
       <rz-label #label6 [style]="{'color': '#3a474d', 'fontSize': '14px', 'fontWeight': 'normal', 'lineHeight': '16px', 'textAlign': 'left', 'width': '100%'}" [text]="dsoArtikel?.Beschreibung2" *ngIf="dsoArtikel?.Beschreibung2 != null">
@@ -40,43 +40,49 @@
       <rz-label #label9 [style]="{'color': '#3a474d', 'fontSize': '14px', 'fontWeight': 'normal', 'lineHeight': '16px', 'textAlign': 'left', 'width': '100%'}" [text]="dsoArtikel?.StdKreditorName" *ngIf="dsoArtikel?.StdKreditorName != null">
       </rz-label>
     </div>
-    <div class="col-2" [ngStyle]="{'paddingLeft': '0', 'paddingRight': '0', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
-      <rz-button #buttonArtikelEntfernen buttonStyle="secondary" icon="backspace" size="md" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#a71330', 'fontSize': '28px', 'fontWeight': 'normal', 'height': '100%', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}" (click)="buttonArtikelEntfernenClick($event)">
+    <div class="col-2" [ngStyle]="{'backgroundColor': '#e9e9e9', 'paddingLeft': '0', 'paddingRight': '0', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
+      <rz-button #buttonArtikelEntfernen buttonStyle="secondary" icon="clear" size="md" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#a71330', 'fontSize': '28px', 'fontWeight': 'normal', 'height': '100%', 'paddingBottom': '0', 'paddingLeft': '8px', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}" (click)="buttonArtikelEntfernenClick($event)">
       </rz-button>
     </div>
   </div>
-  <div [ngStyle]="{'backgroundColor': '#e9e9e9', 'borderTop': '1px dotted #a71330', 'height': '45px', 'marginBottom': '10px', 'marginLeft': '10px', 'marginRight': '10px', 'marginTop': '0', 'paddingBottom': '0', 'paddingLeft': '10px', 'paddingRight': '0', 'paddingTop': '0'}" class="row" (click)="onClickArtikelProtokollOeffnen(dsoArtikel)">
-    <div class="align-items-center d-flex col-12" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'textAlign': 'right'}">
-      <rz-label #label5 [style]="{'color': '#002171', 'fontSize': '24px', 'fontWeight': 'normal', 'lineHeight': '24px', 'textAlign': 'left'}" text="2.938">
+  <div [ngStyle]="{'backgroundColor': '#ffffff', 'height': '46px', 'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '0', 'paddingBottom': '5px', 'paddingLeft': '10px', 'paddingRight': '10px', 'paddingTop': '0'}" class="row" (click)="onClickArtikelProtokollOeffnen(dsoArtikel)">
+    <div class="align-items-center d-flex col-12" [ngStyle]="{'backgroundColor': '#e9e9e9', 'borderTop': '1px dotted #a71330', 'fontSize': '16px', 'lineHeight': '16px', 'paddingBottom': '2px', 'paddingLeft': '10px', 'paddingRight': '0', 'paddingTop': '0', 'textAlign': 'right'}">
+      <rz-label #label5 [style]="{'color': '#002171', 'fontSize': '28px', 'fontWeight': 'normal', 'lineHeight': '28px', 'textAlign': 'left'}" [text]="((dsoArtikel == null) ? ('') : (intSummeErfasst))">
       </rz-label>
-      <rz-label #label13 [style]="{'color': '#3a474d', 'fontSize': '14px', 'fontWeight': 'normal', 'lineHeight': '14px', 'marginLeft': '5px', 'paddingTop': '4px', 'textAlign': 'left'}" text="gezählt">
+      <rz-label #label13 [style]="{'color': '#3a474d', 'fontSize': '14px', 'fontWeight': 'normal', 'lineHeight': '14px', 'marginLeft': '5px', 'marginTop': '10px', 'textAlign': 'left'}" text="gezählt" *ngIf="dsoArtikel != null">
       </rz-label>
     </div>
   </div>
-  <rz-card #card1 [style]="{'marginTop': '-5px', 'paddingBottom': '5px', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0'}" *ngIf="strErfassungModus == 'Mengen'">
+  <rz-card #card1 [style]="{'backgroundColor': '#ffffff', 'paddingBottom': '5px', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0'}" *ngIf="globalErfassungModus == 'Mengen'">
     <div [ngStyle]="{'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '5px'}" class="row">
       <div class="col-6" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'paddingLeft': '10px', 'paddingRight': '10px', 'textAlign': 'left'}">
-        <rz-textbox #textbox2 placeholder="Menge" [readOnly]="false" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#3a474d', 'fontSize': '40px', 'fontWeight': 'normal', 'height': '50px', 'lineHeight': '40px', 'textAlign': 'left', 'width': '100%'}" name="textbox2">
+        <rz-textbox #textboxMenge placeholder="Menge" [readOnly]="true" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#3a474d', 'fontSize': '40px', 'fontWeight': 'normal', 'height': '50px', 'lineHeight': '40px', 'textAlign': 'left', 'width': '100%'}" [(ngModel)]="strMenge" name="textboxMenge" (keydown)="onKeyDownSetMenge($event)">
         </rz-textbox>
       </div>
       <div class="col-6" [ngStyle]="{'paddingLeft': '0', 'paddingRight': '10px', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
-        <rz-button #button2 buttonStyle="light" icon="done" [style]="{'backgroundColor': '#e9e9e9', 'border': '1px solid #dadfe2', 'color': '#a71330', 'fontSize': '18px', 'fontWeight': 'normal', 'height': '50px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}" text="Erfassen" (click)="button2Click($event)">
+        <rz-button #buttonMengeErfassen buttonStyle="light" icon="done" [style]="{'backgroundColor': '#e9e9e9', 'border': '1px solid #dadfe2', 'color': '#a71330', 'fontSize': '18px', 'fontWeight': 'normal', 'height': '50px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}" text="Erfassen" (click)="buttonMengeErfassenClick($event)">
         </rz-button>
       </div>
     </div>
   </rz-card>
-  <rz-datalist #datalistErfassung [allowPaging]="false" [count]="rstErfassungCount" [data]="rstErfassung" defaultRowText="Template for index" emptyText="Protokoll Erfassung laden..." [pageSize]="3" [style]="{'borderTop': '2px solid #e9e9e9', 'marginTop': '5px'}" [wrapItems]="false" (loadData)="datalistErfassungLoadData($event)">
+  <div [ngStyle]="{'backgroundColor': '#ffffff', 'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '0', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '5px'}" class="row" (click)="onClickArtikelProtokollOeffnen(dsoArtikel)">
+    <div class="align-items-center d-flex col-12 justify-content-center" [ngStyle]="{'backgroundColor': '#e9e9e9', 'fontSize': '16px', 'height': '20px', 'lineHeight': '16px', 'paddingBottom': '4px', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'textAlign': 'right'}">
+      <rz-label #label14 [style]="{'color': '#002171', 'fontSize': '12px', 'fontWeight': 'normal', 'lineHeight': '12px', 'textAlign': 'center', 'width': '100%'}" [text]="((dsoArtikel == null) ? (('Protokoll Lagerort · ' + rstErfassungCount) + ' Einträge') : (('Protokoll Artikel · ' + rstErfassungCount) + ' Einträge'))">
+      </rz-label>
+    </div>
+  </div>
+  <rz-datalist #datalistErfassung [allowPaging]="false" [count]="rstErfassungCount" [data]="rstErfassung" defaultRowText="Template for index" emptyText="&nbsp;" [pageSize]="3" [style]="{}" [wrapItems]="false" (loadData)="datalistErfassungLoadData($event)">
     <ng-template let-data datalistTemplate>
-      <rz-card #card2 [style]="{'backgroundColor': '#f5f5f5', 'color': '#a71330', 'fontWeight': 'bold', 'marginBottom': '-5px', 'paddingBottom': '0', 'paddingLeft': '15px', 'paddingRight': '15px', 'paddingTop': '0'}" *ngIf="data?.GeloeschtAm != null">
-        <rz-label #label0 [style]="{'fontSize': '12px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '14px'}" text=">>> Gelöscht am {{data?.GeloeschtAm | date:'dd.MM.yyyy HH:mm'}}">
+      <rz-card #card2 [style]="{'backgroundColor': '#ffffff', 'color': '#a71330', 'fontWeight': 'bold', 'marginBottom': '-5px', 'paddingBottom': '0', 'paddingLeft': '15px', 'paddingRight': '15px', 'paddingTop': '0'}" *ngIf="data?.GeloeschtAm != null">
+        <rz-label #label0 [style]="{'color': '#a71330', 'fontSize': '12px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '14px'}" text=">>> Gelöscht am {{data?.GeloeschtAm | date:'dd.MM.yyyy HH:mm'}}">
         </rz-label>
       </rz-card>
-      <rz-card #card0 [style]="{'backgroundColor': '#f5f5f5', 'borderBottom': '1px solid #e9e9e9', 'paddingBottom': '4px', 'paddingLeft': '15px', 'paddingRight': '5px', 'paddingTop': '0'}">
+      <rz-card #card0 [style]="{'backgroundColor': '#ffffff', 'borderBottom': '1px solid #dadfe2', 'paddingBottom': '4px', 'paddingLeft': '15px', 'paddingRight': '5px', 'paddingTop': '0'}">
         <div class="row align-items-center">
           <div class="col-8" [ngStyle]="{'paddingLeft': '15px', 'paddingRight': '0px', 'verticalAlign': 'baseline'}">
             <div [ngStyle]="{'marginBottom': '-5px', 'paddingBottom': '0', 'paddingTop': '0'}" class="row">
               <div class="col-12" [ngStyle]="{'paddingRight': '0'}">
-                <rz-label #label1 [style]="{'color': '#002171', 'fontSize': '12px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '15px'}" [text]="data?.ErfasstAm | date:'dd.MM.yyyy HH:mm'">
+                <rz-label #label1 [style]="{'color': '#002171', 'fontSize': '12px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '15px'}" [text]="data?.ErfasstAm | utcDate:'dd.MM.yyyy HH:mm'">
                 </rz-label>
                 <rz-label #label12 [style]="{'color': '#3a474d', 'fontSize': '12px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '15px', 'marginLeft': '20px'}" [text]="data?.Artikelnummer">
                 </rz-label>
@@ -90,13 +96,13 @@
             </rz-label>
           </div>
           <div class="col-2 align-items-center d-flex justify-content-end" [ngStyle]="{'paddingLeft': '15px', 'paddingRight': '0px', 'verticalAlign': 'baseline'}">
-            <rz-label #label3 [style]="{'color': '#3a474d', 'fontSize': '22px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'paddingRight': '15px', 'textAlign': 'right', 'width': '100%'}" [text]="data?.ErfasstAnzahl">
+            <rz-label #label3 [style]="{'color': '#3a474d', 'fontSize': '22px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'paddingRight': '15px', 'textAlign': 'right', 'width': '100%'}" [text]="data?.ErfasstAnzahlFormatiert">
             </rz-label>
           </div>
           <div class="align-items-center d-flex justify-content-end col-2" [ngStyle]="{'height': '40px', 'paddingRight': '25px', 'paddingTop': '5px', 'textAlign': 'right'}" (click)="onClickErfassungLoeschen(data)">
-            <rz-icon #icon0 icon="backspace" [style]="{'color': '#f9777f', 'fontSize': '16px', 'fontWeight': 'normal'}" *ngIf="data?.GeloeschtAm == null">
+            <rz-icon #icon0 icon="backspace" [style]="{'color': '#8B9196', 'fontSize': '16px', 'fontWeight': 'normal'}" *ngIf="data?.GeloeschtAm == null">
             </rz-icon>
-            <rz-icon #icon2 icon="delete" [style]="{'color': '#88989b', 'fontSize': '16px', 'fontWeight': 'normal'}" *ngIf="data?.GeloeschtAm != null">
+            <rz-icon #icon2 icon="delete" [style]="{'color': '#f9777f', 'fontSize': '16px', 'fontWeight': 'normal'}" *ngIf="data?.GeloeschtAm != null">
             </rz-icon>
           </div>
         </div>
@@ -106,7 +112,7 @@
   <rz-label #label2 [style]="{'backgroundColor': '#e6c54f', 'marginBottom': '10px', 'marginTop': '20px', 'width': '100%'}" text="Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Click-Ereignisse aktiviert werden.
   Siehe app.routes.ts" *ngIf="false">
   </rz-label>
-  <rz-button #buttonOpenDialogErfassungLoeschen text="OpenDialogErfassungLoeschen" *ngIf="false" (click)="buttonOpenDialogErfassungLoeschenClick($event)">
+  <rz-button #buttonErfassungLoeschen text="ErfassungLöschen" *ngIf="false" (click)="buttonErfassungLoeschenClick($event)">
   </rz-button>
   <rz-button #buttonArtikelLadenByArtikelnummer [style]="{'marginLeft': '10px'}" text="ArtikelLadenByArtikelnummer" *ngIf="false" (click)="buttonArtikelLadenByArtikelnummerClick($event)">
   </rz-button>

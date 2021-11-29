@@ -18,6 +18,8 @@ namespace OptimoInventur.Models.DbOptimo
 
 
     public ICollection<InventurArtikel> InventurArtikels { get; set; }
+
+    public ICollection<InventurDevice> InventurDevices { get; set; }
     public string LagerortStatus
     {
       get;

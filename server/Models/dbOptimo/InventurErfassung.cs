@@ -21,7 +21,7 @@ namespace OptimoInventur.Models.DbOptimo
     }
 
     public InventurArtikel InventurArtikel { get; set; }
-    public string DeviceNummer
+    public int DeviceID
     {
       get;
       set;

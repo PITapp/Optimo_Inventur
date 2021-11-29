@@ -105,7 +105,31 @@
                   "events": {
                     "change": [
                       {
+                        "name": "dsoArtikel",
+                        "type": "set",
+                        "value": "null"
+                      },
+                      {
+                        "name": "strArtikelnummer",
+                        "type": "set",
+                        "value": "''"
+                      },
+                      {
+                        "name": "strStatusArtikelnummer",
+                        "type": "set",
+                        "value": "'unbekannt'"
+                      },
+                      {
+                        "name": "strMenge",
+                        "type": "set",
+                        "value": "''"
+                      },
+                      {
                         "code": "setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
+                        "type": "execute"
+                      },
+                      {
+                        "code": "localStorage.setItem(\"globalErfassungModus\", ${event})",
                         "type": "execute"
                       }
                     ]
@@ -126,7 +150,7 @@
                     "marginBottom": "-2px"
                   },
                   "type": "selectbar",
-                  "value": "${strErfassungModus}"
+                  "value": "${globalErfassungModus}"
                 }
               ],
               "name": "col5",
@@ -148,7 +172,7 @@
           "style": {
             "backgroundColor": "#ffffff",
             "height": "55px",
-            "marginTop": "98px",
+            "marginTop": "35px",
             "paddingBottom": "0",
             "paddingLeft": "0",
             "paddingRight": "0",
@@ -182,7 +206,7 @@
                     "width": "100%"
                   },
                   "type": "textbox",
-                  "value": "${dsoArtikel.Artikelnummer}"
+                  "value": "${strArtikelnummer}"
                 }
               ],
               "name": "col10",
@@ -304,12 +328,13 @@
               ],
               "name": "col2",
               "style": {
+                "backgroundColor": "#e9e9e9",
                 "fontSize": "16px",
                 "lineHeight": "16px",
-                "paddingBottom": "0",
-                "paddingLeft": "0",
+                "paddingBottom": "10px",
+                "paddingLeft": "10px",
                 "paddingRight": "0",
-                "paddingTop": "0",
+                "paddingTop": "10px",
                 "textAlign": "right"
               },
               "type": "col"
@@ -327,12 +352,22 @@
                         "value": "null"
                       },
                       {
+                        "name": "strArtikelnummer",
+                        "type": "set",
+                        "value": "''"
+                      },
+                      {
+                        "name": "strStatusArtikelnummer",
+                        "type": "set",
+                        "value": "'unbekannt'"
+                      },
+                      {
                         "code": "setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
                         "type": "execute"
                       }
                     ]
                   },
-                  "icon": "backspace",
+                  "icon": "clear",
                   "name": "buttonArtikelEntfernen",
                   "size": "md",
                   "style": {
@@ -342,7 +377,7 @@
                     "fontWeight": "normal",
                     "height": "100%",
                     "paddingBottom": "0",
-                    "paddingLeft": "0",
+                    "paddingLeft": "8px",
                     "paddingRight": "0",
                     "paddingTop": "0",
                     "width": "100%"
@@ -354,6 +389,7 @@
               ],
               "name": "col8",
               "style": {
+                "backgroundColor": "#e9e9e9",
                 "paddingLeft": "0",
                 "paddingRight": "0",
                 "textAlign": "right",
@@ -364,13 +400,14 @@
           ],
           "name": "row1",
           "style": {
-            "backgroundColor": "#e9e9e9",
-            "marginLeft": "10px",
-            "marginRight": "10px",
-            "marginTop": "10px",
-            "paddingBottom": "10px",
+            "backgroundColor": "#ffffff",
+            "marginBottom": "0",
+            "marginLeft": "0",
+            "marginRight": "0",
+            "marginTop": "0",
+            "paddingBottom": "0",
             "paddingLeft": "10px",
-            "paddingRight": "0",
+            "paddingRight": "10px",
             "paddingTop": "10px"
           },
           "type": "row"
@@ -390,12 +427,12 @@
                   "name": "label5",
                   "style": {
                     "color": "#002171",
-                    "fontSize": "24px",
+                    "fontSize": "28px",
                     "fontWeight": "normal",
-                    "lineHeight": "24px",
+                    "lineHeight": "28px",
                     "textAlign": "left"
                   },
-                  "text": "2.938",
+                  "text": "${dsoArtikel == null ? '' : intSummeErfasst}",
                   "type": "label"
                 },
                 {
@@ -406,19 +443,22 @@
                     "fontWeight": "normal",
                     "lineHeight": "14px",
                     "marginLeft": "5px",
-                    "paddingTop": "4px",
+                    "marginTop": "10px",
                     "textAlign": "left"
                   },
                   "text": "gezählt",
-                  "type": "label"
+                  "type": "label",
+                  "visible": "${dsoArtikel != null}"
                 }
               ],
               "name": "col19",
               "style": {
+                "backgroundColor": "#e9e9e9",
+                "borderTop": "1px dotted #a71330",
                 "fontSize": "16px",
                 "lineHeight": "16px",
-                "paddingBottom": "0",
-                "paddingLeft": "0",
+                "paddingBottom": "2px",
+                "paddingLeft": "10px",
                 "paddingRight": "0",
                 "paddingTop": "0",
                 "textAlign": "right"
@@ -428,16 +468,15 @@
           ],
           "name": "row13",
           "style": {
-            "backgroundColor": "#e9e9e9",
-            "borderTop": "1px dotted #a71330",
-            "height": "45px",
-            "marginBottom": "10px",
-            "marginLeft": "10px",
-            "marginRight": "10px",
+            "backgroundColor": "#ffffff",
+            "height": "46px",
+            "marginBottom": "0",
+            "marginLeft": "0",
+            "marginRight": "0",
             "marginTop": "0",
-            "paddingBottom": "0",
+            "paddingBottom": "5px",
             "paddingLeft": "10px",
-            "paddingRight": "0",
+            "paddingRight": "10px",
             "paddingTop": "0"
           },
           "type": "row"
@@ -450,9 +489,15 @@
                   "class": "col-6",
                   "components": [
                     {
-                      "name": "textbox2",
+                      "attributes": [
+                        {
+                          "name": "(keydown)",
+                          "value": "onKeyDownSetMenge($event)"
+                        }
+                      ],
+                      "name": "textboxMenge",
                       "placeholder": "Menge",
-                      "readOnly": false,
+                      "readOnly": true,
                       "style": {
                         "backgroundColor": "rgba(0, 0, 0, 0)",
                         "color": "#3a474d",
@@ -464,7 +509,7 @@
                         "width": "100%"
                       },
                       "type": "textbox",
-                      "value": ""
+                      "value": "${strMenge}"
                     }
                   ],
                   "name": "col0",
@@ -485,16 +530,62 @@
                       "events": {
                         "click": [
                           {
-                            "detail": "5 Artikel erfasst!",
-                            "duration": "",
-                            "severity": "success",
-                            "summary": "Ein Test",
+                            "condition": "${strArtikelnummer} == ''",
+                            "detail": "Keine Artikelnummer eingegeben!",
+                            "severity": "warn",
                             "type": "notify"
+                          },
+                          {
+                            "condition": "${strMenge} == ''",
+                            "detail": "Keine Menge eingegeben!",
+                            "duration": "",
+                            "severity": "warn",
+                            "summary": "",
+                            "type": "notify"
+                          },
+                          {
+                            "code": "var date = new Date();\n\nthis.dsoErfassung.ErfasstAm = new Date(Date.UTC(date.getFullYear(),\n                                                date.getMonth(),\n                                                date.getDate(),\n                                                date.getHours(),\n                                                date.getMinutes(),\n                                                date.getSeconds(),\n                                                date.getMilliseconds() ));\n                                         \nthis.dsoErfassung.ArtikelID = Number(this.globalArtikelID);\nthis.dsoErfassung.DeviceID = Number(this.globalDeviceID);\nthis.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);",
+                            "condition": "${strArtikelnummer} != '' && ${strMenge} != ''",
+                            "type": "execute"
+                          },
+                          {
+                            "condition": "${strArtikelnummer} != '' && ${strMenge} != ''",
+                            "error": [
+                              {
+                                "detail": "Menge konnte nicht erfasst werden!",
+                                "severity": "error",
+                                "type": "notify"
+                              }
+                            ],
+                            "name": "dbOptimo.createInventurErfassung",
+                            "parameters": [
+                              {
+                                "name": "InventurErfassung",
+                                "value": "${dsoErfassung}"
+                              }
+                            ],
+                            "then": [
+                              {
+                                "detail": "Menge ${strMenge} erfasst",
+                                "severity": "success",
+                                "type": "notify"
+                              },
+                              {
+                                "name": "strMenge",
+                                "type": "set",
+                                "value": "''"
+                              },
+                              {
+                                "code": "this.datalistErfassung.load();",
+                                "type": "execute"
+                              }
+                            ],
+                            "type": "invoke"
                           }
                         ]
                       },
                       "icon": "done",
-                      "name": "button2",
+                      "name": "buttonMengeErfassen",
                       "style": {
                         "backgroundColor": "#e9e9e9",
                         "border": "1px solid #dadfe2",
@@ -535,26 +626,85 @@
           ],
           "name": "card1",
           "style": {
-            "marginTop": "-5px",
+            "backgroundColor": "#ffffff",
             "paddingBottom": "5px",
             "paddingLeft": "0",
             "paddingRight": "0",
             "paddingTop": "0"
           },
           "type": "card",
-          "visible": "${strErfassungModus == 'Mengen'}"
+          "visible": "${globalErfassungModus == 'Mengen'}"
+        },
+        {
+          "attributes": [
+            {
+              "name": "(click)",
+              "value": "onClickArtikelProtokollOeffnen(dsoArtikel)"
+            }
+          ],
+          "components": [
+            {
+              "class": "align-items-center d-flex col-12 justify-content-center",
+              "components": [
+                {
+                  "name": "label14",
+                  "style": {
+                    "color": "#002171",
+                    "fontSize": "12px",
+                    "fontWeight": "normal",
+                    "lineHeight": "12px",
+                    "textAlign": "center",
+                    "width": "100%"
+                  },
+                  "text": "${dsoArtikel == null ? 'Protokoll Lagerort · ' + rstErfassungCount + ' Einträge' : 'Protokoll Artikel · ' + rstErfassungCount + ' Einträge'}",
+                  "type": "label"
+                }
+              ],
+              "name": "col12",
+              "style": {
+                "backgroundColor": "#e9e9e9",
+                "fontSize": "16px",
+                "height": "20px",
+                "lineHeight": "16px",
+                "paddingBottom": "4px",
+                "paddingLeft": "0",
+                "paddingRight": "0",
+                "paddingTop": "0",
+                "textAlign": "right"
+              },
+              "type": "col"
+            }
+          ],
+          "name": "row2",
+          "style": {
+            "backgroundColor": "#ffffff",
+            "marginBottom": "0",
+            "marginLeft": "0",
+            "marginRight": "0",
+            "marginTop": "0",
+            "paddingBottom": "0",
+            "paddingLeft": "0",
+            "paddingRight": "0",
+            "paddingTop": "5px"
+          },
+          "type": "row"
         },
         {
           "allowPaging": false,
           "count": "${rstErfassungCount}",
           "data": "${rstErfassung}",
           "defaultRowText": "Template for index",
-          "emptyText": "Protokoll Erfassung laden...",
+          "emptyText": "&nbsp;",
           "events": {
             "loadData": [
               {
                 "name": "dbOptimo.getVwInventurErfassungs",
-                "parameters": [],
+                "parameters": [
+                  {
+                    "name": "$filter",
+                    "value": "InventurID eq ${parameters.InventurID}"
+                  }
+                ],
                 "then": [
                   {
                     "name": "rstErfassung",
@@ -573,16 +723,14 @@
           },
           "name": "datalistErfassung",
           "pageSize": 3,
-          "style": {
-            "borderTop": "2px solid #e9e9e9",
-            "marginTop": "5px"
-          },
+          "style": {},
           "template": [
             {
               "components": [
                 {
                   "name": "label0",
                   "style": {
+                    "color": "#a71330",
                     "fontSize": "12px",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
@@ -594,7 +742,7 @@
               ],
               "name": "card2",
               "style": {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#ffffff",
                 "color": "#a71330",
                 "fontWeight": "bold",
                 "marginBottom": "-5px",
@@ -629,7 +777,7 @@
                                     "fontWeight": "normal",
                                     "lineHeight": "15px"
                                   },
-                                  "text": "${data.ErfasstAm | date : 'dd.MM.yyyy HH:mm'}",
+                                  "text": "${data.ErfasstAm | utcDate : 'dd.MM.yyyy HH:mm'}",
                                   "type": "label",
                                   "visible": ""
                                 },
@@ -731,7 +879,7 @@
                             "textAlign": "right",
                             "width": "100%"
                           },
-                          "text": "${data.ErfasstAnzahl}",
+                          "text": "${data.ErfasstAnzahlFormatiert}",
                           "type": "label",
                           "visible": true
                         }
@@ -757,7 +905,7 @@
                           "icon": "backspace",
                           "name": "icon0",
                           "style": {
-                            "color": "#f9777f",
+                            "color": "#8B9196",
                             "fontSize": "16px",
                             "fontWeight": "normal"
                           },
@@ -768,7 +916,7 @@
                           "icon": "delete",
                           "name": "icon2",
                           "style": {
-                            "color": "#88989b",
+                            "color": "#f9777f",
                             "fontSize": "16px",
                             "fontWeight": "normal"
                           },
@@ -792,8 +940,8 @@
               ],
               "name": "card0",
               "style": {
-                "backgroundColor": "#f5f5f5",
-                "borderBottom": "1px solid #e9e9e9",
+                "backgroundColor": "#ffffff",
+                "borderBottom": "1px solid #dadfe2",
                 "paddingBottom": "4px",
                 "paddingLeft": "15px",
                 "paddingRight": "5px",
@@ -822,28 +970,69 @@
           "events": {
             "click": [
               {
+                "condition": "${event.GeloeschtAm} == null",
+                "height": "",
                 "parameters": [
                   {
                     "name": "strMeldung",
-                    "value": "\"Soll die Erfassung vom \" + ${event.ErfasstAm} + \" für den Artikel '\" + ${event.Artikelnummer} + \" \" + ${event.Beschreibung} + \"'  gelöscht werden?\""
+                    "value": "\"Soll die Erfassung vom '\" + ${event.ErfasstAmFormatiert} + \"' für den Artikel '\" + ${event.Artikelnummer} + \" · \" + ${event.Beschreibung} + \"' gelöscht werden?\""
                   }
                 ],
                 "path": "meldung-loeschen",
                 "then": [
                   {
                     "condition": "${result} == 'Löschen'",
-                    "detail": "Erfassung gelöscht ${event.ErfassungID}",
-                    "severity": "info",
-                    "type": "notify"
+                    "name": "datGeloeschtAm",
+                    "type": "set",
+                    "value": "''"
+                  },
+                  {
+                    "code": "var date = new Date();\n\nthis.datGeloeschtAm = new Date(Date.UTC(date.getFullYear(),\n                                        date.getMonth(),\n                                        date.getDate(),\n                                        date.getHours(),\n                                        date.getMinutes(),\n                                        date.getSeconds(),\n                                        date.getMilliseconds() ));",
+                    "condition": "${result} == 'Löschen'",
+                    "type": "execute"
+                  },
+                  {
+                    "condition": "${result} == 'Löschen'",
+                    "error": [
+                      {
+                        "detail": "Erfassung konnte nicht gelöscht werden!",
+                        "severity": "error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "dbOptimo.updateInventurErfassung",
+                    "parameters": [
+                      {
+                        "name": "ErfassungID",
+                        "value": "${event.ErfassungID}"
+                      },
+                      {
+                        "name": "InventurErfassung",
+                        "value": "{GeloeschtAm: ${datGeloeschtAm}}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "detail": "Erfassung gelöscht",
+                        "severity": "success",
+                        "then": [],
+                        "type": "notify"
+                      },
+                      {
+                        "code": "this.datalistErfassung.load();",
+                        "type": "execute"
+                      }
+                    ],
+                    "type": "invoke"
                   }
                 ],
-                "title": "Löschen Erfassung",
+                "title": "Erfassung",
                 "type": "popup"
               }
             ]
           },
-          "name": "buttonOpenDialogErfassungLoeschen",
-          "text": "OpenDialogErfassungLoeschen",
+          "name": "buttonErfassungLoeschen",
+          "text": "ErfassungLöschen",
           "tooltip": "",
           "type": "button",
           "visible": false
@@ -887,7 +1076,47 @@
   "events": {
     "load": [
       {
-        "code": "window.scroll(0,0);",
+        "name": "globalErfassungModus",
+        "type": "set",
+        "value": "localStorage.getItem(\"globalErfassungModus\")"
+      },
+      {
+        "name": "globalArtikelID",
+        "type": "set",
+        "value": "localStorage.getItem(\"globalArtikelID\")"
+      },
+      {
+        "name": "globalDeviceID",
+        "type": "set",
+        "value": "localStorage.getItem(\"globalDeviceID\")"
+      },
+      {
+        "name": "strStatusArtikelnummer",
+        "type": "set",
+        "value": "'Unbekannt'"
+      },
+      {
+        "name": "strArtikelnummer",
+        "type": "set",
+        "value": "''"
+      },
+      {
+        "name": "strMenge",
+        "type": "set",
+        "value": "''"
+      },
+      {
+        "name": "intSummeErfasst",
+        "type": "set",
+        "value": "0"
+      },
+      {
+        "name": "dsoErfassung",
+        "type": "set",
+        "value": "{ArtikelID: 0, DeviceID: 0, ErfasstAm: '', ErfasstAnzahl: 0}"
+      },
+      {
+        "code": "setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
         "type": "execute"
       },
       {
@@ -911,26 +1140,6 @@
         ],
         "type": "invoke"
       },
-      {},
-      {
-        "name": "onClickErfassungLoeschen",
-        "type": "set",
-        "value": "(data) => {\n    this.buttonOpenDialogErfassungLoeschenClick(data);\n}"
-      },
-      {
-        "name": "strErfassungModus",
-        "type": "set",
-        "value": "'Mengen'"
-      },
-      {
-        "code": "setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
-        "type": "execute"
-      },
-      {
-        "name": "globalArtikelID",
-        "type": "set",
-        "value": "sessionStorage.getItem(\"globalArtikelID\")"
-      },
       {
         "condition": "",
         "name": "dbOptimo.getInventurArtikelByArtikelID",
@@ -945,6 +1154,16 @@
             "name": "dsoArtikel",
             "type": "set",
             "value": "${result}"
+          },
+          {
+            "name": "strArtikelnummer",
+            "type": "set",
+            "value": "${result.Artikelnummer}"
+          },
+          {
+            "code": "this.strMenge = '1';\nthis.buttonMengeErfassenClick(null);",
+            "condition": "${dsoArtikel} != null && ${globalErfassungModus} == 'Einzeln'",
+            "type": "execute"
           }
         ],
         "type": "invoke"
@@ -952,17 +1171,17 @@
       {
         "name": "onKeyDownSetArtikelnummer",
         "type": "set",
-        "value": "(event) => {\n  console.log(\"taste gedrückt\");\n  console.log(event);\n    \n  if(this.textboxArtikelnummer.value === undefined) {\n    this.textboxArtikelnummer.value = \"\";\n  }\n\n  if(this.strStatusArtikelnummer == 'Artikel geladen') {\n    this.textboxArtikelnummer.value = \"\";\n    this.strStatusArtikelnummer = 'Unbekannt'\n  }\n\n  switch (event.key) {\n    case \"F12\":\n    case \"Shift\":\n    case \"Tab\":\n    case \"Control\":\n      // Taste - nix tun\n      break;\n      \n    case \"Enter\":\n    case \"Unidentified\":\n      console.log(\"--------- Enter ---------\");\n          \n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.strStatusArtikelnummer = 'Artikel geladen';\n\n        var strArtikelnummer = this.textboxArtikelnummer.value;\n        var pos = strArtikelnummer.indexOf('-F');\n\n        if (pos > 0) {\n          strArtikelnummer = strArtikelnummer.substr(0, pos);\n          this.textboxArtikelnummer.value = strArtikelnummer;\n        }\n        \n        this.buttonArtikelLadenByArtikelnummerClick(strArtikelnummer);\n      }\n          \n      //this.notificationService.notify({ severity: \"info\", summary: ``, detail: `Bin fertig` });\n      //document.getElementById(\"Feld123\").focus()\n      break;\n\n    case \"Backspace\":\n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1);\n      }\n      break;\n\n    default:\n      this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key;\n      break;\n  }\n}"
+        "value": "(event) => {\n  if(this.strStatusArtikelnummer == 'Artikel geladen') {\n    this.textboxArtikelnummer.value = '';\n    this.strStatusArtikelnummer = 'Unbekannt'\n  }\n\n  switch (event.key) {\n    case \"F12\":\n    case \"Shift\":\n    case \"Tab\":\n    case \"Control\":\n      // Taste - nix tun\n      break;\n      \n    case \"Enter\":\n    case \"Unidentified\":\n      console.log(\"--------- Enter ---------\");\n          \n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.strStatusArtikelnummer = 'Artikel geladen';\n\n        var strArtikelnummer = this.textboxArtikelnummer.value;\n        var pos = strArtikelnummer.indexOf('-F');\n\n        if (pos > 0) {\n          strArtikelnummer = strArtikelnummer.substr(0, pos);\n          this.textboxArtikelnummer.value = strArtikelnummer;\n        }\n        \n        this.buttonArtikelLadenByArtikelnummerClick(strArtikelnummer);\n      }\n          \n      //this.notificationService.notify({ severity: \"info\", summary: ``, detail: `Bin fertig` });\n      //document.getElementById(\"Feld123\").focus()\n      break;\n\n    case \"Backspace\":\n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1);\n      }\n      break;\n\n    default:\n      this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key;\n      break;\n  }\n}"
       },
       {
-        "name": "onClickArtikelProtokollOeffnen",
+        "name": "onKeyDownSetMenge",
         "type": "set",
-        "value": "(data) => {\n    // this.buttonOpenDialogErfassungLoeschenClick(data);\n}"
+        "value": "(event) => {\n\tif (this.textboxMenge.value === undefined) {\n\t\tthis.textboxMenge.value = \"\";\n\t}\n\n\tswitch (event.key) {\n\t\tcase \"0\":\n\t\tcase \"1\":\n\t\tcase \"2\":\n\t\tcase \"3\":\n\t\tcase \"4\":\n\t\tcase \"5\":\n\t\tcase \"6\":\n\t\tcase \"7\":\n\t\tcase \"8\":\n\t\tcase \"9\":\n\t\t\tthis.textboxMenge.value = this.textboxMenge.value + event.key;\n\t\t\tbreak;\n\t  \n\t\tcase \"Enter\":\n\t\tcase \"Unidentified\":\n\t\t\tconsole.log(\"--------- Enter ---------\");\n\t\t\tbreak;\n\n\t\tcase \"Backspace\":\n\t\t\tif (this.textboxMenge.value.length >= 1) {\n\t\t\t\tthis.textboxMenge.value = this.textboxMenge.value.substr(0, this.textboxMenge.value.length - 1);\n\t\t\t}\n\t\t\tbreak;\n\n\t\tdefault:\n\t\t\tbreak;\n\t}\n}"
       },
       {
-        "name": "strStatusArtikelnummer",
+        "name": "onClickErfassungLoeschen",
         "type": "set",
-        "value": "'Unbekannt'"
+        "value": "(data) => {\n    this.buttonErfassungLoeschenClick(data);\n}"
       },
       {
         "name": "onClickNavigateBack",
@@ -971,6 +1190,6 @@
       }
     ]
   },
-  "layout": "InventurLeer",
+  "layout": "InventurErfassen",
   "name": "Erfassen"
 }

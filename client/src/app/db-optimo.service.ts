@@ -182,7 +182,7 @@ export class DbOptimoService {
   }
 
   createInventurDevice(expand: string | null, inventurDevice: models.InventurDevice | null) : Observable<any> {
-    return this.odata.post(`/InventurDevices`, inventurDevice, { expand }, []);
+    return this.odata.post(`/InventurDevices`, inventurDevice, { expand }, ['InventurBasis']);
   }
 
   deleteInventurDevice(deviceId: number | null) : Observable<any> {
@@ -194,7 +194,7 @@ export class DbOptimoService {
   }
 
   updateInventurDevice(expand: string | null, deviceId: number | null, inventurDevice: models.InventurDevice | null) : Observable<any> {
-    return this.odata.patch(`/InventurDevices(${deviceId})`, inventurDevice, item => item.DeviceID == deviceId, { expand }, []);
+    return this.odata.patch(`/InventurDevices(${deviceId})`, inventurDevice, item => item.DeviceID == deviceId, { expand }, ['InventurBasis']);
   }
 
   getInventurErfassungs(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
@@ -295,6 +295,10 @@ export class DbOptimoService {
 
   getVwInventurLagerortes(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
     return this.odata.get(`/VwInventurLagerortes`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
+  getVwInventurLagerorteMitSummens(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
+    return this.odata.get(`/VwInventurLagerorteMitSummens`, { filter, top, skip, orderby, count, expand, format, select });
   }
 
   getVwRollens(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {

@@ -18,7 +18,17 @@ namespace OptimoInventur.Models.DbOptimo
       get;
       set;
     }
+    public int DeviceID
+    {
+      get;
+      set;
+    }
     public DateTime ErfasstAm
+    {
+      get;
+      set;
+    }
+    public string ErfasstAmFormatiert
     {
       get;
       set;
@@ -74,6 +84,31 @@ namespace OptimoInventur.Models.DbOptimo
       set;
     }
     public string LagerortGesamt
+    {
+      get;
+      set;
+    }
+    public string DeviceNummer
+    {
+      get;
+      set;
+    }
+    public string DeviceTitel
+    {
+      get;
+      set;
+    }
+    public DateTime? RegistriertAm
+    {
+      get;
+      set;
+    }
+    public DateTime? AnmeldungAm
+    {
+      get;
+      set;
+    }
+    public DateTime? AbmeldungAm
     {
       get;
       set;

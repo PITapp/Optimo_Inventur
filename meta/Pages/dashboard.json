@@ -257,7 +257,11 @@
                 "type": "execute"
               },
               {
-                "code": "sessionStorage.setItem(\"globalArtikelID\", \"0\");",
+                "code": "localStorage.setItem(\"globalArtikelID\", \"0\");",
+                "type": "execute"
+              },
+              {
+                "code": "localStorage.setItem(\"globalErfassungModus\", \"Mengen\");",
                 "type": "execute"
               },
               {

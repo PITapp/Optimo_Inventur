@@ -55,6 +55,11 @@ namespace OptimoInventur.Data
                   .WithMany(i => i.InventurBases)
                   .HasForeignKey(i => i.LagerortStatus)
                   .HasPrincipalKey(i => i.LagerortStatus);
+            builder.Entity<OptimoInventur.Models.DbOptimo.InventurDevice>()
+                  .HasOne(i => i.InventurBasis)
+                  .WithMany(i => i.InventurDevices)
+                  .HasForeignKey(i => i.InventurID)
+                  .HasPrincipalKey(i => i.InventurID);
             builder.Entity<OptimoInventur.Models.DbOptimo.InventurErfassung>()
                   .HasOne(i => i.InventurArtikel)
                   .WithMany(i => i.InventurErfassungs)
@@ -63,8 +68,8 @@ namespace OptimoInventur.Data
             builder.Entity<OptimoInventur.Models.DbOptimo.InventurErfassung>()
                   .HasOne(i => i.InventurDevice)
                   .WithMany(i => i.InventurErfassungs)
-                  .HasForeignKey(i => i.DeviceNummer)
-                  .HasPrincipalKey(i => i.DeviceNummer);
+                  .HasForeignKey(i => i.DeviceID)
+                  .HasPrincipalKey(i => i.DeviceID);
             builder.Entity<OptimoInventur.Models.DbOptimo.Protokoll>()
                   .HasOne(i => i.Base)
                   .WithMany(i => i.Protokolls)
@@ -112,10 +117,18 @@ namespace OptimoInventur.Data
                   .HasDefaultValueSql("0");
 
             builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurLagerorte>()
+                  .Property(p => p.DeviceID)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurLagerorteMitSummen>()
+                  .Property(p => p.InventurID)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurLagerorteMitSummen>()
                   .Property(p => p.AnzahlArtikel)
                   .HasDefaultValueSql("0");
 
-            builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurLagerorte>()
+            builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurLagerorteMitSummen>()
                   .Property(p => p.AnzahlErfasst)
                   .HasDefaultValueSql("0");
 
@@ -250,6 +263,12 @@ namespace OptimoInventur.Data
         }
 
         public DbSet<OptimoInventur.Models.DbOptimo.VwInventurLagerorte> VwInventurLagerortes
+        {
+          get;
+          set;
+        }
+
+        public DbSet<OptimoInventur.Models.DbOptimo.VwInventurLagerorteMitSummen> VwInventurLagerorteMitSummens
         {
           get;
           set;

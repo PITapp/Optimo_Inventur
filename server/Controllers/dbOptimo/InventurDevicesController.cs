@@ -72,6 +72,7 @@ namespace OptimoInventur.Controllers.DbOptimo
 
             var itemToDelete = this.context.InventurDevices
                 .Where(i => i.DeviceID == key)
+                .Include(i => i.InventurErfassungs)
                 .FirstOrDefault();
 
             if (itemToDelete == null)
@@ -116,6 +117,7 @@ namespace OptimoInventur.Controllers.DbOptimo
             this.context.SaveChanges();
 
             var itemToReturn = this.context.InventurDevices.Where(i => i.DeviceID == key);
+            Request.QueryString = Request.QueryString.Add("$expand", "InventurBasis");
             return new ObjectResult(SingleResult.Create(itemToReturn));
         }
         catch(Exception ex)
@@ -151,6 +153,7 @@ namespace OptimoInventur.Controllers.DbOptimo
             this.context.SaveChanges();
 
             var itemToReturn = this.context.InventurDevices.Where(i => i.DeviceID == key);
+            Request.QueryString = Request.QueryString.Add("$expand", "InventurBasis");
             return new ObjectResult(SingleResult.Create(itemToReturn));
         }
         catch(Exception ex)
@@ -182,7 +185,16 @@ namespace OptimoInventur.Controllers.DbOptimo
             this.context.InventurDevices.Add(item);
             this.context.SaveChanges();
 
-            return Created($"odata/DbOptimo/InventurDevices/{item.DeviceID}", item);
+            var key = item.DeviceID;
+
+            var itemToReturn = this.context.InventurDevices.Where(i => i.DeviceID == key);
+
+            Request.QueryString = Request.QueryString.Add("$expand", "InventurBasis");
+
+            return new ObjectResult(SingleResult.Create(itemToReturn))
+            {
+                StatusCode = 201
+            };
         }
         catch(Exception ex)
         {

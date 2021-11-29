@@ -65,26 +65,12 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: InventurLeerLayoutComponent,
+    component: InventurErfassenLayoutComponent,
     children: [
       {
         path: 'erfassen/:InventurID',
         component: ErfassenComponent
       },
-      {
-        path: 'erfassen-artikel-auswahl/:InventurID',
-        component: ErfassenArtikelAuswahlComponent
-      },
-      {
-        path: 'zz-erfassen-artikel-auswahl-v-1',
-        component: ZzErfassenArtikelAuswahlV1Component
-      },
-    ]
-  },
-  {
-    path: '',
-    component: InventurErfassenLayoutComponent,
-    children: [
       {
         path: 'zz-erfassen-auswahl-lagerorte-v-1',
         component: ZzErfassenAuswahlLagerorteV1Component
@@ -100,6 +86,20 @@ export const routes: Routes = [
       {
         path: 'zz-erfassen-v-3',
         component: ZzErfassenV3Component
+      },
+    ]
+  },
+  {
+    path: '',
+    component: InventurLeerLayoutComponent,
+    children: [
+      {
+        path: 'erfassen-artikel-auswahl/:InventurID',
+        component: ErfassenArtikelAuswahlComponent
+      },
+      {
+        path: 'zz-erfassen-artikel-auswahl-v-1',
+        component: ZzErfassenArtikelAuswahlV1Component
       },
     ]
   },

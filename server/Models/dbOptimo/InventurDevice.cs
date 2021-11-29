@@ -15,14 +15,21 @@ namespace OptimoInventur.Models.DbOptimo
       get;
       set;
     }
+
+
+    public ICollection<InventurErfassung> InventurErfassungs { get; set; }
     public string DeviceNummer
     {
       get;
       set;
     }
+    public int? InventurID
+    {
+      get;
+      set;
+    }
 
-
-    public ICollection<InventurErfassung> InventurErfassungs { get; set; }
+    public InventurBasis InventurBasis { get; set; }
     public string DeviceTitel
     {
       get;
