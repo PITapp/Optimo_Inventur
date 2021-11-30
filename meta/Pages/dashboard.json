@@ -294,6 +294,11 @@
                 ],
                 "then": [
                   {
+                    "name": "dsoDevice",
+                    "type": "set",
+                    "value": "${result}"
+                  },
+                  {
                     "error": [
                       {
                         "detail": "Lagerort konnte nicht geladen werden!",
@@ -313,6 +318,29 @@
                         "name": "strLagerortStatus",
                         "type": "set",
                         "value": "${result.LagerortStatus}"
+                      },
+                      {
+                        "name": "dsoUpdateDevice",
+                        "type": "set",
+                        "value": "{AnmeldungAm: '', AbmeldungAm: '', InventurID: ''}"
+                      },
+                      {
+                        "code": "var date = new Date();\n\nthis.dsoUpdateDevice.AnmeldungAm = new Date(Date.UTC(date.getFullYear(),\n                                                     date.getMonth(),\n                                                     date.getDate(),\n                                                     date.getHours(),\n                                                     date.getMinutes(),\n                                                     date.getSeconds(),\n                                                     date.getMilliseconds() ));\n\nthis.dsoUpdateDevice.AbmeldungAm = null;\nthis.dsoUpdateDevice.InventurID = event.InventurID;",
+                        "type": "execute"
+                      },
+                      {
+                        "name": "dbOptimo.updateInventurDevice",
+                        "parameters": [
+                          {
+                            "name": "DeviceID",
+                            "value": "${globalDeviceID}"
+                          },
+                          {
+                            "name": "InventurDevice",
+                            "value": "${dsoUpdateDevice}"
+                          }
+                        ],
+                        "type": "invoke"
                       },
                       {
                         "condition": "${strLagerortStatus} == 'Erfassung offen'",
@@ -389,6 +417,29 @@
             "name": "dsoDevice",
             "type": "set",
             "value": "${result}"
+          },
+          {
+            "name": "dsoUpdateDevice",
+            "type": "set",
+            "value": "{AbmeldungAm: ''}"
+          },
+          {
+            "code": "var date = new Date();\n\nthis.dsoUpdateDevice.AbmeldungAm = new Date(Date.UTC(date.getFullYear(),\n                                                     date.getMonth(),\n                                                     date.getDate(),\n                                                     date.getHours(),\n                                                     date.getMinutes(),\n                                                     date.getSeconds(),\n                                                     date.getMilliseconds() ));",
+            "type": "execute"
+          },
+          {
+            "name": "dbOptimo.updateInventurDevice",
+            "parameters": [
+              {
+                "name": "DeviceID",
+                "value": "${globalDeviceID}"
+              },
+              {
+                "name": "InventurDevice",
+                "value": "${dsoUpdateDevice}"
+              }
+            ],
+            "type": "invoke"
           }
         ],
         "type": "invoke"

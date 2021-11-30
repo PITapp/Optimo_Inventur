@@ -364,6 +364,10 @@
                       {
                         "code": "setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
                         "type": "execute"
+                      },
+                      {
+                        "code": "this.datalistErfassung.load();",
+                        "type": "execute"
                       }
                     ]
                   },
@@ -578,6 +582,10 @@
                               {
                                 "code": "this.datalistErfassung.load();",
                                 "type": "execute"
+                              },
+                              {
+                                "code": "this.buttonBerechneArtikelSummeErfasstClick(${dsoErfassung.ArtikelID});",
+                                "type": "execute"
                               }
                             ],
                             "type": "invoke"
@@ -656,7 +664,7 @@
                     "textAlign": "center",
                     "width": "100%"
                   },
-                  "text": "${dsoArtikel == null ? 'Protokoll Lagerort · ' + rstErfassungCount + ' Einträge' : 'Protokoll Artikel · ' + rstErfassungCount + ' Einträge'}",
+                  "text": "${dsoArtikel == null ? 'Protokoll · Lagerort · ' + rstErfassungCount + ' Einträge' : 'Protokoll Artikel · ' + rstErfassungCount + ' Einträge'}",
                   "type": "label"
                 }
               ],
@@ -698,11 +706,27 @@
           "events": {
             "loadData": [
               {
+                "code": "console.log(\"dsoArtikel: \", this.dsoArtikel)",
+                "type": "execute"
+              },
+              {
+                "condition": "${dsoArtikel} == null",
+                "name": "strFilterProtokollErfassung",
+                "type": "set",
+                "value": "\"InventurID eq \" + ${parameters.InventurID}"
+              },
+              {
+                "condition": "${dsoArtikel} != null",
+                "name": "strFilterProtokollErfassung",
+                "type": "set",
+                "value": "\"InventurID eq \" + ${parameters.InventurID} + \" AND ArtikelID eq \" + ${dsoArtikel.ArtikelID}"
+              },
+              {
                 "name": "dbOptimo.getVwInventurErfassungs",
                 "parameters": [
                   {
                     "name": "$filter",
-                    "value": "InventurID eq ${parameters.InventurID}"
+                    "value": "${strFilterProtokollErfassung}"
                   }
                 ],
                 "then": [
@@ -982,12 +1006,12 @@
                 "then": [
                   {
                     "condition": "${result} == 'Löschen'",
-                    "name": "datGeloeschtAm",
+                    "name": "dsoUpdateErfassen",
                     "type": "set",
-                    "value": "''"
+                    "value": "{GeloeschtAm: ''}"
                   },
                   {
-                    "code": "var date = new Date();\n\nthis.datGeloeschtAm = new Date(Date.UTC(date.getFullYear(),\n                                        date.getMonth(),\n                                        date.getDate(),\n                                        date.getHours(),\n                                        date.getMinutes(),\n                                        date.getSeconds(),\n                                        date.getMilliseconds() ));",
+                    "code": "var date = new Date();\n\nthis.dsoUpdateErfassen.GeloeschtAm = new Date(Date.UTC(date.getFullYear(),\n                                                       date.getMonth(),\n                                                       date.getDate(),\n                                                       date.getHours(),\n                                                       date.getMinutes(),\n                                                       date.getSeconds(),\n                                                       date.getMilliseconds() ));",
                     "condition": "${result} == 'Löschen'",
                     "type": "execute"
                   },
@@ -1008,7 +1032,7 @@
                       },
                       {
                         "name": "InventurErfassung",
-                        "value": "{GeloeschtAm: ${datGeloeschtAm}}"
+                        "value": "${dsoUpdateErfassen}"
                       }
                     ],
                     "then": [
@@ -1020,6 +1044,10 @@
                       },
                       {
                         "code": "this.datalistErfassung.load();",
+                        "type": "execute"
+                      },
+                      {
+                        "code": "this.buttonBerechneArtikelSummeErfasstClick(${event.ArtikelID});",
                         "type": "execute"
                       }
                     ],
@@ -1053,6 +1081,10 @@
                     "name": "dsoArtikel",
                     "type": "set",
                     "value": "${result.value[0]}"
+                  },
+                  {
+                    "code": "this.buttonBerechneArtikelSummeErfasstClick(${dsoArtikel.ArtikelID});",
+                    "type": "execute"
                   }
                 ],
                 "type": "invoke"
@@ -1064,6 +1096,45 @@
             "marginLeft": "10px"
           },
           "text": "ArtikelLadenByArtikelnummer",
+          "tooltip": "",
+          "type": "button",
+          "visible": false
+        },
+        {
+          "events": {
+            "click": [
+              {
+                "code": "console.log('Summe aktualisieren')",
+                "type": "execute"
+              },
+              {
+                "name": "dbOptimo.getVwInventurErfassungSummens",
+                "parameters": [
+                  {
+                    "name": "$filter",
+                    "value": "ArtikelID eq ${event}"
+                  }
+                ],
+                "then": [
+                  {
+                    "name": "intSummeErfasst",
+                    "type": "set",
+                    "value": "${result.value[0].SummeErfasstFormatiert}"
+                  },
+                  {
+                    "code": "console.log('Summe: ', this.intSummeErfasst)",
+                    "type": "execute"
+                  }
+                ],
+                "type": "invoke"
+              }
+            ]
+          },
+          "name": "buttonBerechneArtikelSummeErfasst",
+          "style": {
+            "marginLeft": "10px"
+          },
+          "text": "BerechneArtikelSummeErfasst",
           "tooltip": "",
           "type": "button",
           "visible": false
@@ -1089,6 +1160,11 @@
         "name": "globalDeviceID",
         "type": "set",
         "value": "localStorage.getItem(\"globalDeviceID\")"
+      },
+      {
+        "name": "dsoArtikel",
+        "type": "set",
+        "value": "null"
       },
       {
         "name": "strStatusArtikelnummer",
@@ -1132,16 +1208,18 @@
             "name": "dsoLagerort",
             "type": "set",
             "value": "${result.value[0]}"
-          },
-          {
-            "code": "this.datalistErfassung.load();",
-            "type": "execute"
           }
         ],
         "type": "invoke"
       },
       {
         "condition": "",
+        "error": [
+          {
+            "code": "this.datalistErfassung.load();",
+            "type": "execute"
+          }
+        ],
         "name": "dbOptimo.getInventurArtikelByArtikelID",
         "parameters": [
           {
@@ -1159,6 +1237,14 @@
             "name": "strArtikelnummer",
             "type": "set",
             "value": "${result.Artikelnummer}"
+          },
+          {
+            "code": "this.datalistErfassung.load();",
+            "type": "execute"
+          },
+          {
+            "code": "this.buttonBerechneArtikelSummeErfasstClick(${result.ArtikelID});",
+            "type": "execute"
           },
           {
             "code": "this.strMenge = '1';\nthis.buttonMengeErfassenClick(null);",

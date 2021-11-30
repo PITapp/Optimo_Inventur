@@ -48,6 +48,7 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('label2') label2: LabelComponent;
   @ViewChild('buttonErfassungLoeschen') buttonErfassungLoeschen: ButtonComponent;
   @ViewChild('buttonArtikelLadenByArtikelnummer') buttonArtikelLadenByArtikelnummer: ButtonComponent;
+  @ViewChild('buttonBerechneArtikelSummeErfasst') buttonBerechneArtikelSummeErfasst: ButtonComponent;
 
   router: Router;
 
@@ -75,21 +76,22 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   globalErfassungModus: any;
   globalArtikelID: any;
   globalDeviceID: any;
+  dsoArtikel: any;
   strStatusArtikelnummer: any;
   strArtikelnummer: any;
   strMenge: any;
   intSummeErfasst: any;
   dsoErfassung: any;
   dsoLagerort: any;
-  dsoArtikel: any;
   onKeyDownSetArtikelnummer: any;
   onKeyDownSetMenge: any;
   onClickErfassungLoeschen: any;
   onClickNavigateBack: any;
   parameters: any;
+  strFilterProtokollErfassung: any;
   rstErfassung: any;
   rstErfassungCount: any;
-  datGeloeschtAm: any;
+  dsoUpdateErfassen: any;
 
   constructor(private injector: Injector) {
   }
@@ -144,6 +146,8 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.globalDeviceID = localStorage.getItem("globalDeviceID");
 
+    this.dsoArtikel = null;
+
     this.strStatusArtikelnummer = 'Unbekannt';
 
     this.strArtikelnummer = '';
@@ -159,8 +163,6 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.dbOptimo.getInventurBases(`InventurID eq ${this.parameters.InventurID}`, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.dsoLagerort = result.value[0];
-
-      this.datalistErfassung.load();
     }, (result: any) => {
 
     });
@@ -171,12 +173,16 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
       this.strArtikelnummer = result.Artikelnummer;
 
+      this.datalistErfassung.load();
+
+      this.buttonBerechneArtikelSummeErfasstClick(result.ArtikelID);
+
       if (this.dsoArtikel != null && this.globalErfassungModus == 'Einzeln') {
         this.strMenge = '1';
 this.buttonMengeErfassenClick(null);
       }
     }, (result: any) => {
-
+      this.datalistErfassung.load();
     });
 
     this.onKeyDownSetArtikelnummer = (event) => {
@@ -303,6 +309,8 @@ this.buttonMengeErfassenClick(null);
     this.strStatusArtikelnummer = 'unbekannt';
 
     setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)
+
+    this.datalistErfassung.load();
   }
 
   buttonMengeErfassenClick(event: any) {
@@ -338,6 +346,8 @@ this.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);
       this.strMenge = '';
 
       this.datalistErfassung.load();
+
+      this.buttonBerechneArtikelSummeErfasstClick(this.dsoErfassung.ArtikelID);
       }, (result: any) => {
           this.notificationService.notify({ severity: "error", summary: ``, detail: `Menge konnte nicht erfasst werden!` });
       });
@@ -345,7 +355,17 @@ this.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);
   }
 
   datalistErfassungLoadData(event: any) {
-    this.dbOptimo.getVwInventurErfassungs(`InventurID eq ${this.parameters.InventurID}`, null, null, null, null, null, null, null)
+    console.log("dsoArtikel: ", this.dsoArtikel)
+
+    if (this.dsoArtikel == null) {
+        this.strFilterProtokollErfassung = "InventurID eq " + this.parameters.InventurID;
+    }
+
+    if (this.dsoArtikel != null) {
+        this.strFilterProtokollErfassung = "InventurID eq " + this.parameters.InventurID + " AND ArtikelID eq " + this.dsoArtikel.ArtikelID;
+    }
+
+    this.dbOptimo.getVwInventurErfassungs(`${this.strFilterProtokollErfassung}`, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.rstErfassung = result.value;
 
@@ -360,23 +380,23 @@ this.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);
       this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll die Erfassung vom '" + event.ErfasstAmFormatiert + "' für den Artikel '" + event.Artikelnummer + " · " + event.Beschreibung + "' gelöscht werden?"}, title: `Erfassung` })
           .afterClosed().subscribe(result => {
                   if (result == 'Löschen') {
-                this.datGeloeschtAm = '';
+                this.dsoUpdateErfassen = {GeloeschtAm: ''};
         }
 
         if (result == 'Löschen') {
           var date = new Date();
 
-this.datGeloeschtAm = new Date(Date.UTC(date.getFullYear(),
-                                        date.getMonth(),
-                                        date.getDate(),
-                                        date.getHours(),
-                                        date.getMinutes(),
-                                        date.getSeconds(),
-                                        date.getMilliseconds() ));
+this.dsoUpdateErfassen.GeloeschtAm = new Date(Date.UTC(date.getFullYear(),
+                                                       date.getMonth(),
+                                                       date.getDate(),
+                                                       date.getHours(),
+                                                       date.getMinutes(),
+                                                       date.getSeconds(),
+                                                       date.getMilliseconds() ));
         }
 
         if (result == 'Löschen') {
-                  this.dbOptimo.updateInventurErfassung(null, event.ErfassungID, {GeloeschtAm: this.datGeloeschtAm})
+                  this.dbOptimo.updateInventurErfassung(null, event.ErfassungID, this.dsoUpdateErfassen)
           .subscribe((result: any) => {
                   this.notificationService.notify({ severity: "success", summary: ``, detail: `Erfassung gelöscht` })
           .subscribe(() => {
@@ -384,6 +404,8 @@ this.datGeloeschtAm = new Date(Date.UTC(date.getFullYear(),
           });
 
           this.datalistErfassung.load();
+
+          this.buttonBerechneArtikelSummeErfasstClick(event.ArtikelID);
           }, (result: any) => {
                   this.notificationService.notify({ severity: "error", summary: ``, detail: `Erfassung konnte nicht gelöscht werden!` });
           });
@@ -396,6 +418,21 @@ this.datGeloeschtAm = new Date(Date.UTC(date.getFullYear(),
     this.dbOptimo.getInventurArtikels(`Artikelnummer eq '${event}'`, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.dsoArtikel = result.value[0];
+
+      this.buttonBerechneArtikelSummeErfasstClick(this.dsoArtikel.ArtikelID);
+    }, (result: any) => {
+
+    });
+  }
+
+  buttonBerechneArtikelSummeErfasstClick(event: any) {
+    console.log('Summe aktualisieren')
+
+    this.dbOptimo.getVwInventurErfassungSummens(`ArtikelID eq ${event}`, null, null, null, null, null, null, null)
+    .subscribe((result: any) => {
+      this.intSummeErfasst = result.value[0].SummeErfasstFormatiert;
+
+      console.log('Summe: ', this.intSummeErfasst)
     }, (result: any) => {
 
     });

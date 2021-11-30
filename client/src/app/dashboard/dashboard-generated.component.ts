@@ -59,6 +59,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   dbOptimo: DbOptimoService;
   globalDeviceID: any;
   dsoDevice: any;
+  dsoUpdateDevice: any;
   onClickStartErfassen: any;
   onClickStartInfos: any;
   parameters: any;
@@ -127,6 +128,25 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.dbOptimo.getInventurDeviceByDeviceId(null, this.globalDeviceID)
     .subscribe((result: any) => {
       this.dsoDevice = result;
+
+      this.dsoUpdateDevice = {AbmeldungAm: ''};
+
+      var date = new Date();
+
+this.dsoUpdateDevice.AbmeldungAm = new Date(Date.UTC(date.getFullYear(),
+                                                     date.getMonth(),
+                                                     date.getDate(),
+                                                     date.getHours(),
+                                                     date.getMinutes(),
+                                                     date.getSeconds(),
+                                                     date.getMilliseconds() ));
+
+      this.dbOptimo.updateInventurDevice(null, this.globalDeviceID, this.dsoUpdateDevice)
+      .subscribe((result: any) => {
+
+      }, (result: any) => {
+
+      });
     }, (result: any) => {
 
     });
@@ -163,9 +183,33 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.dbOptimo.getInventurDeviceByDeviceId(null, this.globalDeviceID)
     .subscribe((result: any) => {
+      this.dsoDevice = result;
+
       this.dbOptimo.getInventurBasisByInventurId(null, event.InventurID)
       .subscribe((result: any) => {
         this.strLagerortStatus = result.LagerortStatus;
+
+        this.dsoUpdateDevice = {AnmeldungAm: '', AbmeldungAm: '', InventurID: ''};
+
+        var date = new Date();
+
+this.dsoUpdateDevice.AnmeldungAm = new Date(Date.UTC(date.getFullYear(),
+                                                     date.getMonth(),
+                                                     date.getDate(),
+                                                     date.getHours(),
+                                                     date.getMinutes(),
+                                                     date.getSeconds(),
+                                                     date.getMilliseconds() ));
+
+this.dsoUpdateDevice.AbmeldungAm = null;
+this.dsoUpdateDevice.InventurID = event.InventurID;
+
+        this.dbOptimo.updateInventurDevice(null, this.globalDeviceID, this.dsoUpdateDevice)
+        .subscribe((result: any) => {
+
+        }, (result: any) => {
+
+        });
 
         if (this.strLagerortStatus == 'Erfassung offen') {
           if (this.dialogRef) {

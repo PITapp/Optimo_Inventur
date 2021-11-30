@@ -151,6 +151,7 @@ namespace OptimoInventur
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwBenutzerRollen>("VwBenutzerRollens");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwInventurArtikel>("VwInventurArtikels");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwInventurErfassung>("VwInventurErfassungs");
+          oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwInventurErfassungSummen>("VwInventurErfassungSummens");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwInventurLagerorte>("VwInventurLagerortes");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwInventurLagerorteMitSummen>("VwInventurLagerorteMitSummens");
           oDataBuilder.EntitySet<OptimoInventur.Models.DbOptimo.VwRollen>("VwRollens");

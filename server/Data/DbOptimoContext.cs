@@ -262,6 +262,12 @@ namespace OptimoInventur.Data
           set;
         }
 
+        public DbSet<OptimoInventur.Models.DbOptimo.VwInventurErfassungSummen> VwInventurErfassungSummens
+        {
+          get;
+          set;
+        }
+
         public DbSet<OptimoInventur.Models.DbOptimo.VwInventurLagerorte> VwInventurLagerortes
         {
           get;

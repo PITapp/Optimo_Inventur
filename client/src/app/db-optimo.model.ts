@@ -311,6 +311,12 @@ export interface VwInventurErfassung {
   AbmeldungAm: string;
 }
 
+export interface VwInventurErfassungSummen {
+  ArtikelID: number;
+  SummeErfasst: number;
+  SummeErfasstFormatiert: string;
+}
+
 export interface VwInventurLagerorte {
   InventurID: number;
   LagerortNummer: string;

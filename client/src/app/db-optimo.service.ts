@@ -293,6 +293,10 @@ export class DbOptimoService {
     return this.odata.get(`/VwInventurErfassungs`, { filter, top, skip, orderby, count, expand, format, select });
   }
 
+  getVwInventurErfassungSummens(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
+    return this.odata.get(`/VwInventurErfassungSummens`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
   getVwInventurLagerortes(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
     return this.odata.get(`/VwInventurLagerortes`, { filter, top, skip, orderby, count, expand, format, select });
   }

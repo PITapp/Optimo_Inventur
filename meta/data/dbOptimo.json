@@ -1563,6 +1563,30 @@
         }
       }
     },
+    "VwInventurErfassungSummen": {
+      "x-view": true,
+      "x-table": "def.vwInventurErfassungSummen",
+      "resource": "VwInventurErfassungSummens",
+      "required": [
+        "ArtikelID"
+      ],
+      "properties": {
+        "ArtikelID": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-key": true,
+          "x-virtual": true
+        },
+        "SummeErfasst": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "SummeErfasstFormatiert": {
+          "type": "string",
+          "length": 77
+        }
+      }
+    },
     "VwInventurLagerorte": {
       "x-view": true,
       "x-table": "def.vwInventurLagerorte",
@@ -3453,6 +3477,73 @@
                 "value": {
                   "items": {
                     "$ref": "#/definitions/VwInventurErfassung"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/VwInventurErfassungSummens": {
+      "get": {
+        "operationId": "getVwInventurErfassungSummens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/VwInventurErfassungSummen"
                   },
                   "type": "array"
                 }
