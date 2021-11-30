@@ -320,15 +320,18 @@
                         "value": "${result.LagerortStatus}"
                       },
                       {
+                        "condition": "${strLagerortStatus} == 'Erfassung offen'",
                         "name": "dsoUpdateDevice",
                         "type": "set",
                         "value": "{AnmeldungAm: '', AbmeldungAm: '', InventurID: ''}"
                       },
                       {
                         "code": "var date = new Date();\n\nthis.dsoUpdateDevice.AnmeldungAm = new Date(Date.UTC(date.getFullYear(),\n                                                     date.getMonth(),\n                                                     date.getDate(),\n                                                     date.getHours(),\n                                                     date.getMinutes(),\n                                                     date.getSeconds(),\n                                                     date.getMilliseconds() ));\n\nthis.dsoUpdateDevice.AbmeldungAm = null;\nthis.dsoUpdateDevice.InventurID = event.InventurID;",
+                        "condition": "${strLagerortStatus} == 'Erfassung offen'",
                         "type": "execute"
                       },
                       {
+                        "condition": "${strLagerortStatus} == 'Erfassung offen'",
                         "name": "dbOptimo.updateInventurDevice",
                         "parameters": [
                           {
@@ -338,6 +341,26 @@
                           {
                             "name": "InventurDevice",
                             "value": "${dsoUpdateDevice}"
+                          }
+                        ],
+                        "type": "invoke"
+                      },
+                      {
+                        "name": "dsoUpdateLagerort",
+                        "type": "set",
+                        "value": "{LagerortStatus: 'Erfassung zur Zeit gesperrt'}"
+                      },
+                      {
+                        "condition": "${strLagerortStatus} == 'Erfassung offen'",
+                        "name": "dbOptimo.updateInventurBasis",
+                        "parameters": [
+                          {
+                            "name": "InventurID",
+                            "value": "${event.InventurID}"
+                          },
+                          {
+                            "name": "InventurBasis",
+                            "value": "${dsoUpdateLagerort}"
                           }
                         ],
                         "type": "invoke"

@@ -66,6 +66,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   rstLagerorte: any;
   rstLagerorteCount: any;
   strLagerortStatus: any;
+  dsoUpdateLagerort: any;
 
   constructor(private injector: Injector) {
   }
@@ -189,9 +190,12 @@ this.dsoUpdateDevice.AbmeldungAm = new Date(Date.UTC(date.getFullYear(),
       .subscribe((result: any) => {
         this.strLagerortStatus = result.LagerortStatus;
 
-        this.dsoUpdateDevice = {AnmeldungAm: '', AbmeldungAm: '', InventurID: ''};
+        if (this.strLagerortStatus == 'Erfassung offen') {
+                this.dsoUpdateDevice = {AnmeldungAm: '', AbmeldungAm: '', InventurID: ''};
+        }
 
-        var date = new Date();
+        if (this.strLagerortStatus == 'Erfassung offen') {
+          var date = new Date();
 
 this.dsoUpdateDevice.AnmeldungAm = new Date(Date.UTC(date.getFullYear(),
                                                      date.getMonth(),
@@ -203,13 +207,27 @@ this.dsoUpdateDevice.AnmeldungAm = new Date(Date.UTC(date.getFullYear(),
 
 this.dsoUpdateDevice.AbmeldungAm = null;
 this.dsoUpdateDevice.InventurID = event.InventurID;
+        }
 
-        this.dbOptimo.updateInventurDevice(null, this.globalDeviceID, this.dsoUpdateDevice)
-        .subscribe((result: any) => {
+        if (this.strLagerortStatus == 'Erfassung offen') {
+                  this.dbOptimo.updateInventurDevice(null, this.globalDeviceID, this.dsoUpdateDevice)
+          .subscribe((result: any) => {
+        
+          }, (result: any) => {
+        
+          });
+        }
 
-        }, (result: any) => {
+        this.dsoUpdateLagerort = {LagerortStatus: 'Erfassung zur Zeit gesperrt'};
 
-        });
+        if (this.strLagerortStatus == 'Erfassung offen') {
+                  this.dbOptimo.updateInventurBasis(null, event.InventurID, this.dsoUpdateLagerort)
+          .subscribe((result: any) => {
+        
+          }, (result: any) => {
+        
+          });
+        }
 
         if (this.strLagerortStatus == 'Erfassung offen') {
           if (this.dialogRef) {

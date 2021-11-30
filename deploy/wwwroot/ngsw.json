@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1638185743966,
+  "timestamp": 1638294717491,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -75,7 +75,7 @@
     "/assets/css/blue-grey.css": "8b39fa46bea35bd4d12e7a1650cb6247c184469e",
     "/assets/css/default.css": "f9c219a651530255565a18bc43c98b364f8cc350",
     "/assets/css/fluent.css": "11fe156f363257105e38f36aa0240bcdcc3e4dfc",
-    "/assets/css/humanistic.css": "dec08e6b0098573d982a13a0af6d71f11118837e",
+    "/assets/css/humanistic.css": "a9c7e2345bbdeb509254f7564200ac18c6ae9f9d",
     "/assets/css/material-dark.css": "0e5bb73a5a1ff0246bf44477eb883d1a65da8c5f",
     "/assets/css/material.css": "e773111a11a8f86de001044b1e3dfd78c3b7baf1",
     "/assets/fonts/MaterialIcons-Regular.woff": "c77f37fb5b7d4188ffc6a40a9fac119bbb4783e0",
@@ -96,10 +96,10 @@
     "/assets/fonts/roboto-v15-latin-300.woff": "27c056b9c70dcfd55c43e954a898eb5bf706f730",
     "/assets/fonts/roboto-v15-latin-700.woff": "24f9df68c500f7bbd1cb1c632de59936aa85b2e0",
     "/assets/fonts/roboto-v15-latin-regular.woff": "940b859e4f02bd3e7cf7b6ce245c197b5470302a",
-    "/assets/icon-128x128.png": "321182d9e0646a51fd40121fafdeb23d3fe80b3a",
-    "/assets/icon-152x152.png": "4a1aa527ffe8b720be7804e429cdc355cc3d73af",
-    "/assets/icon-256x256.png": "61bcab148db8ba6af2219df56d717d1f4e9ba4c7",
-    "/assets/icon-512x512.png": "cd53b852efcf2da1626ebc174ff94f42fe50fa55",
+    "/assets/icon-128x128.png": "09cc1aa69ef8ce64bcd18d24c6105eb6f1a0d779",
+    "/assets/icon-152x152.png": "732d187bfcfac541c55575a9c7905783f5194981",
+    "/assets/icon-256x256.png": "9bb1ad766452f927ad0f5e61796e8c73e963586d",
+    "/assets/icon-512x512.png": "5bac8cdb8658590e1bc59ae0b0623075c68a84bd",
     "/assets/images/IconDashboard.png": "448472ca199c1ed41088472a835ed81fe0316a6b",
     "/assets/images/IconWidget.png": "fac7f8c27b5c8821a01e5c89b1ef561b19a93d48",
     "/assets/images/KeinBildPerson.png": "99a382ffdd4ed46d95376a2a37eacf5da922febe",
@@ -109,8 +109,8 @@
     "/assets/images/LogoOhneSchriftzug2.png": "14f843355c4d27a205ba82c68ced35f3a225d4cf",
     "/assets/images/LogoOhneSchriftzug3.png": "a7a2ab8e6cd457d06d7f30c54300a50b6da24fab",
     "/assets/images/LogoOhneSchriftzug4.png": "832146a33ec16722f16da44be85be75a4640fdd5",
-    "/favicon.ico": "e9a35d8fbc2e266e2fd1fd31647508acb7aec6c2",
-    "/index.html": "4bfe60de77588ce7e6c607b08e3235f242d1ca68"
+    "/favicon.ico": "166c66eded951d9c7f898192a8530c41f467c782",
+    "/index.html": "8d29a6b4658e3b64d632f157072af93592d8168e"
   },
   "navigationUrls": [
     {

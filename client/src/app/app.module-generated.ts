@@ -52,6 +52,7 @@ import { ZzErfassenV3Component } from './zz-erfassen-v-3/zz-erfassen-v-3.compone
 import { DeviceRegistrierenComponent } from './device-registrieren/device-registrieren.component';
 import { MeldungOkComponent } from './meldung-ok/meldung-ok.component';
 import { MeldungJaNeinComponent } from './meldung-ja-nein/meldung-ja-nein.component';
+import { CopyOfErfassenComponent } from './copy-of-erfassen/copy-of-erfassen.component';
 import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
 import { InventurInfosLayoutComponent } from './inventur-infos-layout/inventur-infos-layout.component';
 import { InventurErfassenLayoutComponent } from './inventur-erfassen-layout/inventur-erfassen-layout.component';
@@ -79,6 +80,7 @@ export const PageDeclarations = [
   DeviceRegistrierenComponent,
   MeldungOkComponent,
   MeldungJaNeinComponent,
+  CopyOfErfassenComponent,
 ];
 
 export const LayoutDeclarations = [

@@ -31,7 +31,8 @@
   "navigation": [
     "Dashboard",
     "Erfassen",
-    "zzErfassen V3"
+    "zzErfassen V3",
+    "Copy of Erfassen"
   ],
   "pages": [
     "Dashboard",
@@ -50,7 +51,8 @@
     "zzErfassen V3",
     "DeviceRegistrieren",
     "MeldungOK",
-    "MeldungJaNein"
+    "MeldungJaNein",
+    "Copy of Erfassen"
   ],
   "port": 8000,
   "serverLang": "cs",

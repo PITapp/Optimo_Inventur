@@ -24,6 +24,7 @@ import { ZzErfassenV3Component } from './zz-erfassen-v-3/zz-erfassen-v-3.compone
 import { DeviceRegistrierenComponent } from './device-registrieren/device-registrieren.component';
 import { MeldungOkComponent } from './meldung-ok/meldung-ok.component';
 import { MeldungJaNeinComponent } from './meldung-ja-nein/meldung-ja-nein.component';
+import { CopyOfErfassenComponent } from './copy-of-erfassen/copy-of-erfassen.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -86,6 +87,10 @@ export const routes: Routes = [
       {
         path: 'zz-erfassen-v-3',
         component: ZzErfassenV3Component
+      },
+      {
+        path: 'copy-of-erfassen',
+        component: CopyOfErfassenComponent
       },
     ]
   },

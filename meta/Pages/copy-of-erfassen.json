@@ -1059,53 +1059,9 @@
           "events": {
             "click": [
               {
-                "code": "this.datalistErfassung.load();",
-                "condition": "${event.ArtikelID} == 0 && ${event.Artikelnummer} == null",
-                "type": "execute"
-              },
-              {
-                "condition": "${event.ArtikelID} != 0",
                 "error": [
                   {
-                    "detail": "Artikel für diesen Lagerort nicht gefunden!",
-                    "severity": "error",
-                    "type": "notify"
-                  }
-                ],
-                "name": "dbOptimo.getInventurArtikelByArtikelID",
-                "parameters": [
-                  {
-                    "name": "ArtikelID",
-                    "value": "${event.ArtikelID}"
-                  }
-                ],
-                "then": [
-                  {
-                    "name": "dsoArtikel",
-                    "type": "set",
-                    "value": "${result}"
-                  },
-                  {
-                    "name": "strArtikelnummer",
-                    "type": "set",
-                    "value": "${result.Artikelnummer}"
-                  },
-                  {
-                    "code": "this.datalistErfassung.load();",
-                    "type": "execute"
-                  },
-                  {
-                    "code": "this.buttonBerechneArtikelSummeErfasstClick(${result.ArtikelID});",
-                    "type": "execute"
-                  }
-                ],
-                "type": "invoke"
-              },
-              {
-                "condition": "${event.Artikelnummer} != null",
-                "error": [
-                  {
-                    "detail": "Fehler beim Laden des Artikels!",
+                    "detail": "Der Artikel wurde für diesen Lagerort nicht gefunden!",
                     "severity": "error",
                     "type": "notify"
                   }
@@ -1114,32 +1070,29 @@
                 "parameters": [
                   {
                     "name": "$filter",
-                    "value": "InventurID eq ${event.InventurID} AND Artikelnummer eq '${event.Artikelnummer}'"
+                    "value": "Artikelnummer eq '${event}' AND InventurID eq ${dsoLagerort.InventurID}"
                   }
                 ],
                 "then": [
                   {
-                    "condition": "${result.value.length} != 0",
-                    "detail": "--- Artikel gefunden ---",
-                    "severity": "success",
-                    "type": "notify"
+                    "name": "dsoArtikel",
+                    "type": "set",
+                    "value": "${result.value[0]}"
                   },
                   {
-                    "condition": "${result.value.length} == 0",
-                    "detail": "Artikel für diesen Lagerort nicht gefunden!",
-                    "severity": "error",
-                    "type": "notify"
+                    "code": "this.buttonBerechneArtikelSummeErfasstClick(${dsoArtikel.ArtikelID});",
+                    "type": "execute"
                   }
                 ],
                 "type": "invoke"
               }
             ]
           },
-          "name": "buttonArtikelLaden",
+          "name": "buttonArtikelLadenByArtikelnummer",
           "style": {
             "marginLeft": "10px"
           },
-          "text": "ArtikelLaden",
+          "text": "ArtikelLadenByArtikelnummer",
           "tooltip": "",
           "type": "button",
           "visible": false
@@ -1157,7 +1110,6 @@
                 ],
                 "then": [
                   {
-                    "condition": "${result.value.length} != 0",
                     "name": "intSummeErfasst",
                     "type": "set",
                     "value": "${result.value[0].SummeErfasstFormatiert}"
@@ -1262,11 +1214,6 @@
         "value": "0"
       },
       {
-        "name": "dsoArtikelLaden",
-        "type": "set",
-        "value": "{InventurID: 0, ArtikelID: 0, Artikelnummer: ''}"
-      },
-      {
         "name": "dsoErfassung",
         "type": "set",
         "value": "{ArtikelID: 0, DeviceID: 0, ErfasstAm: '', ErfasstAnzahl: 0}"
@@ -1276,25 +1223,59 @@
         "type": "execute"
       },
       {
-        "name": "dbOptimo.getInventurBasisByInventurID",
+        "name": "dbOptimo.getInventurBases",
         "parameters": [
           {
-            "name": "InventurID",
-            "value": "${parameters.InventurID}"
+            "name": "$filter",
+            "value": "InventurID eq ${parameters.InventurID}"
           }
         ],
         "then": [
           {
             "name": "dsoLagerort",
             "type": "set",
+            "value": "${result.value[0]}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "condition": "",
+        "error": [
+          {
+            "code": "this.datalistErfassung.load();",
+            "type": "execute"
+          }
+        ],
+        "name": "dbOptimo.getInventurArtikelByArtikelID",
+        "parameters": [
+          {
+            "name": "ArtikelID",
+            "value": "${globalArtikelID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "dsoArtikel",
+            "type": "set",
             "value": "${result}"
           },
           {
-            "code": "this.dsoArtikelLaden.InventurID = this.parameters.InventurID;\nthis.dsoArtikelLaden.ArtikelID = this.globalArtikelID;\nthis.dsoArtikelLaden.Artikelnummer = null;",
+            "name": "strArtikelnummer",
+            "type": "set",
+            "value": "${result.Artikelnummer}"
+          },
+          {
+            "code": "this.datalistErfassung.load();",
             "type": "execute"
           },
           {
-            "code": "this.buttonArtikelLadenClick(${dsoArtikelLaden});",
+            "code": "this.buttonBerechneArtikelSummeErfasstClick(${result.ArtikelID});",
+            "type": "execute"
+          },
+          {
+            "code": "this.strMenge = '1';\nthis.buttonMengeErfassenClick(null);",
+            "condition": "${dsoArtikel} != null && ${globalErfassungModus} == 'Einzeln'",
             "type": "execute"
           }
         ],
@@ -1303,7 +1284,7 @@
       {
         "name": "onKeyDownSetArtikelnummer",
         "type": "set",
-        "value": "(event) => {\n  if(this.strStatusArtikelnummer == 'Artikel geladen') {\n    this.textboxArtikelnummer.value = '';\n    this.strStatusArtikelnummer = 'Unbekannt'\n  }\n\n  switch (event.key) {\n    case \"F12\":\n    case \"Shift\":\n    case \"Tab\":\n    case \"Control\":\n    case \"Alt\":\n      break;\n      \n    case \"Enter\":\n    case \"Unidentified\":\n      console.log(\"--------- Enter ---------\");\n          \n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.strStatusArtikelnummer = 'Artikel geladen';\n\n        var strArtikelnummer = this.textboxArtikelnummer.value;\n        var pos = strArtikelnummer.indexOf('-F');\n\n        if (pos > 0) {\n          strArtikelnummer = strArtikelnummer.substr(0, pos);\n          this.textboxArtikelnummer.value = strArtikelnummer;\n        }\n        \n        this.dsoArtikelLaden.InventurID = this.parameters.InventurID;\n        this.dsoArtikelLaden.ArtikelID = 0;\n        this.dsoArtikelLaden.Artikelnummer = strArtikelnummer;\n        \n        this.buttonArtikelLadenClick(this.dsoArtikelLaden);\n      }\n      break;\n\n    case \"Backspace\":\n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1);\n      }\n      break;\n\n    default:\n      this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key;\n      break;\n  }\n\n  this.strArtikelnummer = this.textboxArtikelnummer.value;\n}"
+        "value": "(event) => {\n  if(this.strStatusArtikelnummer == 'Artikel geladen') {\n    this.textboxArtikelnummer.value = '';\n    this.strStatusArtikelnummer = 'Unbekannt'\n  }\n\n  switch (event.key) {\n    case \"F12\":\n    case \"Shift\":\n    case \"Tab\":\n    case \"Control\":\n    case \"Alt\":\n      break;\n      \n    case \"Enter\":\n    case \"Unidentified\":\n      console.log(\"--------- Enter ---------\");\n          \n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.strStatusArtikelnummer = 'Artikel geladen';\n\n        var strArtikelnummer = this.textboxArtikelnummer.value;\n        var pos = strArtikelnummer.indexOf('-F');\n\n        if (pos > 0) {\n          strArtikelnummer = strArtikelnummer.substr(0, pos);\n          this.textboxArtikelnummer.value = strArtikelnummer;\n        }\n        \n        this.buttonArtikelLadenByArtikelnummerClick(strArtikelnummer);\n      }\n      break;\n\n    case \"Backspace\":\n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1);\n      }\n      break;\n\n    default:\n      this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key;\n      break;\n  }\n\n  this.strArtikelnummer = this.textboxArtikelnummer.value;\n}"
       },
       {
         "name": "onKeyDownSetMenge",
@@ -1323,5 +1304,5 @@
     ]
   },
   "layout": "InventurErfassen",
-  "name": "Erfassen"
+  "name": "Copy of Erfassen"
 }
