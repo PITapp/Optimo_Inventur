@@ -21,7 +21,7 @@
                   "style": {
                     "width": "100%"
                   },
-                  "text": "Titel: ",
+                  "text": "Titel: ${dsoDevice.DeviceNummer == null ? 'Nicht registriert!' : dsoDevice.DeviceTitel}",
                   "type": "label"
                 },
                 {

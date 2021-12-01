@@ -3,7 +3,7 @@
     <rz-tabs-item [selected]="true" text="Gerät">
       <rz-label #label2 [style]="{'fontWeight': 'bold', 'width': '100%'}" text="Gerät: {{((dsoDevice?.DeviceNummer == null) ? ('Nicht registriert!') : (dsoDevice?.DeviceNummer))}}">
       </rz-label>
-      <rz-label #label3 [style]="{'width': '100%'}" text="Titel: ">
+      <rz-label #label3 [style]="{'width': '100%'}" text="Titel: {{((dsoDevice?.DeviceNummer == null) ? ('Nicht registriert!') : (dsoDevice?.DeviceTitel))}}">
       </rz-label>
       <rz-label #label5 [style]="{'width': '100%'}" text="Info: {{dsoDevice?.Info}}">
       </rz-label>
