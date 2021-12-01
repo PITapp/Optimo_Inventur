@@ -151,7 +151,7 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.dsoArtikel = null;
 
-    this.strArtikelnummerStatus = 'Unbekannt';
+    this.strArtikelnummerStatus = 'NichtGeladen';
 
     this.strArtikelnummer = '';
 
@@ -177,9 +177,9 @@ this.dsoArtikelLaden.Artikelnummer = '';
     });
 
     this.onKeyDownSetArtikelnummer = (event) => {
-  if(this.strArtikelnummerStatus == 'Artikel geladen') {
-    this.textboxArtikelnummer.value = '';
-    this.strArtikelnummerStatus = 'Unbekannt'
+  if(this.strArtikelnummerStatus == 'Geladen') {
+    this.textboxArtikelnummer.value = ''
+    this.strArtikelnummerStatus = 'NichtGeladen'
   }
 
   switch (event.key) {
@@ -192,44 +192,41 @@ this.dsoArtikelLaden.Artikelnummer = '';
       
     case "Enter":
     case "Unidentified":
-      console.log("--------- Enter ---------");
-          
+      // --------- Enter ---------
       if(this.textboxArtikelnummer.value.length >= 1) {
-        this.strArtikelnummerStatus = 'Artikel geladen';
-
-        var strArtikelnummer = this.textboxArtikelnummer.value;
-        var pos = strArtikelnummer.indexOf('-F');
+        var tempArtikelnummer = this.textboxArtikelnummer.value
+        var pos = tempArtikelnummer.indexOf('-F')
 
         if (pos > 0) {
-          strArtikelnummer = strArtikelnummer.substr(0, pos);
-          this.textboxArtikelnummer.value = strArtikelnummer;
+          tempArtikelnummer = tempArtikelnummer.substr(0, pos)
+          this.textboxArtikelnummer.value = tempArtikelnummer
         }
         
-        this.dsoArtikelLaden.InventurID = this.parameters.InventurID;
-        this.dsoArtikelLaden.ArtikelID = 0;
-        this.dsoArtikelLaden.Artikelnummer = strArtikelnummer;
+        this.dsoArtikelLaden.InventurID = this.parameters.InventurID
+        this.dsoArtikelLaden.ArtikelID = 0
+        this.dsoArtikelLaden.Artikelnummer = tempArtikelnummer
         
-        this.buttonArtikelLadenClick(this.dsoArtikelLaden);
+        this.buttonArtikelLadenClick(this.dsoArtikelLaden)
       }
       break;
 
     case "Backspace":
       if(this.textboxArtikelnummer.value.length >= 1) {
-        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1);
+        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1)
       }
       break;
 
     default:
-      this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key;
+      if(this.textboxMenge.value.length < 15) {
+          this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key
+      }
       break;
   }
-
-  this.strArtikelnummer = this.textboxArtikelnummer.value;
 };
 
     this.onKeyDownSetMenge = (event) => {
 	if (this.textboxMenge.value === undefined) {
-		this.textboxMenge.value = "";
+		this.textboxMenge.value = ""
 	}
 
 	switch (event.key) {
@@ -243,18 +240,20 @@ this.dsoArtikelLaden.Artikelnummer = '';
 		case "7":
 		case "8":
 		case "9":
-			this.textboxMenge.value = this.textboxMenge.value + event.key;
+            if(this.textboxMenge.value.length < 4) {
+			    this.textboxMenge.value = this.textboxMenge.value + event.key
+            }
 			break;
 	  
 		case "Enter":
 		case "Unidentified":
 			// --------- Enter ---------
-            this.buttonMengeErfassenClick(null);
+            this.buttonMengeErfassenClick(null)
 			break;
 
 		case "Backspace":
 			if (this.textboxMenge.value.length >= 1) {
-				this.textboxMenge.value = this.textboxMenge.value.substr(0, this.textboxMenge.value.length - 1);
+				this.textboxMenge.value = this.textboxMenge.value.substr(0, this.textboxMenge.value.length - 1)
 			}
 			break;
 
@@ -277,7 +276,7 @@ this.dsoArtikelLaden.Artikelnummer = '';
 
     this.strArtikelnummer = '';
 
-    this.strArtikelnummerStatus = 'Unbekannt';
+    this.strArtikelnummerStatus = 'NichtGeladen';
 
     this.strMenge = '';
 
@@ -298,7 +297,9 @@ this.dsoArtikelLaden.Artikelnummer = '';
 
     this.strArtikelnummer = '';
 
-    this.strArtikelnummerStatus = 'Unbekannt';
+    this.strArtikelnummerStatus = 'NichtGeladen';
+
+    this.strMenge = '';
 
     setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)
 
@@ -371,7 +372,7 @@ this.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);
     if (event.ArtikelID == 0 && event.Artikelnummer == '') {
       this.dsoArtikel = null
 this.strArtikelnummer = ''
-this.strArtikelnummerStatus = 'Unbekannt'
+this.strArtikelnummerStatus = 'NichtGeladen'
 this.globalArtikelID = 0
 
 this.buttonBerechneArtikelSummeErfasstClick(null)
@@ -386,7 +387,7 @@ setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 5
       .subscribe((result: any) => {
           this.dsoArtikel = result
 this.strArtikelnummer = this.dsoArtikel.Artikelnummer
-this.strArtikelnummerStatus = 'Unbekannt'
+this.strArtikelnummerStatus = 'Geladen'
 this.globalArtikelID = this.dsoArtikel.ArtikelID
 
 if(this.globalErfassungModus == 'Einzeln') {
@@ -408,7 +409,7 @@ if(this.globalErfassungModus == 'Einzeln') {
           if (result.value.length != 0) {
         this.dsoArtikel = result.value[0]
 this.strArtikelnummer = this.dsoArtikel.Artikelnummer
-this.strArtikelnummerStatus = 'Unbekannt'
+this.strArtikelnummerStatus = 'Geladen'
 this.globalArtikelID = this.dsoArtikel.ArtikelID
 
 if(this.globalErfassungModus == 'Einzeln') {
@@ -423,7 +424,7 @@ if(this.globalErfassungModus == 'Einzeln') {
 
       if (result.value.length == 0) {
         this.dsoArtikel = null
-this.strArtikelnummerStatus = 'Unbekannt'
+this.strArtikelnummerStatus = 'NichtGeladen'
 this.globalArtikelID = 0
 
 this.notificationService.notify({ severity: "error", summary: ``, detail: `Artikel nicht gefunden!` })

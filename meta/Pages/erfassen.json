@@ -117,7 +117,7 @@
                       {
                         "name": "strArtikelnummerStatus",
                         "type": "set",
-                        "value": "'Unbekannt'"
+                        "value": "'NichtGeladen'"
                       },
                       {
                         "name": "strMenge",
@@ -359,7 +359,12 @@
                       {
                         "name": "strArtikelnummerStatus",
                         "type": "set",
-                        "value": "'Unbekannt'"
+                        "value": "'NichtGeladen'"
+                      },
+                      {
+                        "name": "strMenge",
+                        "type": "set",
+                        "value": "''"
                       },
                       {
                         "code": "setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
@@ -984,7 +989,7 @@
           "events": {
             "click": [
               {
-                "code": "this.dsoArtikel = null\nthis.strArtikelnummer = ''\nthis.strArtikelnummerStatus = 'Unbekannt'\nthis.globalArtikelID = 0\n\nthis.buttonBerechneArtikelSummeErfasstClick(null)\n\nthis.datalistErfassung.load()\n\nsetTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
+                "code": "this.dsoArtikel = null\nthis.strArtikelnummer = ''\nthis.strArtikelnummerStatus = 'NichtGeladen'\nthis.globalArtikelID = 0\n\nthis.buttonBerechneArtikelSummeErfasstClick(null)\n\nthis.datalistErfassung.load()\n\nsetTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
                 "condition": "${event.ArtikelID} == 0 && ${event.Artikelnummer} == ''",
                 "type": "execute"
               },
@@ -1000,7 +1005,7 @@
                 ],
                 "then": [
                   {
-                    "code": "this.dsoArtikel = result\nthis.strArtikelnummer = this.dsoArtikel.Artikelnummer\nthis.strArtikelnummerStatus = 'Unbekannt'\nthis.globalArtikelID = this.dsoArtikel.ArtikelID\n\nif(this.globalErfassungModus == 'Einzeln') {\n    this.strMenge = '1'\n    this.buttonMengeErfassenClick(null)\n} else {\n    this.buttonBerechneArtikelSummeErfasstClick(this.dsoArtikel.ArtikelID)\n    this.datalistErfassung.load()\n    setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)\n}",
+                    "code": "this.dsoArtikel = result\nthis.strArtikelnummer = this.dsoArtikel.Artikelnummer\nthis.strArtikelnummerStatus = 'Geladen'\nthis.globalArtikelID = this.dsoArtikel.ArtikelID\n\nif(this.globalErfassungModus == 'Einzeln') {\n    this.strMenge = '1'\n    this.buttonMengeErfassenClick(null)\n} else {\n    this.buttonBerechneArtikelSummeErfasstClick(this.dsoArtikel.ArtikelID)\n    this.datalistErfassung.load()\n    setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)\n}",
                     "type": "execute"
                   }
                 ],
@@ -1018,12 +1023,12 @@
                 ],
                 "then": [
                   {
-                    "code": "this.dsoArtikel = result.value[0]\nthis.strArtikelnummer = this.dsoArtikel.Artikelnummer\nthis.strArtikelnummerStatus = 'Unbekannt'\nthis.globalArtikelID = this.dsoArtikel.ArtikelID\n\nif(this.globalErfassungModus == 'Einzeln') {\n    this.strMenge = '1'\n    this.buttonMengeErfassenClick(null)\n} else {\n    this.buttonBerechneArtikelSummeErfasstClick(this.dsoArtikel.ArtikelID)\n    this.datalistErfassung.load()\n    setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)\n}",
+                    "code": "this.dsoArtikel = result.value[0]\nthis.strArtikelnummer = this.dsoArtikel.Artikelnummer\nthis.strArtikelnummerStatus = 'Geladen'\nthis.globalArtikelID = this.dsoArtikel.ArtikelID\n\nif(this.globalErfassungModus == 'Einzeln') {\n    this.strMenge = '1'\n    this.buttonMengeErfassenClick(null)\n} else {\n    this.buttonBerechneArtikelSummeErfasstClick(this.dsoArtikel.ArtikelID)\n    this.datalistErfassung.load()\n    setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)\n}",
                     "condition": "${result.value.length} != 0",
                     "type": "execute"
                   },
                   {
-                    "code": "this.dsoArtikel = null\nthis.strArtikelnummerStatus = 'Unbekannt'\nthis.globalArtikelID = 0\n\nthis.notificationService.notify({ severity: \"error\", summary: ``, detail: `Artikel nicht gefunden!` })\n\nthis.buttonBerechneArtikelSummeErfasstClick(null)\nthis.datalistErfassung.load()\nsetTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
+                    "code": "this.dsoArtikel = null\nthis.strArtikelnummerStatus = 'NichtGeladen'\nthis.globalArtikelID = 0\n\nthis.notificationService.notify({ severity: \"error\", summary: ``, detail: `Artikel nicht gefunden!` })\n\nthis.buttonBerechneArtikelSummeErfasstClick(null)\nthis.datalistErfassung.load()\nsetTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
                     "condition": "${result.value.length} == 0",
                     "type": "execute"
                   }
@@ -1230,7 +1235,7 @@
       {
         "name": "strArtikelnummerStatus",
         "type": "set",
-        "value": "'Unbekannt'"
+        "value": "'NichtGeladen'"
       },
       {
         "name": "strArtikelnummer",
@@ -1285,12 +1290,12 @@
       {
         "name": "onKeyDownSetArtikelnummer",
         "type": "set",
-        "value": "(event) => {\n  if(this.strArtikelnummerStatus == 'Artikel geladen') {\n    this.textboxArtikelnummer.value = '';\n    this.strArtikelnummerStatus = 'Unbekannt'\n  }\n\n  switch (event.key) {\n    case \"F12\":\n    case \"Shift\":\n    case \"Tab\":\n    case \"Control\":\n    case \"Alt\":\n      break;\n      \n    case \"Enter\":\n    case \"Unidentified\":\n      console.log(\"--------- Enter ---------\");\n          \n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.strArtikelnummerStatus = 'Artikel geladen';\n\n        var strArtikelnummer = this.textboxArtikelnummer.value;\n        var pos = strArtikelnummer.indexOf('-F');\n\n        if (pos > 0) {\n          strArtikelnummer = strArtikelnummer.substr(0, pos);\n          this.textboxArtikelnummer.value = strArtikelnummer;\n        }\n        \n        this.dsoArtikelLaden.InventurID = this.parameters.InventurID;\n        this.dsoArtikelLaden.ArtikelID = 0;\n        this.dsoArtikelLaden.Artikelnummer = strArtikelnummer;\n        \n        this.buttonArtikelLadenClick(this.dsoArtikelLaden);\n      }\n      break;\n\n    case \"Backspace\":\n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1);\n      }\n      break;\n\n    default:\n      this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key;\n      break;\n  }\n\n  this.strArtikelnummer = this.textboxArtikelnummer.value;\n}"
+        "value": "(event) => {\n  if(this.strArtikelnummerStatus == 'Geladen') {\n    this.textboxArtikelnummer.value = ''\n    this.strArtikelnummerStatus = 'NichtGeladen'\n  }\n\n  switch (event.key) {\n    case \"F12\":\n    case \"Shift\":\n    case \"Tab\":\n    case \"Control\":\n    case \"Alt\":\n      break;\n      \n    case \"Enter\":\n    case \"Unidentified\":\n      // --------- Enter ---------\n      if(this.textboxArtikelnummer.value.length >= 1) {\n        var tempArtikelnummer = this.textboxArtikelnummer.value\n        var pos = tempArtikelnummer.indexOf('-F')\n\n        if (pos > 0) {\n          tempArtikelnummer = tempArtikelnummer.substr(0, pos)\n          this.textboxArtikelnummer.value = tempArtikelnummer\n        }\n        \n        this.dsoArtikelLaden.InventurID = this.parameters.InventurID\n        this.dsoArtikelLaden.ArtikelID = 0\n        this.dsoArtikelLaden.Artikelnummer = tempArtikelnummer\n        \n        this.buttonArtikelLadenClick(this.dsoArtikelLaden)\n      }\n      break;\n\n    case \"Backspace\":\n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1)\n      }\n      break;\n\n    default:\n      if(this.textboxMenge.value.length < 15) {\n          this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key\n      }\n      break;\n  }\n}"
       },
       {
         "name": "onKeyDownSetMenge",
         "type": "set",
-        "value": "(event) => {\n\tif (this.textboxMenge.value === undefined) {\n\t\tthis.textboxMenge.value = \"\";\n\t}\n\n\tswitch (event.key) {\n\t\tcase \"0\":\n\t\tcase \"1\":\n\t\tcase \"2\":\n\t\tcase \"3\":\n\t\tcase \"4\":\n\t\tcase \"5\":\n\t\tcase \"6\":\n\t\tcase \"7\":\n\t\tcase \"8\":\n\t\tcase \"9\":\n\t\t\tthis.textboxMenge.value = this.textboxMenge.value + event.key;\n\t\t\tbreak;\n\t  \n\t\tcase \"Enter\":\n\t\tcase \"Unidentified\":\n\t\t\t// --------- Enter ---------\n            this.buttonMengeErfassenClick(null);\n\t\t\tbreak;\n\n\t\tcase \"Backspace\":\n\t\t\tif (this.textboxMenge.value.length >= 1) {\n\t\t\t\tthis.textboxMenge.value = this.textboxMenge.value.substr(0, this.textboxMenge.value.length - 1);\n\t\t\t}\n\t\t\tbreak;\n\n\t\tdefault:\n\t\t\tbreak;\n\t}\n}"
+        "value": "(event) => {\n\tif (this.textboxMenge.value === undefined) {\n\t\tthis.textboxMenge.value = \"\"\n\t}\n\n\tswitch (event.key) {\n\t\tcase \"0\":\n\t\tcase \"1\":\n\t\tcase \"2\":\n\t\tcase \"3\":\n\t\tcase \"4\":\n\t\tcase \"5\":\n\t\tcase \"6\":\n\t\tcase \"7\":\n\t\tcase \"8\":\n\t\tcase \"9\":\n            if(this.textboxMenge.value.length < 4) {\n\t\t\t    this.textboxMenge.value = this.textboxMenge.value + event.key\n            }\n\t\t\tbreak;\n\t  \n\t\tcase \"Enter\":\n\t\tcase \"Unidentified\":\n\t\t\t// --------- Enter ---------\n            this.buttonMengeErfassenClick(null)\n\t\t\tbreak;\n\n\t\tcase \"Backspace\":\n\t\t\tif (this.textboxMenge.value.length >= 1) {\n\t\t\t\tthis.textboxMenge.value = this.textboxMenge.value.substr(0, this.textboxMenge.value.length - 1)\n\t\t\t}\n\t\t\tbreak;\n\n\t\tdefault:\n\t\t\tbreak;\n\t}\n}"
       },
       {
         "name": "onClickErfassungLoeschen",

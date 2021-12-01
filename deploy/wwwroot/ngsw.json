@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1638367895131,
+  "timestamp": 1638379716973,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -78,7 +78,7 @@
     "/assets/css/humanistic.css": "a9c7e2345bbdeb509254f7564200ac18c6ae9f9d",
     "/assets/css/material-dark.css": "0e5bb73a5a1ff0246bf44477eb883d1a65da8c5f",
     "/assets/css/material.css": "e773111a11a8f86de001044b1e3dfd78c3b7baf1",
-    "/assets/fonts/MaterialIcons-Regular.woff": "c77f37fb5b7d4188ffc6a40a9fac119bbb4783e0",
+    "/assets/fonts/MaterialIcons-Regular.woff": "bc91d406c6998d02e0806d675ea4ea2693f3208d",
     "/assets/fonts/MaterialIcons-Regular.woff2": "da997b8666bf8a967102c5089acac8d50c89ab4e",
     "/assets/fonts/SourceSansPro-Black.woff": "aa02dc9ed0ab8c2f14080db6967bfda798a1d36e",
     "/assets/fonts/SourceSansPro-BlackIt.woff": "090123649291f34a7f457d87e69cf3d07eade6aa",
@@ -110,7 +110,7 @@
     "/assets/images/LogoOhneSchriftzug3.png": "a7a2ab8e6cd457d06d7f30c54300a50b6da24fab",
     "/assets/images/LogoOhneSchriftzug4.png": "832146a33ec16722f16da44be85be75a4640fdd5",
     "/favicon.ico": "166c66eded951d9c7f898192a8530c41f467c782",
-    "/index.html": "708278f8cd0cf6649fd30a244e2d58e87e93244c"
+    "/index.html": "a3392686339e4491b3f2e1daf6a0987d26e2db8b"
   },
   "navigationUrls": [
     {
