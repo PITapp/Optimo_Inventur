@@ -378,19 +378,53 @@
                       },
                       {
                         "condition": "${strLagerortStatus} == 'Erfassung abgeschlossen'",
-                        "detail": "Die Erfassung für diesen Lagerort wurde bereits abgeschlossen!",
-                        "duration": 5000,
-                        "severity": "error",
-                        "summary": "Erfassung abgeschlossen",
-                        "type": "notify"
+                        "parameters": [
+                          {
+                            "name": "strMeldung",
+                            "value": "\"Die Erfassung für diesen Lagerort wurde bereits abgeschlossen! Sie können keine Daten ändern oder erfassen.\""
+                          }
+                        ],
+                        "path": "meldung-ok",
+                        "then": [
+                          {
+                            "condition": "${result} == 'OK'",
+                            "parameters": [
+                              {
+                                "name": "InventurID",
+                                "value": "${event.InventurID}"
+                              }
+                            ],
+                            "path": "erfassen-nur-anzeigen",
+                            "type": "navigate"
+                          }
+                        ],
+                        "title": "Erfassung",
+                        "type": "popup"
                       },
                       {
                         "condition": "${strLagerortStatus} == 'Erfassung zur Zeit gesperrt'",
-                        "detail": "Die Erfassung ist zur Zeit gesperrt, weil ein Mitarbeiter für diesen Lagerort gerade Daten erfasst!",
-                        "duration": 5000,
-                        "severity": "error",
-                        "summary": "Erfassung gesperrt",
-                        "type": "notify"
+                        "parameters": [
+                          {
+                            "name": "strMeldung",
+                            "value": "\"Die Erfassung ist zur Zeit gesperrt, weil ein Mitarbeiter für diesen Lagerort gerade Daten erfasst! Sie können keine Daten ändern oder erfassen.\""
+                          }
+                        ],
+                        "path": "meldung-ok",
+                        "then": [
+                          {
+                            "condition": "${result} == 'OK'",
+                            "parameters": [
+                              {
+                                "name": "InventurID",
+                                "value": "${event.InventurID}"
+                              }
+                            ],
+                            "path": "erfassen-nur-anzeigen",
+                            "type": "navigate"
+                          }
+                        ],
+                        "title": "Erfassung",
+                        "type": "popup"
                       }
                     ],
                     "type": "invoke"
@@ -402,6 +436,29 @@
           },
           "name": "buttonNavigateToErfassen",
           "text": "NavigateToErfassen",
+          "type": "button",
+          "visible": false
+        },
+        {
+          "events": {
+            "click": [
+              {
+                "parameters": [
+                  {
+                    "name": "InventurID",
+                    "value": "${dsoDevice.InventurID}"
+                  }
+                ],
+                "path": "erfassen-nur-anzeigen",
+                "type": "navigate"
+              }
+            ]
+          },
+          "name": "buttonNavigateToErfassenNurAnzeigen",
+          "style": {
+            "marginLeft": "10px"
+          },
+          "text": "NavigateToErfassenNurAnzeigen",
           "type": "button",
           "visible": false
         }
@@ -442,13 +499,35 @@
             "value": "${result}"
           },
           {
-            "name": "dsoUpdateDevice",
+            "name": "dsoUpdateLagerort",
             "type": "set",
-            "value": "{AbmeldungAm: ''}"
+            "value": "{LagerortStatus: 'Erfassung offen'}"
           },
           {
-            "code": "var date = new Date();\n\nthis.dsoUpdateDevice.AbmeldungAm = new Date(Date.UTC(date.getFullYear(),\n                                                     date.getMonth(),\n                                                     date.getDate(),\n                                                     date.getHours(),\n                                                     date.getMinutes(),\n                                                     date.getSeconds(),\n                                                     date.getMilliseconds() ));",
-            "type": "execute"
+            "condition": "${dsoDevice.InventurID} != null",
+            "name": "dbOptimo.updateInventurBasis",
+            "parameters": [
+              {
+                "name": "InventurID",
+                "value": "${dsoDevice.InventurID}"
+              },
+              {
+                "name": "InventurBasis",
+                "value": "${dsoUpdateLagerort}"
+              }
+            ],
+            "then": [
+              {
+                "code": "this.datalistLagerorte.load();",
+                "type": "execute"
+              }
+            ],
+            "type": "invoke"
+          },
+          {
+            "name": "dsoUpdateDevice",
+            "type": "set",
+            "value": "{AnmeldungAm: null, AbmeldungAm: null, InventurID: null}"
           },
           {
             "name": "dbOptimo.updateInventurDevice",

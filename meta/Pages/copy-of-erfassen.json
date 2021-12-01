@@ -115,9 +115,9 @@
                         "value": "''"
                       },
                       {
-                        "name": "strStatusArtikelnummer",
+                        "name": "strArtikelnummerStatus",
                         "type": "set",
-                        "value": "'unbekannt'"
+                        "value": "'Unbekannt'"
                       },
                       {
                         "name": "strMenge",
@@ -357,9 +357,9 @@
                         "value": "''"
                       },
                       {
-                        "name": "strStatusArtikelnummer",
+                        "name": "strArtikelnummerStatus",
                         "type": "set",
-                        "value": "'unbekannt'"
+                        "value": "'Unbekannt'"
                       },
                       {
                         "code": "setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
@@ -1194,7 +1194,7 @@
         "value": "null"
       },
       {
-        "name": "strStatusArtikelnummer",
+        "name": "strArtikelnummerStatus",
         "type": "set",
         "value": "'Unbekannt'"
       },
@@ -1284,7 +1284,7 @@
       {
         "name": "onKeyDownSetArtikelnummer",
         "type": "set",
-        "value": "(event) => {\n  if(this.strStatusArtikelnummer == 'Artikel geladen') {\n    this.textboxArtikelnummer.value = '';\n    this.strStatusArtikelnummer = 'Unbekannt'\n  }\n\n  switch (event.key) {\n    case \"F12\":\n    case \"Shift\":\n    case \"Tab\":\n    case \"Control\":\n    case \"Alt\":\n      break;\n      \n    case \"Enter\":\n    case \"Unidentified\":\n      console.log(\"--------- Enter ---------\");\n          \n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.strStatusArtikelnummer = 'Artikel geladen';\n\n        var strArtikelnummer = this.textboxArtikelnummer.value;\n        var pos = strArtikelnummer.indexOf('-F');\n\n        if (pos > 0) {\n          strArtikelnummer = strArtikelnummer.substr(0, pos);\n          this.textboxArtikelnummer.value = strArtikelnummer;\n        }\n        \n        this.buttonArtikelLadenByArtikelnummerClick(strArtikelnummer);\n      }\n      break;\n\n    case \"Backspace\":\n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1);\n      }\n      break;\n\n    default:\n      this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key;\n      break;\n  }\n\n  this.strArtikelnummer = this.textboxArtikelnummer.value;\n}"
+        "value": "(event) => {\n  if(this.strArtikelnummerStatus == 'Artikel geladen') {\n    this.textboxArtikelnummer.value = '';\n    this.strArtikelnummerStatus = 'Unbekannt'\n  }\n\n  switch (event.key) {\n    case \"F12\":\n    case \"Shift\":\n    case \"Tab\":\n    case \"Control\":\n    case \"Alt\":\n      break;\n      \n    case \"Enter\":\n    case \"Unidentified\":\n      console.log(\"--------- Enter ---------\");\n          \n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.strArtikelnummerStatus = 'Artikel geladen';\n\n        var strArtikelnummer = this.textboxArtikelnummer.value;\n        var pos = strArtikelnummer.indexOf('-F');\n\n        if (pos > 0) {\n          strArtikelnummer = strArtikelnummer.substr(0, pos);\n          this.textboxArtikelnummer.value = strArtikelnummer;\n        }\n        \n        this.buttonArtikelLadenByArtikelnummerClick(strArtikelnummer);\n      }\n      break;\n\n    case \"Backspace\":\n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1);\n      }\n      break;\n\n    default:\n      this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key;\n      break;\n  }\n\n  this.strArtikelnummer = this.textboxArtikelnummer.value;\n}"
       },
       {
         "name": "onKeyDownSetMenge",

@@ -53,6 +53,9 @@ import { DeviceRegistrierenComponent } from './device-registrieren/device-regist
 import { MeldungOkComponent } from './meldung-ok/meldung-ok.component';
 import { MeldungJaNeinComponent } from './meldung-ja-nein/meldung-ja-nein.component';
 import { CopyOfErfassenComponent } from './copy-of-erfassen/copy-of-erfassen.component';
+import { CopyOfErfassen1Component } from './copy-of-erfassen-1/copy-of-erfassen-1.component';
+import { ErfassenNurAnzeigenComponent } from './erfassen-nur-anzeigen/erfassen-nur-anzeigen.component';
+import { CopyOfErfassen2Component } from './copy-of-erfassen-2/copy-of-erfassen-2.component';
 import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
 import { InventurInfosLayoutComponent } from './inventur-infos-layout/inventur-infos-layout.component';
 import { InventurErfassenLayoutComponent } from './inventur-erfassen-layout/inventur-erfassen-layout.component';
@@ -81,6 +84,9 @@ export const PageDeclarations = [
   MeldungOkComponent,
   MeldungJaNeinComponent,
   CopyOfErfassenComponent,
+  CopyOfErfassen1Component,
+  ErfassenNurAnzeigenComponent,
+  CopyOfErfassen2Component,
 ];
 
 export const LayoutDeclarations = [

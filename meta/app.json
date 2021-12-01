@@ -29,10 +29,7 @@
   "name": "Optimo Inventur",
   "namespaces": [],
   "navigation": [
-    "Dashboard",
-    "Erfassen",
-    "zzErfassen V3",
-    "Copy of Erfassen"
+    "Dashboard"
   ],
   "pages": [
     "Dashboard",
@@ -52,7 +49,10 @@
     "DeviceRegistrieren",
     "MeldungOK",
     "MeldungJaNein",
-    "Copy of Erfassen"
+    "Copy of Erfassen",
+    "Copy of Erfassen 1",
+    "ErfassenNurAnzeigen",
+    "Copy of Erfassen 2"
   ],
   "port": 8000,
   "serverLang": "cs",

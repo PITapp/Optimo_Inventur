@@ -79,7 +79,7 @@ export class ZzErfassenV3Generated implements AfterViewInit, OnInit, OnDestroy {
   dsoArtikel: any;
   onKeyDownSetArtikelnummer: any;
   onClickArtikelProtokollOeffnen: any;
-  strStatusArtikelnummer: any;
+  strArtikelnummerStatus: any;
   parameters: any;
   rstErfassung: any;
   rstErfassungCount: any;
@@ -169,9 +169,9 @@ export class ZzErfassenV3Generated implements AfterViewInit, OnInit, OnDestroy {
     this.textboxArtikelnummer.value = "";
   }
 
-  if(this.strStatusArtikelnummer == 'Artikel geladen') {
+  if(this.strArtikelnummerStatus == 'Artikel geladen') {
     this.textboxArtikelnummer.value = "";
-    this.strStatusArtikelnummer = 'Unbekannt'
+    this.strArtikelnummerStatus = 'Unbekannt'
   }
 
   switch (event.key) {
@@ -187,7 +187,7 @@ export class ZzErfassenV3Generated implements AfterViewInit, OnInit, OnDestroy {
       console.log("--------- Enter ---------");
           
       if(this.textboxArtikelnummer.value.length >= 1) {
-        this.strStatusArtikelnummer = 'Artikel geladen';
+        this.strArtikelnummerStatus = 'Artikel geladen';
 
         var strArtikelnummer = this.textboxArtikelnummer.value;
         var pos = strArtikelnummer.indexOf('-F');
@@ -220,7 +220,7 @@ export class ZzErfassenV3Generated implements AfterViewInit, OnInit, OnDestroy {
     // this.buttonOpenDialogErfassungLoeschenClick(data);
 };
 
-    this.strStatusArtikelnummer = 'Unbekannt';
+    this.strArtikelnummerStatus = 'Unbekannt';
   }
 
   selectbarErfassenModusChange(event: any) {

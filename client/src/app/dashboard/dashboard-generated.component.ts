@@ -33,6 +33,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('label0') label0: LabelComponent;
   @ViewChild('buttonNavigateToErfassen') buttonNavigateToErfassen: ButtonComponent;
+  @ViewChild('buttonNavigateToErfassenNurAnzeigen') buttonNavigateToErfassenNurAnzeigen: ButtonComponent;
 
   router: Router;
 
@@ -59,6 +60,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   dbOptimo: DbOptimoService;
   globalDeviceID: any;
   dsoDevice: any;
+  dsoUpdateLagerort: any;
   dsoUpdateDevice: any;
   onClickStartErfassen: any;
   onClickStartInfos: any;
@@ -66,7 +68,6 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   rstLagerorte: any;
   rstLagerorteCount: any;
   strLagerortStatus: any;
-  dsoUpdateLagerort: any;
 
   constructor(private injector: Injector) {
   }
@@ -130,17 +131,18 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
     .subscribe((result: any) => {
       this.dsoDevice = result;
 
-      this.dsoUpdateDevice = {AbmeldungAm: ''};
+      this.dsoUpdateLagerort = {LagerortStatus: 'Erfassung offen'};
 
-      var date = new Date();
+      if (this.dsoDevice.InventurID != null) {
+              this.dbOptimo.updateInventurBasis(null, this.dsoDevice.InventurID, this.dsoUpdateLagerort)
+        .subscribe((result: any) => {
+              this.datalistLagerorte.load();
+        }, (result: any) => {
+      
+        });
+      }
 
-this.dsoUpdateDevice.AbmeldungAm = new Date(Date.UTC(date.getFullYear(),
-                                                     date.getMonth(),
-                                                     date.getDate(),
-                                                     date.getHours(),
-                                                     date.getMinutes(),
-                                                     date.getSeconds(),
-                                                     date.getMilliseconds() ));
+      this.dsoUpdateDevice = {AnmeldungAm: null, AbmeldungAm: null, InventurID: null};
 
       this.dbOptimo.updateInventurDevice(null, this.globalDeviceID, this.dsoUpdateDevice)
       .subscribe((result: any) => {
@@ -237,11 +239,27 @@ this.dsoUpdateDevice.InventurID = event.InventurID;
         }
 
         if (this.strLagerortStatus == 'Erfassung abgeschlossen') {
-          this.notificationService.notify({ severity: "error", summary: `Erfassung abgeschlossen`, detail: `Die Erfassung für diesen Lagerort wurde bereits abgeschlossen!`, duration: 5000 });
+          this.dialogService.open(MeldungOkComponent, { parameters: {strMeldung: "Die Erfassung für diesen Lagerort wurde bereits abgeschlossen! Sie können keine Daten ändern oder erfassen."}, title: `Erfassung` })
+              .afterClosed().subscribe(result => {
+                          if (result == 'OK') {
+              if (this.dialogRef) {
+                this.dialogRef.close();
+              }
+              this.router.navigate(['erfassen-nur-anzeigen', event.InventurID]);
+            }
+          });
         }
 
         if (this.strLagerortStatus == 'Erfassung zur Zeit gesperrt') {
-          this.notificationService.notify({ severity: "error", summary: `Erfassung gesperrt`, detail: `Die Erfassung ist zur Zeit gesperrt, weil ein Mitarbeiter für diesen Lagerort gerade Daten erfasst!`, duration: 5000 });
+          this.dialogService.open(MeldungOkComponent, { parameters: {strMeldung: "Die Erfassung ist zur Zeit gesperrt, weil ein Mitarbeiter für diesen Lagerort gerade Daten erfasst! Sie können keine Daten ändern oder erfassen."}, title: `Erfassung` })
+              .afterClosed().subscribe(result => {
+                          if (result == 'OK') {
+              if (this.dialogRef) {
+                this.dialogRef.close();
+              }
+              this.router.navigate(['erfassen-nur-anzeigen', event.InventurID]);
+            }
+          });
         }
       }, (result: any) => {
         this.notificationService.notify({ severity: "error", summary: ``, detail: `Lagerort konnte nicht geladen werden!` });
@@ -257,5 +275,12 @@ this.dsoUpdateDevice.InventurID = event.InventurID;
         }
       });
     });
+  }
+
+  buttonNavigateToErfassenNurAnzeigenClick(event: any) {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+    this.router.navigate(['erfassen-nur-anzeigen', this.dsoDevice.InventurID]);
   }
 }

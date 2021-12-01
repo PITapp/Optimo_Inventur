@@ -25,6 +25,9 @@ import { DeviceRegistrierenComponent } from './device-registrieren/device-regist
 import { MeldungOkComponent } from './meldung-ok/meldung-ok.component';
 import { MeldungJaNeinComponent } from './meldung-ja-nein/meldung-ja-nein.component';
 import { CopyOfErfassenComponent } from './copy-of-erfassen/copy-of-erfassen.component';
+import { CopyOfErfassen1Component } from './copy-of-erfassen-1/copy-of-erfassen-1.component';
+import { ErfassenNurAnzeigenComponent } from './erfassen-nur-anzeigen/erfassen-nur-anzeigen.component';
+import { CopyOfErfassen2Component } from './copy-of-erfassen-2/copy-of-erfassen-2.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -91,6 +94,18 @@ export const routes: Routes = [
       {
         path: 'copy-of-erfassen',
         component: CopyOfErfassenComponent
+      },
+      {
+        path: 'copy-of-erfassen-1',
+        component: CopyOfErfassen1Component
+      },
+      {
+        path: 'erfassen-nur-anzeigen/:InventurID',
+        component: ErfassenNurAnzeigenComponent
+      },
+      {
+        path: 'copy-of-erfassen-2',
+        component: CopyOfErfassen2Component
       },
     ]
   },

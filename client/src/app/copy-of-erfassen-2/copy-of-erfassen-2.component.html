@@ -112,11 +112,11 @@
   <rz-label #label2 [style]="{'backgroundColor': '#e6c54f', 'marginBottom': '10px', 'marginTop': '20px', 'width': '100%'}" text="Diese Schaltflächen müssen da sein, damit beim Compilieren in der Navigation die Parameter erstellt werden! Sie werden auch als Funktionen genutzt, die über Click-Ereignisse aktiviert werden.
   Siehe app.routes.ts" *ngIf="false">
   </rz-label>
-  <rz-button #buttonArtikelLaden [style]="{}" text="ArtikelLaden" *ngIf="false" (click)="buttonArtikelLadenClick($event)">
+  <rz-button #buttonErfassungLoeschen text="ErfassungLöschen" *ngIf="false" (click)="buttonErfassungLoeschenClick($event)">
+  </rz-button>
+  <rz-button #buttonArtikelLaden [style]="{'marginLeft': '10px'}" text="ArtikelLaden" *ngIf="false" (click)="buttonArtikelLadenClick($event)">
   </rz-button>
   <rz-button #buttonBerechneArtikelSummeErfasst [style]="{'marginLeft': '10px'}" text="BerechneArtikelSummeErfasst" *ngIf="false" (click)="buttonBerechneArtikelSummeErfasstClick($event)">
-  </rz-button>
-  <rz-button #buttonErfassungLoeschen [style]="{'marginLeft': '10px'}" text="ErfassungLöschen" *ngIf="false" (click)="buttonErfassungLoeschenClick($event)">
   </rz-button>
   <rz-button #buttonNavigateBack [style]="{'marginLeft': '10px'}" text="NavigateBack" *ngIf="false" (click)="buttonNavigateBackClick($event)">
   </rz-button>

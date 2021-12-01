@@ -984,110 +984,6 @@
           "events": {
             "click": [
               {
-                "code": "this.dsoArtikel = null\nthis.strArtikelnummer = ''\nthis.strArtikelnummerStatus = 'Unbekannt'\nthis.globalArtikelID = 0\n\nthis.buttonBerechneArtikelSummeErfasstClick(null)\n\nthis.datalistErfassung.load()\n\nsetTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
-                "condition": "${event.ArtikelID} == 0 && ${event.Artikelnummer} == ''",
-                "type": "execute"
-              },
-              {
-                "condition": "${event.ArtikelID} != 0",
-                "error": [],
-                "name": "dbOptimo.getInventurArtikelByArtikelID",
-                "parameters": [
-                  {
-                    "name": "ArtikelID",
-                    "value": "${event.ArtikelID}"
-                  }
-                ],
-                "then": [
-                  {
-                    "code": "this.dsoArtikel = result\nthis.strArtikelnummer = this.dsoArtikel.Artikelnummer\nthis.strArtikelnummerStatus = 'Unbekannt'\nthis.globalArtikelID = this.dsoArtikel.ArtikelID\n\nif(this.globalErfassungModus == 'Einzeln') {\n    this.strMenge = '1'\n    this.buttonMengeErfassenClick(null)\n} else {\n    this.buttonBerechneArtikelSummeErfasstClick(this.dsoArtikel.ArtikelID)\n    this.datalistErfassung.load()\n    setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)\n}",
-                    "type": "execute"
-                  }
-                ],
-                "type": "invoke"
-              },
-              {
-                "condition": "${event.Artikelnummer} != ''",
-                "error": [],
-                "name": "dbOptimo.getInventurArtikels",
-                "parameters": [
-                  {
-                    "name": "$filter",
-                    "value": "InventurID eq ${event.InventurID} AND Artikelnummer eq '${event.Artikelnummer}'"
-                  }
-                ],
-                "then": [
-                  {
-                    "code": "this.dsoArtikel = result.value[0]\nthis.strArtikelnummer = this.dsoArtikel.Artikelnummer\nthis.strArtikelnummerStatus = 'Unbekannt'\nthis.globalArtikelID = this.dsoArtikel.ArtikelID\n\nif(this.globalErfassungModus == 'Einzeln') {\n    this.strMenge = '1'\n    this.buttonMengeErfassenClick(null)\n} else {\n    this.buttonBerechneArtikelSummeErfasstClick(this.dsoArtikel.ArtikelID)\n    this.datalistErfassung.load()\n    setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)\n}",
-                    "condition": "${result.value.length} != 0",
-                    "type": "execute"
-                  },
-                  {
-                    "code": "this.dsoArtikel = null\nthis.strArtikelnummerStatus = 'Unbekannt'\nthis.globalArtikelID = 0\n\nthis.notificationService.notify({ severity: \"error\", summary: ``, detail: `Artikel nicht gefunden!` })\n\nthis.buttonBerechneArtikelSummeErfasstClick(null)\nthis.datalistErfassung.load()\nsetTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
-                    "condition": "${result.value.length} == 0",
-                    "type": "execute"
-                  }
-                ],
-                "type": "invoke"
-              }
-            ]
-          },
-          "name": "buttonArtikelLaden",
-          "style": {},
-          "text": "ArtikelLaden",
-          "tooltip": "",
-          "type": "button",
-          "visible": false
-        },
-        {
-          "events": {
-            "click": [
-              {
-                "condition": "${event} != null",
-                "name": "dbOptimo.getVwInventurErfassungSummens",
-                "parameters": [
-                  {
-                    "name": "$filter",
-                    "value": "ArtikelID eq ${event}"
-                  }
-                ],
-                "then": [
-                  {
-                    "condition": "${result.value.length} != 0",
-                    "name": "intSummeErfasst",
-                    "type": "set",
-                    "value": "${result.value[0].SummeErfasstFormatiert}"
-                  },
-                  {
-                    "condition": "${result.value.length} == 0",
-                    "name": "intSummeErfasst",
-                    "type": "set",
-                    "value": "0"
-                  }
-                ],
-                "type": "invoke"
-              },
-              {
-                "condition": "${event} == null",
-                "name": "intSummeErfasst",
-                "type": "set",
-                "value": "0"
-              }
-            ]
-          },
-          "name": "buttonBerechneArtikelSummeErfasst",
-          "style": {
-            "marginLeft": "10px"
-          },
-          "text": "BerechneArtikelSummeErfasst",
-          "tooltip": "",
-          "type": "button",
-          "visible": false
-        },
-        {
-          "events": {
-            "click": [
-              {
                 "condition": "${event.GeloeschtAm} == null",
                 "height": "",
                 "parameters": [
@@ -1154,10 +1050,128 @@
             ]
           },
           "name": "buttonErfassungLoeschen",
+          "text": "ErfassungLöschen",
+          "tooltip": "",
+          "type": "button",
+          "visible": false
+        },
+        {
+          "events": {
+            "click": [
+              {
+                "code": "this.datalistErfassung.load();",
+                "condition": "${event.ArtikelID} == 0 && ${event.Artikelnummer} == null",
+                "type": "execute"
+              },
+              {
+                "condition": "${event.ArtikelID} != 0",
+                "error": [
+                  {
+                    "detail": "Artikel für diesen Lagerort nicht gefunden!",
+                    "severity": "error",
+                    "type": "notify"
+                  }
+                ],
+                "name": "dbOptimo.getInventurArtikelByArtikelID",
+                "parameters": [
+                  {
+                    "name": "ArtikelID",
+                    "value": "${event.ArtikelID}"
+                  }
+                ],
+                "then": [
+                  {
+                    "name": "dsoArtikel",
+                    "type": "set",
+                    "value": "${result}"
+                  },
+                  {
+                    "name": "strArtikelnummer",
+                    "type": "set",
+                    "value": "${result.Artikelnummer}"
+                  },
+                  {
+                    "code": "this.datalistErfassung.load();",
+                    "type": "execute"
+                  },
+                  {
+                    "code": "this.buttonBerechneArtikelSummeErfasstClick(${result.ArtikelID});",
+                    "type": "execute"
+                  }
+                ],
+                "type": "invoke"
+              },
+              {
+                "condition": "${event.Artikelnummer} != null",
+                "error": [
+                  {
+                    "detail": "Fehler beim Laden des Artikels!",
+                    "severity": "error",
+                    "type": "notify"
+                  }
+                ],
+                "name": "dbOptimo.getInventurArtikels",
+                "parameters": [
+                  {
+                    "name": "$filter",
+                    "value": "InventurID eq ${event.InventurID} AND Artikelnummer eq '${event.Artikelnummer}'"
+                  }
+                ],
+                "then": [
+                  {
+                    "condition": "${result.value.length} != 0",
+                    "detail": "--- Artikel gefunden ---",
+                    "severity": "success",
+                    "type": "notify"
+                  },
+                  {
+                    "condition": "${result.value.length} == 0",
+                    "detail": "Artikel für diesen Lagerort nicht gefunden!",
+                    "severity": "error",
+                    "type": "notify"
+                  }
+                ],
+                "type": "invoke"
+              }
+            ]
+          },
+          "name": "buttonArtikelLaden",
           "style": {
             "marginLeft": "10px"
           },
-          "text": "ErfassungLöschen",
+          "text": "ArtikelLaden",
+          "tooltip": "",
+          "type": "button",
+          "visible": false
+        },
+        {
+          "events": {
+            "click": [
+              {
+                "name": "dbOptimo.getVwInventurErfassungSummens",
+                "parameters": [
+                  {
+                    "name": "$filter",
+                    "value": "ArtikelID eq ${event}"
+                  }
+                ],
+                "then": [
+                  {
+                    "condition": "${result.value.length} != 0",
+                    "name": "intSummeErfasst",
+                    "type": "set",
+                    "value": "${result.value[0].SummeErfasstFormatiert}"
+                  }
+                ],
+                "type": "invoke"
+              }
+            ]
+          },
+          "name": "buttonBerechneArtikelSummeErfasst",
+          "style": {
+            "marginLeft": "10px"
+          },
+          "text": "BerechneArtikelSummeErfasst",
           "tooltip": "",
           "type": "button",
           "visible": false
@@ -1258,6 +1272,10 @@
         "value": "{ArtikelID: 0, DeviceID: 0, ErfasstAm: '', ErfasstAnzahl: 0}"
       },
       {
+        "code": "setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
+        "type": "execute"
+      },
+      {
         "name": "dbOptimo.getInventurBasisByInventurID",
         "parameters": [
           {
@@ -1272,7 +1290,7 @@
             "value": "${result}"
           },
           {
-            "code": "this.dsoArtikelLaden.InventurID = this.parameters.InventurID;\nthis.dsoArtikelLaden.ArtikelID = this.globalArtikelID;\nthis.dsoArtikelLaden.Artikelnummer = '';",
+            "code": "this.dsoArtikelLaden.InventurID = this.parameters.InventurID;\nthis.dsoArtikelLaden.ArtikelID = this.globalArtikelID;\nthis.dsoArtikelLaden.Artikelnummer = null;",
             "type": "execute"
           },
           {
@@ -1305,5 +1323,5 @@
     ]
   },
   "layout": "InventurErfassen",
-  "name": "Erfassen"
+  "name": "Copy of Erfassen 2"
 }

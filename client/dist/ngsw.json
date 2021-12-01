@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1638294717491,
+  "timestamp": 1638367895131,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -110,7 +110,7 @@
     "/assets/images/LogoOhneSchriftzug3.png": "a7a2ab8e6cd457d06d7f30c54300a50b6da24fab",
     "/assets/images/LogoOhneSchriftzug4.png": "832146a33ec16722f16da44be85be75a4640fdd5",
     "/favicon.ico": "166c66eded951d9c7f898192a8530c41f467c782",
-    "/index.html": "8d29a6b4658e3b64d632f157072af93592d8168e"
+    "/index.html": "708278f8cd0cf6649fd30a244e2d58e87e93244c"
   },
   "navigationUrls": [
     {
