@@ -56,6 +56,7 @@ import { CopyOfErfassenComponent } from './copy-of-erfassen/copy-of-erfassen.com
 import { CopyOfErfassen1Component } from './copy-of-erfassen-1/copy-of-erfassen-1.component';
 import { ErfassenNurAnzeigenComponent } from './erfassen-nur-anzeigen/erfassen-nur-anzeigen.component';
 import { CopyOfErfassen2Component } from './copy-of-erfassen-2/copy-of-erfassen-2.component';
+import { CopyOfErfassen3Component } from './copy-of-erfassen-3/copy-of-erfassen-3.component';
 import { InventurStartLayoutComponent } from './inventur-start-layout/inventur-start-layout.component';
 import { InventurInfosLayoutComponent } from './inventur-infos-layout/inventur-infos-layout.component';
 import { InventurErfassenLayoutComponent } from './inventur-erfassen-layout/inventur-erfassen-layout.component';
@@ -87,6 +88,7 @@ export const PageDeclarations = [
   CopyOfErfassen1Component,
   ErfassenNurAnzeigenComponent,
   CopyOfErfassen2Component,
+  CopyOfErfassen3Component,
 ];
 
 export const LayoutDeclarations = [

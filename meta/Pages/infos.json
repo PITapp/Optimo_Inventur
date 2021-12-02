@@ -37,7 +37,7 @@
                   "style": {
                     "width": "100%"
                   },
-                  "text": "Registriert: ${dsoDevice.RegistriertAm | date : 'dd.MM.yyyy HH:mm'}",
+                  "text": "Registriert: ${dsoDevice.RegistriertAm | utcDate : 'dd.MM.yyyy HH:mm'}",
                   "type": "label"
                 },
                 {

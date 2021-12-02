@@ -576,12 +576,7 @@
                               {
                                 "detail": "Menge ${strMenge} erfasst",
                                 "severity": "success",
-                                "then": [],
                                 "type": "notify"
-                              },
-                              {
-                                "code": "this.buttonPlaySoundMengeErfasstClick(null)",
-                                "type": "execute"
                               },
                               {
                                 "name": "strMenge",
@@ -764,7 +759,7 @@
                     "fontWeight": "normal",
                     "lineHeight": "14px"
                   },
-                  "text": ">>> Gelöscht am ${data.GeloeschtAm | utcDate : 'dd.MM.yyyy HH:mm'}",
+                  "text": ">>> Gelöscht am ${data.GeloeschtAm | date : 'dd.MM.yyyy HH:mm'}",
                   "type": "label"
                 }
               ],
@@ -1014,7 +1009,7 @@
                 ],
                 "then": [
                   {
-                    "code": "this.dsoArtikel = result\nthis.strArtikelnummer = this.dsoArtikel.Artikelnummer\nthis.strArtikelnummerStatus = 'Geladen'\nthis.globalArtikelID = this.dsoArtikel.ArtikelID\n\nif(this.globalErfassungModus == 'Einzeln') {\n    this.strMenge = '1'\n    this.buttonMengeErfassenClick(null)\n} else {\n    this.buttonBerechneArtikelSummeErfasstClick(this.dsoArtikel.ArtikelID)\n    this.datalistErfassung.load()\n    setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)\n    this.buttonPlaySoundArtikelGefundenClick(null)\n}",
+                    "code": "this.dsoArtikel = result\nthis.strArtikelnummer = this.dsoArtikel.Artikelnummer\nthis.strArtikelnummerStatus = 'Geladen'\nthis.globalArtikelID = this.dsoArtikel.ArtikelID\n\nif(this.globalErfassungModus == 'Einzeln') {\n    this.strMenge = '1'\n    this.buttonMengeErfassenClick(null)\n} else {\n    this.buttonBerechneArtikelSummeErfasstClick(this.dsoArtikel.ArtikelID)\n    this.datalistErfassung.load()\n    setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)\n}",
                     "type": "execute"
                   }
                 ],
@@ -1032,12 +1027,12 @@
                 ],
                 "then": [
                   {
-                    "code": "this.dsoArtikel = result.value[0]\nthis.strArtikelnummer = this.dsoArtikel.Artikelnummer\nthis.strArtikelnummerStatus = 'Geladen'\nthis.globalArtikelID = this.dsoArtikel.ArtikelID\n\nif(this.globalErfassungModus == 'Einzeln') {\n    this.strMenge = '1'\n    this.buttonMengeErfassenClick(null)\n} else {\n    this.buttonBerechneArtikelSummeErfasstClick(this.dsoArtikel.ArtikelID)\n    this.datalistErfassung.load()\n    setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)\n    this.buttonPlaySoundArtikelGefundenClick(null)\n}",
+                    "code": "this.dsoArtikel = result.value[0]\nthis.strArtikelnummer = this.dsoArtikel.Artikelnummer\nthis.strArtikelnummerStatus = 'Geladen'\nthis.globalArtikelID = this.dsoArtikel.ArtikelID\n\nif(this.globalErfassungModus == 'Einzeln') {\n    this.strMenge = '1'\n    this.buttonMengeErfassenClick(null)\n} else {\n    this.buttonBerechneArtikelSummeErfasstClick(this.dsoArtikel.ArtikelID)\n    this.datalistErfassung.load()\n    setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)\n}",
                     "condition": "${result.value.length} != 0",
                     "type": "execute"
                   },
                   {
-                    "code": "this.dsoArtikel = null\nthis.strArtikelnummerStatus = 'Geladen'\nthis.globalArtikelID = 0\n\nthis.notificationService.notify({ severity: \"error\", summary: ``, detail: `Artikel nicht gefunden!` })\n\nthis.buttonBerechneArtikelSummeErfasstClick(null)\nthis.datalistErfassung.load()\nsetTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)\nthis.buttonPlaySoundArtikelNichtGefundenClick(null)\n",
+                    "code": "this.dsoArtikel = null\nthis.strArtikelnummerStatus = 'Geladen'\nthis.globalArtikelID = 0\n\nthis.notificationService.notify({ severity: \"error\", summary: ``, detail: `Artikel nicht gefunden!` })\n\nthis.buttonBerechneArtikelSummeErfasstClick(null)\nthis.datalistErfassung.load()\nsetTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)",
                     "condition": "${result.value.length} == 0",
                     "type": "execute"
                   }
@@ -1213,60 +1208,6 @@
           "tooltip": "",
           "type": "button",
           "visible": false
-        },
-        {
-          "events": {
-            "click": [
-              {
-                "code": "let audio = new Audio();\n\naudio.src = \"assets/images/SoundArtikelGefunden.mp3\";\naudio.load();\naudio.play();",
-                "type": "execute"
-              }
-            ]
-          },
-          "name": "buttonPlaySoundArtikelGefunden",
-          "style": {
-            "marginLeft": "10px"
-          },
-          "text": "PlaySoundArtikelGefunden",
-          "tooltip": "",
-          "type": "button",
-          "visible": false
-        },
-        {
-          "events": {
-            "click": [
-              {
-                "code": "let audio = new Audio();\n\naudio.src = \"assets/images/SoundArtikelNichtGefunden.mp3\";\naudio.load();\naudio.play();",
-                "type": "execute"
-              }
-            ]
-          },
-          "name": "buttonPlaySoundArtikelNichtGefunden",
-          "style": {
-            "marginLeft": "10px"
-          },
-          "text": "PlaySoundArtikelNichtGefunden",
-          "tooltip": "",
-          "type": "button",
-          "visible": false
-        },
-        {
-          "events": {
-            "click": [
-              {
-                "code": "let audio = new Audio();\n\naudio.src = \"assets/images/SoundMengeErfasst.mp3\";\naudio.load();\naudio.play();",
-                "type": "execute"
-              }
-            ]
-          },
-          "name": "buttonPlaySoundMengeErfasst",
-          "style": {
-            "marginLeft": "10px"
-          },
-          "text": "PlaySoundMengeErfasst",
-          "tooltip": "",
-          "type": "button",
-          "visible": false
         }
       ],
       "container": "main",
@@ -1373,5 +1314,5 @@
     ]
   },
   "layout": "InventurErfassen",
-  "name": "Erfassen"
+  "name": "Copy of Erfassen 3"
 }

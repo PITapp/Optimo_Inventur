@@ -7,7 +7,7 @@
       </rz-label>
       <rz-label #label5 [style]="{'width': '100%'}" text="Info: {{dsoDevice?.Info}}">
       </rz-label>
-      <rz-label #label0 [style]="{'width': '100%'}" text="Registriert: {{dsoDevice?.RegistriertAm | date:'dd.MM.yyyy HH:mm'}}">
+      <rz-label #label0 [style]="{'width': '100%'}" text="Registriert: {{dsoDevice?.RegistriertAm | utcDate:'dd.MM.yyyy HH:mm'}}">
       </rz-label>
       <rz-button #buttonRegistrierungLoeschen [disabled]="dsoDevice?.DeviceID == null" [style]="{'marginTop': '20px', 'width': '100%'}" text="Registrierung löschen" (click)="buttonRegistrierungLoeschenClick($event)">
       </rz-button>

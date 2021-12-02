@@ -74,7 +74,7 @@
   <rz-datalist #datalistErfassung [allowPaging]="false" [count]="rstErfassungCount" [data]="rstErfassung" defaultRowText="Template for index" emptyText="&nbsp;" [pageSize]="3" [style]="{}" [wrapItems]="false" (loadData)="datalistErfassungLoadData($event)">
     <ng-template let-data datalistTemplate>
       <rz-card #card2 [style]="{'backgroundColor': '#ffffff', 'color': '#a71330', 'fontWeight': 'bold', 'marginBottom': '-5px', 'paddingBottom': '0', 'paddingLeft': '15px', 'paddingRight': '15px', 'paddingTop': '0'}" *ngIf="data?.GeloeschtAm != null">
-        <rz-label #label0 [style]="{'color': '#a71330', 'fontSize': '12px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '14px'}" text=">>> Gelöscht am {{data?.GeloeschtAm | utcDate:'dd.MM.yyyy HH:mm'}}">
+        <rz-label #label0 [style]="{'color': '#a71330', 'fontSize': '12px', 'fontStyle': 'normal', 'fontWeight': 'normal', 'lineHeight': '14px'}" text=">>> Gelöscht am {{data?.GeloeschtAm | date:'dd.MM.yyyy HH:mm'}}">
         </rz-label>
       </rz-card>
       <rz-card #card0 [style]="{'backgroundColor': '#ffffff', 'borderBottom': '1px solid #dadfe2', 'paddingBottom': '4px', 'paddingLeft': '15px', 'paddingRight': '5px', 'paddingTop': '0'}">
@@ -119,11 +119,5 @@
   <rz-button #buttonErfassungLoeschen [style]="{'marginLeft': '10px'}" text="ErfassungLöschen" *ngIf="false" (click)="buttonErfassungLoeschenClick($event)">
   </rz-button>
   <rz-button #buttonNavigateBack [style]="{'marginLeft': '10px'}" text="NavigateBack" *ngIf="false" (click)="buttonNavigateBackClick($event)">
-  </rz-button>
-  <rz-button #buttonPlaySoundArtikelGefunden [style]="{'marginLeft': '10px'}" text="PlaySoundArtikelGefunden" *ngIf="false" (click)="buttonPlaySoundArtikelGefundenClick($event)">
-  </rz-button>
-  <rz-button #buttonPlaySoundArtikelNichtGefunden [style]="{'marginLeft': '10px'}" text="PlaySoundArtikelNichtGefunden" *ngIf="false" (click)="buttonPlaySoundArtikelNichtGefundenClick($event)">
-  </rz-button>
-  <rz-button #buttonPlaySoundMengeErfasst [style]="{'marginLeft': '10px'}" text="PlaySoundMengeErfasst" *ngIf="false" (click)="buttonPlaySoundMengeErfasstClick($event)">
   </rz-button>
 </rz-content>

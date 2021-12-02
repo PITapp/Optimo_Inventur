@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1638387034028,
+  "timestamp": 1638437552997,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -50,11 +50,10 @@
         "/assets/images/IconWidget.png",
         "/assets/images/KeinBildPerson.png",
         "/assets/images/Logo01.png",
-        "/assets/images/LogoMitSchriftzug3.png",
-        "/assets/images/LogoMitSchriftzug4.png",
-        "/assets/images/LogoOhneSchriftzug2.png",
-        "/assets/images/LogoOhneSchriftzug3.png",
-        "/assets/images/LogoOhneSchriftzug4.png"
+        "/assets/images/SoundArtikelGefunden.mp3",
+        "/assets/images/SoundArtikelNichtGefunden.mp3",
+        "/assets/images/SoundMengeErfasst.mp3",
+        "/assets/images/SoundMengeErfasst2.mp3"
       ],
       "patterns": []
     }
@@ -104,13 +103,12 @@
     "/assets/images/IconWidget.png": "fac7f8c27b5c8821a01e5c89b1ef561b19a93d48",
     "/assets/images/KeinBildPerson.png": "99a382ffdd4ed46d95376a2a37eacf5da922febe",
     "/assets/images/Logo01.png": "d35faa43a89a90185eb14faf896f61aad203f6fc",
-    "/assets/images/LogoMitSchriftzug3.png": "990ccc76961416be1ada89d612b99ae2c9388148",
-    "/assets/images/LogoMitSchriftzug4.png": "15e6a69d9ce56d84def83c1a5fee85bd864c881b",
-    "/assets/images/LogoOhneSchriftzug2.png": "14f843355c4d27a205ba82c68ced35f3a225d4cf",
-    "/assets/images/LogoOhneSchriftzug3.png": "a7a2ab8e6cd457d06d7f30c54300a50b6da24fab",
-    "/assets/images/LogoOhneSchriftzug4.png": "832146a33ec16722f16da44be85be75a4640fdd5",
+    "/assets/images/SoundArtikelGefunden.mp3": "51a7ca10fe82288d3a20e719796a95ceaf74d946",
+    "/assets/images/SoundArtikelNichtGefunden.mp3": "53c8d740cd5efe54334a98a3fd412e15c4213a5b",
+    "/assets/images/SoundMengeErfasst.mp3": "2f04cb4c92a8af312041b609861f01df597dba86",
+    "/assets/images/SoundMengeErfasst2.mp3": "512b72d69853ef693d6e2d8438a48d48ad0ac735",
     "/favicon.ico": "166c66eded951d9c7f898192a8530c41f467c782",
-    "/index.html": "5f0e4ab580371624fcd716bf7ea4c1392df44b55"
+    "/index.html": "a37f0dc2dd3daebbe88af4dfdd7e5f731d5f388b"
   },
   "navigationUrls": [
     {
