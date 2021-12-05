@@ -18,6 +18,28 @@
         "paddingTop": "0"
       },
       "type": "body"
+    },
+    {
+      "components": [
+        {
+          "name": "label0",
+          "style": {
+            "backgroundColor": "#e6c54f",
+            "color": "#3a474d",
+            "fontSize": "10px",
+            "fontWeight": "normal"
+          },
+          "text": "Header",
+          "type": "label"
+        }
+      ],
+      "name": "header0",
+      "style": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "height": "55px",
+        "width": "40px"
+      },
+      "type": "header"
     }
   ],
   "events": {

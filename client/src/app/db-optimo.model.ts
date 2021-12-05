@@ -97,6 +97,7 @@ export interface InventurDevice {
   DeviceNummer: string;
   InventurID: number;
   DeviceTitel: string;
+  DeviceTyp: string;
   RegistriertAm: string;
   AnmeldungAm: string;
   AbmeldungAm: string;
@@ -269,6 +270,13 @@ export interface VwBenutzerRollen {
   RolleTitel: string;
 }
 
+export interface VwErfassungSummen {
+  Auftragsnr: string;
+  Erfassungsnr: number;
+  Zeilennr: number;
+  Menge: number;
+}
+
 export interface VwInventurArtikel {
   ArtikelID: number;
   InventurID: number;
@@ -285,6 +293,18 @@ export interface VwInventurArtikel {
   SummeGezaehlt: number;
   AnzahlErfasstFormatiert: string;
   SummeGezaehltFormatiert: string;
+}
+
+export interface VwInventurArtikelAlle {
+  ArtikelID: number;
+  InventurID: number;
+  ZeilenNr: number;
+  Artikelnummer: string;
+  Beschreibung: string;
+  Beschreibung2: string;
+  StdKreditorName: string;
+  ArtikelStatus: string;
+  Notiz: string;
 }
 
 export interface VwInventurErfassung {

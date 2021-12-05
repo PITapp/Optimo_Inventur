@@ -67,8 +67,8 @@
                     "color": "#e9e9e9",
                     "fontSize": "18px",
                     "position": "fixed",
-                    "right": "10px",
-                    "top": "10px"
+                    "right": "15px",
+                    "top": "15px"
                   },
                   "type": "icon"
                 }
@@ -180,7 +180,8 @@
             "paddingBottom": "0",
             "paddingLeft": "0",
             "paddingRight": "0",
-            "paddingTop": "0"
+            "paddingTop": "0",
+            "position": "static"
           },
           "type": "row"
         },
@@ -199,7 +200,7 @@
                   ],
                   "name": "textboxArtikelnummer",
                   "placeholder": "Artikelnummer",
-                  "readOnly": true,
+                  "readOnly": "${dsoDevice.DeviceTyp == 'Barcodescanner'}",
                   "style": {
                     "backgroundColor": "rgba(0, 0, 0, 0)",
                     "color": "#3a474d",
@@ -494,7 +495,7 @@
             {
               "components": [
                 {
-                  "class": "col-6",
+                  "class": "col-7",
                   "components": [
                     {
                       "attributes": [
@@ -505,7 +506,7 @@
                       ],
                       "name": "textboxMenge",
                       "placeholder": "Menge",
-                      "readOnly": true,
+                      "readOnly": "${dsoDevice.DeviceTyp == 'Barcodescanner'}",
                       "style": {
                         "backgroundColor": "rgba(0, 0, 0, 0)",
                         "color": "#3a474d",
@@ -531,7 +532,7 @@
                   "type": "col"
                 },
                 {
-                  "class": "col-6",
+                  "class": "col-5",
                   "components": [
                     {
                       "buttonStyle": "light",
@@ -552,17 +553,37 @@
                             "type": "notify"
                           },
                           {
-                            "code": "var date = new Date();\n\nthis.dsoErfassung.ErfasstAm = new Date(Date.UTC(date.getFullYear(),\n                                                date.getMonth(),\n                                                date.getDate(),\n                                                date.getHours(),\n                                                date.getMinutes(),\n                                                date.getSeconds(),\n                                                date.getMilliseconds() ));\n                                         \nthis.dsoErfassung.ArtikelID = Number(this.globalArtikelID);\nthis.dsoErfassung.DeviceID = Number(this.globalDeviceID);\nthis.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);",
-                            "condition": "${strArtikelnummer} != '' && ${strMenge} != ''",
+                            "code": "this.buttonPlaySoundMengeUngueltigClick(null)\nsetTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)",
+                            "condition": "${strMenge} == ''",
                             "type": "execute"
                           },
                           {
-                            "condition": "${strArtikelnummer} != '' && ${strMenge} != ''",
+                            "condition": "isNaN(Number(${strMenge})) == true",
+                            "detail": "Ungültige Menge!",
+                            "severity": "error",
+                            "type": "notify"
+                          },
+                          {
+                            "code": "this.buttonPlaySoundMengeUngueltigClick(null)\nsetTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)",
+                            "condition": "isNaN(Number(${strMenge})) == true",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "var date = new Date();\n\nthis.dsoErfassung.ErfasstAm = new Date(Date.UTC(date.getFullYear(),\n                                                date.getMonth(),\n                                                date.getDate(),\n                                                date.getHours(),\n                                                date.getMinutes(),\n                                                date.getSeconds(),\n                                                date.getMilliseconds() ));\n                                         \nthis.dsoErfassung.ArtikelID = Number(this.globalArtikelID);\nthis.dsoErfassung.DeviceID = Number(this.globalDeviceID);\nthis.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);",
+                            "condition": "${strArtikelnummer} != '' && ${strMenge} != '' && isNaN(Number(${strMenge})) == false",
+                            "type": "execute"
+                          },
+                          {
+                            "condition": "${strArtikelnummer} != '' && ${strMenge} != '' && isNaN(Number(${strMenge})) == false",
                             "error": [
                               {
                                 "detail": "Menge konnte nicht erfasst werden!",
                                 "severity": "error",
                                 "type": "notify"
+                              },
+                              {
+                                "code": "this.buttonPlaySoundMengeUngueltigClick(null)",
+                                "type": "execute"
                               }
                             ],
                             "name": "dbOptimo.createInventurErfassung",
@@ -1037,7 +1058,7 @@
                     "type": "execute"
                   },
                   {
-                    "code": "this.dsoArtikel = null\nthis.strArtikelnummerStatus = 'Geladen'\nthis.globalArtikelID = 0\n\nthis.notificationService.notify({ severity: \"error\", summary: ``, detail: `Artikel nicht gefunden!` })\n\nthis.buttonBerechneArtikelSummeErfasstClick(null)\nthis.datalistErfassung.load()\nsetTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)\nthis.buttonPlaySoundArtikelNichtGefundenClick(null)\n",
+                    "code": "this.dsoArtikel = null\nthis.strArtikelnummerStatus = 'Geladen'\nthis.globalArtikelID = 0\n\nthis.notificationService.notify({ severity: \"error\", summary: ``, detail: `Artikel nicht gefunden!` })\n\nthis.buttonBerechneArtikelSummeErfasstClick(null)\nthis.datalistErfassung.load()\nsetTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)\nthis.buttonPlaySoundArtikelNichtGefundenClick(null)",
                     "condition": "${result.value.length} == 0",
                     "type": "execute"
                   }
@@ -1236,7 +1257,7 @@
           "events": {
             "click": [
               {
-                "code": "let audio = new Audio();\n\naudio.src = \"assets/images/SoundArtikelNichtGefunden.mp3\";\naudio.load();\naudio.play();",
+                "code": "let audio = new Audio();\n\naudio.src = \"assets/images/SoundArtikelNichtGefunden.WAV\";\naudio.load();\naudio.play();",
                 "type": "execute"
               }
             ]
@@ -1264,6 +1285,24 @@
             "marginLeft": "10px"
           },
           "text": "PlaySoundMengeErfasst",
+          "tooltip": "",
+          "type": "button",
+          "visible": false
+        },
+        {
+          "events": {
+            "click": [
+              {
+                "code": "let audio = new Audio();\n\naudio.src = \"assets/images/SoundMengeUngueltig.WAV\";\naudio.load();\naudio.play();",
+                "type": "execute"
+              }
+            ]
+          },
+          "name": "buttonPlaySoundMengeUngueltig",
+          "style": {
+            "marginLeft": "10px"
+          },
+          "text": "PlaySoundMengeUngueltig",
           "tooltip": "",
           "type": "button",
           "visible": false
@@ -1326,6 +1365,23 @@
         "value": "{ArtikelID: 0, DeviceID: 0, ErfasstAm: '', ErfasstAnzahl: 0}"
       },
       {
+        "name": "dbOptimo.getInventurDeviceByDeviceID",
+        "parameters": [
+          {
+            "name": "DeviceID",
+            "value": "${globalDeviceID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "dsoDevice",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
         "name": "dbOptimo.getInventurBasisByInventurID",
         "parameters": [
           {
@@ -1353,12 +1409,12 @@
       {
         "name": "onKeyDownSetArtikelnummer",
         "type": "set",
-        "value": "(event) => {\n  if(this.strArtikelnummerStatus == 'Geladen') {\n    this.textboxArtikelnummer.value = ''\n    this.strArtikelnummerStatus = 'NichtGeladen'\n  }\n\n  switch (event.key) {\n    case \"F12\":\n    case \"Shift\":\n    case \"Tab\":\n    case \"Control\":\n    case \"Alt\":\n      break;\n      \n    case \"Enter\":\n    case \"Unidentified\":\n      // --------- Enter ---------\n      if(this.textboxArtikelnummer.value.length >= 1) {\n        var tempArtikelnummer = this.textboxArtikelnummer.value\n        var pos = tempArtikelnummer.indexOf('-F')\n\n        if (pos > 0) {\n          tempArtikelnummer = tempArtikelnummer.substr(0, pos)\n          this.textboxArtikelnummer.value = tempArtikelnummer\n        }\n        \n        this.dsoArtikelLaden.InventurID = this.parameters.InventurID\n        this.dsoArtikelLaden.ArtikelID = 0\n        this.dsoArtikelLaden.Artikelnummer = tempArtikelnummer\n        \n        this.buttonArtikelLadenClick(this.dsoArtikelLaden)\n      }\n      break;\n\n    case \"Backspace\":\n      if(this.textboxArtikelnummer.value.length >= 1) {\n        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1)\n      }\n      break;\n\n    default:\n      if(this.textboxArtikelnummer.value.length < 15) {\n          this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key\n      }\n      break;\n  }\n}"
+        "value": "(event) => {\n\tif(this.strArtikelnummerStatus == 'Geladen') {\n\t\tthis.textboxArtikelnummer.value = ''\n\t\tthis.strArtikelnummerStatus = 'NichtGeladen'\n\t}\n\n\tif(this.dsoDevice.DeviceTyp == 'Barcodescanner') {\n\t\tswitch (event.key) {\n\t\t\tcase \"Enter\":\n\t\t\tcase \"Unidentified\":\n\t\t\tcase \"F12\":\n\t\t\tcase \"Shift\":\n\t\t\tcase \"Tab\":\n\t\t\tcase \"Control\":\n\t\t\tcase \"Alt\":\n\t\t\t\tbreak;\n\n\t\t\tcase \"Backspace\":\n\t\t\t\tif(this.textboxArtikelnummer.value.length >= 1) {\n\t\t\t\t\tthis.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1)\n\t\t\t\t}\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tif(this.textboxArtikelnummer.value.length < 15) {\n\t\t\t\t\tthis.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key\n\t\t\t\t}\n\t\t\t\tbreak;\n\t\t}\n\t}\n\t\n\tswitch (event.key) {\n\t\tcase \"Enter\":\n\t\tcase \"Unidentified\":\n\t\t\t// --------- Enter ---------\n\t\t\tif(this.textboxArtikelnummer.value.length >= 1) {\n\t\t\t\tvar tempArtikelnummer = this.textboxArtikelnummer.value\n\t\t\t\tvar pos = tempArtikelnummer.indexOf('-F')\n\n\t\t\t\tif (pos > 0) {\n\t\t\t\t\ttempArtikelnummer = tempArtikelnummer.substr(0, pos)\n\t\t\t\t\tthis.textboxArtikelnummer.value = tempArtikelnummer\n\t\t\t\t}\n\n\t\t\t\tthis.dsoArtikelLaden.InventurID = this.parameters.InventurID\n\t\t\t\tthis.dsoArtikelLaden.ArtikelID = 0\n\t\t\t\tthis.dsoArtikelLaden.Artikelnummer = tempArtikelnummer\n\n\t\t\t\tthis.buttonArtikelLadenClick(this.dsoArtikelLaden)\n\t\t\t}\n\t\t\tbreak;\n\t\t}\n}"
       },
       {
         "name": "onKeyDownSetMenge",
         "type": "set",
-        "value": "(event) => {\n\tif (this.textboxMenge.value === undefined) {\n\t\tthis.textboxMenge.value = \"\"\n\t}\n\n\tswitch (event.key) {\n\t\tcase \"0\":\n\t\tcase \"1\":\n\t\tcase \"2\":\n\t\tcase \"3\":\n\t\tcase \"4\":\n\t\tcase \"5\":\n\t\tcase \"6\":\n\t\tcase \"7\":\n\t\tcase \"8\":\n\t\tcase \"9\":\n            if(this.textboxMenge.value.length < 4) {\n\t\t\t    this.textboxMenge.value = this.textboxMenge.value + event.key\n            }\n\t\t\tbreak;\n\t  \n\t\tcase \"Enter\":\n\t\tcase \"Unidentified\":\n\t\t\t// --------- Enter ---------\n            this.buttonMengeErfassenClick(null)\n\t\t\tbreak;\n\n\t\tcase \"Backspace\":\n\t\t\tif (this.textboxMenge.value.length >= 1) {\n\t\t\t\tthis.textboxMenge.value = this.textboxMenge.value.substr(0, this.textboxMenge.value.length - 1)\n\t\t\t}\n\t\t\tbreak;\n\n\t\tdefault:\n\t\t\tbreak;\n\t}\n}"
+        "value": "(event) => {\n\tif (this.textboxMenge.value === undefined) {\n\t\tthis.textboxMenge.value = \"\"\n\t}\n\n\tif(this.dsoDevice.DeviceTyp == 'Barcodescanner') {\n\t\tswitch (event.key) {\n\t\t\tcase \"Enter\":\n\t\t\tcase \"Unidentified\":\n\t\t\tcase \"F12\":\n\t\t\tcase \"Shift\":\n\t\t\tcase \"Tab\":\n\t\t\tcase \"Control\":\n\t\t\tcase \"Alt\":\n\t\t\t\tbreak;\n\t\t\n\t\t\tcase \"Backspace\":\n\t\t\t\tif (this.textboxMenge.value.length >= 1) {\n\t\t\t\t\tthis.textboxMenge.value = this.textboxMenge.value.substr(0, this.textboxMenge.value.length - 1)\n\t\t\t\t}\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tif(this.textboxMenge.value.length < 8) {\n\t\t\t\t\tthis.textboxMenge.value = this.textboxMenge.value + event.key\n\t\t\t\t}\n\t\t\t\tbreak;\n\t\t}\n\t}\n\n\tswitch (event.key) {\n\t\tcase \"Enter\":\n\t\tcase \"Unidentified\":\n\t\t\t// --------- Enter ---------\n\t\t\tthis.buttonMengeErfassenClick(null)\n\t\t\tbreak;\n\t}\n}"
       },
       {
         "name": "onClickErfassungLoeschen",

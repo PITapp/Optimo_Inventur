@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1638437552997,
+  "timestamp": 1638735749545,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -51,9 +51,13 @@
         "/assets/images/KeinBildPerson.png",
         "/assets/images/Logo01.png",
         "/assets/images/SoundArtikelGefunden.mp3",
+        "/assets/images/SoundArtikelGefunden2.mp3",
+        "/assets/images/SoundArtikelNichtGefunden.WAV",
         "/assets/images/SoundArtikelNichtGefunden.mp3",
+        "/assets/images/SoundArtikelNichtGefunden2.mp3",
         "/assets/images/SoundMengeErfasst.mp3",
-        "/assets/images/SoundMengeErfasst2.mp3"
+        "/assets/images/SoundMengeErfasst2.mp3",
+        "/assets/images/SoundMengeUngueltig.WAV"
       ],
       "patterns": []
     }
@@ -103,12 +107,16 @@
     "/assets/images/IconWidget.png": "fac7f8c27b5c8821a01e5c89b1ef561b19a93d48",
     "/assets/images/KeinBildPerson.png": "99a382ffdd4ed46d95376a2a37eacf5da922febe",
     "/assets/images/Logo01.png": "d35faa43a89a90185eb14faf896f61aad203f6fc",
-    "/assets/images/SoundArtikelGefunden.mp3": "51a7ca10fe82288d3a20e719796a95ceaf74d946",
+    "/assets/images/SoundArtikelGefunden.mp3": "2f04cb4c92a8af312041b609861f01df597dba86",
+    "/assets/images/SoundArtikelGefunden2.mp3": "51a7ca10fe82288d3a20e719796a95ceaf74d946",
+    "/assets/images/SoundArtikelNichtGefunden.WAV": "bd62660d3d996c3331957002637e97ac0393478e",
     "/assets/images/SoundArtikelNichtGefunden.mp3": "53c8d740cd5efe54334a98a3fd412e15c4213a5b",
+    "/assets/images/SoundArtikelNichtGefunden2.mp3": "53c8d740cd5efe54334a98a3fd412e15c4213a5b",
     "/assets/images/SoundMengeErfasst.mp3": "2f04cb4c92a8af312041b609861f01df597dba86",
     "/assets/images/SoundMengeErfasst2.mp3": "512b72d69853ef693d6e2d8438a48d48ad0ac735",
+    "/assets/images/SoundMengeUngueltig.WAV": "bd62660d3d996c3331957002637e97ac0393478e",
     "/favicon.ico": "166c66eded951d9c7f898192a8530c41f467c782",
-    "/index.html": "a37f0dc2dd3daebbe88af4dfdd7e5f731d5f388b"
+    "/index.html": "80b065fabafc691a433ac197df45a8aef04c40b6"
   },
   "navigationUrls": [
     {

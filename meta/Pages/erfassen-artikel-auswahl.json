@@ -108,6 +108,10 @@
                       {
                         "code": "this.textboxArtikelSuchen.value = null;\nthis.datalistArtikel.load();",
                         "type": "execute"
+                      },
+                      {
+                        "code": "setTimeout(() => { document.getElementById('textboxArtikelSuchen').focus(); }, 500)",
+                        "type": "execute"
                       }
                     ]
                   },
@@ -405,12 +409,16 @@
         "type": "execute"
       },
       {
+        "code": "setTimeout(() => { document.getElementById('textboxArtikelSuchen').focus(); }, 500)",
+        "type": "execute"
+      },
+      {
         "name": "onClickNavigateBack",
         "type": "set",
         "value": "(data) => {\n    if (this.dialogRef) {\n      this.dialogRef.close();\n    }\n    if (data != null) {\n      localStorage.setItem(\"globalArtikelID\", data.ArtikelID);\n    }\n    this._location.back();\n}"
       }
     ]
   },
-  "layout": "InventurLeer",
+  "layout": "InventurErfassen",
   "name": "ErfassenArtikelAuswahl"
 }

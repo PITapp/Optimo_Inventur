@@ -27,6 +27,7 @@ export class InfosGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('label2') label2: LabelComponent;
   @ViewChild('label3') label3: LabelComponent;
+  @ViewChild('label1') label1: LabelComponent;
   @ViewChild('label5') label5: LabelComponent;
   @ViewChild('label0') label0: LabelComponent;
   @ViewChild('buttonRegistrierungLoeschen') buttonRegistrierungLoeschen: ButtonComponent;

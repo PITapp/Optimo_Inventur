@@ -25,6 +25,14 @@
                   "type": "label"
                 },
                 {
+                  "name": "label1",
+                  "style": {
+                    "width": "100%"
+                  },
+                  "text": "Typ: ${dsoDevice.DeviceTyp}",
+                  "type": "label"
+                },
+                {
                   "name": "label5",
                   "style": {
                     "width": "100%"

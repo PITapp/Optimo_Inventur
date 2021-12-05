@@ -285,8 +285,16 @@ export class DbOptimoService {
     return this.odata.get(`/VwBenutzerRollens`, { filter, top, skip, orderby, count, expand, format, select });
   }
 
+  getVwErfassungSummens(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
+    return this.odata.get(`/VwErfassungSummens`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
   getVwInventurArtikels(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
     return this.odata.get(`/VwInventurArtikels`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
+  getVwInventurArtikelAlles(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
+    return this.odata.get(`/VwInventurArtikelAlles`, { filter, top, skip, orderby, count, expand, format, select });
   }
 
   getVwInventurErfassungs(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {

@@ -568,7 +568,8 @@
       "resource": "InventurDevices",
       "required": [
         "DeviceNummer",
-        "DeviceTitel"
+        "DeviceTitel",
+        "DeviceTyp"
       ],
       "properties": {
         "DeviceID": {
@@ -609,6 +610,11 @@
           "x-nullable": false,
           "type": "string",
           "length": 150
+        },
+        "DeviceTyp": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 45
         },
         "RegistriertAm": {
           "type": "string",
@@ -1364,6 +1370,37 @@
         }
       }
     },
+    "VwErfassungSummen": {
+      "x-view": true,
+      "x-table": "def.vwErfassungSummen",
+      "resource": "VwErfassungSummens",
+      "required": [
+        "Auftragsnr",
+        "Erfassungsnr",
+        "Zeilennr"
+      ],
+      "properties": {
+        "Auftragsnr": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 30,
+          "x-key": true,
+          "x-virtual": true
+        },
+        "Erfassungsnr": {
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Zeilennr": {
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Menge": {
+          "type": "number",
+          "format": "decimal"
+        }
+      }
+    },
     "VwInventurArtikel": {
       "x-view": true,
       "x-table": "def.vwInventurArtikel",
@@ -1446,6 +1483,60 @@
         "SummeGezaehltFormatiert": {
           "type": "string",
           "length": 77
+        }
+      }
+    },
+    "VwInventurArtikelAlle": {
+      "x-view": true,
+      "x-table": "def.vwInventurArtikelAlle",
+      "resource": "VwInventurArtikelAlles",
+      "required": [
+        "InventurID",
+        "ZeilenNr",
+        "Artikelnummer",
+        "ArtikelStatus"
+      ],
+      "properties": {
+        "ArtikelID": {
+          "x-default-sql": "0",
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "InventurID": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-key": true,
+          "x-virtual": true
+        },
+        "ZeilenNr": {
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Artikelnummer": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 30
+        },
+        "Beschreibung": {
+          "type": "string",
+          "length": 100
+        },
+        "Beschreibung2": {
+          "type": "string",
+          "length": 100
+        },
+        "StdKreditorName": {
+          "type": "string",
+          "length": 50
+        },
+        "ArtikelStatus": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 30
+        },
+        "Notiz": {
+          "type": "string",
+          "length": 65535
         }
       }
     },
@@ -3358,6 +3449,73 @@
         }
       }
     },
+    "/VwErfassungSummens": {
+      "get": {
+        "operationId": "getVwErfassungSummens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/VwErfassungSummen"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/VwInventurArtikels": {
       "get": {
         "operationId": "getVwInventurArtikels",
@@ -3410,6 +3568,73 @@
                 "value": {
                   "items": {
                     "$ref": "#/definitions/VwInventurArtikel"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/VwInventurArtikelAlles": {
+      "get": {
+        "operationId": "getVwInventurArtikelAlles",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/VwInventurArtikelAlle"
                   },
                   "type": "array"
                 }

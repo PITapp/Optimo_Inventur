@@ -12,6 +12,8 @@ import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dis
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { BodyComponent } from '@radzen/angular/dist/body';
 import { ContentContainerComponent } from '@radzen/angular/dist/content-container';
+import { HeaderComponent } from '@radzen/angular/dist/header';
+import { LabelComponent } from '@radzen/angular/dist/label';
 
 import { ConfigService } from '../config.service';
 
@@ -20,6 +22,8 @@ export class InventurErfassenLayoutGenerated implements AfterViewInit, OnInit, O
   // Components
   @ViewChild('body1') body1: BodyComponent;
   @ViewChild('main') main: ContentContainerComponent;
+  @ViewChild('header0') header0: HeaderComponent;
+  @ViewChild('label0') label0: LabelComponent;
 
   router: Router;
 

@@ -13,7 +13,7 @@
   </div>
   <div class="row" [ngStyle]="{'backgroundColor': '#ffffff', 'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '48px', 'paddingTop': '17px'}">
     <div class="col-10" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'paddingLeft': '10px', 'paddingRight': '10px', 'textAlign': 'right'}">
-      <rz-textbox #textboxArtikelnummer placeholder="Artikelnummer" [readOnly]="true" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#3a474d', 'fontSize': '32px', 'fontWeight': 'normal', 'height': '40px', 'lineHeight': '32px', 'width': '100%'}" [(ngModel)]="strArtikelnummer" name="textboxArtikelnummer" (keydown)="onKeyDownSetArtikelnummer($event)">
+      <rz-textbox #textboxArtikelnummer placeholder="Artikelnummer" [readOnly]="dsoDevice?.DeviceTyp == 'Barcodescanner'" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#3a474d', 'fontSize': '32px', 'fontWeight': 'normal', 'height': '40px', 'lineHeight': '32px', 'width': '100%'}" [(ngModel)]="strArtikelnummer" name="textboxArtikelnummer" (keydown)="onKeyDownSetArtikelnummer($event)">
       </rz-textbox>
     </div>
     <div class="col-2" [ngStyle]="{'paddingLeft': '0', 'paddingRight': '10px', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
@@ -93,5 +93,9 @@
   <rz-button #buttonBerechneArtikelSummeErfasst [style]="{'marginLeft': '10px'}" text="BerechneArtikelSummeErfasst" *ngIf="false" (click)="buttonBerechneArtikelSummeErfasstClick($event)">
   </rz-button>
   <rz-button #buttonNavigateBack [style]="{'marginLeft': '10px'}" text="NavigateBack" *ngIf="false" (click)="buttonNavigateBackClick($event)">
+  </rz-button>
+  <rz-button #buttonPlaySoundArtikelGefunden [style]="{'marginLeft': '10px'}" text="PlaySoundArtikelGefunden" *ngIf="false" (click)="buttonPlaySoundArtikelGefundenClick($event)">
+  </rz-button>
+  <rz-button #buttonPlaySoundArtikelNichtGefunden [style]="{'marginLeft': '10px'}" text="PlaySoundArtikelNichtGefunden" *ngIf="false" (click)="buttonPlaySoundArtikelNichtGefundenClick($event)">
   </rz-button>
 </rz-content>

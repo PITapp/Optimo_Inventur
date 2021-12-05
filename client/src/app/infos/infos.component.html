@@ -5,6 +5,8 @@
       </rz-label>
       <rz-label #label3 [style]="{'width': '100%'}" text="Titel: {{((dsoDevice?.DeviceNummer == null) ? ('Nicht registriert!') : (dsoDevice?.DeviceTitel))}}">
       </rz-label>
+      <rz-label #label1 [style]="{'width': '100%'}" text="Typ: {{dsoDevice?.DeviceTyp}}">
+      </rz-label>
       <rz-label #label5 [style]="{'width': '100%'}" text="Info: {{dsoDevice?.Info}}">
       </rz-label>
       <rz-label #label0 [style]="{'width': '100%'}" text="Registriert: {{dsoDevice?.RegistriertAm | utcDate:'dd.MM.yyyy HH:mm'}}">

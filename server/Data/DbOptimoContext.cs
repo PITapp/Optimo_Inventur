@@ -108,6 +108,10 @@ namespace OptimoInventur.Data
                   .Property(p => p.AnzahlErfasst)
                   .HasDefaultValueSql("0");
 
+            builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurArtikelAlle>()
+                  .Property(p => p.ArtikelID)
+                  .HasDefaultValueSql("0");
+
             builder.Entity<OptimoInventur.Models.DbOptimo.VwInventurErfassung>()
                   .Property(p => p.ErfassungID)
                   .HasDefaultValueSql("0");
@@ -250,7 +254,19 @@ namespace OptimoInventur.Data
           set;
         }
 
+        public DbSet<OptimoInventur.Models.DbOptimo.VwErfassungSummen> VwErfassungSummens
+        {
+          get;
+          set;
+        }
+
         public DbSet<OptimoInventur.Models.DbOptimo.VwInventurArtikel> VwInventurArtikels
+        {
+          get;
+          set;
+        }
+
+        public DbSet<OptimoInventur.Models.DbOptimo.VwInventurArtikelAlle> VwInventurArtikelAlles
         {
           get;
           set;

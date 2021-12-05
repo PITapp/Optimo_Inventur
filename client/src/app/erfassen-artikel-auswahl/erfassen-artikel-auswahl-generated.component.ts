@@ -110,6 +110,8 @@ export class ErfassenArtikelAuswahlGenerated implements AfterViewInit, OnInit, O
   load() {
     this.datalistArtikel.load();
 
+    setTimeout(() => { document.getElementById('textboxArtikelSuchen').focus(); }, 500)
+
     this.onClickNavigateBack = (data) => {
     if (this.dialogRef) {
       this.dialogRef.close();
@@ -124,6 +126,8 @@ export class ErfassenArtikelAuswahlGenerated implements AfterViewInit, OnInit, O
   buttonSuchenLoeschenClick(event: any) {
     this.textboxArtikelSuchen.value = null;
 this.datalistArtikel.load();
+
+    setTimeout(() => { document.getElementById('textboxArtikelSuchen').focus(); }, 500)
   }
 
   datalistArtikelLoadData(event: any) {

@@ -35,6 +35,11 @@ namespace OptimoInventur.Models.DbOptimo
       get;
       set;
     }
+    public string DeviceTyp
+    {
+      get;
+      set;
+    }
     public DateTime? RegistriertAm
     {
       get;

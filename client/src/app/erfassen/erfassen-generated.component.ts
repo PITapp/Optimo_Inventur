@@ -53,6 +53,7 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('buttonPlaySoundArtikelGefunden') buttonPlaySoundArtikelGefunden: ButtonComponent;
   @ViewChild('buttonPlaySoundArtikelNichtGefunden') buttonPlaySoundArtikelNichtGefunden: ButtonComponent;
   @ViewChild('buttonPlaySoundMengeErfasst') buttonPlaySoundMengeErfasst: ButtonComponent;
+  @ViewChild('buttonPlaySoundMengeUngueltig') buttonPlaySoundMengeUngueltig: ButtonComponent;
 
   router: Router;
 
@@ -87,6 +88,7 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
   intSummeErfasst: any;
   dsoArtikelLaden: any;
   dsoErfassung: any;
+  dsoDevice: any;
   dsoLagerort: any;
   onKeyDownSetArtikelnummer: any;
   onKeyDownSetMenge: any;
@@ -166,6 +168,13 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.dsoErfassung = {ArtikelID: 0, DeviceID: 0, ErfasstAm: '', ErfasstAnzahl: 0};
 
+    this.dbOptimo.getInventurDeviceByDeviceId(null, this.globalDeviceID)
+    .subscribe((result: any) => {
+      this.dsoDevice = result;
+    }, (result: any) => {
+
+    });
+
     this.dbOptimo.getInventurBasisByInventurId(null, this.parameters.InventurID)
     .subscribe((result: any) => {
       this.dsoLagerort = result;
@@ -180,51 +189,57 @@ this.dsoArtikelLaden.Artikelnummer = '';
     });
 
     this.onKeyDownSetArtikelnummer = (event) => {
-  if(this.strArtikelnummerStatus == 'Geladen') {
-    this.textboxArtikelnummer.value = ''
-    this.strArtikelnummerStatus = 'NichtGeladen'
-  }
+	if(this.strArtikelnummerStatus == 'Geladen') {
+		this.textboxArtikelnummer.value = ''
+		this.strArtikelnummerStatus = 'NichtGeladen'
+	}
 
-  switch (event.key) {
-    case "F12":
-    case "Shift":
-    case "Tab":
-    case "Control":
-    case "Alt":
-      break;
-      
-    case "Enter":
-    case "Unidentified":
-      // --------- Enter ---------
-      if(this.textboxArtikelnummer.value.length >= 1) {
-        var tempArtikelnummer = this.textboxArtikelnummer.value
-        var pos = tempArtikelnummer.indexOf('-F')
+	if(this.dsoDevice.DeviceTyp == 'Barcodescanner') {
+		switch (event.key) {
+			case "Enter":
+			case "Unidentified":
+			case "F12":
+			case "Shift":
+			case "Tab":
+			case "Control":
+			case "Alt":
+				break;
 
-        if (pos > 0) {
-          tempArtikelnummer = tempArtikelnummer.substr(0, pos)
-          this.textboxArtikelnummer.value = tempArtikelnummer
-        }
-        
-        this.dsoArtikelLaden.InventurID = this.parameters.InventurID
-        this.dsoArtikelLaden.ArtikelID = 0
-        this.dsoArtikelLaden.Artikelnummer = tempArtikelnummer
-        
-        this.buttonArtikelLadenClick(this.dsoArtikelLaden)
-      }
-      break;
+			case "Backspace":
+				if(this.textboxArtikelnummer.value.length >= 1) {
+					this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1)
+				}
+				break;
 
-    case "Backspace":
-      if(this.textboxArtikelnummer.value.length >= 1) {
-        this.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1)
-      }
-      break;
+			default:
+				if(this.textboxArtikelnummer.value.length < 15) {
+					this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key
+				}
+				break;
+		}
+	}
+	
+	switch (event.key) {
+		case "Enter":
+		case "Unidentified":
+			// --------- Enter ---------
+			if(this.textboxArtikelnummer.value.length >= 1) {
+				var tempArtikelnummer = this.textboxArtikelnummer.value
+				var pos = tempArtikelnummer.indexOf('-F')
 
-    default:
-      if(this.textboxArtikelnummer.value.length < 15) {
-          this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key
-      }
-      break;
-  }
+				if (pos > 0) {
+					tempArtikelnummer = tempArtikelnummer.substr(0, pos)
+					this.textboxArtikelnummer.value = tempArtikelnummer
+				}
+
+				this.dsoArtikelLaden.InventurID = this.parameters.InventurID
+				this.dsoArtikelLaden.ArtikelID = 0
+				this.dsoArtikelLaden.Artikelnummer = tempArtikelnummer
+
+				this.buttonArtikelLadenClick(this.dsoArtikelLaden)
+			}
+			break;
+		}
 };
 
     this.onKeyDownSetMenge = (event) => {
@@ -232,35 +247,36 @@ this.dsoArtikelLaden.Artikelnummer = '';
 		this.textboxMenge.value = ""
 	}
 
+	if(this.dsoDevice.DeviceTyp == 'Barcodescanner') {
+		switch (event.key) {
+			case "Enter":
+			case "Unidentified":
+			case "F12":
+			case "Shift":
+			case "Tab":
+			case "Control":
+			case "Alt":
+				break;
+		
+			case "Backspace":
+				if (this.textboxMenge.value.length >= 1) {
+					this.textboxMenge.value = this.textboxMenge.value.substr(0, this.textboxMenge.value.length - 1)
+				}
+				break;
+
+			default:
+				if(this.textboxMenge.value.length < 8) {
+					this.textboxMenge.value = this.textboxMenge.value + event.key
+				}
+				break;
+		}
+	}
+
 	switch (event.key) {
-		case "0":
-		case "1":
-		case "2":
-		case "3":
-		case "4":
-		case "5":
-		case "6":
-		case "7":
-		case "8":
-		case "9":
-            if(this.textboxMenge.value.length < 4) {
-			    this.textboxMenge.value = this.textboxMenge.value + event.key
-            }
-			break;
-	  
 		case "Enter":
 		case "Unidentified":
 			// --------- Enter ---------
-            this.buttonMengeErfassenClick(null)
-			break;
-
-		case "Backspace":
-			if (this.textboxMenge.value.length >= 1) {
-				this.textboxMenge.value = this.textboxMenge.value.substr(0, this.textboxMenge.value.length - 1)
-			}
-			break;
-
-		default:
+			this.buttonMengeErfassenClick(null)
 			break;
 	}
 };
@@ -320,7 +336,21 @@ this.dsoArtikelLaden.Artikelnummer = '';
       this.notificationService.notify({ severity: "warn", summary: ``, detail: `Keine Menge eingegeben!` });
     }
 
-    if (this.strArtikelnummer != '' && this.strMenge != '') {
+    if (this.strMenge == '') {
+      this.buttonPlaySoundMengeUngueltigClick(null)
+setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)
+    }
+
+    if (isNaN(Number(this.strMenge)) == true) {
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Ungültige Menge!` });
+    }
+
+    if (isNaN(Number(this.strMenge)) == true) {
+      this.buttonPlaySoundMengeUngueltigClick(null)
+setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)
+    }
+
+    if (this.strArtikelnummer != '' && this.strMenge != '' && isNaN(Number(this.strMenge)) == false) {
       var date = new Date();
 
 this.dsoErfassung.ErfasstAm = new Date(Date.UTC(date.getFullYear(),
@@ -336,7 +366,7 @@ this.dsoErfassung.DeviceID = Number(this.globalDeviceID);
 this.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);
     }
 
-    if (this.strArtikelnummer != '' && this.strMenge != '') {
+    if (this.strArtikelnummer != '' && this.strMenge != '' && isNaN(Number(this.strMenge)) == false) {
           this.dbOptimo.createInventurErfassung(null, this.dsoErfassung)
       .subscribe((result: any) => {
           this.notificationService.notify({ severity: "success", summary: ``, detail: `Menge ${this.strMenge} erfasst` })
@@ -355,6 +385,8 @@ this.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);
       setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)
       }, (result: any) => {
           this.notificationService.notify({ severity: "error", summary: ``, detail: `Menge konnte nicht erfasst werden!` });
+
+      this.buttonPlaySoundMengeUngueltigClick(null)
       });
     }
   }
@@ -445,7 +477,6 @@ this.buttonBerechneArtikelSummeErfasstClick(null)
 this.datalistErfassung.load()
 setTimeout(() => { document.getElementById('textboxArtikelnummer').focus(); }, 500)
 this.buttonPlaySoundArtikelNichtGefundenClick(null)
-
       }
       }, (result: any) => {
     
@@ -539,7 +570,7 @@ audio.play();
   buttonPlaySoundArtikelNichtGefundenClick(event: any) {
     let audio = new Audio();
 
-audio.src = "assets/images/SoundArtikelNichtGefunden.mp3";
+audio.src = "assets/images/SoundArtikelNichtGefunden.WAV";
 audio.load();
 audio.play();
   }
@@ -548,6 +579,14 @@ audio.play();
     let audio = new Audio();
 
 audio.src = "assets/images/SoundMengeErfasst.mp3";
+audio.load();
+audio.play();
+  }
+
+  buttonPlaySoundMengeUngueltigClick(event: any) {
+    let audio = new Audio();
+
+audio.src = "assets/images/SoundMengeUngueltig.WAV";
 audio.load();
 audio.play();
   }

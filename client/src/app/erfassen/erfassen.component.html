@@ -7,11 +7,11 @@
     <div class="justify-content-start d-flex align-items-center col-10" [ngStyle]="{'paddingLeft': '30px', 'verticalAlign': 'baseline'}">
       <rz-heading #heading2 size="H5" [style]="{'color': '#ffffff', 'fontSize': '26px', 'fontWeight': 'normal', 'lineHeight': '28px', 'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '0'}" [text]="dsoLagerort?.LagerortTitel">
       </rz-heading>
-      <rz-icon #icon1 icon="clear" [style]="{'color': '#e9e9e9', 'fontSize': '18px', 'position': 'fixed', 'right': '10px', 'top': '10px'}">
+      <rz-icon #icon1 icon="clear" [style]="{'color': '#e9e9e9', 'fontSize': '18px', 'position': 'fixed', 'right': '15px', 'top': '15px'}">
       </rz-icon>
     </div>
   </div>
-  <div class="row" [ngStyle]="{'backgroundColor': '#ffffff', 'height': '55px', 'marginTop': '35px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0'}">
+  <div class="row" [ngStyle]="{'backgroundColor': '#ffffff', 'height': '55px', 'marginTop': '35px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'position': 'static'}">
     <div class="col-12 align-items-end d-flex" [ngStyle]="{'borderBottom': '2px solid #dadfe2', 'fontSize': '16px', 'lineHeight': '16px', 'marginBottom': '-2px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'textAlign': 'right'}">
       <rz-selectbar #selectbarErfassenModus [style]="{'float': 'left', 'marginBottom': '-2px'}" [(ngModel)]="globalErfassungModus" name="selectbarErfassenModus" (change)="selectbarErfassenModusChange($event)">
         <rz-selectbar-option text="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mengen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" value="Mengen">
@@ -23,7 +23,7 @@
   </div>
   <div class="row" [ngStyle]="{'backgroundColor': '#ffffff', 'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '0', 'paddingTop': '17px'}">
     <div class="col-10" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'paddingLeft': '10px', 'paddingRight': '10px', 'textAlign': 'right'}">
-      <rz-textbox #textboxArtikelnummer placeholder="Artikelnummer" [readOnly]="true" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#3a474d', 'fontSize': '32px', 'fontWeight': 'normal', 'height': '40px', 'lineHeight': '32px', 'width': '100%'}" [(ngModel)]="strArtikelnummer" name="textboxArtikelnummer" (keydown)="onKeyDownSetArtikelnummer($event)">
+      <rz-textbox #textboxArtikelnummer placeholder="Artikelnummer" [readOnly]="dsoDevice?.DeviceTyp == 'Barcodescanner'" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#3a474d', 'fontSize': '32px', 'fontWeight': 'normal', 'height': '40px', 'lineHeight': '32px', 'width': '100%'}" [(ngModel)]="strArtikelnummer" name="textboxArtikelnummer" (keydown)="onKeyDownSetArtikelnummer($event)">
       </rz-textbox>
     </div>
     <div class="col-2" [ngStyle]="{'paddingLeft': '0', 'paddingRight': '10px', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
@@ -55,11 +55,11 @@
   </div>
   <rz-card #card1 [style]="{'backgroundColor': '#ffffff', 'paddingBottom': '5px', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0'}" *ngIf="globalErfassungModus == 'Mengen'">
     <div [ngStyle]="{'marginBottom': '0', 'marginLeft': '0', 'marginRight': '0', 'marginTop': '5px'}" class="row">
-      <div class="col-6" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'paddingLeft': '10px', 'paddingRight': '10px', 'textAlign': 'left'}">
-        <rz-textbox #textboxMenge placeholder="Menge" [readOnly]="true" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#3a474d', 'fontSize': '40px', 'fontWeight': 'normal', 'height': '50px', 'lineHeight': '40px', 'textAlign': 'left', 'width': '100%'}" [(ngModel)]="strMenge" name="textboxMenge" (keydown)="onKeyDownSetMenge($event)">
+      <div class="col-7" [ngStyle]="{'fontSize': '16px', 'lineHeight': '16px', 'paddingLeft': '10px', 'paddingRight': '10px', 'textAlign': 'left'}">
+        <rz-textbox #textboxMenge placeholder="Menge" [readOnly]="dsoDevice?.DeviceTyp == 'Barcodescanner'" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#3a474d', 'fontSize': '40px', 'fontWeight': 'normal', 'height': '50px', 'lineHeight': '40px', 'textAlign': 'left', 'width': '100%'}" [(ngModel)]="strMenge" name="textboxMenge" (keydown)="onKeyDownSetMenge($event)">
         </rz-textbox>
       </div>
-      <div class="col-6" [ngStyle]="{'paddingLeft': '0', 'paddingRight': '10px', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
+      <div class="col-5" [ngStyle]="{'paddingLeft': '0', 'paddingRight': '10px', 'textAlign': 'right', 'verticalAlign': 'bottom'}">
         <rz-button #buttonMengeErfassen buttonStyle="light" icon="done" [style]="{'backgroundColor': '#e9e9e9', 'border': '1px solid #dadfe2', 'color': '#a71330', 'fontSize': '18px', 'fontWeight': 'normal', 'height': '50px', 'paddingBottom': '0', 'paddingLeft': '0', 'paddingRight': '0', 'paddingTop': '0', 'width': '100%'}" text="Erfassen" (click)="buttonMengeErfassenClick($event)">
         </rz-button>
       </div>
@@ -125,5 +125,7 @@
   <rz-button #buttonPlaySoundArtikelNichtGefunden [style]="{'marginLeft': '10px'}" text="PlaySoundArtikelNichtGefunden" *ngIf="false" (click)="buttonPlaySoundArtikelNichtGefundenClick($event)">
   </rz-button>
   <rz-button #buttonPlaySoundMengeErfasst [style]="{'marginLeft': '10px'}" text="PlaySoundMengeErfasst" *ngIf="false" (click)="buttonPlaySoundMengeErfasstClick($event)">
+  </rz-button>
+  <rz-button #buttonPlaySoundMengeUngueltig [style]="{'marginLeft': '10px'}" text="PlaySoundMengeUngueltig" *ngIf="false" (click)="buttonPlaySoundMengeUngueltigClick($event)">
   </rz-button>
 </rz-content>

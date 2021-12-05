@@ -85,6 +85,10 @@ export const routes: Routes = [
         component: ZzErfassenV1Component
       },
       {
+        path: 'erfassen-artikel-auswahl/:InventurID',
+        component: ErfassenArtikelAuswahlComponent
+      },
+      {
         path: 'zz-erfassen-v-2',
         component: ZzErfassenV2Component
       },
@@ -118,10 +122,6 @@ export const routes: Routes = [
     path: '',
     component: InventurLeerLayoutComponent,
     children: [
-      {
-        path: 'erfassen-artikel-auswahl/:InventurID',
-        component: ErfassenArtikelAuswahlComponent
-      },
       {
         path: 'zz-erfassen-artikel-auswahl-v-1',
         component: ZzErfassenArtikelAuswahlV1Component
