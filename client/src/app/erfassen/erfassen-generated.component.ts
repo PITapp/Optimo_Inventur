@@ -342,12 +342,15 @@ setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)
     }
 
     if (isNaN(Number(this.strMenge)) == true) {
-      this.notificationService.notify({ severity: "error", summary: ``, detail: `Ungültige Menge!` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `${this.strMenge} · Menge ungültig!` });
     }
 
     if (isNaN(Number(this.strMenge)) == true) {
       this.buttonPlaySoundMengeUngueltigClick(null)
-setTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)
+setTimeout(() => { 
+    document.getElementById('textboxMenge').focus(); 
+    this.strMenge = ''; 
+}, 500)
     }
 
     if (this.strArtikelnummer != '' && this.strMenge != '' && isNaN(Number(this.strMenge)) == false) {

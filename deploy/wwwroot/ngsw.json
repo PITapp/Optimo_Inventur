@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1638735749545,
+  "timestamp": 1638787265307,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -116,7 +116,7 @@
     "/assets/images/SoundMengeErfasst2.mp3": "512b72d69853ef693d6e2d8438a48d48ad0ac735",
     "/assets/images/SoundMengeUngueltig.WAV": "bd62660d3d996c3331957002637e97ac0393478e",
     "/favicon.ico": "166c66eded951d9c7f898192a8530c41f467c782",
-    "/index.html": "80b065fabafc691a433ac197df45a8aef04c40b6"
+    "/index.html": "671d1a6419efe7a3cc06a330eacb4539074d1d13"
   },
   "navigationUrls": [
     {

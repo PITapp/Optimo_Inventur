@@ -559,12 +559,12 @@
                           },
                           {
                             "condition": "isNaN(Number(${strMenge})) == true",
-                            "detail": "Ungültige Menge!",
+                            "detail": "${strMenge} · Menge ungültig!",
                             "severity": "error",
                             "type": "notify"
                           },
                           {
-                            "code": "this.buttonPlaySoundMengeUngueltigClick(null)\nsetTimeout(() => { document.getElementById('textboxMenge').focus(); }, 500)",
+                            "code": "this.buttonPlaySoundMengeUngueltigClick(null)\nsetTimeout(() => { \n    document.getElementById('textboxMenge').focus(); \n    this.strMenge = ''; \n}, 500)",
                             "condition": "isNaN(Number(${strMenge})) == true",
                             "type": "execute"
                           },
