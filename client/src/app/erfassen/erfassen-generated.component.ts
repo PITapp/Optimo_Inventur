@@ -166,7 +166,7 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.dsoArtikelLaden = {InventurID: 0, ArtikelID: 0, Artikelnummer: ''};
 
-    this.dsoErfassung = {ArtikelID: 0, DeviceID: 0, ErfasstAm: '', ErfasstAnzahl: 0};
+    this.dsoErfassung = {ArtikelID: 0, DeviceID: 0, ErfasstAm: '', ErfasstAnzahl: 0, GescannteDaten: ''};
 
     this.dbOptimo.getInventurDeviceByDeviceId(null, this.globalDeviceID)
     .subscribe((result: any) => {
@@ -224,6 +224,7 @@ this.dsoArtikelLaden.Artikelnummer = '';
 		case "Unidentified":
 			// --------- Enter ---------
 			if(this.textboxArtikelnummer.value.length >= 1) {
+                this.dsoErfassung.GescannteDaten = this.textboxArtikelnummer.value
 				var tempArtikelnummer = this.textboxArtikelnummer.value
 				var pos = tempArtikelnummer.indexOf('-F')
 
@@ -367,6 +368,12 @@ this.dsoErfassung.ErfasstAm = new Date(Date.UTC(date.getFullYear(),
 this.dsoErfassung.ArtikelID = Number(this.globalArtikelID);
 this.dsoErfassung.DeviceID = Number(this.globalDeviceID);
 this.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);
+
+console.log("this.dsoErfassung.GescannteDaten", this.dsoErfassung.GescannteDaten)
+
+if(this.dsoErfassung.GescannteDaten == '') {
+  this.dsoErfassung.GescannteDaten = this.strArtikelnummer;
+}
     }
 
     if (this.strArtikelnummer != '' && this.strMenge != '' && isNaN(Number(this.strMenge)) == false) {

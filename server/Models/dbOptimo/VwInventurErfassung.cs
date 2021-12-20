@@ -43,6 +43,11 @@ namespace OptimoInventur.Models.DbOptimo
       get;
       set;
     }
+    public string GescannteDaten
+    {
+      get;
+      set;
+    }
     public DateTime? GeloeschtAm
     {
       get;
