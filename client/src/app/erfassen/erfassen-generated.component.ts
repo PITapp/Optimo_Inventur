@@ -212,7 +212,7 @@ this.dsoArtikelLaden.Artikelnummer = '';
 				break;
 
 			default:
-				if(this.textboxArtikelnummer.value.length < 15) {
+				if(this.textboxArtikelnummer.value.length < 30) {
 					this.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key
 				}
 				break;
