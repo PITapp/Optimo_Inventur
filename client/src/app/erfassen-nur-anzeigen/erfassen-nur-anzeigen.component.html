@@ -39,7 +39,7 @@
     <div class="align-items-center d-flex col-12" [ngStyle]="{'backgroundColor': '#e9e9e9', 'borderTop': '1px dotted #a71330', 'fontSize': '16px', 'lineHeight': '16px', 'paddingBottom': '2px', 'paddingLeft': '10px', 'paddingRight': '0', 'paddingTop': '0', 'textAlign': 'right'}">
       <rz-label #label5 [style]="{'color': '#002171', 'fontSize': '40px', 'fontWeight': 'normal', 'lineHeight': '40px', 'textAlign': 'left'}" [text]="((dsoArtikel == null) ? ('') : (intSummeErfasst))">
       </rz-label>
-      <rz-label #label13 [style]="{'color': '#3a474d', 'fontSize': '14px', 'fontWeight': 'normal', 'lineHeight': '14px', 'marginLeft': '5px', 'marginTop': '16px', 'textAlign': 'left'}" text="gezählt" *ngIf="dsoArtikel != null">
+      <rz-label #label13 [style]="{'color': '#3a474d', 'fontSize': '14px', 'fontWeight': 'normal', 'lineHeight': '14px', 'marginLeft': '5px', 'marginTop': '16px', 'textAlign': 'left'}" text="Insgesamt gezählt (alle Lagerorte)" *ngIf="dsoArtikel != null">
       </rz-label>
     </div>
   </div>

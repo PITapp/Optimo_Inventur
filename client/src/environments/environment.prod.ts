@@ -1,5 +1,5 @@
 export const environment = {
-  serverMethodsUrl: '/',
-  dbOptimo: '/odata/dbOptimo',
+  serverMethodsUrl: 'http://localhost:5000/',
+  dbOptimo: 'http://localhost:5000/odata/dbOptimo',
   production: true
 };

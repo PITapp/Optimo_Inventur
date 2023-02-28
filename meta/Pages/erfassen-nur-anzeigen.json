@@ -1,5 +1,4 @@
 {
-  "access": [],
   "components": [
     {
       "components": [
@@ -359,7 +358,7 @@
                     "marginTop": "16px",
                     "textAlign": "left"
                   },
-                  "text": "gezählt",
+                  "text": "Insgesamt gezählt (alle Lagerorte)",
                   "type": "label",
                   "visible": "${dsoArtikel != null}"
                 }
@@ -965,7 +964,7 @@
       {
         "name": "onKeyDownSetArtikelnummer",
         "type": "set",
-        "value": "(event) => {\n\tif(this.strArtikelnummerStatus == 'Geladen') {\n\t\tthis.textboxArtikelnummer.value = '';\n\t\tthis.strArtikelnummerStatus = 'NichtGeladen'\n\t}\n\n\tif(this.dsoDevice.DeviceTyp == 'Barcodescanner') {\n\t\tswitch (event.key) {\n\t\t\tcase \"Enter\":\n\t\t\tcase \"Unidentified\":\n\t\t\tcase \"F12\":\n\t\t\tcase \"Shift\":\n\t\t\tcase \"Tab\":\n\t\t\tcase \"Control\":\n\t\t\tcase \"Alt\":\n\t\t\t\tbreak;\n\n\t\t\tcase \"Backspace\":\n\t\t\t\tif(this.textboxArtikelnummer.value.length >= 1) {\n\t\t\t\t\tthis.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1);\n\t\t\t\t}\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tthis.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key;\n\t\t\t\tbreak;\n\t\t}\n\t\tthis.strArtikelnummer = this.textboxArtikelnummer.value;\n\t} \n\n\tswitch (event.key) {\n\t\tcase \"Enter\":\n\t\tcase \"Unidentified\":\n\t\t\t// --------- Enter ---------\n\t\t\tif(this.textboxArtikelnummer.value.length >= 1) {\n\t\t\t\tthis.strArtikelnummerStatus = 'Artikel geladen';\n\n\t\t\t\tvar strArtikelnummer = this.textboxArtikelnummer.value;\n\t\t\t\tvar pos = strArtikelnummer.indexOf('-F');\n\n\t\t\t\tif (pos > 0) {\n\t\t\t\t\tstrArtikelnummer = strArtikelnummer.substr(0, pos);\n\t\t\t\t\tthis.textboxArtikelnummer.value = strArtikelnummer;\n\t\t\t\t}\n\t\t\n\t\t\t\tthis.dsoArtikelLaden.InventurID = this.parameters.InventurID;\n\t\t\t\tthis.dsoArtikelLaden.ArtikelID = 0;\n\t\t\t\tthis.dsoArtikelLaden.Artikelnummer = strArtikelnummer;\n\t\t\n\t\t\t\tthis.buttonArtikelLadenClick(this.dsoArtikelLaden);\n\t\t\t}\n\t\t\tbreak;\n\t}\n}"
+        "value": "(event) => {\n\tif(this.strArtikelnummerStatus == 'Geladen') {\n\t\tthis.textboxArtikelnummer.value = '';\n\t\tthis.strArtikelnummerStatus = 'NichtGeladen'\n\t}\n\n\tif(this.dsoDevice.DeviceTyp == 'Barcodescanner') {\n\t\tswitch (event.key) {\n\t\t\tcase \"Enter\":\n\t\t\tcase \"Unidentified\":\n\t\t\tcase \"F12\":\n\t\t\tcase \"Shift\":\n\t\t\tcase \"Tab\":\n\t\t\tcase \"Control\":\n\t\t\tcase \"Alt\":\n\t\t\t\tbreak;\n\n\t\t\tcase \"Backspace\":\n\t\t\t\tif(this.textboxArtikelnummer.value.length >= 1) {\n\t\t\t\t\tthis.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1);\n\t\t\t\t}\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tthis.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key;\n\t\t\t\tbreak;\n\t\t}\n\t\tthis.strArtikelnummer = this.textboxArtikelnummer.value;\n\t} \n\n\tswitch (event.key) {\n\t\tcase \"Enter\":\n\t\tcase \"Unidentified\":\n\t\t\t// --------- Enter ---------\n\t\t\tif(this.textboxArtikelnummer.value.length >= 1) {\n\t\t\t\tthis.strArtikelnummerStatus = 'Artikel geladen';\n\n\t\t\t\tvar strArtikelnummer = this.textboxArtikelnummer.value;\n\t\t\t\tvar pos = strArtikelnummer.indexOf('-F');\n\n\t\t\t\tif (pos > 0) {\n\t\t\t\t\tstrArtikelnummer = strArtikelnummer.substr(0, pos);\n\t\t\t\t\tthis.textboxArtikelnummer.value = strArtikelnummer;\n\t\t\t\t}\n\t\t\n\t\t\t\t//this.dsoArtikelLaden.InventurID = this.parameters.InventurID;\n\t\t\t\tthis.dsoArtikelLaden.InventurID = 9999;\n\t\t\t\tthis.dsoArtikelLaden.ArtikelID = 0;\n\t\t\t\tthis.dsoArtikelLaden.Artikelnummer = strArtikelnummer;\n\t\t\n\t\t\t\tthis.buttonArtikelLadenClick(this.dsoArtikelLaden);\n\t\t\t}\n\t\t\tbreak;\n\t}\n}"
       },
       {
         "name": "onClickNavigateBack",

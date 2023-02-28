@@ -1,5 +1,4 @@
 {
-  "access": [],
   "components": [
     {
       "components": [
@@ -198,6 +197,7 @@
                       "value": "onKeyDownSetArtikelnummer($event)"
                     }
                   ],
+                  "disabled": false,
                   "name": "textboxArtikelnummer",
                   "placeholder": "Artikelnummer",
                   "readOnly": "${dsoDevice.DeviceTyp == 'Barcodescanner'}",
@@ -455,7 +455,7 @@
                     "marginTop": "16px",
                     "textAlign": "left"
                   },
-                  "text": "gezählt",
+                  "text": "\nInsgesamt gezählt (alle Lagerorte)",
                   "type": "label",
                   "visible": "${dsoArtikel != null}"
                 }
@@ -569,7 +569,7 @@
                             "type": "execute"
                           },
                           {
-                            "code": "var date = new Date();\n\nthis.dsoErfassung.ErfasstAm = new Date(Date.UTC(date.getFullYear(),\n                                                date.getMonth(),\n                                                date.getDate(),\n                                                date.getHours(),\n                                                date.getMinutes(),\n                                                date.getSeconds(),\n                                                date.getMilliseconds() ));\n                                         \nthis.dsoErfassung.ArtikelID = Number(this.globalArtikelID);\nthis.dsoErfassung.DeviceID = Number(this.globalDeviceID);\nthis.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);\n\nconsole.log(\"this.dsoErfassung.GescannteDaten\", this.dsoErfassung.GescannteDaten)\n\nif(this.dsoErfassung.GescannteDaten == '') {\n  this.dsoErfassung.GescannteDaten = this.strArtikelnummer;\n}",
+                            "code": "var date = new Date();\n\nthis.dsoErfassung.ErfasstAm = new Date(Date.UTC(date.getFullYear(),\n                                                date.getMonth(),\n                                                date.getDate(),\n                                                date.getHours(),\n                                                date.getMinutes(),\n                                                date.getSeconds(),\n                                                date.getMilliseconds() ));\n                                         \nthis.dsoErfassung.ArtikelID = Number(this.globalArtikelID);\nthis.dsoErfassung.InventurID = Number(this.parameters.InventurID);\n\nconsole.log(\"this.parameters.InventurID\", Number(this.parameters.InventurID));\n\nthis.dsoErfassung.DeviceID = Number(this.globalDeviceID);\nthis.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);\n\nconsole.log(\"this.dsoErfassung.GescannteDaten\", this.dsoErfassung.GescannteDaten)\n\nif(this.dsoErfassung.GescannteDaten == '') {\n  this.dsoErfassung.GescannteDaten = this.strArtikelnummer;\n}\n\nconsole.log(\"this.dsoErfassung\", this.dsoErfassung)",
                             "condition": "${strArtikelnummer} != '' && ${strMenge} != '' && isNaN(Number(${strMenge})) == false",
                             "type": "execute"
                           },
@@ -899,9 +899,9 @@
                             "lineHeight": "17px",
                             "width": "100%"
                           },
-                          "text": "${data.StdKreditorName}",
+                          "text": "${data.Einheit}",
                           "type": "label",
-                          "visible": "${data.StdKreditorName != null}"
+                          "visible": "${data.Einheit != null}"
                         }
                       ],
                       "name": "col7",
@@ -1362,7 +1362,7 @@
       {
         "name": "dsoErfassung",
         "type": "set",
-        "value": "{ArtikelID: 0, DeviceID: 0, ErfasstAm: '', ErfasstAnzahl: 0, GescannteDaten: ''}"
+        "value": "{ArtikelID: 0, InventurID: 0, DeviceID: 0, ErfasstAm: '', ErfasstAnzahl: 0, GescannteDaten: ''}"
       },
       {
         "name": "dbOptimo.getInventurDeviceByDeviceID",
@@ -1396,7 +1396,7 @@
             "value": "${result}"
           },
           {
-            "code": "this.dsoArtikelLaden.InventurID = this.parameters.InventurID;\nthis.dsoArtikelLaden.ArtikelID = this.globalArtikelID;\nthis.dsoArtikelLaden.Artikelnummer = '';",
+            "code": "// Wird zur Zeit nicht verwendet\n// this.dsoArtikelLaden.InventurID = this.parameters.InventurID;\n// Es werden alle Artikel pro Lagerort angezeigt!!!\nthis.dsoArtikelLaden.InventurID = 9999;\nthis.dsoArtikelLaden.ArtikelID = this.globalArtikelID;\nthis.dsoArtikelLaden.Artikelnummer = '';",
             "type": "execute"
           },
           {
@@ -1409,7 +1409,7 @@
       {
         "name": "onKeyDownSetArtikelnummer",
         "type": "set",
-        "value": "(event) => {\n\tif(this.strArtikelnummerStatus == 'Geladen') {\n\t\tthis.textboxArtikelnummer.value = ''\n\t\tthis.strArtikelnummerStatus = 'NichtGeladen'\n\t}\n\n\tif(this.dsoDevice.DeviceTyp == 'Barcodescanner') {\n\t\tswitch (event.key) {\n\t\t\tcase \"Enter\":\n\t\t\tcase \"Unidentified\":\n\t\t\tcase \"F12\":\n\t\t\tcase \"Shift\":\n\t\t\tcase \"Tab\":\n\t\t\tcase \"Control\":\n\t\t\tcase \"Alt\":\n\t\t\t\tbreak;\n\n\t\t\tcase \"Backspace\":\n\t\t\t\tif(this.textboxArtikelnummer.value.length >= 1) {\n\t\t\t\t\tthis.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1)\n\t\t\t\t}\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tif(this.textboxArtikelnummer.value.length < 30) {\n\t\t\t\t\tthis.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key\n\t\t\t\t}\n\t\t\t\tbreak;\n\t\t}\n\t}\n\t\n\tswitch (event.key) {\n\t\tcase \"Enter\":\n\t\tcase \"Unidentified\":\n\t\t\t// --------- Enter ---------\n\t\t\tif(this.textboxArtikelnummer.value.length >= 1) {\n                this.dsoErfassung.GescannteDaten = this.textboxArtikelnummer.value\n\t\t\t\tvar tempArtikelnummer = this.textboxArtikelnummer.value\n\t\t\t\tvar pos = tempArtikelnummer.indexOf('-F')\n\n\t\t\t\tif (pos > 0) {\n\t\t\t\t\ttempArtikelnummer = tempArtikelnummer.substr(0, pos)\n\t\t\t\t\tthis.textboxArtikelnummer.value = tempArtikelnummer\n\t\t\t\t}\n\n\t\t\t\tthis.dsoArtikelLaden.InventurID = this.parameters.InventurID\n\t\t\t\tthis.dsoArtikelLaden.ArtikelID = 0\n\t\t\t\tthis.dsoArtikelLaden.Artikelnummer = tempArtikelnummer\n\n\t\t\t\tthis.buttonArtikelLadenClick(this.dsoArtikelLaden)\n\t\t\t}\n\t\t\tbreak;\n\t\t}\n}"
+        "value": "(event) => {\n\tif(this.strArtikelnummerStatus == 'Geladen') {\n\t\tthis.textboxArtikelnummer.value = ''\n\t\tthis.strArtikelnummerStatus = 'NichtGeladen'\n\t}\n\n\tif(this.dsoDevice.DeviceTyp == 'Barcodescanner') {\n\t\tswitch (event.key) {\n\t\t\tcase \"Enter\":\n\t\t\tcase \"Unidentified\":\n\t\t\tcase \"F12\":\n\t\t\tcase \"Shift\":\n\t\t\tcase \"Tab\":\n\t\t\tcase \"Control\":\n\t\t\tcase \"Alt\":\n\t\t\t\tbreak;\n\n\t\t\tcase \"Backspace\":\n\t\t\t\tif(this.textboxArtikelnummer.value.length >= 1) {\n\t\t\t\t\tthis.textboxArtikelnummer.value = this.textboxArtikelnummer.value.substr(0,this.textboxArtikelnummer.value.length - 1)\n\t\t\t\t}\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tif(this.textboxArtikelnummer.value.length < 30) {\n\t\t\t\t\tthis.textboxArtikelnummer.value = this.textboxArtikelnummer.value + event.key\n\t\t\t\t}\n\t\t\t\tbreak;\n\t\t}\n\t}\n\t\n\tswitch (event.key) {\n\t\tcase \"Enter\":\n\t\tcase \"Unidentified\":\n\t\t\t// --------- Enter ---------\n\t\t\tif(this.textboxArtikelnummer.value.length >= 1) {\n                this.dsoErfassung.GescannteDaten = this.textboxArtikelnummer.value\n\t\t\t\tvar tempArtikelnummer = this.textboxArtikelnummer.value\n\t\t\t\tvar pos = tempArtikelnummer.indexOf('-F')\n\n\t\t\t\tif (pos > 0) {\n\t\t\t\t\ttempArtikelnummer = tempArtikelnummer.substr(0, pos)\n\t\t\t\t\tthis.textboxArtikelnummer.value = tempArtikelnummer\n\t\t\t\t}\n\n\t\t\t\t//this.dsoArtikelLaden.InventurID = this.parameters.InventurID\n\t\t\t\tthis.dsoArtikelLaden.InventurID = 9999;\n\t\t\t\tthis.dsoArtikelLaden.ArtikelID = 0\n\t\t\t\tthis.dsoArtikelLaden.Artikelnummer = tempArtikelnummer\n\n\t\t\t\tthis.buttonArtikelLadenClick(this.dsoArtikelLaden)\n\t\t\t}\n\t\t\tbreak;\n\t\t}\n}"
       },
       {
         "name": "onKeyDownSetMenge",

@@ -45,11 +45,6 @@ namespace OptimoInventur.Data
                   .WithMany(i => i.Benutzers)
                   .HasForeignKey(i => i.BaseID)
                   .HasPrincipalKey(i => i.BaseID);
-            builder.Entity<OptimoInventur.Models.DbOptimo.InventurArtikel>()
-                  .HasOne(i => i.InventurBasis)
-                  .WithMany(i => i.InventurArtikels)
-                  .HasForeignKey(i => i.InventurID)
-                  .HasPrincipalKey(i => i.InventurID);
             builder.Entity<OptimoInventur.Models.DbOptimo.InventurBasis>()
                   .HasOne(i => i.InventurBasisStatus)
                   .WithMany(i => i.InventurBases)
@@ -65,6 +60,11 @@ namespace OptimoInventur.Data
                   .WithMany(i => i.InventurErfassungs)
                   .HasForeignKey(i => i.ArtikelID)
                   .HasPrincipalKey(i => i.ArtikelID);
+            builder.Entity<OptimoInventur.Models.DbOptimo.InventurErfassung>()
+                  .HasOne(i => i.InventurBasis)
+                  .WithMany(i => i.InventurErfassungs)
+                  .HasForeignKey(i => i.InventurID)
+                  .HasPrincipalKey(i => i.InventurID);
             builder.Entity<OptimoInventur.Models.DbOptimo.InventurErfassung>()
                   .HasOne(i => i.InventurDevice)
                   .WithMany(i => i.InventurErfassungs)
@@ -254,6 +254,12 @@ namespace OptimoInventur.Data
           set;
         }
 
+        public DbSet<OptimoInventur.Models.DbOptimo.VwErfassungNav> VwErfassungNavs
+        {
+          get;
+          set;
+        }
+
         public DbSet<OptimoInventur.Models.DbOptimo.VwErfassungSummen> VwErfassungSummens
         {
           get;
@@ -273,6 +279,12 @@ namespace OptimoInventur.Data
         }
 
         public DbSet<OptimoInventur.Models.DbOptimo.VwInventurErfassung> VwInventurErfassungs
+        {
+          get;
+          set;
+        }
+
+        public DbSet<OptimoInventur.Models.DbOptimo.VwInventurErfassungBdo> VwInventurErfassungBdos
         {
           get;
           set;

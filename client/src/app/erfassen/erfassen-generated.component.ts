@@ -166,7 +166,7 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.dsoArtikelLaden = {InventurID: 0, ArtikelID: 0, Artikelnummer: ''};
 
-    this.dsoErfassung = {ArtikelID: 0, DeviceID: 0, ErfasstAm: '', ErfasstAnzahl: 0, GescannteDaten: ''};
+    this.dsoErfassung = {ArtikelID: 0, InventurID: 0, DeviceID: 0, ErfasstAm: '', ErfasstAnzahl: 0, GescannteDaten: ''};
 
     this.dbOptimo.getInventurDeviceByDeviceId(null, this.globalDeviceID)
     .subscribe((result: any) => {
@@ -179,7 +179,10 @@ export class ErfassenGenerated implements AfterViewInit, OnInit, OnDestroy {
     .subscribe((result: any) => {
       this.dsoLagerort = result;
 
-      this.dsoArtikelLaden.InventurID = this.parameters.InventurID;
+      // Wird zur Zeit nicht verwendet
+// this.dsoArtikelLaden.InventurID = this.parameters.InventurID;
+// Es werden alle Artikel pro Lagerort angezeigt!!!
+this.dsoArtikelLaden.InventurID = 9999;
 this.dsoArtikelLaden.ArtikelID = this.globalArtikelID;
 this.dsoArtikelLaden.Artikelnummer = '';
 
@@ -233,7 +236,8 @@ this.dsoArtikelLaden.Artikelnummer = '';
 					this.textboxArtikelnummer.value = tempArtikelnummer
 				}
 
-				this.dsoArtikelLaden.InventurID = this.parameters.InventurID
+				//this.dsoArtikelLaden.InventurID = this.parameters.InventurID
+				this.dsoArtikelLaden.InventurID = 9999;
 				this.dsoArtikelLaden.ArtikelID = 0
 				this.dsoArtikelLaden.Artikelnummer = tempArtikelnummer
 
@@ -366,6 +370,10 @@ this.dsoErfassung.ErfasstAm = new Date(Date.UTC(date.getFullYear(),
                                                 date.getMilliseconds() ));
                                          
 this.dsoErfassung.ArtikelID = Number(this.globalArtikelID);
+this.dsoErfassung.InventurID = Number(this.parameters.InventurID);
+
+console.log("this.parameters.InventurID", Number(this.parameters.InventurID));
+
 this.dsoErfassung.DeviceID = Number(this.globalDeviceID);
 this.dsoErfassung.ErfasstAnzahl = Number(this.strMenge);
 
@@ -374,6 +382,8 @@ console.log("this.dsoErfassung.GescannteDaten", this.dsoErfassung.GescannteDaten
 if(this.dsoErfassung.GescannteDaten == '') {
   this.dsoErfassung.GescannteDaten = this.strArtikelnummer;
 }
+
+console.log("this.dsoErfassung", this.dsoErfassung)
     }
 
     if (this.strArtikelnummer != '' && this.strMenge != '' && isNaN(Number(this.strMenge)) == false) {

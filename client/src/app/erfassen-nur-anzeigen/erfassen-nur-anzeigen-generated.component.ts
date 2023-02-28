@@ -214,7 +214,8 @@ this.dsoArtikelLaden.Artikelnummer = '';
 					this.textboxArtikelnummer.value = strArtikelnummer;
 				}
 		
-				this.dsoArtikelLaden.InventurID = this.parameters.InventurID;
+				//this.dsoArtikelLaden.InventurID = this.parameters.InventurID;
+				this.dsoArtikelLaden.InventurID = 9999;
 				this.dsoArtikelLaden.ArtikelID = 0;
 				this.dsoArtikelLaden.Artikelnummer = strArtikelnummer;
 		

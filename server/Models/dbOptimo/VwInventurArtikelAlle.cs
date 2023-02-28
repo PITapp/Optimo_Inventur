@@ -43,6 +43,11 @@ namespace OptimoInventur.Models.DbOptimo
       get;
       set;
     }
+    public string Einheit
+    {
+      get;
+      set;
+    }
     public string ArtikelStatus
     {
       get;

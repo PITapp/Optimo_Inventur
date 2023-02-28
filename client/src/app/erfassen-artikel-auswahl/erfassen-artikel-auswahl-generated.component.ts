@@ -131,7 +131,7 @@ this.datalistArtikel.load();
   }
 
   datalistArtikelLoadData(event: any) {
-    this.dbOptimo.getInventurArtikels(`InventurID eq ${this.parameters.InventurID} and (contains(tolower(Artikelnummer),tolower('${this.textboxArtikelSuchen.value || ''}')) OR contains(tolower(Beschreibung),tolower('${this.textboxArtikelSuchen.value || ''}')))`, 50, null, `Artikelnummer`, null, null, null, null)
+    this.dbOptimo.getInventurArtikels(`(contains(tolower(Artikelnummer),tolower('${this.textboxArtikelSuchen.value || ''}')) OR contains(tolower(Beschreibung),tolower('${this.textboxArtikelSuchen.value || ''}')))`, 50, null, `Artikelnummer`, null, null, null, null)
     .subscribe((result: any) => {
       this.rstArtikel = result.value;
 

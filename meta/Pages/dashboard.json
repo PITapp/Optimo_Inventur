@@ -1,5 +1,4 @@
 {
-  "access": [],
   "components": [
     {
       "components": [
@@ -197,7 +196,7 @@
                 "marginBottom": "0px",
                 "textAlign": "center"
               },
-              "text": "© 2021 Optimo Schlafsysteme GmbH",
+              "text": "© 2022 Optimo Schlafsysteme GmbH",
               "type": "heading"
             },
             {
@@ -221,7 +220,7 @@
                 "marginBottom": "0px",
                 "textAlign": "center"
               },
-              "text": "Version 1.03.045",
+              "text": "Version 1.03.046",
               "type": "heading"
             }
           ],

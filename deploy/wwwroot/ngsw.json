@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1645007858440,
+  "timestamp": 1671402520633,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -42,6 +42,10 @@
         "/assets/fonts/roboto-v15-latin-300.woff",
         "/assets/fonts/roboto-v15-latin-700.woff",
         "/assets/fonts/roboto-v15-latin-regular.woff",
+        "/assets/fonts/roboto-v30-latin-300.woff",
+        "/assets/fonts/roboto-v30-latin-500.woff",
+        "/assets/fonts/roboto-v30-latin-700.woff",
+        "/assets/fonts/roboto-v30-latin-regular.woff",
         "/assets/icon-128x128.png",
         "/assets/icon-152x152.png",
         "/assets/icon-256x256.png",
@@ -81,7 +85,7 @@
     "/assets/css/humanistic.css": "a9c7e2345bbdeb509254f7564200ac18c6ae9f9d",
     "/assets/css/material-dark.css": "0e5bb73a5a1ff0246bf44477eb883d1a65da8c5f",
     "/assets/css/material.css": "e773111a11a8f86de001044b1e3dfd78c3b7baf1",
-    "/assets/fonts/MaterialIcons-Regular.woff": "bc91d406c6998d02e0806d675ea4ea2693f3208d",
+    "/assets/fonts/MaterialIcons-Regular.woff": "bd34b6c4beca060192969a1343d38c9cdc3e8256",
     "/assets/fonts/MaterialIcons-Regular.woff2": "da997b8666bf8a967102c5089acac8d50c89ab4e",
     "/assets/fonts/SourceSansPro-Black.woff": "aa02dc9ed0ab8c2f14080db6967bfda798a1d36e",
     "/assets/fonts/SourceSansPro-BlackIt.woff": "090123649291f34a7f457d87e69cf3d07eade6aa",
@@ -99,6 +103,10 @@
     "/assets/fonts/roboto-v15-latin-300.woff": "27c056b9c70dcfd55c43e954a898eb5bf706f730",
     "/assets/fonts/roboto-v15-latin-700.woff": "24f9df68c500f7bbd1cb1c632de59936aa85b2e0",
     "/assets/fonts/roboto-v15-latin-regular.woff": "940b859e4f02bd3e7cf7b6ce245c197b5470302a",
+    "/assets/fonts/roboto-v30-latin-300.woff": "19cec53c3c7c2042f71066b7a92d6c8d7e207bd7",
+    "/assets/fonts/roboto-v30-latin-500.woff": "02edc7784ea80afc258224f3cb8c86dd233aaf19",
+    "/assets/fonts/roboto-v30-latin-700.woff": "6baf2c7cc3a03676c10ce872ef9fa1aa4e185901",
+    "/assets/fonts/roboto-v30-latin-regular.woff": "d9cfe6b477b49d47b6241b4281f4858d98eaca65",
     "/assets/icon-128x128.png": "09cc1aa69ef8ce64bcd18d24c6105eb6f1a0d779",
     "/assets/icon-152x152.png": "732d187bfcfac541c55575a9c7905783f5194981",
     "/assets/icon-256x256.png": "9bb1ad766452f927ad0f5e61796e8c73e963586d",
@@ -116,7 +124,7 @@
     "/assets/images/SoundMengeErfasst2.mp3": "512b72d69853ef693d6e2d8438a48d48ad0ac735",
     "/assets/images/SoundMengeUngueltig.WAV": "bd62660d3d996c3331957002637e97ac0393478e",
     "/favicon.ico": "166c66eded951d9c7f898192a8530c41f467c782",
-    "/index.html": "0190c496a079cd27f50890d1dcd6b85a55f3b0aa"
+    "/index.html": "0dfe9d6bd595dcb53eb53013f0e78838d7d98fc2"
   },
   "navigationUrls": [
     {

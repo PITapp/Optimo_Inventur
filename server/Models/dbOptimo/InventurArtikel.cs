@@ -23,8 +23,6 @@ namespace OptimoInventur.Models.DbOptimo
       get;
       set;
     }
-
-    public InventurBasis InventurBasis { get; set; }
     public int ZeilenNr
     {
       get;
@@ -46,6 +44,11 @@ namespace OptimoInventur.Models.DbOptimo
       set;
     }
     public string StdKreditorName
+    {
+      get;
+      set;
+    }
+    public string Einheit
     {
       get;
       set;

@@ -1,5 +1,4 @@
 {
-  "access": [],
   "components": [
     {
       "components": [
@@ -221,9 +220,6 @@
                           {
                             "name": "$filter",
                             "value": [
-                              {
-                                "value": "InventurID eq ${parameters.InventurID}"
-                              },
                               {
                                 "filters": [
                                   {
